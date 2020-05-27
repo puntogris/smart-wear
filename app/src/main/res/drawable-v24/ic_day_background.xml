@@ -1,0 +1,35 @@
+<vector android:autoMirrored="true" android:height="823dp"
+    android:viewportHeight="823" android:viewportWidth="411"
+    android:width="411dp" xmlns:aapt="http://schemas.android.com/aapt" xmlns:android="http://schemas.android.com/apk/res/android">
+    <group>
+        <clip-path android:pathData="M0,0h411v823h-411z M 0,0"/>
+        <path android:pathData="M0,0h411v823h-411z">
+            <aapt:attr name="android:fillColor">
+                <gradient android:endX="398.5" android:endY="770.5"
+                    android:startX="12" android:startY="9.5" android:type="linear">
+                    <item android:color="#FF28E3B9" android:offset="0.105574"/>
+                    <item android:color="#FF6C72D3" android:offset="0.627443"/>
+                    <item android:color="#FFBB15E0" android:offset="1"/>
+                </gradient>
+            </aapt:attr>
+        </path>
+        <path android:fillAlpha="0.13" android:pathData="M107.5,500.5m-124.5,0a124.5,124.5 0,1 1,249 0a124.5,124.5 0,1 1,-249 0">
+            <aapt:attr name="android:fillColor">
+                <gradient android:endX="232" android:endY="625"
+                    android:startX="-17" android:startY="366.5" android:type="linear">
+                    <item android:color="#FF4EA3C7" android:offset="0.38389"/>
+                    <item android:color="#FF812561" android:offset="0.63541"/>
+                </gradient>
+            </aapt:attr>
+        </path>
+        <path android:fillAlpha="0.13" android:pathData="M294.5,692.5m-184.5,0a184.5,184.5 0,1 1,369 0a184.5,184.5 0,1 1,-369 0">
+            <aapt:attr name="android:fillColor">
+                <gradient android:endX="536.5" android:endY="817"
+                    android:startX="160.5" android:startY="543" android:type="linear">
+                    <item android:color="#FF380D35" android:offset="0.389481"/>
+                    <item android:color="#00AD00FF" android:offset="0.760417"/>
+                </gradient>
+            </aapt:attr>
+        </path>
+    </group>
+</vector>

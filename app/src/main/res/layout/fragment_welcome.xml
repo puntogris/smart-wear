@@ -10,6 +10,7 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="@drawable/ic_welcome_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.WelcomeFragment">
@@ -18,9 +19,11 @@
             android:id="@+id/welcomFragmentTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:textSize="40sp"
+            android:layout_marginTop="100dp"
+            android:fontFamily="sans-serif-light"
             android:text="@string/app_name"
+            android:textColor="@android:color/white"
+            android:textSize="40sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -30,7 +33,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Algo mas que solo el clima"
+            android:fontFamily="sans-serif-light"
+            android:text="@string/app_slogan"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
@@ -43,8 +47,9 @@
             android:layout_marginStart="50dp"
             android:layout_marginEnd="50dp"
             android:layout_marginBottom="56dp"
+            android:fontFamily="sans-serif-light"
             android:textAlignment="center"
-            android:text="*Para una mejor experiencia activa la ubicacion automatica"
+            android:text="@string/location_message"
             app:layout_constraintBottom_toTopOf="@+id/nextButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -55,7 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="32dp"
             android:layout_marginBottom="32dp"
-            android:text="Next"
+            android:text="@string/next_button"
             android:onClick="@{()-> welcomeFragment.saveUserNameAndNavigateToMainFragment()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
@@ -66,7 +71,9 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:hint="Name"
+            android:hint="@string/name_hint_editText"
+            android:fontFamily="sans-serif-light"
+            android:textColorHint="@android:color/white"
             android:importantForAutofill="no"
             app:layout_constraintBottom_toTopOf="@+id/textView3"
             app:layout_constraintEnd_toEndOf="parent"

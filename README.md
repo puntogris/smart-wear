@@ -1,10 +1,10 @@
-# what-do-i-wear
+# what do i wear
 Used in this project:</br>
   * Kotlin
   * MVVM
   * OkHttp
   * Gson
   * Geocoder
-  * DarkSKy API
+  * Dark Sky API
   * Dagger
 

@@ -2,18 +2,38 @@ package com.puntogris.whatdoiwear.utils
 
 import android.view.View
 import android.widget.ImageView
+import android.widget.SeekBar
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import androidx.databinding.adapters.SeekBarBindingAdapter.OnProgressChanged
 import com.puntogris.whatdoiwear.R
 import com.puntogris.whatdoiwear.model.WeatherBodyApi
 import kotlin.math.roundToInt
 
+
+@BindingAdapter("doubleToStringPercentage")
+fun TextView.setDoubleToStringPercentage(double:Double){
+    val doubleText = (double * 100).toInt()
+    text = context.getString(R.string.percentage_symbol, doubleText)
+
+}
+
+@BindingAdapter("windSpeedToKmH")
+fun TextView.setWindSpeedToKmH(windSpeed:Double){
+    val windSpeedText = (windSpeed / 0.277778).roundToInt()
+    text = context.getString(R.string.kmh_symbol, windSpeedText)
+}
+
+@BindingAdapter("weatherTemperature")
+fun TextView.setWeatherTemperature(temperature:Double){
+    text = context.getString(R.string.temperature_celsius, temperature.roundToInt())
+}
 @BindingAdapter("weatherImage")
 fun ImageView.setWeatherImages(weatherStatus:String){
 
     var imgResId: Int = R.drawable.ic_015_moon
 
-    this.setLayerType(View.LAYER_TYPE_SOFTWARE, null)
+    setLayerType(View.LAYER_TYPE_SOFTWARE, null)
 
     when (weatherStatus) {
         "clear-day" -> imgResId = R.drawable.ic_007_sunny_1
@@ -27,7 +47,7 @@ fun ImageView.setWeatherImages(weatherStatus:String){
         "partly-cloudy-day" -> imgResId = R.drawable.ic_013_sunny
         "partly-cloudy-night" -> imgResId = R.drawable.ic_020_cloudy
     }
-    this.setImageResource(imgResId)
+    setImageResource(imgResId)
 
 }
 

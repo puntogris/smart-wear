@@ -6,19 +6,13 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.SeekBar
-import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
-import androidx.databinding.adapters.SeekBarBindingAdapter.OnProgressChanged
-import androidx.databinding.adapters.SeekBarBindingAdapter.setOnSeekBarChangeListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import com.google.android.gms.location.*
 import com.puntogris.whatdoiwear.R
 import com.puntogris.whatdoiwear.databinding.FragmentMainBinding
 import java.util.*
-
 
 class MainFragment : Fragment() {
     val viewModel:MainFragmentViewModel by viewModels{ MainFragmentViewModelFactory(requireNotNull(this.activity).application)}
@@ -36,22 +30,9 @@ class MainFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
 
+        viewModel.updateDate()
         buildLocationRequest()
         getLocation()
-
-        binding.seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
-            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                viewModel.updateSeekBarPosition(progress)
-            }
-
-            override fun onStartTrackingTouch(seekBar: SeekBar?) {
-                //
-            }
-
-            override fun onStopTrackingTouch(seekBar: SeekBar?) {
-                //
-            }
-        })
 
         // Inflate the layout for this fragment
         return binding.root
@@ -76,8 +57,7 @@ class MainFragment : Fragment() {
                         location.longitude,
                         1
                     )
-                binding.location.text = geocoder[0].locality + ", "+ geocoder[0].adminArea
-
+                viewModel.setLocationName(geocoder[0].locality + ", "+ geocoder[0].adminArea)
 
             }
         }
@@ -95,6 +75,7 @@ class MainFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         startLocationUpdates()
+        viewModel.updateDate()
     }
 
     private fun stopLocationUpdates() {
