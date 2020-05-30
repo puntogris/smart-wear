@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">que me pongo?</string>
+    <string name="wind">Viento:</string>
+    <string name="humidity">Humedad:</string>
+    <string name="precip">Precip.:</string>
+    <string name="weather_icon_content_description">icono del clima</string>
+    <string name="app_slogan">Algo mas que solo el clima</string>
+    <string name="location_message">*Para una mejor experiencia activa la ubicacion automatica en tu dispositivo</string>
+    <string name="next_button">Siguiente</string>
+    <string name="name_hint_editText">tu nombre</string>
+    <string name="player_name_shared_pref_default_value">Hola tu,</string>
+    <string name="player_name_shared_pref">Hola %1$s,</string>
+</resources>

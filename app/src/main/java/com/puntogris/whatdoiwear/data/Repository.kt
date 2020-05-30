@@ -1,15 +1,21 @@
 package com.puntogris.whatdoiwear.data
 
+import android.content.Context
+import android.location.Geocoder
 import android.location.Location
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.puntogris.whatdoiwear.model.CurrentWeather
 import com.puntogris.whatdoiwear.model.WeatherBodyApi
 import okhttp3.*
 import java.io.IOException
+import java.util.*
+import javax.inject.Inject
 
-class Repository :IRepository{
+class Repository @Inject constructor(
+    private val customLiveData: LocationLiveData,
+    private val context: Context) : IRepository{
 
     override fun getWeatherApi(location: Location) :LiveData<WeatherBodyApi>{
         val url =
@@ -36,7 +42,21 @@ class Repository :IRepository{
         return liveData
     }
 
+    override fun getLocation(): LocationLiveData{
+        return customLiveData
+    }
 
+    override fun getLocationName(location: Location): LiveData<String> {
+        val livedata = MutableLiveData<String>()
+        Geocoder(context, Locale.getDefault()).getFromLocation(
+            location.latitude,
+            location.longitude,
+            1
+        ).also {
+            livedata.postValue(it[0].locality + ", "+ it[0].adminArea)
+        }
 
+        return livedata
+    }
 
 }

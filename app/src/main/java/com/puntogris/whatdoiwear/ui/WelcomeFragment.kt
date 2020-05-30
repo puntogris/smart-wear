@@ -1,39 +1,38 @@
 package com.puntogris.whatdoiwear.ui
 
-import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
-import androidx.preference.PreferenceManager
 import com.puntogris.whatdoiwear.R
 import com.puntogris.whatdoiwear.databinding.FragmentWelcomeBinding
+import com.puntogris.whatdoiwear.di.injector
 
 class WelcomeFragment : Fragment() {
+
+    private val sharedPref by lazy { injector.sharedPreferences }
     private lateinit var binding:FragmentWelcomeBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_welcome, container, false)
-        binding.welcomeFragment = this
 
+        binding.apply {
+            welcomeFragment = this@WelcomeFragment
+            lifecycleOwner = viewLifecycleOwner
+        }
 
-        // Inflate the layout for this fragment
         return binding.root
     }
 
     fun saveUserNameAndNavigateToMainFragment(){
-        val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
-        var input = binding.userNameEditText.text.toString()
-        if (input.isEmpty()) input = "you"
-        with (sharedPref.edit()) {
-            putString("player_name", "Hey $input")
-            apply()}
+        val input = binding.userNameEditText.text.toString()
+        sharedPref.putData(input)
         findNavController().navigate(R.id.mainFragment)
     }
 

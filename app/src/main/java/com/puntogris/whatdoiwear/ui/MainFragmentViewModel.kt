@@ -1,32 +1,23 @@
 package com.puntogris.whatdoiwear.ui
 
-import android.app.Application
-import android.location.Location
-import android.os.FileUtils
-import android.view.View
 import android.widget.SeekBar
-import androidx.databinding.ObservableField
 import androidx.lifecycle.*
-import androidx.preference.PreferenceManager
 import com.puntogris.whatdoiwear.data.Repository
+import com.puntogris.whatdoiwear.utils.MySharedPreferences
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.time.ExperimentalTime
-import kotlin.time.hours
+import javax.inject.Inject
 
-class MainFragmentViewModel(application: Application):AndroidViewModel(application){
+class MainFragmentViewModel @Inject constructor(
+    private val repo: Repository,
+    sharedPref: MySharedPreferences
+) :ViewModel(){
 
-    private val repo = Repository()
     private val locale = Locale.getDefault()
-    private val sharedPref = PreferenceManager.getDefaultSharedPreferences(application.applicationContext)
-
-    private val dateNow = MutableLiveData(Date())
-    private var _seekBarPosition = MutableLiveData<Int>()
+    private val dateNow = MutableLiveData<Date>()
+    private val _seekBarPosition = MutableLiveData<Int>()
+    private val location = repo.getLocation()
     val seekBarPosition = _seekBarPosition
-
-    private var location = MutableLiveData<Location>()
-    private var _locationName = MutableLiveData<String>()
-    val locationName:LiveData<String> = _locationName
 
     val time:LiveData<String> = dateNow.switchMap{
         MutableLiveData(SimpleDateFormat("h:mm a",locale).format(it))
@@ -34,17 +25,14 @@ class MainFragmentViewModel(application: Application):AndroidViewModel(applicati
     val date:LiveData<String> = dateNow.switchMap{
         MutableLiveData(SimpleDateFormat("EEE, MMM d",locale).format(it))
     }
-    val name = sharedPref!!.getString("player_name","Hey you")
+    val name = sharedPref.getData()
 
-    val weatherBody = location.switchMap {
-        liveData { emitSource(repo.getWeatherApi(it)) }
+    val weatherBody = location.switchMap { location ->
+        liveData { emitSource(repo.getWeatherApi(location)) }
     }
 
-    fun setLocation(location: Location){
-        this.location.value = location
-    }
-    fun setLocationName(locationName:String){
-        this._locationName.value = locationName
+    val locationName = location.switchMap { location ->
+        liveData { emitSource(repo.getLocationName(location)) }
     }
 
     fun updateSeekBarPosition(seekBar: SeekBar,progresValue: Int, fromUser: Boolean) {

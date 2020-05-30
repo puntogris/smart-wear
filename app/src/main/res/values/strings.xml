@@ -1,14 +1,16 @@
 <resources>
     <string name="app_name">what do i wear?</string>
-    <string name="temperature_celsius">%1$d \u2103</string>
-    <string name="percentage_symbol">%1$d %%.</string>
-    <string name="kmh_symbol">%1$d km/h.</string>
+    <string name="temperature_celsius" translatable="false">%1$d \u2103</string>
+    <string name="percentage_symbol" translatable="false">%1$d %%.</string>
+    <string name="kmh_symbol" translatable="false">%1$d km/h.</string>
     <string name="wind">Wind:</string>
     <string name="humidity">Humidity:</string>
     <string name="precip">Precip.:</string>
     <string name="weather_icon_content_description">weather icon</string>
-    <string name="app_slogan">Algo mas que solo el clima</string>
-    <string name="location_message">*Para una mejor experiencia activa la ubicacion automatica</string>
     <string name="next_button">Next</string>
-    <string name="name_hint_editText">what\'s your name?</string>
+    <string name="name_hint_editText">your name</string>
+    <string name="player_name_shared_pref_default_value">Hey you,</string>
+    <string name="player_name_shared_pref">Hey %1$s,</string>
+    <string name="app_slogan">The weather with a plus</string>
+    <string name="location_message">*For a better experience turn on the location in your device</string>
 </resources>

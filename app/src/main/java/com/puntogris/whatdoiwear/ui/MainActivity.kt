@@ -1,25 +1,19 @@
 package com.puntogris.whatdoiwear.ui
 
 import android.graphics.Color
-import android.os.Build
 import android.os.Bundle
 import android.view.View
-import android.view.Window
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceManager
+import com.puntogris.whatdoiwear.App
 import com.puntogris.whatdoiwear.R
-
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-
-        val sharedPref = PreferenceManager.getDefaultSharedPreferences(application.applicationContext)
-        val name = sharedPref!!.getString("player_name","Hey you")
 
         window.apply {
             clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
