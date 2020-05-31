@@ -13,4 +13,5 @@
     <string name="player_name_shared_pref">Hey %1$s,</string>
     <string name="app_slogan">The weather with a plus</string>
     <string name="location_message">*For a better experience turn on the location in your device</string>
+    <string name="weather_location_message">We need access to your location in order to provide you the weather.</string>
 </resources>

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.puntogris.whatdoiwear.R
 import com.puntogris.whatdoiwear.databinding.FragmentWelcomeBinding
@@ -14,8 +15,9 @@ import com.puntogris.whatdoiwear.di.injector
 class WelcomeFragment : Fragment() {
 
     private val sharedPref by lazy { injector.sharedPreferences }
-    private lateinit var binding:FragmentWelcomeBinding
+    private val navController by lazy { findNavController() }
 
+    private lateinit var binding:FragmentWelcomeBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -27,13 +29,15 @@ class WelcomeFragment : Fragment() {
             lifecycleOwner = viewLifecycleOwner
         }
 
+        if(sharedPref.exists()) navController.navigate(R.id.mainFragment)
+
         return binding.root
     }
 
     fun saveUserNameAndNavigateToMainFragment(){
         val input = binding.userNameEditText.text.toString()
         sharedPref.putData(input)
-        findNavController().navigate(R.id.mainFragment)
+        navController.navigate(R.id.mainFragment)
     }
 
 }

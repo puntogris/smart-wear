@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -12,10 +13,13 @@ import com.puntogris.whatdoiwear.R
 import com.puntogris.whatdoiwear.databinding.FragmentMainBinding
 import com.puntogris.whatdoiwear.di.injector
 import com.puntogris.whatdoiwear.utils.PermissionsManager
+import java.text.SimpleDateFormat
+import java.util.*
 
 class MainFragment : Fragment() {
     private val viewModel by viewModel {  injector.mainViewModel}
     private val permissionsManager by lazy { injector.permissionManager}
+    private val sharedPref by lazy { injector.sharedPreferences }
 
     private lateinit var binding: FragmentMainBinding
 
@@ -57,6 +61,8 @@ class MainFragment : Fragment() {
     }
 
     private fun onLocationPermissionDenied(){
+        sharedPref.delete()
+        Toast.makeText(context, getString(R.string.weather_location_message), Toast.LENGTH_SHORT).show()
         findNavController().navigate(R.id.welcomeFragment)
     }
 

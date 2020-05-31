@@ -16,4 +16,9 @@ class MySharedPreferences @Inject constructor(private val sharedPreferences: Sha
         sharedPreferences.edit().putString(key, userName).apply()
     }
     fun getData() = sharedPreferences.getString(key, defaultValue)
+
+    fun exists(): Boolean = sharedPreferences.contains(key)
+
+    fun delete() =  sharedPreferences.edit().remove(key).apply()
+
 }

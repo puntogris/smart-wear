@@ -3,6 +3,7 @@ package com.puntogris.whatdoiwear.utils
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.BindingAdapter
 import com.puntogris.whatdoiwear.R
 import com.puntogris.whatdoiwear.model.WeatherBodyApi
@@ -23,6 +24,14 @@ fun TextView.setWindSpeedToKmH(windSpeed: Double) {
 @BindingAdapter("weatherTemperature")
 fun TextView.setWeatherTemperature(temperature: Double) {
     text = context.getString(R.string.temperature_celsius, temperature.roundToInt())
+}
+
+@BindingAdapter("backgroundImage")
+fun ConstraintLayout.setBackgroundImage(time: String){
+    val background =
+        if (time.takeLast(2) == Constants.PM_TIME) R.drawable.ic_night_background
+        else R.drawable.ic_day_background
+    setBackgroundResource(background)
 }
 
 @BindingAdapter("weatherImage")

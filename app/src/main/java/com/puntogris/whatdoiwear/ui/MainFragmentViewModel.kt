@@ -12,9 +12,10 @@ class MainFragmentViewModel @Inject constructor(
     private val repo: Repository,
     sharedPref: MySharedPreferences
 ) :ViewModel(){
+    val test = SimpleDateFormat("h:mm a", Locale.getDefault()).format(Date())
 
     private val locale = Locale.getDefault()
-    private val dateNow = MutableLiveData<Date>()
+    private val dateNow = MutableLiveData<Date>(Date())
     private val _seekBarPosition = MutableLiveData<Int>()
     private val location = repo.getLocation()
     val seekBarPosition = _seekBarPosition
@@ -39,8 +40,5 @@ class MainFragmentViewModel @Inject constructor(
         _seekBarPosition.value = progresValue
     }
 
-    fun updateDate(){
-        dateNow.value = Date()
-    }
-
+    fun updateDate() = dateNow.postValue(Date())
 }
