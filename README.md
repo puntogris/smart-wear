@@ -10,7 +10,7 @@ Used in this project:</br>
   * Dark Sky API
   * Dagger
   
-  
-  ![N|Solid](https://github.com/puntogris/what-do-i-wear/blob/master/screenshots/1.webp)
+## Screenshots
+![N|Solid](https://github.com/puntogris/what-do-i-wear/blob/master/screenshots/1.webp)
 ![N|Solid](https://github.com/puntogris/what-do-i-wear/blob/master/screenshots/2.webp)
 ![N|Solid](https://github.com/puntogris/what-do-i-wear/blob/master/screenshots/3.webp)

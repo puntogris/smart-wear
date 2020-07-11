@@ -15,6 +15,12 @@ fun TextView.setDoubleToStringPercentage(double: Double) {
     text = context.getString(R.string.percentage_symbol, doubleText)
 }
 
+@BindingAdapter("getDataWithoutNull")
+fun TextView.setDataWithoutNull(data: String) {
+    text = if (data == "null") ""
+    else data
+}
+
 @BindingAdapter("windSpeedToKmH")
 fun TextView.setWindSpeedToKmH(windSpeed: Double) {
     val windSpeedText = (windSpeed / 0.277778).roundToInt()

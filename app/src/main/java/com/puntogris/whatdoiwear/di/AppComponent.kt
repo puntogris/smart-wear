@@ -17,7 +17,6 @@ interface AppComponent {
     val mainViewModel: MainFragmentViewModel
     val sharedPreferences: MySharedPreferences
 
-
     @Component.Factory
     interface Factory{
         fun create(

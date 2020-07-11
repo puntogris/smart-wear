@@ -5,11 +5,12 @@ import android.location.Geocoder
 import android.location.Location
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.google.gson.Gson
+import androidx.lifecycle.liveData
 import com.google.gson.GsonBuilder
 import com.puntogris.whatdoiwear.model.WeatherBodyApi
 import okhttp3.*
 import java.io.IOException
+import java.lang.Exception
 import java.util.*
 import javax.inject.Inject
 
@@ -31,7 +32,7 @@ class Repository @Inject constructor(
                 //handle errors
             }
             override fun onResponse(call: Call, response: Response) {
-                val body = response.body()?.string()
+                val body = response.body?.string()
                 val gson = GsonBuilder().create()
                 val cities = gson.fromJson(body, WeatherBodyApi::class.java)
 
@@ -55,7 +56,6 @@ class Repository @Inject constructor(
         ).also {
             livedata.postValue(it[0].locality + ", "+ it[0].adminArea)
         }
-
         return livedata
     }
 

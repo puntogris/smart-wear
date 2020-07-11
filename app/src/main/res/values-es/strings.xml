@@ -11,4 +11,5 @@
     <string name="name_hint_editText">tu nombre</string>
     <string name="player_name_shared_pref_default_value">Hola tu,</string>
     <string name="player_name_shared_pref">Hola %1$s,</string>
+    <string name="weather_location_message">Necesitamos acceso a tu ubicacion para poder buscar el clima en tu zona.</string>
 </resources>

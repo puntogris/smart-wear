@@ -4,6 +4,7 @@ import android.widget.SeekBar
 import androidx.lifecycle.*
 import com.puntogris.whatdoiwear.data.Repository
 import com.puntogris.whatdoiwear.utils.MySharedPreferences
+import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
@@ -12,7 +13,6 @@ class MainFragmentViewModel @Inject constructor(
     private val repo: Repository,
     sharedPref: MySharedPreferences
 ) :ViewModel(){
-    val test = SimpleDateFormat("h:mm a", Locale.getDefault()).format(Date())
 
     private val locale = Locale.getDefault()
     private val dateNow = MutableLiveData<Date>(Date())
@@ -29,7 +29,7 @@ class MainFragmentViewModel @Inject constructor(
     val name = sharedPref.getData()
 
     val weatherBody = location.switchMap { location ->
-        liveData { emitSource(repo.getWeatherApi(location)) }
+        liveData { emitSource(repo.getWeatherApi(location))}
     }
 
     val locationName = location.switchMap { location ->
