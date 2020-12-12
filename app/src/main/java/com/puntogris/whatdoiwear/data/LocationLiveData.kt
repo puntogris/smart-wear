@@ -18,15 +18,14 @@ class LocationLiveData @Inject constructor(context: Context):LiveData<Location>(
     private val fusedLocationClient = LocationServices.getFusedLocationProviderClient(context)
     private val locationRequest = LocationRequest.create().apply {
         priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-        interval = 5000
+        interval = 3000
         fastestInterval = 3000
         smallestDisplacement = 10f
     }
 
     private val locationCallback: LocationCallback = object : LocationCallback() {
         override fun onLocationResult(locationResult: LocationResult?) {
-            locationResult ?: return
-            postValue(locationResult.lastLocation)
+            locationResult?.let { postValue(it.lastLocation) }
         }
     }
 

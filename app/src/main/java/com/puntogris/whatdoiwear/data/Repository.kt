@@ -27,15 +27,15 @@ class Repository @Inject constructor(
     }
 
     override fun getLocationName(location: Location): LiveData<String> {
-        val livedata = MutableLiveData<String>()
+        val liveData = MutableLiveData<String>()
         Geocoder(context, Locale.getDefault()).getFromLocation(
             location.latitude,
             location.longitude,
             1
         ).also {
-            livedata.postValue(it[0].locality + ", "+ it[0].adminArea)
+            if (!it.isNullOrEmpty()) liveData.postValue(it[0].locality + ", "+ it[0].adminArea)
         }
-        return livedata
+        return liveData
     }
 
     override fun getWeatherApi(location: Location): MutableStateFlow<Result> {

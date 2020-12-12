@@ -17,13 +17,13 @@ class MainFragmentViewModel @Inject constructor(
 
     private val locale = Locale.getDefault()
     private val dateNow = MutableLiveData(Date())
-    private val _seekBarPosition = MutableLiveData<Int>()
     private var location = repo.getLocation()
+
+    private val _seekBarPosition = MutableLiveData<Int>()
     val seekBarPosition = _seekBarPosition
 
     private var _weather = MutableLiveData<WeatherBodyApi>()
     val weather:LiveData<WeatherBodyApi> = _weather
-
 
     val time:LiveData<String> = dateNow.switchMap{
         MutableLiveData(SimpleDateFormat("h:mm a",locale).format(it))

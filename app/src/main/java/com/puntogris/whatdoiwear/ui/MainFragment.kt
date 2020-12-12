@@ -8,19 +8,19 @@ import com.puntogris.whatdoiwear.model.Result
 import com.puntogris.whatdoiwear.utils.createSnackBar
 import com.puntogris.whatdoiwear.utils.gone
 import com.puntogris.whatdoiwear.utils.visible
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
 
     private val viewModel by viewModel {  injector.mainViewModel}
     private val sharedPref by lazy { injector.sharedPreferences }
 
-    @ExperimentalCoroutinesApi
     override fun initializeViews() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
         checkAnimationPref()
+        setBottomSheetBehavior()
+        initSeekBar()
 
         viewModel.weatherBody.observe(viewLifecycleOwner, { result ->
             when (result) {
@@ -43,27 +43,28 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
                     binding.weatherProgressBar.visible()
                 }
             }
-
         })
+    }
 
+    private fun initSeekBar(){
         binding.seekBar.apply {
             addOnChangeListener { slider, value, _ ->
-                if(slider.valueTo == value)  if (!sharedPref.getShowAnimationPref()) {
+                if(slider.valueTo == value && !sharedPref.getShowAnimationPref()) {
                     binding.bottomSheetLayout.animationView.visible()
                     sharedPref.setShowAnimationPref()
                 }
-                viewModel.updateSeekBarPosition(value.toInt()) }
+                viewModel.updateSeekBarPosition((value - valueFrom).toInt()) }
             setLabelFormatter { viewModel.getSeekBarLabel(it) }
         }
+    }
 
+    private fun setBottomSheetBehavior(){
         val bottomSheet = binding.bottomSheetLayout.bottomSheet
-
         BottomSheetBehavior.from(bottomSheet).apply {
             state = BottomSheetBehavior.STATE_COLLAPSED
             bottomSheet.setOnClickListener { state = BottomSheetBehavior.STATE_EXPANDED }
             binding.activityBackground.setOnClickListener { state = BottomSheetBehavior.STATE_COLLAPSED }
         }
-
     }
 
     private fun checkAnimationPref(){
