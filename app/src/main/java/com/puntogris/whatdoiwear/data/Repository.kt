@@ -8,6 +8,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
 import com.google.gson.GsonBuilder
 import com.puntogris.whatdoiwear.model.WeatherBodyApi
+import com.puntogris.whatdoiwear.utils.Constants.FIRST_PATH_API
+import com.puntogris.whatdoiwear.utils.Constants.SECOND_PATH_API
 import okhttp3.*
 import java.io.IOException
 import java.lang.Exception
@@ -19,8 +21,7 @@ class Repository @Inject constructor(
     private val context: Context) : IRepository{
 
     override fun getWeatherApi(location: Location) :LiveData<WeatherBodyApi>{
-        val url =
-            "https://api.darksky.net/forecast/e3c77f1ab2f31f0a772b2485589cd914/${location.latitude},${location.longitude}?units=si&lang=es"
+        val url = "$FIRST_PATH_API${location.latitude},${location.longitude}$SECOND_PATH_API"
 
         val client = OkHttpClient()
         val request = Request.Builder().url(url).build()

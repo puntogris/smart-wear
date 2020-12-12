@@ -7,6 +7,8 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.BindingAdapter
 import com.puntogris.whatdoiwear.R
 import com.puntogris.whatdoiwear.model.WeatherBodyApi
+import com.puntogris.whatdoiwear.utils.Constants.PM_TIME
+import java.util.*
 import kotlin.math.roundToInt
 
 @BindingAdapter("doubleToStringPercentage")
@@ -19,6 +21,12 @@ fun TextView.setDoubleToStringPercentage(double: Double) {
 fun TextView.setDataWithoutNull(data: String) {
     text = if (data == "null") ""
     else data
+}
+
+@BindingAdapter("setDate")
+fun TextView.setDate(date: String) {
+    text = if (date == "null") ""
+    else date.replace(".","")
 }
 
 @BindingAdapter("windSpeedToKmH")
@@ -34,8 +42,14 @@ fun TextView.setWeatherTemperature(temperature: Double) {
 
 @BindingAdapter("backgroundImage")
 fun ConstraintLayout.setBackgroundImage(time: String){
+    val newTime = time
+        .replace(".","")
+        .replace(" ", "")
+        .toUpperCase(Locale.getDefault())
+        .takeLast(2)
+
     val background =
-        if (time.takeLast(2) == Constants.PM_TIME) R.drawable.ic_night_background
+        if (newTime == PM_TIME) R.drawable.ic_night_background
         else R.drawable.ic_day_background
     setBackgroundResource(background)
 }
@@ -77,59 +91,53 @@ fun TextView.buildClothingRecommendation(body: WeatherBodyApi?) {
     val precipIn6Hours = (body.hourly.data[6].precipProbability * 100).roundToInt()
 
     var recommendation = when (currentTemp) {
-        in Int.MIN_VALUE..0 -> "*Peligro! Llego la era glaciar, ponete todo la ropa que tengas!\n\n"
-        in 1..9 -> "*Hace mucho frio! Buzo y/o campera si o si! No te olvides la bufanda y guantes.\n\n"
-        in 10..14 -> "*No subestimes el frio que hace, por mas que adentro este para un buzo o pullover! Sali bien abrigado/a.\n\n"
-        in 15..19 -> "*Con un buzo o campera ligera vas a estar bien.\n\n"
-        in 20..29 -> "*Temperatura perfecta! Una remera, jeans y estas listo!\n\n"
-        in 30..34 -> "*Momento de ponerse un short, remera o camisa livianita y invitate solo a la casa de un amigo/a con pileta.\n\n"
-        in 35..39 -> "*Tirate a la pileta...sacate la ropa primero... estas ahi?\n\n"
-        !in 0..40 -> "*Alerta roja!! Un paso afuera garantiza que seas rostizado.\n\n"
-        else -> "Error analizando la temperatura"
+        in Int.MIN_VALUE..0 -> resources.getString(R.string.temp_minus_0)
+        in 1..9 -> resources.getString(R.string.temp_1_9)
+        in 10..14 -> resources.getString(R.string.temp_10_14)
+        in 15..19 -> resources.getString(R.string.temp_15_19)
+        in 20..29 -> resources.getString(R.string.temp_20_29)
+        in 30..34 -> resources.getString(R.string.temp_30_34)
+        in 35..39 -> resources.getString(R.string.temp_35_39)
+        !in 0..40 -> resources.getString(R.string.temp_max_40)
+        else -> resources.getString(R.string.temp_error)
     }
 
     recommendation += if (tempIn3Hours in (currentTemp + 1) until tempIn6Hours && (tempIn6Hours - currentTemp) >= 5) {
-        "*Va a aumentar bastante la temperatura.\n\n"
+        resources.getString(R.string.temp_raise_a_lot)
     } else if (tempIn3Hours in (tempIn6Hours + 1) until currentTemp && (currentTemp - tempIn6Hours) >= 5) {
-        "*Va a disminuir bastante la temperatura.\n\n"
+        resources.getString(R.string.temp_decrese_a_lot)
     } else if (currentTemp < tempIn3Hours && (tempIn3Hours - currentTemp) >= 3) {
-        "*Va a aumentar un poco la temperatura.\n\n"
+        resources.getString(R.string.temp_raise_a_little)
     } else if (currentTemp > tempIn3Hours && (currentTemp - tempIn3Hours) >= 3) {
-        "*Va a disminuir un poco la temperatura.\n\n"
+        resources.getString(R.string.temp_decrese_a_little)
     } else {
-        "*La temperatura no va a cambiar por unas horas.\n\n"
+        resources.getString(R.string.temp_not_changing)
     }
 
     recommendation += when {
-        currentPrecip > 15 -> "*Esta lloviznando un poco.\n\n"
-        currentPrecip > 60 -> "*Sali con un paraguas o una campera impermeable.\n\n"
+        currentPrecip in 14..59 -> resources.getString(R.string.precip_15_60)
+        currentPrecip > 60 -> resources.getString(R.string.precip_60)
         else -> ""
     }
 
     recommendation += if (precipIn3Hours in (currentPrecip + 1) until precipIn6Hours && (precipIn6Hours - currentPrecip) >= 50) {
-        "*Se viene con toda la lluvia mas tarde!\n\n"
+        resources.getString(R.string.precip_start_rain_50)
     } else if (precipIn3Hours in (precipIn6Hours + 1) until currentPrecip && (currentPrecip - precipIn6Hours) >= 50) {
-        "*La lluvia va a frenar mas tarde!\n\n"
+        resources.getString(R.string.precip_stop_rain_50)
     } else if (currentPrecip > precipIn3Hours && (currentPrecip - precipIn3Hours) >= 25) {
-        "*Atenti, puede que pare la lluvia mas tarde.\n\n"
+        resources.getString(R.string.precip_stop_rain_25)
     } else if (currentPrecip < precipIn3Hours && precipIn3Hours - currentPrecip >= 25) {
-        "*Atenti, puede que llueva mas tarde.\n\n"
+        resources.getString(R.string.precip_start_rain_25)
     } else ""
 
 
-    recommendation += if (currentWind > 17) {
-        if ((0..1).random() == 1) {
-            "*Peinarse?.. Que es eso? Hay mucho viento.\n\n"
-        } else {
-            "*Que viento! Si salis no te olvides de cerrar las ventanas.\n\n"
-        }
-    } else {
-        "*Muy poco viento, perfecto para estrenar tu nueva peluca.\n\n"
-    }
+    recommendation +=
+        if (currentWind > 17) {
+            if ((0..1).random() == 1) resources.getString(R.string.wind_1)
+            else resources.getString(R.string.wind_2)
+        } else resources.getString(R.string.no_wind)
 
-    if (humidity > 89) {
-        recommendation += "*Hay mucha humedad, juck.\n\n"
-    }
+    if (humidity > 89) recommendation += resources.getString(R.string.humidity_89)
 
     text = recommendation
 

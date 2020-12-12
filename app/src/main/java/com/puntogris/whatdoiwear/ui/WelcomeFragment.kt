@@ -1,42 +1,59 @@
 package com.puntogris.whatdoiwear.ui
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
+import android.content.pm.PackageManager
 import androidx.navigation.fragment.findNavController
 import com.puntogris.whatdoiwear.R
 import com.puntogris.whatdoiwear.databinding.FragmentWelcomeBinding
 import com.puntogris.whatdoiwear.di.injector
+import com.puntogris.whatdoiwear.utils.PermissionsManager
+import com.puntogris.whatdoiwear.utils.createSnackBar
 
-class WelcomeFragment : Fragment() {
+@Suppress("DEPRECATION")
+class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>(R.layout.fragment_welcome) {
 
     private val sharedPref by lazy { injector.sharedPreferences }
-    private val navController by lazy { findNavController() }
+    private val permissionsManager by lazy { injector.permissionManager}
 
-    private lateinit var binding:FragmentWelcomeBinding
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_welcome, container, false)
-
+    override fun initializeViews() {
         binding.apply {
             welcomeFragment = this@WelcomeFragment
             lifecycleOwner = viewLifecycleOwner
         }
 
-        if(sharedPref.exists()) navController.navigate(R.id.mainFragment)
-
-        return binding.root
+        if(sharedPref.exists()) requestLocationPermission()
     }
 
     fun saveUserNameAndNavigateToMainFragment(){
         val input = binding.userNameEditText.text.toString()
         sharedPref.putData(input)
-        navController.navigate(R.id.mainFragment)
+        requestLocationPermission()
+    }
+
+    private fun onLocationPermissionGranted(){
+        findNavController().navigate(R.id.mainFragment)
+    }
+
+    private fun requestLocationPermission() {
+        if (permissionsManager.isLocationPermissionGranted(requireContext())) onLocationPermissionGranted()
+        else permissionsManager.requestLocationPermission(this)
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == PermissionsManager.LOCATION_PERMISSION_REQUEST_CODE && grantResults.isNotEmpty()) {
+            when (grantResults.first()) {
+                PackageManager.PERMISSION_GRANTED -> onLocationPermissionGranted()
+                PackageManager.PERMISSION_DENIED -> onLocationPermissionDenied()
+            }
+        }
+    }
+    private fun onLocationPermissionDenied(){
+        sharedPref.delete()
+        createSnackBar(getString(R.string.weather_location_message))
     }
 
 }

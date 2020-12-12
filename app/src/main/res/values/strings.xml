@@ -14,4 +14,36 @@
     <string name="app_slogan">The weather with a plus</string>
     <string name="location_message">*For a better experience turn on the location in your device</string>
     <string name="weather_location_message">We need access to your location in order to provide you the weather.</string>
+
+
+    <string name="temp_minus_0">*Danger! Winter is coming, time to wear all your closet at the same time!\n\n</string>
+    <string name="temp_1_9">*It very cold outside. Get a sweater or a winter jacket, also do not forget your scarf and gloves.\n\n</string>
+    <string name="temp_10_14">*Do not underestimate this cold weather, you will need a sweater and a cup of hot chocolate.\n\n</string>
+    <string name="temp_15_19">*With a light jacket or sweater you will be fine.\n\n</string>
+    <string name="temp_20_29">*Such a nice weather, perfect for jeans and a t-shirt.\n\n</string>
+    <string name="temp_30_34">*Time to get those shorts and invite yourself to a friends house with a swimming pool.\n\n</string>
+    <string name="temp_35_39">*Dip in the pool, get your clothes of first, hello?..u there?\n\n</string>
+    <string name="temp_max_40">*Red alert! Going outside will melt your brain.\n\n</string>
+    <string name="temp_error">*This is illegal.</string>
+
+    <string name="precip_15_60">*It might start raining right now.\n\n</string>
+    <string name="precip_60">*There is a high probability of raining right now.\n\n</string>
+
+    <string name="humidity_89">*So much humidity, yuck.\n\n</string>
+
+    <string name="wind_1">*So much wind! Try to not fly away.\n\n</string>
+    <string name="wind_2">*So much wind! If you go out do not forget to close all the windows.\n\n</string>
+    <string name="no_wind">*The wind is peaceful today, its a perfect day to use your new wig.\n\n</string>
+
+    <string name="precip_start_rain_50">*There is a high change that it will start raining later!\n\n</string>
+    <string name="precip_stop_rain_50">*There is a high change that it will stop raining later!\n\n</string>
+    <string name="precip_stop_rain_25">*There is a small change that it will stop raining later.\n\n</string>
+    <string name="precip_start_rain_25">*There is a small change that it will start raining lather.\n\n</string>
+
+    <string name="temp_raise_a_lot">*The temperature will increase a lot later.\n\n</string>
+    <string name="temp_decrese_a_lot">*The temperature will decrease a lot later.\n\n</string>
+    <string name="temp_raise_a_little">*The temperature will increase a little later\n\n</string>
+    <string name="temp_decrese_a_little">*The temperature will decrease a little later.\n\n</string>
+    <string name="temp_not_changing">*The temperature will not change for a few hours.\n\n</string>
+    <string name="show_clothing_recommendations">Show clothing recommendations</string>
 </resources>

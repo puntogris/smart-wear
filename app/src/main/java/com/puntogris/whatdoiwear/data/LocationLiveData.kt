@@ -1,5 +1,6 @@
 package com.puntogris.whatdoiwear.data
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.location.Location
 import android.os.Looper
@@ -39,6 +40,7 @@ class LocationLiveData @Inject constructor(context: Context):LiveData<Location>(
         super.onInactive()
     }
 
+    @SuppressLint("MissingPermission")
     private fun startLocationUpdates() {
         fusedLocationClient.requestLocationUpdates(locationRequest,
             locationCallback,

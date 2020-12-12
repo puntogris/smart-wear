@@ -9,9 +9,11 @@ import androidx.preference.PreferenceManager
 import com.puntogris.whatdoiwear.App
 import com.puntogris.whatdoiwear.R
 
+@Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 

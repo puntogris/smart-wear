@@ -1,10 +1,8 @@
 package com.puntogris.whatdoiwear.ui
 
-import android.widget.SeekBar
 import androidx.lifecycle.*
 import com.puntogris.whatdoiwear.data.Repository
 import com.puntogris.whatdoiwear.utils.MySharedPreferences
-import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
@@ -15,9 +13,9 @@ class MainFragmentViewModel @Inject constructor(
 ) :ViewModel(){
 
     private val locale = Locale.getDefault()
-    private val dateNow = MutableLiveData<Date>(Date())
+    private val dateNow = MutableLiveData(Date())
     private val _seekBarPosition = MutableLiveData<Int>()
-    private val location = repo.getLocation()
+    private var location = repo.getLocation()
     val seekBarPosition = _seekBarPosition
 
     val time:LiveData<String> = dateNow.switchMap{
@@ -26,6 +24,9 @@ class MainFragmentViewModel @Inject constructor(
     val date:LiveData<String> = dateNow.switchMap{
         MutableLiveData(SimpleDateFormat("EEE, MMM d",locale).format(it))
     }
+
+    val timeNow: String = SimpleDateFormat("HH", Locale.getDefault()).format(dateNow.value!!)
+
     val name = sharedPref.getData()
 
     val weatherBody = location.switchMap { location ->
@@ -36,9 +37,17 @@ class MainFragmentViewModel @Inject constructor(
         liveData { emitSource(repo.getLocationName(location)) }
     }
 
-    fun updateSeekBarPosition(seekBar: SeekBar,progresValue: Int, fromUser: Boolean) {
-        _seekBarPosition.value = progresValue
+    fun updateSeekBarPosition(value:Int) {
+        _seekBarPosition.value = value
     }
 
     fun updateDate() = dateNow.postValue(Date())
+
+    fun getSeekBarLabel(value:Float):String{
+        when {
+            value > 24 -> value - 24
+            value.toInt() == 24 -> 0F
+            else -> value
+        }.also { return if(it < 12) "${it.toInt()} AM" else "${it.toInt()} PM" }
+    }
 }

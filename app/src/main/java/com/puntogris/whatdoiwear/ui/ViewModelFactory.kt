@@ -1,3 +1,5 @@
+@file:Suppress("UNCHECKED_CAST")
+
 package com.puntogris.whatdoiwear.ui
 
 import androidx.fragment.app.Fragment

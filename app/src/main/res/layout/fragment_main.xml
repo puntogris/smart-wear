@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <import type="android.view.View"/>
@@ -10,209 +10,206 @@
             type="com.puntogris.whatdoiwear.ui.MainFragmentViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        backgroundImage="@{String.valueOf(viewModel.time)}"
-        android:id="@+id/activityBackground"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ui.MainFragment">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/date"
-            android:layout_width="wrap_content"
-            android:layout_height="39dp"
-            android:layout_marginTop="50dp"
-            android:fontFamily="sans-serif"
-            getDataWithoutNull="@{String.valueOf(viewModel.date)}"
-            android:textColor="@android:color/white"
-            android:textSize="29sp"
-            app:layout_constraintBottom_toTopOf="@+id/time"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/activityBackground"
+            backgroundImage="@{String.valueOf(viewModel.time)}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".ui.MainFragment">
 
-        <TextView
-            android:id="@+id/time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-thin"
-            getDataWithoutNull="@{String.valueOf(viewModel.time)}"
-            android:textColor="@android:color/white"
-            android:textSize="64sp"
-            app:layout_constraintBottom_toTopOf="@+id/location"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/date" />
+            <TextView
+                android:id="@+id/date"
+                setDate="@{String.valueOf(viewModel.date)}"
+                android:layout_width="wrap_content"
+                android:layout_height="39dp"
+                android:fontFamily="sans-serif"
+                android:textColor="@android:color/white"
+                android:textSize="29sp"
+                app:layout_constraintBottom_toTopOf="@+id/time"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.36"
+                app:layout_constraintVertical_chainStyle="packed" />
 
-        <TextView
-            android:id="@+id/location"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-light"
-            getDataWithoutNull="@{String.valueOf(viewModel.locationName)}"
-            android:textAlignment="center"
-            android:textColor="@android:color/white"
-            android:textSize="30sp"
-            app:layout_constraintBottom_toTopOf="@+id/weatherDescription"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/time" />
+            <TextView
+                android:id="@+id/time"
+                getDataWithoutNull="@{String.valueOf(viewModel.time)}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="32dp"
+                android:fontFamily="sans-serif-thin"
+                android:textColor="@android:color/white"
+                android:textSize="64sp"
+                app:layout_constraintBottom_toTopOf="@+id/location"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.501"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/date" />
 
-        <TextView
-            android:id="@+id/weatherDescription"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-light"
-            getDataWithoutNull="@{String.valueOf(viewModel.weatherBody.hourly.data[viewModel.seekBarPosition].summary)}"
-            android:textColor="@android:color/white"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toTopOf="@+id/weatherIcon"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/location" />
+            <TextView
+                android:id="@+id/location"
+                getDataWithoutNull="@{String.valueOf(viewModel.locationName)}"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:fontFamily="sans-serif-light"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="30sp"
+                app:layout_constraintBottom_toTopOf="@+id/weatherDescription"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/time" />
 
-        <TextView
-            android:id="@+id/rainTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
-            android:fontFamily="sans-serif-light"
-            android:text="@string/precip"
-            android:textColor="@android:color/white"
-            app:layout_constraintBottom_toTopOf="@+id/humidityTextView"
-            app:layout_constraintStart_toStartOf="@+id/humidityTextView" />
+            <TextView
+                android:id="@+id/weatherDescription"
+                getDataWithoutNull="@{String.valueOf(viewModel.weatherBody.hourly.data[viewModel.seekBarPosition].summary)}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="32dp"
+                android:fontFamily="sans-serif-light"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toTopOf="@+id/temperature"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/location" />
 
-        <TextView
-            android:id="@+id/humidityTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:fontFamily="sans-serif-light"
-            android:text="@string/humidity"
-            android:textColor="@android:color/white"
-            app:layout_constraintBottom_toBottomOf="@+id/temperature"
-            app:layout_constraintEnd_toStartOf="@+id/humidity"
-            app:layout_constraintTop_toTopOf="@+id/temperature" />
+            <TextView
+                android:id="@+id/rainTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:fontFamily="sans-serif-light"
+                android:text="@string/precip"
+                android:textColor="@android:color/white"
+                app:layout_constraintBottom_toTopOf="@+id/humidityTextView"
+                app:layout_constraintStart_toStartOf="@+id/humidityTextView" />
 
-        <TextView
-            android:id="@+id/windTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:fontFamily="sans-serif-light"
-            android:text="@string/wind"
-            android:textColor="@android:color/white"
-            app:layout_constraintStart_toStartOf="@+id/humidityTextView"
-            app:layout_constraintTop_toBottomOf="@+id/humidityTextView" />
+            <TextView
+                android:id="@+id/humidityTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="56dp"
+                android:fontFamily="sans-serif-light"
+                android:text="@string/humidity"
+                android:textColor="@android:color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/temperature"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/temperature"
+                app:layout_constraintVertical_bias="0.437" />
 
-        <TextView
-            android:id="@+id/userName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:fontFamily="sans-serif-light"
-            android:text="@{viewModel.name}"
-            android:textColor="@android:color/white"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@+id/clothingRecommendation"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/seekBar" />
-
-        <androidx.appcompat.widget.AppCompatSeekBar
-            android:id="@+id/seekBar"
-            android:layout_width="379dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:max="24"
-            android:onProgressChanged="@{viewModel::updateSeekBarPosition}"
-            app:layout_constraintBottom_toTopOf="@+id/userName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/weatherIcon" />
-
-        <TextView
-            android:id="@+id/clothingRecommendation"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:fontFamily="sans-serif-light"
-            android:textColor="@android:color/white"
-            android:textSize="17sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/userName"
-            app:weatherRecommendation="@{viewModel.weatherBody}" />
-
-        <ImageView
-            android:id="@+id/weatherIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            app:layout_constraintBottom_toTopOf="@+id/seekBar"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/weatherDescription"
-            app:weatherImage="@{String.valueOf(viewModel.weatherBody.hourly.data[viewModel.seekBarPosition].icon)}"
-            tools:srcCompat="@tools:sample/avatars"
-            android:contentDescription="@string/weather_icon_content_description" />
-
-        <TextView
-            android:id="@+id/precipProbability"
-            doubleToStringPercentage="@{viewModel.weatherBody.hourly.data[viewModel.seekBarPosition].precipProbability}"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:fontFamily="sans-serif-light"
-            android:textColor="@android:color/white"
-            app:layout_constraintBottom_toBottomOf="@+id/rainTextView"
-            app:layout_constraintEnd_toEndOf="@+id/humidity"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/rainTextView"
-            app:layout_constraintTop_toTopOf="@+id/rainTextView" />
-
-        <TextView
-            android:id="@+id/humidity"
-            doubleToStringPercentage="@{viewModel.weatherBody.hourly.data[viewModel.seekBarPosition].humidity}"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
-            android:fontFamily="sans-serif-light"
-            android:textColor="@android:color/white"
-            app:layout_constraintBottom_toBottomOf="@+id/humidityTextView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/humidityTextView" />
-
-        <TextView
-            android:id="@+id/windSpeed"
-            windSpeedToKmH="@{viewModel.weatherBody.hourly.data[viewModel.seekBarPosition].windSpeed}"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:fontFamily="sans-serif-light"
-            android:textColor="@android:color/white"
-            app:layout_constraintBottom_toBottomOf="@+id/windTextView"
-            app:layout_constraintEnd_toEndOf="@+id/humidity"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/windTextView"
-            app:layout_constraintTop_toTopOf="@+id/windTextView" />
-
-        <TextView
-            android:id="@+id/temperature"
-            weatherTemperature="@{viewModel.weatherBody.hourly.data[viewModel.seekBarPosition].temperature}"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-light"
-            android:textColor="@android:color/white"
-            android:textSize="38sp"
-            app:layout_constraintBottom_toBottomOf="@+id/weatherIcon"
-            app:layout_constraintEnd_toStartOf="@+id/humidityTextView"
-            app:layout_constraintStart_toEndOf="@+id/weatherIcon"
-            app:layout_constraintTop_toTopOf="@+id/weatherIcon" />
+            <TextView
+                android:id="@+id/windTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="sans-serif-light"
+                android:text="@string/wind"
+                android:textColor="@android:color/white"
+                app:layout_constraintStart_toStartOf="@+id/humidityTextView"
+                app:layout_constraintTop_toBottomOf="@+id/humidityTextView" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <com.google.android.material.slider.Slider
+                android:id="@+id/seekBar"
+                android:layout_width="379dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:stepSize="1"
+                android:value="@{Float.valueOf(viewModel.timeNow)}"
+                android:valueFrom="@{Float.valueOf(viewModel.timeNow)}"
+                android:valueTo="@{Float.valueOf(viewModel.timeNow) + 24F}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/temperature" />
+
+            <ImageView
+                android:id="@+id/weatherIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:contentDescription="@string/weather_icon_content_description"
+                app:layout_constraintBottom_toTopOf="@+id/seekBar"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/weatherDescription"
+                app:weatherImage="@{String.valueOf(viewModel.weatherBody.hourly.data[viewModel.seekBarPosition].icon)}"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/precipProbability"
+                doubleToStringPercentage="@{viewModel.weatherBody.hourly.data[viewModel.seekBarPosition].precipProbability}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="sans-serif-light"
+                android:textColor="@android:color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/rainTextView"
+                app:layout_constraintEnd_toEndOf="@+id/humidity"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/rainTextView"
+                app:layout_constraintTop_toTopOf="@+id/rainTextView" />
+
+            <TextView
+                android:id="@+id/humidity"
+                doubleToStringPercentage="@{viewModel.weatherBody.hourly.data[viewModel.seekBarPosition].humidity}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="24dp"
+                android:fontFamily="sans-serif-light"
+                android:textColor="@android:color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/humidityTextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/humidityTextView"
+                app:layout_constraintTop_toTopOf="@+id/humidityTextView" />
+
+            <TextView
+                android:id="@+id/windSpeed"
+                windSpeedToKmH="@{viewModel.weatherBody.hourly.data[viewModel.seekBarPosition].windSpeed}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="sans-serif-light"
+                android:textColor="@android:color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/windTextView"
+                app:layout_constraintEnd_toEndOf="@+id/humidity"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/windTextView"
+                app:layout_constraintTop_toTopOf="@+id/windTextView" />
+
+            <TextView
+                android:id="@+id/temperature"
+                weatherTemperature="@{viewModel.weatherBody.hourly.data[viewModel.seekBarPosition].temperature}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="32dp"
+                android:fontFamily="sans-serif-light"
+                android:textColor="@android:color/white"
+                android:textSize="38sp"
+                app:layout_constraintBottom_toTopOf="@+id/seekBar"
+                app:layout_constraintEnd_toStartOf="@+id/humidityTextView"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/weatherIcon"
+                app:layout_constraintTop_toBottomOf="@+id/weatherDescription" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+      <include
+          app:viewModel="@{viewModel}"
+          android:id="@+id/bottom_sheet_layout"
+          layout="@layout/recommendation_bottom_sheet"/>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

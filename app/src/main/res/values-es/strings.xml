@@ -12,4 +12,36 @@
     <string name="player_name_shared_pref_default_value">Hola tu,</string>
     <string name="player_name_shared_pref">Hola %1$s,</string>
     <string name="weather_location_message">Necesitamos acceso a tu ubicacion para poder buscar el clima en tu zona.</string>
+
+    <string name="temp_minus_0">*Peligro! Llego la era glaciar, ponete todo la ropa que tengas!\n\n</string>
+    <string name="temp_1_9">*Hace mucho frio! Buzo y/o campera si o si! No te olvides la bufanda y guantes.\n\n</string>
+    <string name="temp_10_14">*No subestimes el frio que hace, por mas que adentro este para un buzo o pullover! Sali bien abrigado/a.\n\n</string>
+    <string name="temp_15_19">*Con un buzo o campera ligera vas a estar bien.\n\n</string>
+    <string name="temp_20_29">*Temperatura perfecta! Una remera, jeans y estas listo!\n\n</string>
+    <string name="temp_30_34">*Momento de ponerse un short, remera o camisa livianita y invitate solo a la casa de un amigo/a con pileta.\n\n</string>
+    <string name="temp_35_39">*Tirate a la pileta…sacate la ropa primero… estas ahí?\n\n</string>
+    <string name="temp_max_40">*Alerta roja!! Un paso afuera garantiza que seas rostizado.\n\n</string>
+    <string name="temp_error">Error analizando la temperatura</string>
+
+    <string name="precip_15_60">*Puede que llueva levemente en unos momentos.\n\n</string>
+    <string name="precip_60">*Sali con un paraguas o una campera impermeable que parece que se viene la lluvia.\n\n</string>
+
+    <string name="humidity_89">*Hay mucha humedad, juck.\n\n</string>
+
+    <string name="wind_1">*Peinarse?.. Que es eso? Hay mucho viento.\n\n</string>
+    <string name="wind_2">*Que viento! Si salis no te olvides de cerrar las ventanas.\n\n</string>
+    <string name="no_wind">*Muy poco viento, perfecto para estrenar tu nueva peluca.\n\n</string>
+
+    <string name="precip_start_rain_50">*Se viene con toda la lluvia mas tarde!\n\n</string>
+    <string name="precip_stop_rain_50">*La lluvia va a frenar mas tarde!\n\n</string>
+    <string name="precip_stop_rain_25">*Atenti, puede que pare la lluvia mas tarde.\n\n</string>
+    <string name="precip_start_rain_25">*Atenti, puede que llueva mas tarde.\n\n</string>
+
+    <string name="temp_raise_a_lot">*Va a aumentar bastante la temperatura.\n\n</string>
+    <string name="temp_decrese_a_lot">*Va a disminuir bastante la temperatura.\n\n</string>
+    <string name="temp_raise_a_little">*Va a aumentar un poco la temperatura.\n\n</string>
+    <string name="temp_decrese_a_little">*Va a disminuir un poco la temperatura.\n\n</string>
+    <string name="temp_not_changing">*La temperatura no va a cambiar por unas horas.\n\n</string>
+    <string name="show_clothing_recommendations">Ver recomendaciones de ropa</string>
+
 </resources>

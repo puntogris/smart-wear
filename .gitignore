@@ -1,4 +1,5 @@
  # Built application files
+app/src/main/java/com/puntogris/whatdoiwear/utils/Constants.kt
 *.apk
 *.aar
 *.ap_
