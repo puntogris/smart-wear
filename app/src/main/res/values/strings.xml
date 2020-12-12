@@ -46,4 +46,5 @@
     <string name="temp_decrese_a_little">*The temperature will decrease a little later.\n\n</string>
     <string name="temp_not_changing">*The temperature will not change for a few hours.\n\n</string>
     <string name="show_clothing_recommendations">Show clothing recommendations</string>
+    <string name="error_weather_api">An error occurred, check your connection and try again.</string>
 </resources>

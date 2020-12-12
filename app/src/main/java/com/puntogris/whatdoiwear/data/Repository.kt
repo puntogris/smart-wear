@@ -7,9 +7,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
 import com.google.gson.GsonBuilder
+import com.puntogris.whatdoiwear.model.Result
 import com.puntogris.whatdoiwear.model.WeatherBodyApi
 import com.puntogris.whatdoiwear.utils.Constants.FIRST_PATH_API
 import com.puntogris.whatdoiwear.utils.Constants.SECOND_PATH_API
+import kotlinx.coroutines.flow.MutableStateFlow
 import okhttp3.*
 import java.io.IOException
 import java.lang.Exception
@@ -19,30 +21,6 @@ import javax.inject.Inject
 class Repository @Inject constructor(
     private val customLiveData: LocationLiveData,
     private val context: Context) : IRepository{
-
-    override fun getWeatherApi(location: Location) :LiveData<WeatherBodyApi>{
-        val url = "$FIRST_PATH_API${location.latitude},${location.longitude}$SECOND_PATH_API"
-
-        val client = OkHttpClient()
-        val request = Request.Builder().url(url).build()
-
-        val liveData = MutableLiveData<WeatherBodyApi>()
-
-        client.newCall(request).enqueue(object : Callback {
-            override fun onFailure(call: Call, e: IOException) {
-                //handle errors
-            }
-            override fun onResponse(call: Call, response: Response) {
-                val body = response.body?.string()
-                val gson = GsonBuilder().create()
-                val cities = gson.fromJson(body, WeatherBodyApi::class.java)
-
-                liveData.postValue(cities)
-            }
-        })
-
-        return liveData
-    }
 
     override fun getLocation(): LocationLiveData{
         return customLiveData
@@ -58,6 +36,27 @@ class Repository @Inject constructor(
             livedata.postValue(it[0].locality + ", "+ it[0].adminArea)
         }
         return livedata
+    }
+
+    override fun getWeatherApi(location: Location): MutableStateFlow<Result> {
+        val result = MutableStateFlow<Result>(Result.InProgress)
+        val url = "$FIRST_PATH_API${location.latitude},${location.longitude}$SECOND_PATH_API"
+
+        val request = Request.Builder().url(url).build()
+
+        OkHttpClient().newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                result.value = Result.Error(e)
+            }
+            override fun onResponse(call: Call, response: Response) {
+                val body = response.body?.string()
+                val gson = GsonBuilder().create()
+                val cities = gson.fromJson(body, WeatherBodyApi::class.java)
+                result.value = Result.Success(cities)
+            }
+        })
+
+        return result
     }
 
 }

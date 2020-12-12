@@ -6,12 +6,12 @@
     <string name="precip">Precip.:</string>
     <string name="weather_icon_content_description">icono del clima</string>
     <string name="app_slogan">Algo mas que solo el clima</string>
-    <string name="location_message">*Para una mejor experiencia activa la ubicacion automatica en tu dispositivo</string>
+    <string name="location_message">*Para una mejor experiencia activa la ubicación automatica en tu dispositivo</string>
     <string name="next_button">Siguiente</string>
     <string name="name_hint_editText">tu nombre</string>
     <string name="player_name_shared_pref_default_value">Hola tu,</string>
     <string name="player_name_shared_pref">Hola %1$s,</string>
-    <string name="weather_location_message">Necesitamos acceso a tu ubicacion para poder buscar el clima en tu zona.</string>
+    <string name="weather_location_message">Necesitamos acceso a tu ubicación para poder buscar el clima en tu zona.</string>
 
     <string name="temp_minus_0">*Peligro! Llego la era glaciar, ponete todo la ropa que tengas!\n\n</string>
     <string name="temp_1_9">*Hace mucho frio! Buzo y/o campera si o si! No te olvides la bufanda y guantes.\n\n</string>
@@ -43,5 +43,6 @@
     <string name="temp_decrese_a_little">*Va a disminuir un poco la temperatura.\n\n</string>
     <string name="temp_not_changing">*La temperatura no va a cambiar por unas horas.\n\n</string>
     <string name="show_clothing_recommendations">Ver recomendaciones de ropa</string>
+    <string name="error_weather_api">Ocurrio un error. Intenta nuevamente en un momento.</string>
 
 </resources>
