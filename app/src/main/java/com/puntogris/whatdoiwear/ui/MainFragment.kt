@@ -1,21 +1,26 @@
 package com.puntogris.whatdoiwear.ui
 
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.puntogris.whatdoiwear.R
 import com.puntogris.whatdoiwear.databinding.FragmentMainBinding
 import com.puntogris.whatdoiwear.model.Result
+import com.puntogris.whatdoiwear.model.WeatherBodyApi
 import com.puntogris.whatdoiwear.utils.MySharedPreferences
 import com.puntogris.whatdoiwear.utils.createSnackBar
 import com.puntogris.whatdoiwear.utils.gone
 import com.puntogris.whatdoiwear.utils.visible
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
 
     private val viewModel:MainFragmentViewModel by viewModels()
+
     @Inject lateinit var sharedPref: MySharedPreferences
 
     override fun initializeViews() {
@@ -26,28 +31,39 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
         setBottomSheetBehavior()
         initSeekBar()
 
-        viewModel.weatherBody.observe(viewLifecycleOwner, { result ->
-            when (result) {
-                is Result.Success -> {
-                    viewModel.updateWeather(result.data)
-                    binding.weatherProgressBar.gone()
-                    binding.bottomSheetLayout.apply {
-                        clothingRecommendation.visible()
-                        userName.visible()
-                        bottomSheetProgressBar.gone()
-                    }
-                }
-                is Result.Error -> {
-                    createSnackBar(getString(R.string.error_weather_api))
-                    binding.weatherProgressBar.gone()
-                }
-                Result.InProgress -> {
-                    binding.bottomSheetLayout.userName.gone()
-                    binding.bottomSheetLayout.bottomSheetProgressBar.visible()
-                    binding.weatherProgressBar.visible()
+        lifecycleScope.launch {
+            viewModel.weatherResult.collect { result ->
+                when (result) {
+                    is Result.Success -> onSuccess(result.data)
+                    is Result.Error -> onError()
+                    Result.InProgress -> onInProgress()
                 }
             }
-        })
+        }
+    }
+
+    private fun onInProgress(){
+        binding.apply {
+            bottomSheetLayout.userName.gone()
+            bottomSheetLayout.bottomSheetProgressBar.visible()
+            weatherProgressBar.visible()
+        }
+    }
+
+    private fun onError(){
+        createSnackBar(getString(R.string.error_weather_api))
+        binding.weatherProgressBar.gone()
+    }
+
+    private fun onSuccess(data: WeatherBodyApi){
+        binding.bottomSheetLayout.userName.text = sharedPref.getUsernamePref()
+        viewModel.updateWeather(data)
+        binding.weatherProgressBar.gone()
+        binding.bottomSheetLayout.apply {
+            clothingRecommendation.visible()
+            userName.visible()
+            bottomSheetProgressBar.gone()
+        }
     }
 
     private fun initSeekBar(){
@@ -79,8 +95,4 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
         super.onResume()
         viewModel.updateDate()
     }
-
 }
-
-
-

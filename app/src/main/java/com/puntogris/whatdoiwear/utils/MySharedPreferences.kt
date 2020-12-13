@@ -12,29 +12,25 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
 class MySharedPreferences @Inject constructor(@ApplicationContext private val context: Context) {
+
     private val defaultValue = context.getString(R.string.player_name_shared_pref_default_value)
-    private val key = SP_NAME_KEY
-    private val animationKey = SP_ANIMATION_KEY
     private val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
 
-    fun putData(data: String) {
+    fun setUsernamePref(data: String) {
         val userName =
             if (data.isEmpty()) defaultValue
             else context.getString(R.string.player_name_shared_pref, data)
-        sharedPreferences.edit().putString(key, userName).apply()
+        sharedPreferences.edit().putString(SP_NAME_KEY, userName).apply()
     }
-    fun getData() = sharedPreferences.getString(key, defaultValue)
 
-    fun exists(): Boolean = sharedPreferences.contains(key)
+    fun getUsernamePref() = sharedPreferences.getString(SP_NAME_KEY, defaultValue)
 
-    fun delete() =  sharedPreferences.edit().remove(key).apply()
+    fun checkIfUsernamePrefExists(): Boolean = sharedPreferences.contains(SP_NAME_KEY)
+
+    fun deleteUsernamePref() =  sharedPreferences.edit().remove(SP_NAME_KEY).apply()
 
     fun setShowAnimationPref() = sharedPreferences.edit().putBoolean(SP_ANIMATION_KEY, true).apply()
 
     fun getShowAnimationPref() = sharedPreferences.getBoolean(SP_ANIMATION_KEY, false)
-
-    fun getLastLocation() = sharedPreferences.getString(SP_LAST_LOCATION, "")
-
-    fun setLastLocation(lastLocation: String) = sharedPreferences.edit().putString(SP_LAST_LOCATION, lastLocation).apply()
 
 }

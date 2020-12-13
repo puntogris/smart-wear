@@ -54,7 +54,7 @@
 
             <TextView
                 android:id="@+id/location"
-                getDataWithoutNull="@{String.valueOf(viewModel.locationName)}"
+                getDataWithoutNull="@{String.valueOf(viewModel.lastLocation.name)}"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:fontFamily="sans-serif-light"

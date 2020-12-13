@@ -1,9 +1,12 @@
 package com.puntogris.whatdoiwear.ui
 
 import android.content.pm.PackageManager
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.puntogris.whatdoiwear.R
+import com.puntogris.whatdoiwear.data.LocationDao
 import com.puntogris.whatdoiwear.databinding.FragmentWelcomeBinding
+import com.puntogris.whatdoiwear.model.LastLocation
 import com.puntogris.whatdoiwear.utils.MySharedPreferences
 import com.puntogris.whatdoiwear.utils.PermissionsManager
 import com.puntogris.whatdoiwear.utils.createSnackBar
@@ -25,12 +28,12 @@ class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>(R.layout.fragment_w
             lifecycleOwner = viewLifecycleOwner
         }
 
-        if(sharedPref.exists()) requestLocationPermission()
+        if(sharedPref.checkIfUsernamePrefExists()) requestLocationPermission()
     }
 
     fun saveUserNameAndNavigateToMainFragment(){
         val input = binding.userNameEditText.text.toString()
-        sharedPref.putData(input)
+        sharedPref.setUsernamePref(input)
         requestLocationPermission()
     }
 
@@ -57,7 +60,7 @@ class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>(R.layout.fragment_w
         }
     }
     private fun onLocationPermissionDenied(){
-        sharedPref.delete()
+        sharedPref.deleteUsernamePref()
         createSnackBar(getString(R.string.weather_location_message))
     }
 

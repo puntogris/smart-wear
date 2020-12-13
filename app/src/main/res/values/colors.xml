@@ -6,5 +6,6 @@
     <color name="background">#0091D1</color>
     <color name="iconWeatherColor">#FFFFFF</color>
     <color name="splashColor">#9C27B0</color>
+    <color name="splashColor_90">#E69C27B0</color>
 
 </resources>
