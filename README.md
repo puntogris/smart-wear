@@ -11,6 +11,6 @@ Used in this project:</br>
   * Hilt
   
 ## Screenshots
-![N|Solid](https://github.com/puntogris/what-do-i-wear/blob/master/screenshots/1.png)
-![N|Solid](https://github.com/puntogris/what-do-i-wear/blob/master/screenshots/2.png)
-![N|Solid](https://github.com/puntogris/what-do-i-wear/blob/master/screenshots/3.png)
+![N|Solid](https://github.com/puntogris/what-do-i-wear/blob/master/screenshots/image_1.png)
+![N|Solid](https://github.com/puntogris/what-do-i-wear/blob/master/screenshots/image_2.png)
+![N|Solid](https://github.com/puntogris/what-do-i-wear/blob/master/screenshots/image_3.png)
