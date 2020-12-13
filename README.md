@@ -8,7 +8,7 @@ Used in this project:</br>
   * Gson
   * Geocoder
   * Dark Sky API
-  * Dagger
+  * Hilt
   
 ## Screenshots
 ![N|Solid](https://github.com/puntogris/what-do-i-wear/blob/master/screenshots/image_1.webp)

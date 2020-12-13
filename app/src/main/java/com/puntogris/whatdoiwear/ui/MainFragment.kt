@@ -1,18 +1,22 @@
 package com.puntogris.whatdoiwear.ui
 
+import androidx.fragment.app.viewModels
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.puntogris.whatdoiwear.R
 import com.puntogris.whatdoiwear.databinding.FragmentMainBinding
-import com.puntogris.whatdoiwear.di.injector
 import com.puntogris.whatdoiwear.model.Result
+import com.puntogris.whatdoiwear.utils.MySharedPreferences
 import com.puntogris.whatdoiwear.utils.createSnackBar
 import com.puntogris.whatdoiwear.utils.gone
 import com.puntogris.whatdoiwear.utils.visible
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
 
-    private val viewModel by viewModel {  injector.mainViewModel}
-    private val sharedPref by lazy { injector.sharedPreferences }
+    private val viewModel:MainFragmentViewModel by viewModels()
+    @Inject lateinit var sharedPref: MySharedPreferences
 
     override fun initializeViews() {
         binding.viewModel = viewModel

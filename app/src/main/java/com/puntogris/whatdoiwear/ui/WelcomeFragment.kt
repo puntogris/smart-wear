@@ -4,15 +4,20 @@ import android.content.pm.PackageManager
 import androidx.navigation.fragment.findNavController
 import com.puntogris.whatdoiwear.R
 import com.puntogris.whatdoiwear.databinding.FragmentWelcomeBinding
-import com.puntogris.whatdoiwear.di.injector
+import com.puntogris.whatdoiwear.utils.MySharedPreferences
 import com.puntogris.whatdoiwear.utils.PermissionsManager
 import com.puntogris.whatdoiwear.utils.createSnackBar
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @Suppress("DEPRECATION")
+@AndroidEntryPoint
 class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>(R.layout.fragment_welcome) {
 
-    private val sharedPref by lazy { injector.sharedPreferences }
-    private val permissionsManager by lazy { injector.permissionManager}
+    @Inject
+    lateinit var sharedPref: MySharedPreferences
+
+    @Inject lateinit var permissionsManager: PermissionsManager
 
     override fun initializeViews() {
         binding.apply {

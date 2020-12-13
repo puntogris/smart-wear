@@ -11,6 +11,8 @@ import com.puntogris.whatdoiwear.model.Result
 import com.puntogris.whatdoiwear.model.WeatherBodyApi
 import com.puntogris.whatdoiwear.utils.Constants.FIRST_PATH_API
 import com.puntogris.whatdoiwear.utils.Constants.SECOND_PATH_API
+import com.puntogris.whatdoiwear.utils.MySharedPreferences
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
 import okhttp3.*
 import java.io.IOException
@@ -20,7 +22,9 @@ import javax.inject.Inject
 
 class Repository @Inject constructor(
     private val customLiveData: LocationLiveData,
-    private val context: Context) : IRepository{
+    @ApplicationContext private val context: Context,
+    private val sharedPref: MySharedPreferences
+) : IRepository{
 
     override fun getLocation(): LocationLiveData{
         return customLiveData
@@ -33,7 +37,11 @@ class Repository @Inject constructor(
             location.longitude,
             1
         ).also {
-            if (!it.isNullOrEmpty()) liveData.postValue(it[0].locality + ", "+ it[0].adminArea)
+            if (!it.isNullOrEmpty()) {
+                val locationName = it[0].locality + ", "+ it[0].adminArea
+                if (sharedPref.getLastLocation() != locationName) sharedPref.setLastLocation(locationName)
+                liveData.postValue(locationName)
+            }
         }
         return liveData
     }

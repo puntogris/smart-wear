@@ -1,5 +1,6 @@
 package com.puntogris.whatdoiwear.ui
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import com.puntogris.whatdoiwear.data.Repository
 import com.puntogris.whatdoiwear.model.Result
@@ -10,7 +11,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
 
-class MainFragmentViewModel @Inject constructor(
+class MainFragmentViewModel @ViewModelInject constructor(
     private val repo: Repository,
     sharedPref: MySharedPreferences
 ) :ViewModel(){

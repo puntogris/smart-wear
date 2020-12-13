@@ -9,11 +9,11 @@ import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 import javax.inject.Singleton
-
 @Singleton
-class LocationLiveData @Inject constructor(context: Context):LiveData<Location>(){
+class LocationLiveData @Inject constructor(@ApplicationContext context: Context):LiveData<Location>(){
 
     private val fusedLocationClient = LocationServices.getFusedLocationProviderClient(context)
     private val locationRequest = LocationRequest.create().apply {
