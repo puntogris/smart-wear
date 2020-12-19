@@ -22,9 +22,3 @@ data class LastLocation(
     @ColumnInfo
     val longitude: Double = 0.0
     ):Parcelable
-{
-    fun isValid() = name.isNotEmpty()
-    fun test(){
-        println("test")
-    }
-}

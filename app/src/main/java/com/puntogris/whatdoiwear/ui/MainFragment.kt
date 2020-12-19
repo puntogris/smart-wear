@@ -2,7 +2,6 @@ package com.puntogris.whatdoiwear.ui
 
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.snackbar.Snackbar
 import com.puntogris.whatdoiwear.R
 import com.puntogris.whatdoiwear.databinding.FragmentMainBinding
@@ -11,7 +10,6 @@ import com.puntogris.whatdoiwear.utils.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -19,7 +17,7 @@ import javax.inject.Inject
 class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
 
     private val viewModel:MainFragmentViewModel by viewModels()
-    @Inject lateinit var sharedPref: MySharedPreferences
+    @Inject lateinit var sharedPref: SharedPref
 
     override fun initializeViews() {
         binding.lifecycleOwner = viewLifecycleOwner

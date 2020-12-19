@@ -8,7 +8,7 @@ import com.puntogris.whatdoiwear.utils.Constants.SP_NAME_KEY
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
-class MySharedPreferences @Inject constructor(@ApplicationContext private val context: Context) {
+class SharedPref @Inject constructor(@ApplicationContext private val context: Context) {
 
     private val defaultValue = context.getString(R.string.player_name_shared_pref_default_value)
     private val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)

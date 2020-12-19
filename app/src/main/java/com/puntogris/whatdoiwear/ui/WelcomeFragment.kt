@@ -3,7 +3,7 @@ package com.puntogris.whatdoiwear.ui
 import androidx.navigation.fragment.findNavController
 import com.puntogris.whatdoiwear.R
 import com.puntogris.whatdoiwear.databinding.FragmentWelcomeBinding
-import com.puntogris.whatdoiwear.utils.MySharedPreferences
+import com.puntogris.whatdoiwear.utils.SharedPref
 import com.puntogris.whatdoiwear.utils.PermissionsManager
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -11,7 +11,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>(R.layout.fragment_welcome) {
 
-    @Inject lateinit var sharedPref: MySharedPreferences
+    @Inject lateinit var sharedPref: SharedPref
     @Inject lateinit var permissionsManager: PermissionsManager
 
     override fun initializeViews() {
