@@ -52,22 +52,16 @@ class MainFragmentViewModel @ViewModelInject constructor(
         }
 
         viewModelScope.launch {
-            repo.getLocation().asFlow()
+            repo.getLocation()
                 .collect { location ->
-                    getLocationName(location).also {
-                        if (it != lastLocation.value?.name){
-                            viewModelScope.launch { weatherResult.emitAll(repo.getWeatherApi(location)) }
-                            location.name = it
-                            _lastLocation.value = location
-                            room.insert(location)
+                    if (location.name != lastLocation.value?.name){
+                        viewModelScope.launch { weatherResult.emitAll(repo.getWeatherApi(location)) }
+                        _lastLocation.value = location
+                        room.insert(location)
                     }
                 }
             }
-        }
     }
-
-
-    private suspend fun getLocationName(location: LastLocation) = repo.getLocationNameAsync(location).await()
 
     fun updateSeekBarPosition(value:Int) {
         _seekBarPosition.value = value

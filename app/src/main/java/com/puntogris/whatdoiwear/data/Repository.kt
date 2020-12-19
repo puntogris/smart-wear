@@ -12,6 +12,7 @@ import com.puntogris.whatdoiwear.utils.WeatherResult
 import com.puntogris.whatdoiwear.utils.getLocationName
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import okhttp3.*
 import java.io.IOException
@@ -23,17 +24,8 @@ class Repository @Inject constructor(
     private val locationClient: LocationClient,
 ) : IRepository{
 
-    override fun getLocation(): LiveData<LastLocation> = locationClient
+    override fun getLocation(): Flow<LastLocation> = locationClient.requestLocation()
 
-    override fun getLocationNameAsync(location: LastLocation) : Deferred<String> {
-        return GlobalScope.async(Dispatchers.IO) {
-            val gcd = Geocoder(context, Locale.getDefault())
-            val addresses = gcd.getFromLocation(location.latitude,
-                location.longitude, 1)
-
-            return@async if(!addresses.isNullOrEmpty()) addresses[0].getLocationName() else "Error"
-        }
-    }
 
     override fun getWeatherApi(location: LastLocation): MutableStateFlow<WeatherResult> {
         val result = MutableStateFlow<WeatherResult>(WeatherResult.InProgress)
