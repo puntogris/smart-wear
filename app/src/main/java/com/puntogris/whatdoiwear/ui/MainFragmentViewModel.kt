@@ -5,58 +5,34 @@ import androidx.lifecycle.*
 import com.puntogris.whatdoiwear.data.LocationDao
 import com.puntogris.whatdoiwear.data.Repository
 import com.puntogris.whatdoiwear.model.LastLocation
-import com.puntogris.whatdoiwear.model.Result
 import com.puntogris.whatdoiwear.model.WeatherBodyApi
-import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.*
+import com.puntogris.whatdoiwear.utils.WeatherResult
+import kotlinx.coroutines.InternalCoroutinesApi
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.emitAll
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 
 class MainFragmentViewModel @ViewModelInject constructor(
     private val room: LocationDao,
     private val repo: Repository
-) :ViewModel(){
+) : ViewModel(){
 
-    val weatherResult = MutableStateFlow<Result>(Result.InProgress)
-
-    private val _lastLocation = MutableLiveData(LastLocation())
-    val lastLocation:LiveData<LastLocation> = _lastLocation
-
-    private var _weather = MutableLiveData<WeatherBodyApi>()
-    val weather:LiveData<WeatherBodyApi> = _weather
-
-    init {
-        viewModelScope.launch {
-            val initialLocation = room.getLocation()
-            if (!initialLocation.isNullOrEmpty()) {
-                _lastLocation.value = initialLocation.first()
-                weatherResult.emitAll(repo.getWeatherApi(initialLocation.first()))
-            }
-        }
-
-        viewModelScope.launch {
-            repo.getLocation().asFlow().collect {
-
-                val locationName = repo.getLocationNameAsync(it).await()
-                if (lastLocation.value!!.name != locationName) {
-                    viewModelScope.launch { weatherResult.emitAll(repo.getWeatherApi(it)) }
-                    val newLocation = LastLocation(
-                        name = locationName,
-                        longitude = it.longitude,
-                        latitude = it.latitude
-                    )
-                    _lastLocation.value = newLocation
-                    room.insert(newLocation)
-                }
-            }
-        }
-    }
+    val weatherResult = MutableStateFlow<WeatherResult>(WeatherResult.InProgress)
 
     private val locale = Locale.getDefault()
     private val dateNow = MutableLiveData(Date())
 
     private val _seekBarPosition = MutableLiveData<Int>()
     val seekBarPosition = _seekBarPosition
+
+    private val _lastLocation = MutableLiveData(LastLocation())
+    val lastLocation:LiveData<LastLocation> = _lastLocation
+
+    private var _weather = MutableLiveData<WeatherBodyApi>()
+    val weather: LiveData<WeatherBodyApi> = _weather
 
     val time:LiveData<String> = dateNow.switchMap{
         MutableLiveData(SimpleDateFormat("h:mm a",locale).format(it))
@@ -66,6 +42,32 @@ class MainFragmentViewModel @ViewModelInject constructor(
     }
 
     val timeNow: String = SimpleDateFormat("HH", Locale.getDefault()).format(dateNow.value!!)
+
+    init {
+        viewModelScope.launch {
+            room.getLocation()?.also { location ->
+                _lastLocation.value = location
+                weatherResult.emitAll(repo.getWeatherApi(location))
+            }
+        }
+
+        viewModelScope.launch {
+            repo.getLocation().asFlow()
+                .collect { location ->
+                    getLocationName(location).also {
+                        if (it != lastLocation.value?.name){
+                            viewModelScope.launch { weatherResult.emitAll(repo.getWeatherApi(location)) }
+                            location.name = it
+                            _lastLocation.value = location
+                            room.insert(location)
+                    }
+                }
+            }
+        }
+    }
+
+
+    private suspend fun getLocationName(location: LastLocation) = repo.getLocationNameAsync(location).await()
 
     fun updateSeekBarPosition(value:Int) {
         _seekBarPosition.value = value
@@ -80,6 +82,8 @@ class MainFragmentViewModel @ViewModelInject constructor(
             else -> value
         }.also { return if(it < 12) "${it.toInt()} AM" else "${it.toInt()} PM" }
     }
+
+    fun isOnEndSeekBar(value: Float): Boolean = timeNow.toFloat() + 24 == value
 
     fun updateWeather(weather:WeatherBodyApi){
         _weather.value = weather

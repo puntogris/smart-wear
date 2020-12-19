@@ -25,10 +25,6 @@ class MySharedPreferences @Inject constructor(@ApplicationContext private val co
 
     fun getUsernamePref() = sharedPreferences.getString(SP_NAME_KEY, defaultValue)
 
-    fun checkIfUsernamePrefExists(): Boolean = sharedPreferences.contains(SP_NAME_KEY)
-
-    fun deleteUsernamePref() =  sharedPreferences.edit().remove(SP_NAME_KEY).apply()
-
     fun setShowAnimationPref() = sharedPreferences.edit().putBoolean(SP_ANIMATION_KEY, true).apply()
 
     fun getShowAnimationPref() = sharedPreferences.getBoolean(SP_ANIMATION_KEY, false)

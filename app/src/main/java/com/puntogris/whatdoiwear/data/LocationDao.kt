@@ -17,6 +17,6 @@ interface LocationDao {
     suspend fun update(lastLocation: LastLocation)
 
     @Query("SELECT * FROM lastlocation WHERE id = 1")
-    suspend fun getLocation(): List<LastLocation>
+    suspend fun getLocation(): LastLocation?
 
 }

@@ -3,14 +3,11 @@ package com.puntogris.whatdoiwear.ui
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.snackbar.Snackbar
 import com.puntogris.whatdoiwear.R
 import com.puntogris.whatdoiwear.databinding.FragmentMainBinding
-import com.puntogris.whatdoiwear.model.Result
 import com.puntogris.whatdoiwear.model.WeatherBodyApi
-import com.puntogris.whatdoiwear.utils.MySharedPreferences
-import com.puntogris.whatdoiwear.utils.createSnackBar
-import com.puntogris.whatdoiwear.utils.gone
-import com.puntogris.whatdoiwear.utils.visible
+import com.puntogris.whatdoiwear.utils.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -24,9 +21,8 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
     @Inject lateinit var sharedPref: MySharedPreferences
 
     override fun initializeViews() {
-        binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
-
+        binding.viewModel = viewModel
         checkAnimationPref()
         setBottomSheetBehavior()
         initSeekBar()
@@ -34,9 +30,9 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
         lifecycleScope.launch {
             viewModel.weatherResult.collect { result ->
                 when (result) {
-                    is Result.Success -> onSuccess(result.data)
-                    is Result.Error -> onError()
-                    Result.InProgress -> onInProgress()
+                    is WeatherResult.Success -> onSuccess(result.data)
+                    is WeatherResult.Error -> onError()
+                    WeatherResult.InProgress -> onInProgress()
                 }
             }
         }
@@ -51,7 +47,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
     }
 
     private fun onError(){
-        createSnackBar(getString(R.string.error_weather_api))
+        createSnackBar(getString(R.string.error_weather_api), Snackbar.LENGTH_SHORT)
         binding.weatherProgressBar.gone()
     }
 
@@ -68,8 +64,8 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
 
     private fun initSeekBar(){
         binding.seekBar.apply {
-            addOnChangeListener { slider, value, _ ->
-                if(slider.valueTo == value && !sharedPref.getShowAnimationPref()) {
+            addOnChangeListener { _, value, _ ->
+                if(viewModel.isOnEndSeekBar(value) && !sharedPref.getShowAnimationPref()) {
                     binding.bottomSheetLayout.animationView.visible()
                     sharedPref.setShowAnimationPref()
                 }

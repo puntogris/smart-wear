@@ -1,47 +1,44 @@
 package com.puntogris.whatdoiwear.utils
 
 import android.Manifest
-import android.app.Activity
 import android.content.Context
 import android.content.pm.PackageManager
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
+import androidx.core.app.ActivityCompat.requestPermissions
+import androidx.core.app.ActivityCompat.shouldShowRequestPermissionRationale
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import dagger.Reusable
+import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
+import com.puntogris.whatdoiwear.R
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
-import javax.inject.Singleton
 
-@Reusable
-class PermissionsManager @Inject constructor() {
+class PermissionsManager @Inject constructor( @ApplicationContext private val context: Context,
+) {
 
-    companion object {
-        const val LOCATION_PERMISSION_REQUEST_CODE = 0x0001
-    }
-
-    fun isLocationPermissionGranted(context: Context): Boolean {
-        return isPermissionGranted(context, Manifest.permission.ACCESS_FINE_LOCATION)
-    }
-
-    fun requestLocationPermission(fragment: Fragment) {
-        requestPermission(fragment, Manifest.permission.ACCESS_FINE_LOCATION, LOCATION_PERMISSION_REQUEST_CODE)
-    }
-
-    fun requestLocationPermission(activity: Activity) {
-        requestPermission(activity, Manifest.permission.ACCESS_FINE_LOCATION, LOCATION_PERMISSION_REQUEST_CODE)
-    }
-
-    private fun requestPermission(fragment: Fragment, permission: String, requestCode: Int) {
-        fragment.requestPermissions(arrayOf(permission), requestCode)
-    }
-
-    private fun requestPermission(activity: Activity, permission: String, requestCode: Int) {
-        if (isPermissionGranted(activity, permission).not()) {
-            ActivityCompat.requestPermissions(activity, arrayOf(permission), requestCode)
+    fun hasPermission(): Boolean{
+        if (Manifest.permission.ACCESS_FINE_LOCATION == Manifest.permission.ACCESS_BACKGROUND_LOCATION &&
+            android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.Q) {
+            return true
         }
+        return ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) ==
+                PackageManager.PERMISSION_GRANTED
     }
 
-    private fun isPermissionGranted(context: Context, permission: String): Boolean {
-        return ContextCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED
+    fun requestPermission(fragment: Fragment){
+        val requestPermissionLauncher =
+            fragment.registerForActivityResult(
+                ActivityResultContracts.RequestPermission()
+            ) { isGranted: Boolean ->
+                if (isGranted) fragment.findNavController().navigate(R.id.mainFragment)
+                else fragment.createSnackBar(context.resources.getString(R.string.location_rationale_message), Snackbar.LENGTH_SHORT)
+            }
+
+        if (hasPermission()) fragment.findNavController().navigate(R.id.mainFragment)
+        else requestPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
+
     }
 
 }
