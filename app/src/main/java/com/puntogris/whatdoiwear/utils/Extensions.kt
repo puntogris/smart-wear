@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.slider.Slider
 import com.google.android.material.snackbar.Snackbar
 import com.puntogris.whatdoiwear.model.LastLocation
 import java.util.*

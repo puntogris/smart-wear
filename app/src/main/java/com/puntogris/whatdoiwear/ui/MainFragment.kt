@@ -28,7 +28,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
         setBottomSheetBehavior()
         initSeekBar()
 
-        lifecycleScope.launch {
+        lifecycleScope.launchWhenStarted {
             viewModel.weatherResult.collect { result ->
                 when (result) {
                     is WeatherResult.Success -> onSuccess(result.data)
@@ -67,12 +67,16 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
         binding.seekBar.apply {
             addOnChangeListener { _, value, _ ->
                 if(viewModel.isOnEndSeekBar(value) && !sharedPref.getShowAnimationPref()) {
-                    binding.bottomSheetLayout.animationView.visible()
-                    sharedPref.setShowAnimationPref()
+                    enableAnimation()
                 }
                 viewModel.updateSeekBarPosition((value - valueFrom).toInt()) }
             setLabelFormatter { viewModel.getSeekBarLabel(it) }
         }
+    }
+
+    private fun enableAnimation(){
+        binding.bottomSheetLayout.animationView.visible()
+        sharedPref.setShowAnimationPref()
     }
 
     private fun setBottomSheetBehavior(){
