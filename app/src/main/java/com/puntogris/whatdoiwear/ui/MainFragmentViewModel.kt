@@ -7,7 +7,8 @@ import com.puntogris.whatdoiwear.data.Repository
 import com.puntogris.whatdoiwear.model.LastLocation
 import com.puntogris.whatdoiwear.model.WeatherBodyApi
 import com.puntogris.whatdoiwear.utils.WeatherResult
-import kotlinx.coroutines.InternalCoroutinesApi
+import com.puntogris.whatdoiwear.utils.update
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.emitAll
@@ -15,6 +16,7 @@ import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 
+@ExperimentalCoroutinesApi
 class MainFragmentViewModel @ViewModelInject constructor(
     private val room: LocationDao,
     private val repo: Repository
@@ -56,18 +58,24 @@ class MainFragmentViewModel @ViewModelInject constructor(
                 .collect { location ->
                     if (location.name != lastLocation.value?.name){
                         viewModelScope.launch { weatherResult.emitAll(repo.getWeatherApi(location)) }
-                        _lastLocation.value = location
-                        room.insert(location)
+                        saveLastLocation(location)
                     }
                 }
             }
+    }
+
+    private suspend fun saveLastLocation(location: LastLocation){
+        _lastLocation.value = location
+        room.insert(location)
     }
 
     fun updateSeekBarPosition(value:Int) {
         _seekBarPosition.value = value
     }
 
-    fun updateDate() = dateNow.postValue(Date())
+    fun updateDate() {
+        dateNow.update()
+    }
 
     fun getSeekBarLabel(value:Float):String{
         when {

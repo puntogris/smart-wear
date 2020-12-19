@@ -9,15 +9,16 @@ import com.puntogris.whatdoiwear.databinding.FragmentMainBinding
 import com.puntogris.whatdoiwear.model.WeatherBodyApi
 import com.puntogris.whatdoiwear.utils.*
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
+@ExperimentalCoroutinesApi
 class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
 
     private val viewModel:MainFragmentViewModel by viewModels()
-
     @Inject lateinit var sharedPref: MySharedPreferences
 
     override fun initializeViews() {
@@ -75,12 +76,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
     }
 
     private fun setBottomSheetBehavior(){
-        val bottomSheet = binding.bottomSheetLayout.bottomSheet
-        BottomSheetBehavior.from(bottomSheet).apply {
-            state = BottomSheetBehavior.STATE_COLLAPSED
-            bottomSheet.setOnClickListener { state = BottomSheetBehavior.STATE_EXPANDED }
-            binding.activityBackground.setOnClickListener { state = BottomSheetBehavior.STATE_COLLAPSED }
-        }
+        binding.bottomSheetLayout.bottomSheet.setupWith(binding.activityBackground)
     }
 
     private fun checkAnimationPref(){

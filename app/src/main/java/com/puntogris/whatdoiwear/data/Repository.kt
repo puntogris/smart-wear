@@ -1,31 +1,24 @@
 package com.puntogris.whatdoiwear.data
 
-import android.content.Context
-import android.location.Geocoder
-import androidx.lifecycle.LiveData
 import com.google.gson.GsonBuilder
 import com.puntogris.whatdoiwear.model.LastLocation
 import com.puntogris.whatdoiwear.model.WeatherBodyApi
 import com.puntogris.whatdoiwear.utils.Constants.FIRST_PATH_API
 import com.puntogris.whatdoiwear.utils.Constants.SECOND_PATH_API
 import com.puntogris.whatdoiwear.utils.WeatherResult
-import com.puntogris.whatdoiwear.utils.getLocationName
-import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import okhttp3.*
 import java.io.IOException
-import java.util.*
 import javax.inject.Inject
 
 class Repository @Inject constructor(
-    @ApplicationContext private val context: Context,
     private val locationClient: LocationClient,
 ) : IRepository{
 
+    @ExperimentalCoroutinesApi
     override fun getLocation(): Flow<LastLocation> = locationClient.requestLocation()
-
 
     override fun getWeatherApi(location: LastLocation): MutableStateFlow<WeatherResult> {
         val result = MutableStateFlow<WeatherResult>(WeatherResult.InProgress)
