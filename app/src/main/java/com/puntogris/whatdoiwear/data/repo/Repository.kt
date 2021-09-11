@@ -1,7 +1,8 @@
-package com.puntogris.whatdoiwear.data
+package com.puntogris.whatdoiwear.data.repo
 
+import com.puntogris.whatdoiwear.data.LocationClient
 import com.puntogris.whatdoiwear.model.LastLocation
-import com.puntogris.whatdoiwear.utils.Utils.convertJsonToWeatherBodyApi
+import com.puntogris.whatdoiwear.model.WeatherBodyApi
 import com.puntogris.whatdoiwear.utils.Utils.createApiPathWithLatLong
 import com.puntogris.whatdoiwear.utils.WeatherResult
 import kotlinx.coroutines.*
@@ -13,7 +14,7 @@ import javax.inject.Inject
 
 class Repository @Inject constructor(
     private val locationClient: LocationClient,
-) : IRepository{
+) : IRepository {
 
     @ExperimentalCoroutinesApi
     override fun getLocation(): Flow<LastLocation> = locationClient.requestLocation()
@@ -28,11 +29,9 @@ class Repository @Inject constructor(
                 result.value = WeatherResult.Error(e)
             }
             override fun onResponse(call: Call, response: Response) {
-                val weatherBodyApi = convertJsonToWeatherBodyApi(response)
-                result.value = WeatherResult.Success(weatherBodyApi)
+                result.value = WeatherResult.Success(WeatherBodyApi.fromResponse(response))
             }
         })
-
         return result
     }
 

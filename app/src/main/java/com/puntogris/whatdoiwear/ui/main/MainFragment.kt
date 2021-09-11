@@ -1,11 +1,10 @@
-package com.puntogris.whatdoiwear.ui
+package com.puntogris.whatdoiwear.ui.main
 
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
-import com.google.android.material.snackbar.Snackbar
 import com.puntogris.whatdoiwear.R
 import com.puntogris.whatdoiwear.databinding.FragmentMainBinding
 import com.puntogris.whatdoiwear.model.WeatherBodyApi
+import com.puntogris.whatdoiwear.ui.base.BaseFragment
 import com.puntogris.whatdoiwear.utils.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -16,17 +15,21 @@ import javax.inject.Inject
 @ExperimentalCoroutinesApi
 class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
 
-    private val viewModel:MainFragmentViewModel by viewModels()
+    private val viewModel: MainFragmentViewModel by viewModels()
     @Inject lateinit var sharedPref: SharedPref
 
     override fun initializeViews() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
+
+        subscribeWeatherUi()
         checkAnimationPref()
         setBottomSheetBehavior()
         initSeekBar()
+    }
 
-        lifecycleScope.launchWhenStarted {
+    private fun subscribeWeatherUi(){
+        launchAndRepeatWithViewLifecycle {
             viewModel.weatherResult.collect { result ->
                 when (result) {
                     is WeatherResult.Success -> onSuccess(result.data)
@@ -46,13 +49,13 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
     }
 
     private fun onError(){
-        createSnackBar(getString(R.string.error_weather_api), Snackbar.LENGTH_SHORT)
+        createSnackBar(getString(R.string.error_weather_api))
         binding.weatherProgressBar.gone()
     }
 
     private fun onSuccess(data: WeatherBodyApi){
-        binding.bottomSheetLayout.userName.text = sharedPref.getUsernamePref()
         viewModel.updateWeather(data)
+        binding.bottomSheetLayout.userName.text = sharedPref.getUsernamePref()
         binding.weatherProgressBar.gone()
         binding.bottomSheetLayout.apply {
             clothingRecommendation.visible()

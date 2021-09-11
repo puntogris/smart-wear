@@ -1,8 +1,7 @@
-package com.puntogris.whatdoiwear.data
+package com.puntogris.whatdoiwear.data.repo
 
 import com.puntogris.whatdoiwear.model.LastLocation
 import com.puntogris.whatdoiwear.utils.WeatherResult
-import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 

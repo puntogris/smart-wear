@@ -1,23 +1,23 @@
-package com.puntogris.whatdoiwear.ui
+package com.puntogris.whatdoiwear.ui.main
 
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import com.puntogris.whatdoiwear.data.LocationDao
-import com.puntogris.whatdoiwear.data.Repository
+import com.puntogris.whatdoiwear.data.repo.Repository
 import com.puntogris.whatdoiwear.model.LastLocation
 import com.puntogris.whatdoiwear.model.WeatherBodyApi
 import com.puntogris.whatdoiwear.utils.WeatherResult
 import com.puntogris.whatdoiwear.utils.update
-import kotlinx.coroutines.ExperimentalCoroutinesApi
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
+import javax.inject.Inject
 
-@ExperimentalCoroutinesApi
-class MainFragmentViewModel @ViewModelInject constructor(
+@HiltViewModel
+class MainFragmentViewModel @Inject constructor(
     private val room: LocationDao,
     private val repo: Repository
 ) : ViewModel(){
@@ -39,6 +39,7 @@ class MainFragmentViewModel @ViewModelInject constructor(
     val time:LiveData<String> = dateNow.switchMap{
         MutableLiveData(SimpleDateFormat("h:mm a",locale).format(it))
     }
+
     val date:LiveData<String> = dateNow.switchMap{
         MutableLiveData(SimpleDateFormat("EEE, MMM d",locale).format(it))
     }

@@ -7,7 +7,7 @@
         <import type="android.view.View"/>
         <variable
             name="viewModel"
-            type="com.puntogris.whatdoiwear.ui.MainFragmentViewModel" />
+            type="com.puntogris.whatdoiwear.ui.main.MainFragmentViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -19,7 +19,7 @@
             backgroundImage="@{String.valueOf(viewModel.time)}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".ui.MainFragment">
+            tools:context=".ui.main.MainFragment">
 
             <TextView
                 android:id="@+id/date"

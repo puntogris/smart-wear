@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.puntogris.whatdoiwear.ui.MainFragmentViewModel" />
+            type="com.puntogris.whatdoiwear.ui.main.MainFragmentViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

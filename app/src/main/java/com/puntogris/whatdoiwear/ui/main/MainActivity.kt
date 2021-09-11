@@ -1,30 +1,30 @@
-package com.puntogris.whatdoiwear.ui
+package com.puntogris.whatdoiwear.ui.main
 
 import android.graphics.Color
-import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
-import androidx.appcompat.app.AppCompatActivity
 import com.puntogris.whatdoiwear.R
+import com.puntogris.whatdoiwear.databinding.ActivityMainBinding
+import com.puntogris.whatdoiwear.ui.base.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
 
-@Suppress("DEPRECATION")
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun preInitializeViews() {
         setTheme(R.style.AppTheme)
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+    }
 
+    override fun initializeViews() {
+        setupWindow()
+    }
 
+    private fun setupWindow(){
         window.apply {
             clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
             addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
             decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
             statusBarColor = Color.TRANSPARENT
         }
-
     }
-
 }

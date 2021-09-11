@@ -1,8 +1,9 @@
-package com.puntogris.whatdoiwear.ui
+package com.puntogris.whatdoiwear.ui.welcome
 
 import androidx.navigation.fragment.findNavController
 import com.puntogris.whatdoiwear.R
 import com.puntogris.whatdoiwear.databinding.FragmentWelcomeBinding
+import com.puntogris.whatdoiwear.ui.base.BaseFragment
 import com.puntogris.whatdoiwear.utils.SharedPref
 import com.puntogris.whatdoiwear.utils.PermissionsManager
 import dagger.hilt.android.AndroidEntryPoint
@@ -26,6 +27,5 @@ class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>(R.layout.fragment_w
         val input = binding.userNameEditText.text.toString()
         sharedPref.setUsernamePref(input)
         permissionsManager.requestPermission(this)
-
     }
 }

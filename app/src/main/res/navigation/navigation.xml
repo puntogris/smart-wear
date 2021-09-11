@@ -7,10 +7,10 @@
 
     <fragment
         android:id="@+id/welcomeFragment"
-        android:name="com.puntogris.whatdoiwear.ui.WelcomeFragment"
+        android:name="com.puntogris.whatdoiwear.ui.welcome.WelcomeFragment"
         android:label="WelcomeFragment" />
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.puntogris.whatdoiwear.ui.MainFragment"
+        android:name="com.puntogris.whatdoiwear.ui.main.MainFragment"
         android:label="MainFragment" />
 </navigation>

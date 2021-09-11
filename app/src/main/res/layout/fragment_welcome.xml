@@ -6,14 +6,14 @@
     <data>
         <variable
             name="welcomeFragment"
-            type="com.puntogris.whatdoiwear.ui.WelcomeFragment" />
+            type="com.puntogris.whatdoiwear.ui.welcome.WelcomeFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:background="@drawable/ic_welcome_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.WelcomeFragment">
+        tools:context=".ui.welcome.WelcomeFragment">
 
         <TextView
             android:id="@+id/welcomFragmentTitle"
