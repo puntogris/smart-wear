@@ -4,6 +4,7 @@ import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.google.android.gms.location.LocationResult
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -21,4 +22,16 @@ data class LastLocation(
 
     @ColumnInfo
     val longitude: Double = 0.0
-    ):Parcelable
+    ):Parcelable{
+
+
+        companion object{
+            fun from(locationResult: LocationResult?): LastLocation?{
+                return if (locationResult == null) null
+                else LastLocation(
+                    latitude = locationResult.lastLocation.latitude,
+                    longitude = locationResult.lastLocation.longitude
+                )
+            }
+        }
+    }

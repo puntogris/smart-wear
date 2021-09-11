@@ -12,6 +12,7 @@ import com.puntogris.whatdoiwear.model.LastLocation
 import com.puntogris.whatdoiwear.utils.getLocationName
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.*
+import kotlinx.coroutines.channels.ProducerScope
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
@@ -20,6 +21,8 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
+@DelicateCoroutinesApi
+@ExperimentalCoroutinesApi
 class LocationClient @Inject constructor(@ApplicationContext private val context: Context){
 
     private val fusedLocationClient = LocationServices.getFusedLocationProviderClient(context)
@@ -30,31 +33,31 @@ class LocationClient @Inject constructor(@ApplicationContext private val context
         smallestDisplacement = 10f
     }
 
-    @ExperimentalCoroutinesApi
     @SuppressLint("MissingPermission")
-    fun requestLocation(): Flow<LastLocation> =
-        callbackFlow {
-            val locationCallback: LocationCallback = object : LocationCallback() {
-                override fun onLocationResult(locationResult: LocationResult?) {
-                    locationResult?.let {
-                        val location = LastLocation(
-                            latitude = it.lastLocation.latitude,
-                            longitude = it.lastLocation.longitude
-                        )
-                        GlobalScope.launch(Dispatchers.IO){
-                            location.name = getLocationNameAsync(location).await()
-                            offer(location)
-                        }
+    fun requestLocation(): Flow<LastLocation> = callbackFlow {
+
+        val locationCallback = getLocationCallback(this)
+
+        fusedLocationClient.requestLocationUpdates(locationRequest,
+            locationCallback,
+            Looper.getMainLooper()).addOnFailureListener { close(it) }
+
+        awaitClose { fusedLocationClient.removeLocationUpdates(locationCallback) }
+    }
+
+    private fun getLocationCallback(producerScope: ProducerScope<LastLocation>): LocationCallback{
+        return object : LocationCallback() {
+            override fun onLocationResult(locationResult: LocationResult?) {
+                LastLocation.from(locationResult)?.let {
+                    GlobalScope.launch(Dispatchers.IO){
+                        it.name = getLocationNameAsync(it).await()
+                        producerScope.trySend(it)
                     }
                 }
             }
-
-            fusedLocationClient.requestLocationUpdates(locationRequest,
-                locationCallback,
-                Looper.getMainLooper()).addOnFailureListener { close(it) }
-
-            awaitClose { fusedLocationClient.removeLocationUpdates(locationCallback) }
         }
+    }
+
 
     fun getLocationNameAsync(location: LastLocation) : Deferred<String> {
         return GlobalScope.async(Dispatchers.IO) {

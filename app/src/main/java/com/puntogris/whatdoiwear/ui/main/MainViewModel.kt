@@ -8,6 +8,7 @@ import com.puntogris.whatdoiwear.utils.SharedPref
 import com.puntogris.whatdoiwear.utils.WeatherResult
 import com.puntogris.whatdoiwear.utils.update
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collect
@@ -17,6 +18,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
 
+@DelicateCoroutinesApi
 @ExperimentalCoroutinesApi
 @HiltViewModel
 class MainViewModel @Inject constructor(

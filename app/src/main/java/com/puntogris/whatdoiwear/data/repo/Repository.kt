@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import okhttp3.*
 import java.io.IOException
 import javax.inject.Inject
-
+@DelicateCoroutinesApi
 @ExperimentalCoroutinesApi
 class Repository @Inject constructor(
     private val locationClient: LocationClient,

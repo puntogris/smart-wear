@@ -7,10 +7,12 @@ import com.puntogris.whatdoiwear.model.WeatherBodyApi
 import com.puntogris.whatdoiwear.ui.base.BaseFragment
 import com.puntogris.whatdoiwear.utils.*
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
+@DelicateCoroutinesApi
 @ExperimentalCoroutinesApi
 class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
 
