@@ -28,5 +28,4 @@ class DatabaseModule {
             )
             .build()
     }
-
 }

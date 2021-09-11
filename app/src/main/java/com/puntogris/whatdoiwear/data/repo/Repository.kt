@@ -34,7 +34,7 @@ class Repository @Inject constructor(
 
         OkHttpClient().newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
-                result.value = WeatherResult.Error(e)
+                result.value = WeatherResult.Error
             }
             override fun onResponse(call: Call, response: Response) {
                 result.value = WeatherResult.Success(WeatherBodyApi.fromResponse(response))

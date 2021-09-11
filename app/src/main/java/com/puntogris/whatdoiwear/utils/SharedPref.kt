@@ -22,7 +22,7 @@ class SharedPref @Inject constructor(@ApplicationContext private val context: Co
 
     fun getUsernamePref() = sharedPreferences.getString(SP_NAME_KEY, defaultValue)
 
-    fun setShowAnimationPref() = sharedPreferences.edit().putBoolean(SP_ANIMATION_KEY, true).apply()
+    fun enableShowAnimationPref() = sharedPreferences.edit().putBoolean(SP_ANIMATION_KEY, true).apply()
 
     fun getShowAnimationPref() = sharedPreferences.getBoolean(SP_ANIMATION_KEY, false)
 

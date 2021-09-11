@@ -4,6 +4,7 @@ import androidx.lifecycle.*
 import com.puntogris.whatdoiwear.data.repo.Repository
 import com.puntogris.whatdoiwear.model.LastLocation
 import com.puntogris.whatdoiwear.model.WeatherBodyApi
+import com.puntogris.whatdoiwear.utils.SharedPref
 import com.puntogris.whatdoiwear.utils.WeatherResult
 import com.puntogris.whatdoiwear.utils.update
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,9 +19,15 @@ import javax.inject.Inject
 
 @ExperimentalCoroutinesApi
 @HiltViewModel
-class MainFragmentViewModel @Inject constructor(
-    private val repository: Repository
+class MainViewModel @Inject constructor(
+    private val repository: Repository,
+    private val sharedPref: SharedPref
 ) : ViewModel(){
+
+    val username = sharedPref.getUsernamePref()
+
+    private val _isAnimationEnabled = MutableLiveData(sharedPref.getShowAnimationPref())
+    val isAnimationEnabled: LiveData<Boolean> = _isAnimationEnabled
 
     val weatherResult = MutableStateFlow<WeatherResult>(WeatherResult.InProgress)
 
@@ -86,9 +93,15 @@ class MainFragmentViewModel @Inject constructor(
         }.also { return if(it < 12) "${it.toInt()} AM" else "${it.toInt()} PM" }
     }
 
-    fun isOnEndSeekBar(value: Float): Boolean = timeNow.toFloat() + 24 == value
+    fun isOnEndSeekBar(value: Float) =
+        (timeNow.toFloat() + 24 == value)&& !sharedPref.getShowAnimationPref()
 
     fun updateWeather(weather:WeatherBodyApi){
         _weather.value = weather
+    }
+
+    fun enableAnimationPref(){
+        sharedPref.enableShowAnimationPref()
+        _isAnimationEnabled.value = !_isAnimationEnabled.value!!
     }
 }

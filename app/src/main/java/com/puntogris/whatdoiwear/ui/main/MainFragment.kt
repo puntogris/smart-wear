@@ -9,21 +9,18 @@ import com.puntogris.whatdoiwear.utils.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collect
-import javax.inject.Inject
 
 @AndroidEntryPoint
 @ExperimentalCoroutinesApi
 class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
 
-    private val viewModel: MainFragmentViewModel by viewModels()
-    @Inject lateinit var sharedPref: SharedPref
+    private val viewModel: MainViewModel by viewModels()
 
     override fun initializeViews() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
 
         subscribeWeatherUi()
-        checkAnimationPref()
         setBottomSheetBehavior()
         initSeekBar()
     }
@@ -33,14 +30,14 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
             viewModel.weatherResult.collect { result ->
                 when (result) {
                     is WeatherResult.Success -> onSuccess(result.data)
-                    is WeatherResult.Error -> onError()
-                    WeatherResult.InProgress -> onInProgress()
+                    WeatherResult.Error -> onError()
+                    WeatherResult.InProgress -> inProgress()
                 }
             }
         }
     }
 
-    private fun onInProgress(){
+    private fun inProgress(){
         binding.apply {
             bottomSheetLayout.userName.gone()
             bottomSheetLayout.bottomSheetProgressBar.visible()
@@ -55,37 +52,27 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
 
     private fun onSuccess(data: WeatherBodyApi){
         viewModel.updateWeather(data)
-        binding.bottomSheetLayout.userName.text = sharedPref.getUsernamePref()
-        binding.weatherProgressBar.gone()
-        binding.bottomSheetLayout.apply {
-            clothingRecommendation.visible()
-            userName.visible()
-            bottomSheetProgressBar.gone()
+        with(binding){
+            weatherProgressBar.gone()
+            bottomSheetLayout.apply {
+                clothingRecommendation.visible()
+                userName.visible()
+                bottomSheetProgressBar.gone()
+            }
         }
     }
 
     private fun initSeekBar(){
         binding.seekBar.apply {
             addOnChangeListener { _, value, _ ->
-                if(viewModel.isOnEndSeekBar(value) && !sharedPref.getShowAnimationPref()) {
-                    enableAnimation()
-                }
+                if (viewModel.isOnEndSeekBar(value)) viewModel.enableAnimationPref()
                 viewModel.updateSeekBarPosition((value - valueFrom).toInt()) }
             setLabelFormatter { viewModel.getSeekBarLabel(it) }
         }
     }
 
-    private fun enableAnimation(){
-        binding.bottomSheetLayout.animationView.visible()
-        sharedPref.setShowAnimationPref()
-    }
-
     private fun setBottomSheetBehavior(){
         binding.bottomSheetLayout.bottomSheet.setupWith(binding.activityBackground)
-    }
-
-    private fun checkAnimationPref(){
-        if (sharedPref.getShowAnimationPref()) binding.bottomSheetLayout.animationView.visible()
     }
 
     override fun onResume() {
