@@ -1,11 +1,16 @@
 package com.puntogris.whatdoiwear.ui.welcome
 
+import android.Manifest
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import com.puntogris.whatdoiwear.R
 import com.puntogris.whatdoiwear.databinding.FragmentWelcomeBinding
 import com.puntogris.whatdoiwear.ui.base.BaseFragment
 import com.puntogris.whatdoiwear.utils.SharedPref
-import com.puntogris.whatdoiwear.utils.PermissionsManager
+import com.puntogris.whatdoiwear.utils.createSnackBar
+import com.puntogris.whatdoiwear.utils.getString
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -13,19 +18,31 @@ import javax.inject.Inject
 class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>(R.layout.fragment_welcome) {
 
     @Inject lateinit var sharedPref: SharedPref
-    @Inject lateinit var permissionsManager: PermissionsManager
+    lateinit var permissionLauncher: ActivityResultLauncher<String>
 
     override fun initializeViews() {
         binding.apply {
-            welcomeFragment = this@WelcomeFragment
+            fragment = this@WelcomeFragment
             lifecycleOwner = viewLifecycleOwner
         }
-        if (permissionsManager.hasPermission()) findNavController().navigate(R.id.mainFragment)
+
+      setupLocationPermissionLauncher()
     }
 
-    fun saveUserNameAndNavigateToMainFragment(){
-        val input = binding.userNameEditText.text.toString()
-        sharedPref.setUsernamePref(input)
-        permissionsManager.requestPermission(this)
+    private fun setupLocationPermissionLauncher(){
+        permissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission())
+            { isGranted: Boolean ->
+                if (isGranted) onPermissionGranted()
+                else createSnackBar(getString(R.string.location_rationale_message))
+            }
+    }
+
+    private fun onPermissionGranted(){
+        sharedPref.setUsernamePref(binding.usernameField.getString())
+        findNavController().navigate(R.id.mainFragment)
+    }
+
+    fun requestLocationPermission(){
+        permissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
     }
 }

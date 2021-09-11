@@ -1,6 +1,7 @@
 package com.puntogris.whatdoiwear.data.repo
 
 import com.puntogris.whatdoiwear.data.LocationClient
+import com.puntogris.whatdoiwear.data.local.LocationDao
 import com.puntogris.whatdoiwear.model.LastLocation
 import com.puntogris.whatdoiwear.model.WeatherBodyApi
 import com.puntogris.whatdoiwear.utils.Utils.createApiPathWithLatLong
@@ -12,12 +13,19 @@ import okhttp3.*
 import java.io.IOException
 import javax.inject.Inject
 
+@ExperimentalCoroutinesApi
 class Repository @Inject constructor(
     private val locationClient: LocationClient,
+    private val locationDao: LocationDao
 ) : IRepository {
 
-    @ExperimentalCoroutinesApi
     override fun getLocation(): Flow<LastLocation> = locationClient.requestLocation()
+
+    override suspend fun getRoomLastLocation() = locationDao.getLastLocation()
+
+    override suspend fun insertLastLocation(lastLocation: LastLocation) {
+        locationDao.insert(lastLocation)
+    }
 
     override fun getWeatherApi(location: LastLocation): MutableStateFlow<WeatherResult> {
         val result = MutableStateFlow<WeatherResult>(WeatherResult.InProgress)

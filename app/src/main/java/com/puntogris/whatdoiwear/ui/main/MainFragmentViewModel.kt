@@ -1,13 +1,13 @@
 package com.puntogris.whatdoiwear.ui.main
 
 import androidx.lifecycle.*
-import com.puntogris.whatdoiwear.data.LocationDao
 import com.puntogris.whatdoiwear.data.repo.Repository
 import com.puntogris.whatdoiwear.model.LastLocation
 import com.puntogris.whatdoiwear.model.WeatherBodyApi
 import com.puntogris.whatdoiwear.utils.WeatherResult
 import com.puntogris.whatdoiwear.utils.update
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.emitAll
@@ -16,10 +16,10 @@ import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
 
+@ExperimentalCoroutinesApi
 @HiltViewModel
 class MainFragmentViewModel @Inject constructor(
-    private val room: LocationDao,
-    private val repo: Repository
+    private val repository: Repository
 ) : ViewModel(){
 
     val weatherResult = MutableStateFlow<WeatherResult>(WeatherResult.InProgress)
@@ -48,17 +48,17 @@ class MainFragmentViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            room.getLocation()?.also { location ->
+            repository.getRoomLastLocation()?.also { location ->
                 _lastLocation.value = location
-                weatherResult.emitAll(repo.getWeatherApi(location))
+                weatherResult.emitAll(repository.getWeatherApi(location))
             }
         }
 
         viewModelScope.launch {
-            repo.getLocation()
+            repository.getLocation()
                 .collect { location ->
                     if (location.name != lastLocation.value?.name){
-                        viewModelScope.launch { weatherResult.emitAll(repo.getWeatherApi(location)) }
+                        viewModelScope.launch { weatherResult.emitAll(repository.getWeatherApi(location)) }
                         saveLastLocation(location)
                     }
                 }
@@ -67,7 +67,7 @@ class MainFragmentViewModel @Inject constructor(
 
     private suspend fun saveLastLocation(location: LastLocation){
         _lastLocation.value = location
-        room.insert(location)
+        repository.insertLastLocation(location)
     }
 
     fun updateSeekBarPosition(value:Int) {

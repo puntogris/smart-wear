@@ -1,16 +1,15 @@
-package com.puntogris.whatdoiwear.di
+package com.puntogris.whatdoiwear.data.local
 
 import android.content.Context
 import androidx.room.Room
-import com.puntogris.whatdoiwear.data.LocationDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ApplicationComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
-@InstallIn(ApplicationComponent::class)
+@InstallIn(SingletonComponent::class)
 @Module
 class DatabaseModule {
     @Provides

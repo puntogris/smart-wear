@@ -1,4 +1,4 @@
-package com.puntogris.whatdoiwear.data
+package com.puntogris.whatdoiwear.data.local
 
 import androidx.room.*
 import com.puntogris.whatdoiwear.model.LastLocation
@@ -9,10 +9,7 @@ interface LocationDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(lastLocation: LastLocation)
 
-    @Update
-    suspend fun update(lastLocation: LastLocation)
-
     @Query("SELECT * FROM lastlocation WHERE id = 1")
-    suspend fun getLocation(): LastLocation?
+    suspend fun getLastLocation(): LastLocation?
 
 }

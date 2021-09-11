@@ -2,6 +2,7 @@ package com.puntogris.whatdoiwear.utils
 
 import android.location.Address
 import android.view.View
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
@@ -24,6 +25,8 @@ fun View.visible(){
 fun View.gone(){
     visibility = View.GONE
 }
+
+fun EditText.getString() = text.toString()
 
 fun Fragment.createSnackBar(text: String, duration: Int = Snackbar.LENGTH_LONG){
     val snackLayout = this.requireActivity().findViewById<View>(android.R.id.content)

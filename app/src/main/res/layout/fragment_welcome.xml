@@ -5,7 +5,7 @@
 
     <data>
         <variable
-            name="welcomeFragment"
+            name="fragment"
             type="com.puntogris.whatdoiwear.ui.welcome.WelcomeFragment" />
     </data>
 
@@ -16,7 +16,7 @@
         tools:context=".ui.welcome.WelcomeFragment">
 
         <TextView
-            android:id="@+id/welcomFragmentTitle"
+            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="100dp"
@@ -29,7 +29,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/subtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -38,7 +38,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/welcomFragmentTitle" />
+            app:layout_constraintTop_toBottomOf="@+id/title" />
 
         <TextView
             android:id="@+id/textView3"
@@ -61,12 +61,12 @@
             android:layout_marginEnd="32dp"
             android:layout_marginBottom="32dp"
             android:text="@string/next_button"
-            android:onClick="@{()-> welcomeFragment.saveUserNameAndNavigateToMainFragment()}"
+            android:onClick="@{()-> fragment.requestLocationPermission()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
         <EditText
-            android:id="@+id/userNameEditText"
+            android:id="@+id/usernameField"
             android:layout_width="148dp"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -81,6 +81,6 @@
             app:layout_constraintBottom_toTopOf="@+id/textView3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+            app:layout_constraintTop_toBottomOf="@+id/subtitle" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

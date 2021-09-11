@@ -8,4 +8,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 interface IRepository {
     fun getWeatherApi(location: LastLocation) : MutableStateFlow<WeatherResult>
     fun getLocation(): Flow<LastLocation>
+    suspend fun getRoomLastLocation(): LastLocation?
+    suspend fun insertLastLocation(lastLocation: LastLocation)
 }
