@@ -1,8 +1,6 @@
 package com.puntogris.whatdoiwear.utils
 
-import android.content.BroadcastReceiver
 import android.location.Address
-import android.util.Log
 import android.view.View
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
@@ -17,8 +15,6 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.snackbar.Snackbar
 import com.puntogris.whatdoiwear.R
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.DelicateCoroutinesApi
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.util.*
 

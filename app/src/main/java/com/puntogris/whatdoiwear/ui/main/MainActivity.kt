@@ -23,7 +23,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     }
 
     override fun initializeViews() {
-        setupWindow()
         setupNavigation()
     }
 
@@ -41,15 +40,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
             }
     }
 
-    private fun setupWindow(){
-        window.apply {
-            clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-            addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-            decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-            statusBarColor = Color.TRANSPARENT
-        }
-    }
-
     private fun hasLocationPermission(): Boolean{
         if (Manifest.permission.ACCESS_FINE_LOCATION == Manifest.permission.ACCESS_BACKGROUND_LOCATION &&
             android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.Q) {
@@ -58,5 +48,4 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         return ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) ==
                 PackageManager.PERMISSION_GRANTED
     }
-
 }

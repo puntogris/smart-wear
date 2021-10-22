@@ -10,17 +10,7 @@ import javax.inject.Inject
 
 class SharedPref @Inject constructor(@ApplicationContext private val context: Context) {
 
-    private val defaultValue = context.getString(R.string.player_name_shared_pref_default_value)
     private val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
-
-    fun setUsernamePref(data: String) {
-        val userName =
-            if (data.isEmpty()) defaultValue
-            else context.getString(R.string.player_name_shared_pref, data)
-        sharedPreferences.edit().putString(SP_NAME_KEY, userName).apply()
-    }
-
-    fun getUsernamePref() = sharedPreferences.getString(SP_NAME_KEY, defaultValue)
 
     fun enableShowAnimationPref() = sharedPreferences.edit().putBoolean(SP_ANIMATION_KEY, true).apply()
 

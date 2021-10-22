@@ -16,16 +16,11 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>(R.layout.fragment_welcome) {
 
-    @Inject lateinit var sharedPref: SharedPref
-    lateinit var permissionLauncher: ActivityResultLauncher<String>
+    private lateinit var permissionLauncher: ActivityResultLauncher<String>
 
     override fun initializeViews() {
-        binding.apply {
-            fragment = this@WelcomeFragment
-            lifecycleOwner = viewLifecycleOwner
-        }
-
-      setupLocationPermissionLauncher()
+        binding.fragment = this
+        setupLocationPermissionLauncher()
     }
 
     private fun setupLocationPermissionLauncher(){
@@ -37,7 +32,6 @@ class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>(R.layout.fragment_w
     }
 
     private fun onPermissionGranted(){
-        sharedPref.setUsernamePref(binding.usernameField.getString())
         findNavController().navigate(R.id.mainFragment)
     }
 

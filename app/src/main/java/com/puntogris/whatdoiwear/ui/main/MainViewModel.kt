@@ -26,7 +26,6 @@ class MainViewModel @Inject constructor(
     private val sharedPref: SharedPref
 ) : ViewModel(){
 
-    val username = sharedPref.getUsernamePref()
 
     private val _isAnimationEnabled = MutableLiveData(sharedPref.getShowAnimationPref())
     val isAnimationEnabled: LiveData<Boolean> = _isAnimationEnabled

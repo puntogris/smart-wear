@@ -40,41 +40,41 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
     }
 
     private fun inProgress(){
-        binding.apply {
-            bottomSheetLayout.userName.gone()
-            bottomSheetLayout.bottomSheetProgressBar.visible()
-            weatherProgressBar.visible()
-        }
+//        binding.apply {
+//            bottomSheetLayout.userName.gone()
+//            bottomSheetLayout.bottomSheetProgressBar.visible()
+//            weatherProgressBar.visible()
+//        }
     }
 
     private fun onError(){
         createSnackBar(getString(R.string.error_weather_api))
-        binding.weatherProgressBar.gone()
+   //     binding.weatherProgressBar.gone()
     }
 
     private fun onSuccess(data: WeatherBodyApi){
         viewModel.updateWeather(data)
-        with(binding){
-            weatherProgressBar.gone()
-            bottomSheetLayout.apply {
-                clothingRecommendation.visible()
-                userName.visible()
-                bottomSheetProgressBar.gone()
-            }
-        }
+//        with(binding){
+//            weatherProgressBar.gone()
+//            bottomSheetLayout.apply {
+//                clothingRecommendation.visible()
+//                userName.visible()
+//                bottomSheetProgressBar.gone()
+//            }
+//        }
     }
 
     private fun initSeekBar(){
-        binding.seekBar.apply {
-            addOnChangeListener { _, value, _ ->
-                if (viewModel.isOnEndSeekBar(value)) viewModel.enableAnimationPref()
-                viewModel.updateSeekBarPosition((value - valueFrom).toInt()) }
-            setLabelFormatter { viewModel.getSeekBarLabel(it) }
-        }
+//        binding.seekBar.apply {
+//            addOnChangeListener { _, value, _ ->
+//                if (viewModel.isOnEndSeekBar(value)) viewModel.enableAnimationPref()
+//                viewModel.updateSeekBarPosition((value - valueFrom).toInt()) }
+//            setLabelFormatter { viewModel.getSeekBarLabel(it) }
+//        }
     }
 
     private fun setBottomSheetBehavior(){
-        binding.bottomSheetLayout.bottomSheet.setupWith(binding.activityBackground)
+       // binding.bottomSheetLayout.bottomSheet.setupWith(binding.activityBackground)
     }
 
     override fun onResume() {
