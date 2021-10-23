@@ -14,7 +14,6 @@ import java.io.IOException
 import javax.inject.Inject
 
 @DelicateCoroutinesApi
-@ExperimentalCoroutinesApi
 class Repository @Inject constructor(
     private val locationClient: LocationClient,
     private val locationDao: LocationDao

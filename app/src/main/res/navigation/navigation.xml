@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
     app:startDestination="@id/welcomeFragment">
 
     <fragment
         android:id="@+id/welcomeFragment"
         android:name="com.puntogris.whatdoiwear.ui.welcome.WelcomeFragment"
-        android:label="WelcomeFragment" />
+        android:label="" />
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.puntogris.whatdoiwear.ui.main.MainFragment"
-        android:label="MainFragment" />
+        android:label="" />
+    <fragment
+        android:id="@+id/preferencesFragment"
+        android:name="com.puntogris.whatdoiwear.ui.settings.PreferencesFragment"
+        android:label="Settings" />
 </navigation>

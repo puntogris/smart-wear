@@ -1,10 +1,14 @@
 package com.puntogris.whatdoiwear.utils
 
+import android.Manifest
+import android.app.Activity
+import android.content.pm.PackageManager
 import android.location.Address
 import android.view.View
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.MutableLiveData
@@ -68,4 +72,13 @@ inline fun Fragment.launchAndRepeatWithViewLifecycle(
             block()
         }
     }
+}
+
+fun Activity.hasLocationPermission(): Boolean{
+    if (Manifest.permission.ACCESS_FINE_LOCATION == Manifest.permission.ACCESS_BACKGROUND_LOCATION &&
+        android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.Q) {
+        return true
+    }
+    return ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) ==
+            PackageManager.PERMISSION_GRANTED
 }

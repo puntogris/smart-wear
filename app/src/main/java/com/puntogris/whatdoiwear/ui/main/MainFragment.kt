@@ -1,5 +1,8 @@
 package com.puntogris.whatdoiwear.ui.main
 
+import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
 import androidx.fragment.app.viewModels
 import com.puntogris.whatdoiwear.R
 import com.puntogris.whatdoiwear.databinding.FragmentMainBinding
@@ -13,7 +16,6 @@ import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
 @DelicateCoroutinesApi
-@ExperimentalCoroutinesApi
 class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
 
     private val viewModel: MainViewModel by viewModels()
@@ -60,5 +62,15 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
 //                bottomSheetProgressBar.gone()
 //            }
 //        }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        setHasOptionsMenu(true)
+        super.onCreate(savedInstanceState)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        menu.findItem(R.id.settings).isVisible = true
+        super.onCreateOptionsMenu(menu, inflater)
     }
 }

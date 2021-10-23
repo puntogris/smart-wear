@@ -4,6 +4,7 @@ plugins{
    id 'kotlin-kapt'
    id 'dagger.hilt.android.plugin'
    id 'kotlin-parcelize'
+    id 'com.google.android.gms.oss-licenses-plugin'
 }
 
 android {
@@ -56,6 +57,7 @@ ext {
     googlePusVersion = "17.0.0"
     fragmentKtxVersion = "1.4.0-alpha08"
     activityKtxVersion = "1.4.0-alpha01"
+    licensesVersion = "17.0.0"
 }
 
 dependencies {
@@ -120,4 +122,7 @@ dependencies {
     implementation "androidx.room:room-ktx:$roomVersion"
     implementation "androidx.room:room-runtime:$roomVersion"
     kapt "androidx.room:room-compiler:$roomVersion"
+
+    //Open source licenses
+    implementation "com.google.android.gms:play-services-oss-licenses:$licensesVersion"
 }
