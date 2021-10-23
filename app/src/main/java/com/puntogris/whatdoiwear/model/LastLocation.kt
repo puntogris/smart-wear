@@ -1,5 +1,6 @@
 package com.puntogris.whatdoiwear.model
 
+import android.location.Location
 import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -26,11 +27,10 @@ data class LastLocation(
 
 
         companion object{
-            fun from(locationResult: LocationResult?): LastLocation?{
-                return if (locationResult == null) null
-                else LastLocation(
-                    latitude = locationResult.lastLocation.latitude,
-                    longitude = locationResult.lastLocation.longitude
+            fun from(location: Location): LastLocation{
+                return LastLocation(
+                    latitude = location.latitude,
+                    longitude = location.longitude
                 )
             }
         }

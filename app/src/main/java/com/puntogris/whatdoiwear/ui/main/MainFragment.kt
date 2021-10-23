@@ -23,19 +23,17 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
         binding.viewModel = viewModel
 
         subscribeWeatherUi()
-        setBottomSheetBehavior()
-        initSeekBar()
     }
 
     private fun subscribeWeatherUi(){
         launchAndRepeatWithViewLifecycle {
-            viewModel.weatherResult.collect { result ->
-                when (result) {
-                    is WeatherResult.Success -> onSuccess(result.data)
-                    WeatherResult.Error -> onError()
-                    WeatherResult.InProgress -> inProgress()
-                }
-            }
+//            viewModel.weatherResult.collect { result ->
+//                when (result) {
+//                    is WeatherResult.Success -> onSuccess(result.data)
+//                    WeatherResult.Error -> onError()
+//                    WeatherResult.InProgress -> inProgress()
+//                }
+//            }
         }
     }
 
@@ -53,7 +51,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
     }
 
     private fun onSuccess(data: WeatherBodyApi){
-        viewModel.updateWeather(data)
+     //   viewModel.updateWeather(data)
 //        with(binding){
 //            weatherProgressBar.gone()
 //            bottomSheetLayout.apply {
@@ -62,23 +60,5 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
 //                bottomSheetProgressBar.gone()
 //            }
 //        }
-    }
-
-    private fun initSeekBar(){
-//        binding.seekBar.apply {
-//            addOnChangeListener { _, value, _ ->
-//                if (viewModel.isOnEndSeekBar(value)) viewModel.enableAnimationPref()
-//                viewModel.updateSeekBarPosition((value - valueFrom).toInt()) }
-//            setLabelFormatter { viewModel.getSeekBarLabel(it) }
-//        }
-    }
-
-    private fun setBottomSheetBehavior(){
-       // binding.bottomSheetLayout.bottomSheet.setupWith(binding.activityBackground)
-    }
-
-    override fun onResume() {
-        super.onResume()
-        viewModel.updateDate()
     }
 }

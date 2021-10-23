@@ -7,3 +7,9 @@ sealed class WeatherResult{
     object Error : WeatherResult()
     object InProgress: WeatherResult()
 }
+
+
+sealed class SimpleResult{
+    object Success: SimpleResult()
+    object Failure: SimpleResult()
+}

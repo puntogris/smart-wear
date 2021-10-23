@@ -4,10 +4,10 @@ import com.puntogris.whatdoiwear.data.LocationClient
 import com.puntogris.whatdoiwear.data.local.LocationDao
 import com.puntogris.whatdoiwear.model.LastLocation
 import com.puntogris.whatdoiwear.model.WeatherBodyApi
+import com.puntogris.whatdoiwear.utils.SimpleResult
 import com.puntogris.whatdoiwear.utils.Utils.createApiPathWithLatLong
 import com.puntogris.whatdoiwear.utils.WeatherResult
 import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import okhttp3.*
 import java.io.IOException
@@ -20,9 +20,23 @@ class Repository @Inject constructor(
     private val locationDao: LocationDao
 ) : IRepository {
 
-    override fun getLocation(): Flow<LastLocation> = locationClient.requestLocation()
+    override suspend fun updateLastLocation(): SimpleResult = withContext(Dispatchers.IO){
+        try{
+            val lastLocalLocation = locationDao.getLastLocation()
+            val currentLocation = locationClient.requestLocation()
 
-    override suspend fun getRoomLastLocation() = locationDao.getLastLocation()
+            if (lastLocalLocation == null || lastLocalLocation.name != currentLocation.name){
+                locationDao.insert(currentLocation)
+            }
+
+            SimpleResult.Success
+        }catch (e:Exception){
+            SimpleResult.Failure
+        }
+    }
+
+    override fun getLocalLastLocation() = locationDao.getLastLocationLiveData()
+
 
     override suspend fun insertLastLocation(lastLocation: LastLocation) {
         locationDao.insert(lastLocation)

@@ -1,5 +1,6 @@
 package com.puntogris.whatdoiwear.data.local
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.puntogris.whatdoiwear.model.LastLocation
 
@@ -10,6 +11,8 @@ interface LocationDao {
     suspend fun insert(lastLocation: LastLocation)
 
     @Query("SELECT * FROM lastlocation WHERE id = 1")
-    suspend fun getLastLocation(): LastLocation?
+    fun getLastLocationLiveData(): LiveData<LastLocation?>
 
+    @Query("SELECT * FROM lastlocation WHERE id = 1")
+    fun getLastLocation(): LastLocation?
 }
