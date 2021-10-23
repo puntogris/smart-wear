@@ -1,20 +1,17 @@
-package com.puntogris.whatdoiwear.ui.welcome
+package com.puntogris.whatdoiwear.ui.location
 
 import android.Manifest
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.navigation.fragment.findNavController
 import com.puntogris.whatdoiwear.R
-import com.puntogris.whatdoiwear.databinding.FragmentWelcomeBinding
+import com.puntogris.whatdoiwear.databinding.FragmentLocationBinding
 import com.puntogris.whatdoiwear.ui.base.BaseFragment
-import com.puntogris.whatdoiwear.utils.SharedPref
 import com.puntogris.whatdoiwear.utils.createSnackBar
-import com.puntogris.whatdoiwear.utils.getString
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
-class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>(R.layout.fragment_welcome) {
+class LocationFragment : BaseFragment<FragmentLocationBinding>(R.layout.fragment_location) {
 
     private lateinit var permissionLauncher: ActivityResultLauncher<String>
 
@@ -32,7 +29,7 @@ class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>(R.layout.fragment_w
     }
 
     private fun onPermissionGranted(){
-        findNavController().navigate(R.id.mainFragment)
+        findNavController().navigate(R.id.weatherFragment)
     }
 
     fun requestLocationPermission(){

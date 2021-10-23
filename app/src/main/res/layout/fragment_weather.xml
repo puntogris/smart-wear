@@ -7,7 +7,7 @@
         <import type="android.view.View"/>
         <variable
             name="viewModel"
-            type="com.puntogris.whatdoiwear.ui.main.MainViewModel" />
+            type="com.puntogris.whatdoiwear.ui.weather.WeatherViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

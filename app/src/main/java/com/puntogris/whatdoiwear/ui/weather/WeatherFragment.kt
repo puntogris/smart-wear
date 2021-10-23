@@ -1,24 +1,22 @@
-package com.puntogris.whatdoiwear.ui.main
+package com.puntogris.whatdoiwear.ui.weather
 
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import androidx.fragment.app.viewModels
 import com.puntogris.whatdoiwear.R
-import com.puntogris.whatdoiwear.databinding.FragmentMainBinding
+import com.puntogris.whatdoiwear.databinding.FragmentWeatherBinding
 import com.puntogris.whatdoiwear.model.WeatherBodyApi
 import com.puntogris.whatdoiwear.ui.base.BaseFragment
 import com.puntogris.whatdoiwear.utils.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.DelicateCoroutinesApi
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
 @DelicateCoroutinesApi
-class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
+class WeatherFragment : BaseFragment<FragmentWeatherBinding>(R.layout.fragment_weather) {
 
-    private val viewModel: MainViewModel by viewModels()
+    private val viewModel: WeatherViewModel by viewModels()
 
     override fun initializeViews() {
         binding.lifecycleOwner = viewLifecycleOwner

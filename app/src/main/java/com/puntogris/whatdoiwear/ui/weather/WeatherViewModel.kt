@@ -1,4 +1,4 @@
-package com.puntogris.whatdoiwear.ui.main
+package com.puntogris.whatdoiwear.ui.weather
 
 import androidx.lifecycle.*
 import com.puntogris.whatdoiwear.data.repo.Repository
@@ -11,7 +11,7 @@ import javax.inject.Inject
 
 @DelicateCoroutinesApi
 @HiltViewModel
-class MainViewModel @Inject constructor(
+class WeatherViewModel @Inject constructor(
     private val repository: Repository,
     private val sharedPref: SharedPref
 ) : ViewModel(){

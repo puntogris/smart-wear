@@ -2,18 +2,18 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/navigation"
-    app:startDestination="@id/welcomeFragment">
+    app:startDestination="@id/locationFragment">
 
-    <fragment
-        android:id="@+id/welcomeFragment"
-        android:name="com.puntogris.whatdoiwear.ui.welcome.WelcomeFragment"
-        android:label="" />
-    <fragment
-        android:id="@+id/mainFragment"
-        android:name="com.puntogris.whatdoiwear.ui.main.MainFragment"
-        android:label="" />
     <fragment
         android:id="@+id/preferencesFragment"
         android:name="com.puntogris.whatdoiwear.ui.settings.PreferencesFragment"
         android:label="Settings" />
+    <fragment
+        android:id="@+id/weatherFragment"
+        android:name="com.puntogris.whatdoiwear.ui.weather.WeatherFragment"
+        android:label="" />
+    <fragment
+        android:id="@+id/locationFragment"
+        android:name="com.puntogris.whatdoiwear.ui.location.LocationFragment"
+        android:label="" />
 </navigation>

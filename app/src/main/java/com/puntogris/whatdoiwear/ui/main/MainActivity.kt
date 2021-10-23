@@ -1,13 +1,7 @@
 package com.puntogris.whatdoiwear.ui.main
 
-import android.Manifest
-import android.content.pm.PackageManager
-import android.graphics.Color
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-import android.view.WindowManager
-import androidx.core.app.ActivityCompat
 import androidx.navigation.NavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -36,21 +30,21 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     private fun setupNavigation(){
         navController = getNavController()
-        appBarConfiguration = getAppBarConfiguration()
-
+        appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.weatherFragment,
+                R.id.locationFragment
+            )
+        )
         setupInitialDestination()
     }
-
-    private fun getAppBarConfiguration() =
-        AppBarConfiguration(setOf(R.id.mainFragment, R.id.welcomeFragment))
-
 
     private fun setupInitialDestination(){
         navController.graph = navController.navInflater.inflate(R.navigation.navigation)
             .apply {
                 startDestination =
-                    if (hasLocationPermission()) R.id.mainFragment
-                    else R.id.welcomeFragment
+                    if (hasLocationPermission()) R.id.weatherFragment
+                    else R.id.locationFragment
             }
     }
 
