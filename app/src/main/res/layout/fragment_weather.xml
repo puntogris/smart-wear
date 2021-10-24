@@ -150,6 +150,7 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:lottie_autoPlay="true"
+            android:visibility="@{viewModel.isAnimationEnabled ? View.VISIBLE : View.GONE}"
             app:lottie_loop="true"
             app:lottie_rawRes="@raw/watermelon" />
 

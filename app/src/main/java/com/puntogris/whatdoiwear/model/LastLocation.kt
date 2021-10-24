@@ -23,15 +23,15 @@ data class LastLocation(
 
     @ColumnInfo
     val longitude: Double = 0.0
-    ):Parcelable{
 
+):Parcelable{
 
-        companion object{
-            fun from(location: Location): LastLocation{
-                return LastLocation(
-                    latitude = location.latitude,
-                    longitude = location.longitude
-                )
-            }
+    companion object{
+        fun from(location: Location): LastLocation{
+            return LastLocation(
+                latitude = location.latitude,
+                longitude = location.longitude
+            )
         }
     }
+}

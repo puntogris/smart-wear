@@ -47,4 +47,39 @@
     <string name="temp_not_changing">*The temperature will not change for a few hours.\n\n</string>
     <string name="show_clothing_recommendations">Show clothing recommendations</string>
     <string name="error_weather_api">An error occurred, check your connection and try again.</string>
+
+
+
+    <string name="version">Version</string>
+    <string name="version_name">Version %1$s</string>
+    <string name="rate_us">Rate us</string>
+    <string name="got_to_website">Visit website</string>
+    <string name="see_the_code">See the code</string>
+    <string name="rate_the_app">Rate the app</string>
+    <string name="open_source_licenses">Open source licenses</string>
+    <string name="terms_and_conditions">Terms and conditions</string>
+    <string name="privacy_policy">Privacy policy</string>
+    <string name="pref_privacy_policy_url" translatable="false">https://postureapp.puntogris.com/information/privacy-policy.html</string>
+    <string name="pref_terms_and_conditions_url" translatable="false">https://postureapp.puntogris.com/information/terms-and-conditions.html</string>
+
+
+    <string-array name="theme_names">
+        <item>Light</item>
+        <item>Dark</item>
+        <item>System</item>
+    </string-array>
+    <string-array name="theme_values">
+        <item>light</item>
+        <item>dark</item>
+        <item>system</item>
+    </string-array>
+
+    <string-array name="units_names">
+        <item>Imperial</item>
+        <item>Metric</item>
+    </string-array>
+    <string-array name="units_values">
+        <item>imperial</item>
+        <item>metric</item>
+    </string-array>
 </resources>

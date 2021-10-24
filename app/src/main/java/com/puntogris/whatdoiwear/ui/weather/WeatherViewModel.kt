@@ -17,8 +17,8 @@ class WeatherViewModel @Inject constructor(
     private val sharedPref: SharedPref
 ) : ViewModel(){
 
-    private val _isAnimationEnabled = MutableLiveData(sharedPref.getShowAnimationPref())
-    val isAnimationEnabled: LiveData<Boolean> = _isAnimationEnabled
+    val isAnimationEnabled: Boolean
+        get() = sharedPref.getShowAnimationPref()
 
     val lastLocation = repository.getLocalLastLocation()
 

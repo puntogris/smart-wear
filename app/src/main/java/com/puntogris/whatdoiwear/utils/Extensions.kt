@@ -15,6 +15,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.NavHostFragment
+import androidx.preference.Preference
+import androidx.preference.PreferenceFragmentCompat
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.snackbar.Snackbar
 import com.puntogris.whatdoiwear.R
@@ -81,4 +83,25 @@ fun Activity.hasLocationPermission(): Boolean{
     }
     return ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) ==
             PackageManager.PERMISSION_GRANTED
+}
+
+inline fun PreferenceFragmentCompat.preference(key: String, block: Preference.() -> Unit){
+    findPreference<Preference>(key)?.apply {
+        block(this)
+    }
+}
+
+
+inline fun Preference.onClick(crossinline block: () -> Unit){
+    setOnPreferenceClickListener {
+        block()
+        true
+    }
+}
+
+inline fun PreferenceFragmentCompat.preferenceOnClick(key: String, crossinline block: () -> Unit){
+    findPreference<Preference>(key)?.setOnPreferenceClickListener {
+        block()
+        true
+    }
 }
