@@ -7,6 +7,7 @@ import com.puntogris.whatdoiwear.utils.WeatherResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @DelicateCoroutinesApi
@@ -28,6 +29,12 @@ class WeatherViewModel @Inject constructor(
     val weatherResult = lastLocation.switchMap {
         if (it == null) MutableLiveData(WeatherResult.Error)
         else repository.getWeatherApi(it).asLiveData()
+    }
+
+    init {
+       viewModelScope.launch {
+           repository.getweather()
+       }
     }
 
 

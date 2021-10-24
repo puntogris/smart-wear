@@ -46,9 +46,16 @@ class Repository @Inject constructor(
     override fun getWeatherApi(location: LastLocation): MutableStateFlow<WeatherResult> {
         val result = MutableStateFlow<WeatherResult>(WeatherResult.InProgress)
 
-
+       // weatherService.getWeather()
 
         return result
+    }
+
+    suspend fun getweather(){
+        val data = weatherService.getWeather()
+        println(data)
+
+
     }
 
 }

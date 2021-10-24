@@ -6,6 +6,7 @@ plugins{
     id 'kotlin-parcelize'
     id 'com.google.android.gms.oss-licenses-plugin'
     id 'kotlinx-serialization'
+    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 }
 
 android {
