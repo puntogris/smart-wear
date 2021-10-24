@@ -13,7 +13,8 @@ import javax.inject.Inject
 class Repository @Inject constructor(
     private val locationClient: LocationClient,
     private val locationDao: LocationDao,
-    private val weatherService: WeatherService
+    private val weatherService: WeatherService,
+    private val geocodingService: GeocodingService
 ) : IRepository {
 
     override suspend fun updateLastLocation(): SimpleResult = withContext(Dispatchers.IO){
@@ -45,10 +46,10 @@ class Repository @Inject constructor(
         return result
     }
 
-    suspend fun getweather(){
-      //  val data = weatherService.getWeather()
 
-
+    suspend fun getGeo(){
+        geocodingService.getLocationCoordinates("rosario, santa fe, argentina").also {
+            println(it)
+        }
     }
-
 }

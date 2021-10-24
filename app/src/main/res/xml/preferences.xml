@@ -35,6 +35,10 @@
             app:title="@string/version"
             app:iconSpaceReserved="false">
         </Preference>
+    </PreferenceCategory>
+    <PreferenceCategory
+        app:title="Transparency"
+        app:iconSpaceReserved="false">
         <Preference
             android:key="licenses_preference_key"
             app:title="@string/open_source_licenses"

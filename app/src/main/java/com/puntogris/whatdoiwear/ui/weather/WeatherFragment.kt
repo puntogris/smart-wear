@@ -23,6 +23,7 @@ class WeatherFragment : BaseFragment<FragmentWeatherBinding>(R.layout.fragment_w
         binding.viewModel = viewModel
 
         subscribeWeatherUi()
+        subscribeRefreshUi()
     }
 
     private fun subscribeWeatherUi(){
@@ -60,6 +61,15 @@ class WeatherFragment : BaseFragment<FragmentWeatherBinding>(R.layout.fragment_w
 //                bottomSheetProgressBar.gone()
 //            }
 //        }
+    }
+
+    private fun subscribeRefreshUi(){
+        binding.swipeRefreshLayout.apply {
+            setOnRefreshListener {
+                isRefreshing = false
+                viewModel.refreshLocation()
+            }
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

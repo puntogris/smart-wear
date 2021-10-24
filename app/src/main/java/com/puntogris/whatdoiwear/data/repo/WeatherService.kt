@@ -3,7 +3,7 @@ package com.puntogris.whatdoiwear.data.repo
 import com.puntogris.whatdoiwear.BuildConfig
 import com.puntogris.whatdoiwear.model.LastLocation
 import com.puntogris.whatdoiwear.model.WeatherResponse
-import com.puntogris.whatdoiwear.utils.HttpRoutes
+import com.puntogris.whatdoiwear.utils.constants.HttpRoutes
 import io.ktor.client.*
 import io.ktor.client.request.*
 import javax.inject.Inject

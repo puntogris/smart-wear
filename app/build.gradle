@@ -25,7 +25,13 @@ android {
 
     buildTypes {
         release {
+            shrinkResources true
             minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            shrinkResources false
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -54,12 +60,15 @@ ext {
     roomVersion = "2.3.0"
     materialVersion = "1.5.0-alpha04"
     lottieVersion = "3.5.0"
-    lifecycleVersion = "2.4.0-alpha03"
+    lifecycleVersion = "2.4.0-rc01"
     viewModelVersion = "2.3.1"
     googlePusVersion = "17.0.0"
     fragmentKtxVersion = "1.4.0-alpha08"
     activityKtxVersion = "1.4.0-alpha01"
     licensesVersion = "17.0.0"
+    flowPrefVersion= "1.5.0"
+    ktorVersion = "1.5.0"
+    serializationVersion = "1.0.1"
 }
 
 dependencies {
@@ -128,8 +137,14 @@ dependencies {
     //Open source licenses
     implementation "com.google.android.gms:play-services-oss-licenses:$licensesVersion"
 
-    implementation 'io.ktor:ktor-client-android:1.5.0'
-    implementation 'io.ktor:ktor-client-serialization:1.5.0'
-    implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1'
-    implementation 'io.ktor:ktor-client-logging-jvm:1.5.0'
+    //Ktor
+    implementation "io.ktor:ktor-client-android:$ktorVersion"
+    implementation "io.ktor:ktor-client-serialization:$ktorVersion"
+    implementation "io.ktor:ktor-client-logging-jvm:$ktorVersion"
+
+    //Serialization
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:$serializationVersion"
+
+    //Flow preferences
+    implementation "com.fredporciuncula:flow-preferences:$flowPrefVersion"
 }

@@ -1,7 +1,8 @@
-package com.puntogris.whatdoiwear.utils
+package com.puntogris.whatdoiwear.utils.constants
 
 object PreferencesKeys {
     const val VERSION = "version_preference_key"
     const val LICENSES = "licenses_preference_key"
     const val ANIMATION = "animation_preference_key"
+    const val THEME = "theme_preference_key"
 }

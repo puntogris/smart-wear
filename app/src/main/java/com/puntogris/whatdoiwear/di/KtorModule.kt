@@ -14,7 +14,7 @@ import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
 @Module
-class WeatherModule {
+class KtorModule {
 
     @Singleton
     @Provides

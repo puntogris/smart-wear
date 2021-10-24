@@ -7,7 +7,6 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.BindingAdapter
 import com.puntogris.whatdoiwear.R
 import com.puntogris.whatdoiwear.model.WeatherResponse
-import com.puntogris.whatdoiwear.utils.Constants.PM_TIME
 import java.util.*
 import kotlin.math.roundToInt
 
@@ -38,20 +37,6 @@ fun TextView.setWindSpeedToKmH(windSpeed: Double) {
 @BindingAdapter("weatherTemperature")
 fun TextView.setWeatherTemperature(temperature: Double) {
     text = context.getString(R.string.temperature_celsius, temperature.roundToInt())
-}
-
-@BindingAdapter("backgroundImage")
-fun ConstraintLayout.setBackgroundImage(time: String){
-    val newTime = time
-        .replace(".","")
-        .replace(" ", "")
-        .toUpperCase(Locale.getDefault())
-        .takeLast(2)
-
-    val background =
-        if (newTime == PM_TIME) R.drawable.ic_night_background
-        else R.drawable.ic_day_background
-    setBackgroundResource(background)
 }
 
 @BindingAdapter("weatherImage")

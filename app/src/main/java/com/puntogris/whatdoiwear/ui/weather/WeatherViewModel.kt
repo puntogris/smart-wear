@@ -14,16 +14,17 @@ import javax.inject.Inject
 @HiltViewModel
 class WeatherViewModel @Inject constructor(
     private val repository: Repository,
-    private val sharedPref: SharedPref
+    sharedPref: SharedPref
 ) : ViewModel(){
 
-    val isAnimationEnabled: Boolean
-        get() = sharedPref.getShowAnimationPref()
+    val isAnimationEnabled = sharedPref.isAnimationEnabledLiveData()
 
     val lastLocation = repository.getLocalLastLocation()
 
-    suspend fun getCurretLocation(){
-        repository.updateLastLocation()
+    fun refreshLocation(){
+        viewModelScope.launch {
+            repository.updateLastLocation()
+        }
     }
 
     val weatherResult = lastLocation.switchMap {
@@ -32,11 +33,9 @@ class WeatherViewModel @Inject constructor(
     }
 
     init {
-       viewModelScope.launch {
-           repository.getweather()
-       }
+        viewModelScope.launch {
+            repository.getGeo()
+        }
     }
-
-
 
 }
