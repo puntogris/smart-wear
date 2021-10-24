@@ -6,7 +6,7 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.BindingAdapter
 import com.puntogris.whatdoiwear.R
-import com.puntogris.whatdoiwear.model.WeatherBodyApi
+import com.puntogris.whatdoiwear.model.WeatherResponse
 import com.puntogris.whatdoiwear.utils.Constants.PM_TIME
 import java.util.*
 import kotlin.math.roundToInt
@@ -77,7 +77,7 @@ fun ImageView.setWeatherImages(weatherStatus: String) {
 }
 
 @BindingAdapter("weatherRecommendation")
-fun TextView.buildClothingRecommendation(body: WeatherBodyApi?) {
+fun TextView.buildClothingRecommendation(body: WeatherResponse?) {
     if (body == null) return
 
     val currentTemp = body.currently.temperature.toInt()

@@ -28,18 +28,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         setupTopToolbar()
     }
 
-    private fun setupNavigation(){
+    private fun setupNavigation() {
         navController = getNavController()
-        appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.weatherFragment,
-                R.id.locationFragment
-            )
-        )
+        appBarConfiguration = AppBarConfiguration(setOf(R.id.weatherFragment, R.id.locationFragment))
         setupInitialDestination()
     }
 
-    private fun setupInitialDestination(){
+    private fun setupInitialDestination() {
         navController.graph = navController.navInflater.inflate(R.navigation.navigation)
             .apply {
                 startDestination =

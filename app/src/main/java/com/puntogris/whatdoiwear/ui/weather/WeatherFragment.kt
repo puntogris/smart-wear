@@ -6,7 +6,7 @@ import android.view.MenuInflater
 import androidx.fragment.app.viewModels
 import com.puntogris.whatdoiwear.R
 import com.puntogris.whatdoiwear.databinding.FragmentWeatherBinding
-import com.puntogris.whatdoiwear.model.WeatherBodyApi
+import com.puntogris.whatdoiwear.model.WeatherResponse
 import com.puntogris.whatdoiwear.ui.base.BaseFragment
 import com.puntogris.whatdoiwear.utils.*
 import dagger.hilt.android.AndroidEntryPoint
@@ -50,7 +50,7 @@ class WeatherFragment : BaseFragment<FragmentWeatherBinding>(R.layout.fragment_w
    //     binding.weatherProgressBar.gone()
     }
 
-    private fun onSuccess(data: WeatherBodyApi){
+    private fun onSuccess(data: WeatherResponse){
      //   viewModel.updateWeather(data)
 //        with(binding){
 //            weatherProgressBar.gone()

@@ -31,8 +31,5 @@ class WeatherViewModel @Inject constructor(
     }
 
 
-    fun enableAnimationPref(){
-        sharedPref.enableShowAnimationPref()
-        _isAnimationEnabled.value = !_isAnimationEnabled.value!!
-    }
+
 }

@@ -1,7 +1,8 @@
-package com.puntogris.whatdoiwear.data.local
+package com.puntogris.whatdoiwear.di
 
 import android.content.Context
 import androidx.room.Room
+import com.puntogris.whatdoiwear.data.local.LocationDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -12,10 +13,10 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 @Module
 class DatabaseModule {
+
     @Provides
-    fun providesLocationDao(locationDatabase: LocationDatabase): LocationDao {
-        return locationDatabase.locationDao()
-    }
+    fun providesLocationDao(locationDatabase: LocationDatabase) = locationDatabase.locationDao()
+
 
     @Provides
     @Singleton
