@@ -1,4 +1,4 @@
-package com.puntogris.whatdoiwear.model
+package com.puntogris.whatdoiwear.domain.model
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

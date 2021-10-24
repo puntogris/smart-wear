@@ -1,6 +1,6 @@
 package com.puntogris.whatdoiwear.utils
 
-import com.puntogris.whatdoiwear.model.WeatherResponse
+import com.puntogris.whatdoiwear.domain.model.WeatherResponse
 
 sealed class WeatherResult{
     class Success(val data:WeatherResponse): WeatherResult()

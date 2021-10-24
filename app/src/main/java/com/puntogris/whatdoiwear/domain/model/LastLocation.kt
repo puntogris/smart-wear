@@ -1,11 +1,10 @@
-package com.puntogris.whatdoiwear.model
+package com.puntogris.whatdoiwear.domain.model
 
 import android.location.Location
 import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.google.android.gms.location.LocationResult
 import kotlinx.parcelize.Parcelize
 
 @Parcelize

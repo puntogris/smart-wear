@@ -1,18 +1,18 @@
-package com.puntogris.whatdoiwear.data.repo
+package com.puntogris.whatdoiwear.data.data_source.remote
 
 import com.puntogris.whatdoiwear.BuildConfig
-import com.puntogris.whatdoiwear.model.LastLocation
-import com.puntogris.whatdoiwear.model.WeatherResponse
+import com.puntogris.whatdoiwear.domain.model.LastLocation
+import com.puntogris.whatdoiwear.domain.model.WeatherResponse
 import com.puntogris.whatdoiwear.utils.constants.HttpRoutes
 import io.ktor.client.*
 import io.ktor.client.request.*
 import javax.inject.Inject
 
-class WeatherService @Inject constructor(
+class WeatherApi @Inject constructor(
     private val client: HttpClient
-): IWeatherService{
+) {
 
-    override suspend fun getWeather(lastLocation: LastLocation): WeatherResponse {
+    suspend fun getWeather(lastLocation: LastLocation): WeatherResponse {
         return client.get {
             url(HttpRoutes.WEATHER)
             parameter("appid", BuildConfig.OPEN_WEATHER_API_KEY)
@@ -22,5 +22,4 @@ class WeatherService @Inject constructor(
             parameter("exclude", "minutely")
         }
     }
-
 }

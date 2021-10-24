@@ -6,7 +6,7 @@ import android.view.MenuInflater
 import androidx.fragment.app.viewModels
 import com.puntogris.whatdoiwear.R
 import com.puntogris.whatdoiwear.databinding.FragmentWeatherBinding
-import com.puntogris.whatdoiwear.model.WeatherResponse
+import com.puntogris.whatdoiwear.domain.model.WeatherResponse
 import com.puntogris.whatdoiwear.ui.base.BaseFragment
 import com.puntogris.whatdoiwear.utils.*
 import dagger.hilt.android.AndroidEntryPoint

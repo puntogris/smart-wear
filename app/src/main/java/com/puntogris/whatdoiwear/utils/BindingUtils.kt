@@ -3,11 +3,9 @@ package com.puntogris.whatdoiwear.utils
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.BindingAdapter
 import com.puntogris.whatdoiwear.R
-import com.puntogris.whatdoiwear.model.WeatherResponse
-import java.util.*
+import com.puntogris.whatdoiwear.domain.model.WeatherResponse
 import kotlin.math.roundToInt
 
 @BindingAdapter("doubleToStringPercentage")

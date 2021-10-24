@@ -1,4 +1,4 @@
-package com.puntogris.whatdoiwear.data
+package com.puntogris.whatdoiwear.data.data_source
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -8,7 +8,7 @@ import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.CancellationToken
 import com.google.android.gms.tasks.OnTokenCanceledListener
-import com.puntogris.whatdoiwear.model.LastLocation
+import com.puntogris.whatdoiwear.domain.model.LastLocation
 import com.puntogris.whatdoiwear.utils.getLocationName
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.*
@@ -19,7 +19,9 @@ import javax.inject.Singleton
 
 @Singleton
 @DelicateCoroutinesApi
-class LocationClient @Inject constructor(@ApplicationContext private val context: Context){
+class LocationClient @Inject constructor(
+    @ApplicationContext private val context: Context
+    ){
 
     private val fusedLocationClient = LocationServices.getFusedLocationProviderClient(context)
 

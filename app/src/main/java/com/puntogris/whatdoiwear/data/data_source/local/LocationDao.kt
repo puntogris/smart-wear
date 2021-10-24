@@ -1,8 +1,8 @@
-package com.puntogris.whatdoiwear.data.local
+package com.puntogris.whatdoiwear.data.data_source.local
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.puntogris.whatdoiwear.model.LastLocation
+import com.puntogris.whatdoiwear.domain.model.LastLocation
 
 @Dao
 interface LocationDao {
