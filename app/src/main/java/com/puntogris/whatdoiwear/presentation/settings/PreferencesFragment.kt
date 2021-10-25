@@ -8,6 +8,9 @@ import com.puntogris.whatdoiwear.BuildConfig
 import com.puntogris.whatdoiwear.R
 import com.puntogris.whatdoiwear.utils.*
 import com.puntogris.whatdoiwear.common.constants.PreferencesKeys
+import com.puntogris.whatdoiwear.common.onClick
+import com.puntogris.whatdoiwear.common.preference
+import com.puntogris.whatdoiwear.common.preferenceOnClick
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

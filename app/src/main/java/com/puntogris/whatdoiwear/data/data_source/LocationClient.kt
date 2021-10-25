@@ -8,13 +8,12 @@ import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.CancellationToken
 import com.google.android.gms.tasks.OnTokenCanceledListener
 import com.puntogris.whatdoiwear.domain.model.Location
-import com.puntogris.whatdoiwear.utils.getLocationName
+import com.puntogris.whatdoiwear.common.getLocationName
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.*
 import kotlinx.coroutines.tasks.await
 import java.util.*
 import javax.inject.Inject
-import javax.inject.Singleton
 
 class LocationClient @Inject constructor(
     @ApplicationContext private val context: Context

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="location"
+            type="com.puntogris.whatdoiwear.domain.model.Location" />
+    </data>
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:textSize="14sp"
+        android:foreground="?selectableItemBackground"
+        android:text="@{location.name}"/>
+</layout>

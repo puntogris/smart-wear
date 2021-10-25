@@ -38,8 +38,10 @@ class WeatherViewModel @Inject constructor(
         getWeather(it)
     }
 
-    suspend fun insert(location: Location){
-        locationUseCases.insertLocation(location)
+    fun insert(location: Location){
+        viewModelScope.launch {
+            locationUseCases.insertLocation(location)
+        }
     }
 
     fun setQuery(query: String){

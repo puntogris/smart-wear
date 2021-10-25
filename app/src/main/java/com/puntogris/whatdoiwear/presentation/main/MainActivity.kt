@@ -9,8 +9,8 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import com.puntogris.whatdoiwear.R
 import com.puntogris.whatdoiwear.databinding.ActivityMainBinding
 import com.puntogris.whatdoiwear.presentation.base.BaseActivity
-import com.puntogris.whatdoiwear.utils.getNavController
-import com.puntogris.whatdoiwear.utils.hasLocationPermission
+import com.puntogris.whatdoiwear.common.getNavController
+import com.puntogris.whatdoiwear.common.hasLocationPermission
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

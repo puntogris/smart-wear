@@ -7,7 +7,7 @@ import androidx.navigation.fragment.findNavController
 import com.puntogris.whatdoiwear.R
 import com.puntogris.whatdoiwear.databinding.FragmentLocationBinding
 import com.puntogris.whatdoiwear.presentation.base.BaseFragment
-import com.puntogris.whatdoiwear.utils.createSnackBar
+import com.puntogris.whatdoiwear.common.createSnackBar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
