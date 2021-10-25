@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="com.puntogris.whatdoiwear.ui.weather.WeatherViewModel" />
+            type="com.puntogris.whatdoiwear.presentation.weather.WeatherViewModel" />
     </data>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout

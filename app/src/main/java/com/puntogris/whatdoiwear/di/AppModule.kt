@@ -2,7 +2,7 @@ package com.puntogris.whatdoiwear.di
 
 import android.content.Context
 import androidx.room.Room
-import com.puntogris.whatdoiwear.data.data_source.local.LocationDatabase
+import com.puntogris.whatdoiwear.data.data_source.local.AppDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,22 +21,22 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideUserDatabase(@ApplicationContext appContext: Context): LocationDatabase {
+    fun provideAppDatabase(@ApplicationContext appContext: Context): AppDatabase {
         return Room
             .databaseBuilder(
                 appContext,
-                LocationDatabase::class.java,
-                "location_table"
+                AppDatabase::class.java,
+                AppDatabase.DATABASE_NAME
             )
             .build()
     }
 
     @Provides
-    fun providesLocationDao(locationDatabase: LocationDatabase) = locationDatabase.locationDao()
+    fun providesLocationDao(appDatabase: AppDatabase) = appDatabase.locationDao()
 
     @Singleton
     @Provides
-    fun createKtorClient(): HttpClient {
+    fun provideKtorClient(): HttpClient {
         return HttpClient(Android) {
             install(Logging) {
                 level = LogLevel.ALL
@@ -49,4 +49,5 @@ class AppModule {
             }
         }
     }
+
 }

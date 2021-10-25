@@ -6,14 +6,14 @@
 
     <fragment
         android:id="@+id/preferencesFragment"
-        android:name="com.puntogris.whatdoiwear.ui.settings.PreferencesFragment"
+        android:name="com.puntogris.whatdoiwear.presentation.settings.PreferencesFragment"
         android:label="Settings" />
     <fragment
         android:id="@+id/weatherFragment"
-        android:name="com.puntogris.whatdoiwear.ui.weather.WeatherFragment"
+        android:name="com.puntogris.whatdoiwear.presentation.weather.WeatherFragment"
         android:label="" />
     <fragment
         android:id="@+id/locationFragment"
-        android:name="com.puntogris.whatdoiwear.ui.location.LocationFragment"
+        android:name="com.puntogris.whatdoiwear.presentation.location.LocationFragment"
         android:label="" />
 </navigation>

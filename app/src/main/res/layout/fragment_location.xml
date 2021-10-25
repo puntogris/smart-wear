@@ -6,13 +6,13 @@
     <data>
         <variable
             name="fragment"
-            type="com.puntogris.whatdoiwear.ui.location.LocationFragment" />
+            type="com.puntogris.whatdoiwear.presentation.location.LocationFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.location.LocationFragment">
+        tools:context=".presentation.location.LocationFragment">
 
         <TextView
             android:id="@+id/textView5"

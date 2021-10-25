@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.lifecycle.asLiveData
 import androidx.preference.PreferenceManager
 import com.fredporciuncula.flow.preferences.FlowSharedPreferences
-import com.puntogris.whatdoiwear.utils.constants.PreferencesKeys
+import com.puntogris.whatdoiwear.common.constants.PreferencesKeys
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
