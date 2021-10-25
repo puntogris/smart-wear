@@ -28,7 +28,7 @@ class WeatherViewModel @Inject constructor(
 
     suspend fun onRefreshLocation() = locationUseCases.updateLastLocation()
 
-    val geocodingLocations = _query.switchMap {
+    val searchSuggestions = _query.switchMap {
         liveData {
             emit(locationUseCases.getGeocodingLocations(it))
         }

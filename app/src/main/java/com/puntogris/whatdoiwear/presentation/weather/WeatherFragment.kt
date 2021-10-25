@@ -1,15 +1,8 @@
 package com.puntogris.whatdoiwear.presentation.weather
 
-import android.annotation.SuppressLint
-import android.app.SearchManager
-import android.database.MatrixCursor
 import android.os.Bundle
-import android.provider.BaseColumns
 import android.view.Menu
 import android.view.MenuInflater
-import android.widget.ArrayAdapter
-import android.widget.CursorAdapter
-import androidx.cursoradapter.widget.SimpleCursorAdapter
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.puntogris.whatdoiwear.R
@@ -27,7 +20,6 @@ import kotlinx.coroutines.launch
 class WeatherFragment : BaseFragment<FragmentWeatherBinding>(R.layout.fragment_weather) {
 
     private val viewModel: WeatherViewModel by viewModels()
-    private lateinit var suggestionsAdapter: SuggestionsAdapter
 
     override fun initializeViews() {
         binding.fragment = this
@@ -36,19 +28,32 @@ class WeatherFragment : BaseFragment<FragmentWeatherBinding>(R.layout.fragment_w
 
         subscribeWeatherUi()
         subscribeRefreshUi()
-        subscribeSearchView()
-        subscribeGeocodingLocations()
+        setupSearchLocationsUi()
+
     }
 
-    private fun subscribeSearchView(){
-        suggestionsAdapter = SuggestionsAdapter(::onSuggestionClicked)
-        binding.suggestionsList.adapter = suggestionsAdapter
+    private fun setupSearchLocationsUi(){
+        binding.searchInput.onSearch {
+            hideKeyboard()
+            onSearchLocationClicked()
+        }
 
+        SuggestionsAdapter(::onSuggestionClicked).let {
+            binding.searchSuggestions.adapter = it
+            subscribeSearchSuggestions(it)
+        }
+    }
+
+    private fun subscribeSearchSuggestions(adapter: SuggestionsAdapter){
+        viewModel.searchSuggestions.observe(viewLifecycleOwner){
+            adapter.updateSuggestions(it)
+        }
     }
 
     private fun onSuggestionClicked(location: Location){
         viewModel.insert(location)
-        binding.suggestionsList.gone()
+        binding.searchSuggestions.gone()
+        binding.searchInput.setText(location.name)
     }
 
     fun onSearchLocationClicked(){
@@ -96,11 +101,6 @@ class WeatherFragment : BaseFragment<FragmentWeatherBinding>(R.layout.fragment_w
 //        }
     }
 
-    private fun subscribeGeocodingLocations(){
-        viewModel.geocodingLocations.observe(viewLifecycleOwner){
-            suggestionsAdapter.updateSuggestions(it)
-        }
-    }
 
     private fun subscribeRefreshUi(){
         binding.swipeRefreshLayout.apply {

@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.location.Address
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
@@ -116,4 +117,14 @@ fun Context.hideKeyboard(view: View) {
 
 fun Fragment.hideKeyboard() {
     view?.let { requireActivity().hideKeyboard(it) }
+}
+
+fun EditText.onSearch(block: () -> Unit) {
+    setOnEditorActionListener { _, actionId, _ ->
+        if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+            block()
+            return@setOnEditorActionListener true
+        }
+        false
+    }
 }
