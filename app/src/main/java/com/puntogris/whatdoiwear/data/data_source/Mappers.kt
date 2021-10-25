@@ -21,7 +21,7 @@ fun LocationEntity.toDomain(): Location {
 
 fun LocationDto.toDomain(): Location {
     return Location(
-        name = address.city,
+        name = name,
         latitude = latitude.toDouble(),
         longitude = longitude.toDouble()
     )

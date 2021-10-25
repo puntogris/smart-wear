@@ -1,8 +1,18 @@
 package com.puntogris.whatdoiwear.presentation.weather
 
+import android.annotation.SuppressLint
+import android.app.SearchManager
+import android.database.Cursor
+import android.database.MatrixCursor
 import android.os.Bundle
+import android.provider.BaseColumns
 import android.view.Menu
 import android.view.MenuInflater
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
+import android.widget.CursorAdapter
+import androidx.appcompat.widget.SearchView
+import androidx.cursoradapter.widget.SimpleCursorAdapter
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.puntogris.whatdoiwear.R
@@ -28,6 +38,56 @@ class WeatherFragment : BaseFragment<FragmentWeatherBinding>(R.layout.fragment_w
 
         subscribeWeatherUi()
         subscribeRefreshUi()
+
+        val from = arrayOf(SearchManager.SUGGEST_COLUMN_TEXT_1)
+        val to = intArrayOf(R.id.item_label)
+        val cursorAdapter = SimpleCursorAdapter(context, R.layout.test, null, from, to, CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER)
+        var suggestions = listOf("Appleeeeeeeeeeeeeeeeeeeeeeeeeeee", "Blueberry", "Carrot", "Daikon")
+
+        binding.locationTextField.suggestionsAdapter = cursorAdapter
+
+        binding.locationTextField.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+               // hideKeyboard()
+
+                if (!query.isNullOrBlank()){
+                    viewModel.setQuery(query)
+                }
+                return true
+            }
+
+            override fun onQueryTextChange(query: String?): Boolean {
+                return true
+            }
+        })
+
+
+        viewModel.geocodingLocations.observe(viewLifecycleOwner){
+            val cursor = MatrixCursor(arrayOf(BaseColumns._ID, SearchManager.SUGGEST_COLUMN_TEXT_1))
+            it.forEachIndexed { index, suggestion ->
+                cursor.addRow(arrayOf(index, suggestion.name))
+            }
+
+            cursorAdapter.changeCursor(cursor)
+          //  binding.locationTextField.
+        }
+
+        binding.locationTextField.setOnSuggestionListener(object: SearchView.OnSuggestionListener {
+            override fun onSuggestionSelect(position: Int): Boolean {
+                return false
+            }
+
+            @SuppressLint("Range")
+            override fun onSuggestionClick(position: Int): Boolean {
+              //  hideKeyboard()
+                val cursor = binding.locationTextField.suggestionsAdapter.getItem(position) as Cursor
+                val selection = cursor.getString(cursor.getColumnIndex(SearchManager.SUGGEST_COLUMN_TEXT_1))
+                binding.locationTextField.setQuery(selection, false)
+
+                // Do something with selection
+                return true
+            }
+        })
 
     }
 

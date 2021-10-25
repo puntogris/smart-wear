@@ -7,11 +7,11 @@ import kotlinx.serialization.Serializable
 data class Address(
 
     @SerialName("country")
-    val country: String,
+    val country: String = "",
 
     @SerialName("state")
-    val state: String,
+    val state: String = "",
 
     @SerialName("city")
-    val city: String
+    val city: String = ""
 )

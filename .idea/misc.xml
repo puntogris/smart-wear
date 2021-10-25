@@ -9,9 +9,10 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.23368055555555556" />
         <entry key="app/src/main/res/layout/fragment_location.xml" value="0.23368055555555556" />
         <entry key="app/src/main/res/layout/fragment_main.xml" value="0.2232638888888889" />
-        <entry key="app/src/main/res/layout/fragment_weather.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_weather.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_welcome.xml" value="0.23368055555555556" />
         <entry key="app/src/main/res/layout/recommendation_bottom_sheet.xml" value="0.2232638888888889" />
+        <entry key="app/src/main/res/layout/test.xml" value="0.159375" />
         <entry key="app/src/main/res/menu/toolbar.xml" value="0.23368055555555556" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
         <entry key="app/src/main/res/xml/preferences.xml" value="0.2925642807505212" />
