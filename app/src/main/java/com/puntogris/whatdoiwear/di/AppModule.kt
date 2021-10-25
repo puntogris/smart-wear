@@ -2,7 +2,17 @@ package com.puntogris.whatdoiwear.di
 
 import android.content.Context
 import androidx.room.Room
+import com.puntogris.whatdoiwear.common.StandardDispatchers
+import com.puntogris.whatdoiwear.data.data_source.LocationClient
 import com.puntogris.whatdoiwear.data.data_source.local.AppDatabase
+import com.puntogris.whatdoiwear.data.data_source.local.LocationDao
+import com.puntogris.whatdoiwear.data.data_source.remote.GeocodingApi
+import com.puntogris.whatdoiwear.data.data_source.remote.WeatherApi
+import com.puntogris.whatdoiwear.data.repository.LocationRepositoryImpl
+import com.puntogris.whatdoiwear.data.repository.WeatherRepositoryImpl
+import com.puntogris.whatdoiwear.domain.repository.DispatcherProvider
+import com.puntogris.whatdoiwear.domain.repository.LocationRepository
+import com.puntogris.whatdoiwear.domain.repository.WeatherRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -31,6 +41,7 @@ class AppModule {
             .build()
     }
 
+    @Singleton
     @Provides
     fun providesLocationDao(appDatabase: AppDatabase) = appDatabase.locationDao()
 
@@ -51,4 +62,31 @@ class AppModule {
         }
     }
 
+    @Singleton
+    @Provides
+    fun provideDispatcherProvider(): DispatcherProvider{
+        return StandardDispatchers()
+    }
+
+    @Singleton
+    @Provides
+    fun providesLocationRepository(
+        locationClient: LocationClient,
+        locationDao: LocationDao,
+        geocodingApi: GeocodingApi,
+        dispatcherProvider: DispatcherProvider
+    ): LocationRepository {
+        return LocationRepositoryImpl(
+            locationClient = locationClient,
+            locationDao = locationDao,
+            geocodingApi = geocodingApi,
+            dispatchers = dispatcherProvider
+        )
+    }
+
+    @Singleton
+    @Provides
+    fun providesWeatherRepository(weatherApi: WeatherApi): WeatherRepository {
+        return WeatherRepositoryImpl(weatherApi)
+    }
 }

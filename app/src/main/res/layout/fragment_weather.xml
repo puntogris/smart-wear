@@ -72,18 +72,27 @@
                 app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
 
-            <EditText
-                android:id="@+id/searchInput"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/searchField"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
-                android:hint="city, state, country"
-                android:imeOptions="actionSearch"
-                android:inputType="text"
+                android:hint="City, State, Country.."
+                app:endIconMode="clear_text"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                 app:layout_constraintEnd_toStartOf="@+id/searchButton"
                 app:layout_constraintStart_toStartOf="@+id/textView7"
-                app:layout_constraintTop_toBottomOf="@+id/textView7" />
+                app:layout_constraintTop_toBottomOf="@+id/textView7">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/searchInput"
+                    android:background="@android:color/transparent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionSearch"
+                    android:inputType="text"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
             <ImageView
                 android:id="@+id/searchButton"
@@ -94,9 +103,9 @@
                 android:onClick="@{() -> fragment.onSearchLocationClicked()}"
                 android:padding="10dp"
                 android:visibility="visible"
-                app:layout_constraintBottom_toBottomOf="@+id/searchInput"
+                app:layout_constraintBottom_toBottomOf="@+id/searchField"
                 app:layout_constraintEnd_toStartOf="@+id/progressBar"
-                app:layout_constraintTop_toTopOf="@+id/searchInput"
+                app:layout_constraintTop_toTopOf="@+id/searchField"
                 app:srcCompat="@drawable/ic_baseline_search_24"
                 app:tint="@color/colorPrimary" />
 
@@ -107,9 +116,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="24dp"
                 android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="@+id/searchInput"
+                app:layout_constraintBottom_toBottomOf="@+id/searchField"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/searchInput"
+                app:layout_constraintTop_toTopOf="@+id/searchField"
                 app:layout_constraintVertical_bias="0.0" />
 
             <TextView
@@ -164,8 +173,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="4dp"
-                app:layout_constraintStart_toStartOf="@+id/searchInput"
-                app:layout_constraintTop_toBottomOf="@+id/searchInput"
+                app:layout_constraintStart_toStartOf="@+id/searchField"
+                app:layout_constraintTop_toBottomOf="@+id/searchField"
                 app:srcCompat="@drawable/ic_baseline_near_me_24"
                 app:tint="@color/colorPrimary" />
 
@@ -191,9 +200,9 @@
                 android:background="@android:color/white"
                 android:layout_height="wrap_content"
                 android:visibility="visible"
-                app:layout_constraintEnd_toEndOf="@+id/searchInput"
-                app:layout_constraintStart_toStartOf="@+id/searchInput"
-                app:layout_constraintTop_toBottomOf="@+id/searchInput" />
+                app:layout_constraintEnd_toEndOf="@+id/searchField"
+                app:layout_constraintStart_toStartOf="@+id/searchField"
+                app:layout_constraintTop_toBottomOf="@+id/searchField" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

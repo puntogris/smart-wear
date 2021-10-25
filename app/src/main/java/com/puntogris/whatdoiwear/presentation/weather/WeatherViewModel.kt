@@ -7,9 +7,11 @@ import com.puntogris.whatdoiwear.domain.use_case.LocationUseCases
 import com.puntogris.whatdoiwear.utils.SharedPref
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@ExperimentalCoroutinesApi
 @DelicateCoroutinesApi
 @HiltViewModel
 class WeatherViewModel @Inject constructor(
@@ -19,8 +21,7 @@ class WeatherViewModel @Inject constructor(
 ) : ViewModel()
 {
 
-    private val _query = MutableLiveData<String>()
-    val query: LiveData<String> get() = _query
+    private val query = MutableLiveData<String>()
 
     val isAnimationEnabled = sharedPref.isAnimationEnabledLiveData()
 
@@ -28,7 +29,7 @@ class WeatherViewModel @Inject constructor(
 
     suspend fun onRefreshLocation() = locationUseCases.updateLastLocation()
 
-    val searchSuggestions = _query.switchMap {
+    val searchSuggestions = query.switchMap {
         liveData {
             emit(locationUseCases.getGeocodingLocations(it))
         }
@@ -45,7 +46,7 @@ class WeatherViewModel @Inject constructor(
     }
 
     fun setQuery(query: String){
-        _query.value = query
+        this.query.value = query
     }
 
 }

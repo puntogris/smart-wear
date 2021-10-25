@@ -3,6 +3,7 @@ package com.puntogris.whatdoiwear.presentation.weather
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.puntogris.whatdoiwear.R
@@ -13,10 +14,12 @@ import com.puntogris.whatdoiwear.domain.model.Location
 import com.puntogris.whatdoiwear.presentation.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 @DelicateCoroutinesApi
+@ExperimentalCoroutinesApi
 class WeatherFragment : BaseFragment<FragmentWeatherBinding>(R.layout.fragment_weather) {
 
     private val viewModel: WeatherViewModel by viewModels()
@@ -29,18 +32,23 @@ class WeatherFragment : BaseFragment<FragmentWeatherBinding>(R.layout.fragment_w
         subscribeWeatherUi()
         subscribeRefreshUi()
         setupSearchLocationsUi()
-
     }
 
     private fun setupSearchLocationsUi(){
-        binding.searchInput.onSearch {
-            hideKeyboard()
-            onSearchLocationClicked()
-        }
+        with(binding){
 
-        SuggestionsAdapter(::onSuggestionClicked).let {
-            binding.searchSuggestions.adapter = it
-            subscribeSearchSuggestions(it)
+            searchInput.addTextChangedListener { input ->
+                if (input.toString().isBlank()) searchSuggestions.gone()
+            }
+            searchInput.onSearch {
+                hideKeyboard()
+                onSearchLocationClicked()
+            }
+
+            SuggestionsAdapter(::onSuggestionClicked).let {
+                searchSuggestions.adapter = it
+                subscribeSearchSuggestions(it)
+            }
         }
     }
 

@@ -1,4 +1,4 @@
-package com.puntogris.whatdoiwear.utils
+package com.puntogris.whatdoiwear.common
 
 import android.view.View
 import android.widget.ImageView

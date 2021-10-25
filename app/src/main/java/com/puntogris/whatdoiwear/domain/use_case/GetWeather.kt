@@ -2,15 +2,13 @@ package com.puntogris.whatdoiwear.domain.use_case
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
-import com.puntogris.whatdoiwear.data.repository.WeatherRepositoryImpl
-import com.puntogris.whatdoiwear.domain.model.Location
 import com.puntogris.whatdoiwear.common.WeatherResult
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
+import com.puntogris.whatdoiwear.domain.model.Location
+import com.puntogris.whatdoiwear.domain.repository.WeatherRepository
 import javax.inject.Inject
 
 class GetWeather @Inject constructor(
-    private val repository: WeatherRepositoryImpl
+    private val repository: WeatherRepository
 ){
 
     operator fun invoke(location: Location?): LiveData<WeatherResult> = liveData {

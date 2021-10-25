@@ -1,11 +1,10 @@
 package com.puntogris.whatdoiwear.data.data_source.remote
 
 import com.puntogris.whatdoiwear.BuildConfig
-import com.puntogris.whatdoiwear.data.data_source.remote.dto.LocationDto
 import com.puntogris.whatdoiwear.common.constants.HttpRoutes
+import com.puntogris.whatdoiwear.data.data_source.remote.dto.LocationDto
 import io.ktor.client.*
 import io.ktor.client.request.*
-import kotlinx.coroutines.delay
 import javax.inject.Inject
 
 class GeocodingApi @Inject constructor(

@@ -17,26 +17,22 @@ import javax.inject.Inject
 
 class LocationClient @Inject constructor(
     @ApplicationContext private val context: Context
-    )
-{
-
+) {
     private val fusedLocationClient = LocationServices.getFusedLocationProviderClient(context)
 
     @SuppressLint("MissingPermission")
     suspend fun requestLocation(): Location {
-        val location = fusedLocationClient.getCurrentLocation(LocationRequest.PRIORITY_HIGH_ACCURACY, object : CancellationToken(){
-            override fun isCancellationRequested(): Boolean {
-                return false
-            }
+        val location = fusedLocationClient.getCurrentLocation(
+            LocationRequest.PRIORITY_HIGH_ACCURACY,
+            object : CancellationToken() {
+                override fun isCancellationRequested(): Boolean {
+                    return false
+                }
 
-            override fun onCanceledRequested(p0: OnTokenCanceledListener): CancellationToken {
-                return this
-            }
-        }).await()
-
-        println("aa")
-        println(getLocationName(location.toDomain()))
-        println("bb")
+                override fun onCanceledRequested(p0: OnTokenCanceledListener): CancellationToken {
+                    return this
+                }
+            }).await()
 
 //        val lastLocation = LocationEntity.from(location)
 //        lastLocation.name = getLocationName(location)
@@ -47,10 +43,10 @@ class LocationClient @Inject constructor(
     private suspend fun getLocationName(location: Location): String {
         val gcd = Geocoder(context, Locale.getDefault())
 
-        val addresses = withContext(Dispatchers.IO){
+        val addresses = withContext(Dispatchers.IO) {
             gcd.getFromLocation(location.latitude, location.longitude, 1)
         }
 
-        return  if(!addresses.isNullOrEmpty()) addresses[0].getLocationName() else "Error"
+        return if (!addresses.isNullOrEmpty()) addresses[0].getLocationName() else "Error"
     }
 }
