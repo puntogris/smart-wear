@@ -8,7 +8,7 @@ import com.puntogris.whatdoiwear.domain.model.Location
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-@Entity
+@Entity(tableName = "Location")
 data class LocationEntity(
 
     @PrimaryKey

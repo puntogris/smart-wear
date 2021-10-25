@@ -4,13 +4,17 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.puntogris.whatdoiwear.R
+import com.puntogris.whatdoiwear.common.SimpleResult
+import com.puntogris.whatdoiwear.common.WeatherResult
 import com.puntogris.whatdoiwear.databinding.FragmentWeatherBinding
 import com.puntogris.whatdoiwear.data.data_source.remote.dto.WeatherDto
 import com.puntogris.whatdoiwear.presentation.base.BaseFragment
 import com.puntogris.whatdoiwear.utils.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 @DelicateCoroutinesApi
@@ -24,15 +28,23 @@ class WeatherFragment : BaseFragment<FragmentWeatherBinding>(R.layout.fragment_w
 
         subscribeWeatherUi()
         subscribeRefreshUi()
+
     }
 
     private fun subscribeWeatherUi(){
         launchAndRepeatWithViewLifecycle {
+            viewModel.weather.observe(viewLifecycleOwner){
+                when(it){
+                    is WeatherResult.Success -> onSuccess(it.data)
+                    WeatherResult.Error -> onError()
+                    WeatherResult.InProgress -> inProgress()
+                }
+            }
 //            viewModel.weatherResult.collect { result ->
 //                when (result) {
-//                    is WeatherResult.Success -> onSuccess(result.data)
-//                    WeatherResult.Error -> onError()
-//                    WeatherResult.InProgress -> inProgress()
+//                    is WeatherResult.kt.Success -> onSuccess(result.data)
+//                    WeatherResult.kt.Error -> onError()
+//                    WeatherResult.kt.InProgress -> inProgress()
 //                }
 //            }
         }
@@ -66,8 +78,14 @@ class WeatherFragment : BaseFragment<FragmentWeatherBinding>(R.layout.fragment_w
     private fun subscribeRefreshUi(){
         binding.swipeRefreshLayout.apply {
             setOnRefreshListener {
-                isRefreshing = false
-                viewModel.onRefreshEvent()
+                lifecycleScope.launch {
+                    val message = when(viewModel.onRefreshLocation()){
+                        SimpleResult.Failure -> "Error"
+                        SimpleResult.Success -> "Success"
+                    }
+                    createSnackBar(message)
+                    isRefreshing = false
+                }
             }
         }
     }

@@ -33,6 +33,8 @@ class LocationClient @Inject constructor(
             }
         }).await()
 
+        println(location.toDomain())
+
 //        val lastLocation = LocationEntity.from(location)
 //        lastLocation.name = getLocationName(location)
 

@@ -7,7 +7,7 @@ import com.puntogris.whatdoiwear.data.data_source.remote.dto.LocationDto
 import com.puntogris.whatdoiwear.data.data_source.toEntity
 import com.puntogris.whatdoiwear.domain.model.Location
 import com.puntogris.whatdoiwear.domain.repository.LocationRepository
-import com.puntogris.whatdoiwear.utils.SimpleResult
+import com.puntogris.whatdoiwear.common.SimpleResult
 import kotlinx.coroutines.*
 import javax.inject.Inject
 

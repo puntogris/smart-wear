@@ -8,11 +8,11 @@ import com.puntogris.whatdoiwear.data.data_source.local.model.LocationEntity
 interface LocationDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(lastLocation: LocationEntity)
+    suspend fun insert(locationEntity: LocationEntity)
 
-    @Query("SELECT * FROM LocationEntity WHERE id = 1")
+    @Query("SELECT * FROM location WHERE id = 1")
     fun getLastLocationLiveData(): LiveData<LocationEntity?>
 
-    @Query("SELECT * FROM LocationEntity WHERE id = 1")
+    @Query("SELECT * FROM location WHERE id = 1")
     fun getLastLocation(): LocationEntity?
 }

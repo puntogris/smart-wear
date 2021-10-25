@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:fontFamily="sans-serif-black"
-                android:text="Weather to wear..?"
+                android:text="What do i to wear..?"
                 android:textColor="#252525"
                 android:textSize="35sp"
                 app:layout_constraintEnd_toEndOf="parent"

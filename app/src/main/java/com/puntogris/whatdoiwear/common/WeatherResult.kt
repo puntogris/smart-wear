@@ -1,4 +1,4 @@
-package com.puntogris.whatdoiwear.utils
+package com.puntogris.whatdoiwear.common
 
 import com.puntogris.whatdoiwear.data.data_source.remote.dto.WeatherDto
 
@@ -9,7 +9,3 @@ sealed class WeatherResult{
 }
 
 
-sealed class SimpleResult{
-    object Success: SimpleResult()
-    object Failure: SimpleResult()
-}

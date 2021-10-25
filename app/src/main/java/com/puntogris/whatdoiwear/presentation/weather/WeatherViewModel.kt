@@ -1,10 +1,10 @@
 package com.puntogris.whatdoiwear.presentation.weather
 
 import androidx.lifecycle.*
+import com.puntogris.whatdoiwear.domain.model.Location
 import com.puntogris.whatdoiwear.domain.use_case.GetWeather
 import com.puntogris.whatdoiwear.domain.use_case.LocationUseCases
 import com.puntogris.whatdoiwear.utils.SharedPref
-import com.puntogris.whatdoiwear.utils.WeatherResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.launch
@@ -26,11 +26,7 @@ class WeatherViewModel @Inject constructor(
 
     val location = locationUseCases.getLocation()
 
-    fun onRefreshEvent(){
-        viewModelScope.launch {
-            locationUseCases.updateLastLocation()
-        }
-    }
+    suspend fun onRefreshLocation() = locationUseCases.updateLastLocation()
 
     private val geocodingLocations = _query.switchMap {
         liveData {
@@ -40,6 +36,14 @@ class WeatherViewModel @Inject constructor(
 
     val weather = location.switchMap {
         getWeather(it)
+    }
+
+    suspend fun insert(location: Location){
+        locationUseCases.insertLocation(location)
+    }
+
+    fun setQuery(query: String){
+        _query.value = query
     }
 
 }
