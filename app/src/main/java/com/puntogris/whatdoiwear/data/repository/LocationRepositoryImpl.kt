@@ -8,11 +8,12 @@ import com.puntogris.whatdoiwear.data.data_source.toEntity
 import com.puntogris.whatdoiwear.domain.model.Location
 import com.puntogris.whatdoiwear.domain.repository.LocationRepository
 import com.puntogris.whatdoiwear.common.SimpleResult
+import com.puntogris.whatdoiwear.data.data_source.toDomain
 import com.puntogris.whatdoiwear.domain.repository.DispatcherProvider
 import kotlinx.coroutines.*
 import javax.inject.Inject
 
-class LocationRepositoryImpl (
+class LocationRepositoryImpl(
     private val locationClient: LocationClient,
     private val locationDao: LocationDao,
     private val geocodingApi: GeocodingApi,
@@ -24,8 +25,10 @@ class LocationRepositoryImpl (
             val lastLocalLocation = locationDao.getLastLocation()
             val currentLocation = locationClient.requestLocation()
 
-            if (lastLocalLocation == null || lastLocalLocation.name != currentLocation.name){
-                locationDao.insert(currentLocation.toEntity())
+            val finalLocation = geocodingApi.getLocationCoordinates(currentLocation).toEntity()
+
+            if (lastLocalLocation == null || lastLocalLocation.name != finalLocation.name){
+                locationDao.insert(finalLocation)
             }
 
             SimpleResult.Success
@@ -38,10 +41,6 @@ class LocationRepositoryImpl (
 
     override suspend fun insertLastLocation(location: Location) = withContext(dispatchers.io){
         locationDao.insert(location.toEntity())
-    }
-
-    override suspend fun getGpsLocation(): Location {
-        return locationClient.requestLocation()
     }
 
     override suspend fun getLocationCoordinates(query: String): List<LocationDto> {

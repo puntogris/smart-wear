@@ -2,17 +2,13 @@ package com.puntogris.whatdoiwear.data.data_source
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.location.Geocoder
+import android.location.Location
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.CancellationToken
 import com.google.android.gms.tasks.OnTokenCanceledListener
-import com.puntogris.whatdoiwear.domain.model.Location
-import com.puntogris.whatdoiwear.common.getLocationName
 import dagger.hilt.android.qualifiers.ApplicationContext
-import kotlinx.coroutines.*
 import kotlinx.coroutines.tasks.await
-import java.util.*
 import javax.inject.Inject
 
 class LocationClient @Inject constructor(
@@ -22,7 +18,7 @@ class LocationClient @Inject constructor(
 
     @SuppressLint("MissingPermission")
     suspend fun requestLocation(): Location {
-        val location = fusedLocationClient.getCurrentLocation(
+        return fusedLocationClient.getCurrentLocation(
             LocationRequest.PRIORITY_HIGH_ACCURACY,
             object : CancellationToken() {
                 override fun isCancellationRequested(): Boolean {
@@ -34,19 +30,6 @@ class LocationClient @Inject constructor(
                 }
             }).await()
 
-//        val lastLocation = LocationEntity.from(location)
-//        lastLocation.name = getLocationName(location)
-
-        return location.toDomain()
     }
 
-    private suspend fun getLocationName(location: Location): String {
-        val gcd = Geocoder(context, Locale.getDefault())
-
-        val addresses = withContext(Dispatchers.IO) {
-            gcd.getFromLocation(location.latitude, location.longitude, 1)
-        }
-
-        return if (!addresses.isNullOrEmpty()) addresses[0].getLocationName() else "Error"
-    }
 }

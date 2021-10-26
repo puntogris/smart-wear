@@ -102,7 +102,7 @@
                 android:foreground="?actionBarItemBackground"
                 android:onClick="@{() -> fragment.onSearchLocationClicked()}"
                 android:padding="10dp"
-                android:visibility="visible"
+                suggestionVisibility="@{viewModel.searchSuggestions}"
                 app:layout_constraintBottom_toBottomOf="@+id/searchField"
                 app:layout_constraintEnd_toStartOf="@+id/progressBar"
                 app:layout_constraintTop_toTopOf="@+id/searchField"
@@ -116,6 +116,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="24dp"
                 android:visibility="gone"
+                suggestionVisibility="@{viewModel.searchSuggestions}"
                 app:layout_constraintBottom_toBottomOf="@+id/searchField"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/searchField"
@@ -161,8 +162,11 @@
                 android:id="@+id/textView12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:padding="8dp"
                 android:layout_marginStart="4dp"
                 android:text="Use current location"
+                android:foreground="?selectableItemBackground"
+                android:onClick="@{() -> fragment.useCurrentLocation()}"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView2"
                 app:layout_constraintStart_toEndOf="@+id/imageView2"
                 app:layout_constraintTop_toTopOf="@+id/imageView2" />
@@ -199,11 +203,11 @@
                 android:orientation="vertical"
                 android:background="@android:color/white"
                 android:layout_height="wrap_content"
-                android:visibility="visible"
+                suggestionVisibility="@{viewModel.searchSuggestions}"
                 app:layout_constraintEnd_toEndOf="@+id/searchField"
                 app:layout_constraintStart_toStartOf="@+id/searchField"
-                app:layout_constraintTop_toBottomOf="@+id/searchField" />
-
+                app:layout_constraintTop_toBottomOf="@+id/searchField"
+                tools:visibility="gone"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

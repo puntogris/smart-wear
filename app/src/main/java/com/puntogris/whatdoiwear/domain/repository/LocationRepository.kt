@@ -10,6 +10,5 @@ interface LocationRepository {
     fun getLocalLastLocation(): LiveData<LocationEntity?>
     suspend fun updateLastLocation(): SimpleResult
     suspend fun insertLastLocation(location: Location)
-    suspend fun getGpsLocation(): Location
     suspend fun getLocationCoordinates(query: String): List<LocationDto>
 }

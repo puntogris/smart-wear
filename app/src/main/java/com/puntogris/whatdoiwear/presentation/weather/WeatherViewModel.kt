@@ -20,19 +20,14 @@ class WeatherViewModel @Inject constructor(
     private val getWeather: GetWeather
 ) : ViewModel()
 {
-
     private val query = MutableLiveData<String>()
 
     val isAnimationEnabled = sharedPref.isAnimationEnabledLiveData()
 
     val location = locationUseCases.getLocation()
 
-    suspend fun onRefreshLocation() = locationUseCases.updateLastLocation()
-
     val searchSuggestions = query.switchMap {
-        liveData {
-            emit(locationUseCases.getGeocodingLocations(it))
-        }
+        locationUseCases.getGeocodingLocations(it)
     }
 
     val weather = location.switchMap {
@@ -45,8 +40,9 @@ class WeatherViewModel @Inject constructor(
         }
     }
 
+    suspend fun onRefreshLocation() = locationUseCases.updateLastLocation()
+
     fun setQuery(query: String){
         this.query.value = query
     }
-
 }

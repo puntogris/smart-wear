@@ -16,5 +16,5 @@ data class LocationDto(
     val longitude: Float,
 
     @SerialName("address")
-    val address: Address
+    val address: Address = Address()
 )

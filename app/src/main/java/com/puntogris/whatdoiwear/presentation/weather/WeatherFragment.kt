@@ -32,11 +32,14 @@ class WeatherFragment : BaseFragment<FragmentWeatherBinding>(R.layout.fragment_w
         subscribeWeatherUi()
         subscribeRefreshUi()
         setupSearchLocationsUi()
+
+        viewModel.location.observe(viewLifecycleOwner){
+            if (it != null) binding.searchInput.setText(it.name)
+        }
     }
 
     private fun setupSearchLocationsUi(){
         with(binding){
-
             searchInput.addTextChangedListener { input ->
                 if (input.toString().isBlank()) searchSuggestions.gone()
             }
@@ -44,7 +47,6 @@ class WeatherFragment : BaseFragment<FragmentWeatherBinding>(R.layout.fragment_w
                 hideKeyboard()
                 onSearchLocationClicked()
             }
-
             SuggestionsAdapter(::onSuggestionClicked).let {
                 searchSuggestions.adapter = it
                 subscribeSearchSuggestions(it)
@@ -53,26 +55,28 @@ class WeatherFragment : BaseFragment<FragmentWeatherBinding>(R.layout.fragment_w
     }
 
     private fun subscribeSearchSuggestions(adapter: SuggestionsAdapter){
-        viewModel.searchSuggestions.observe(viewLifecycleOwner){
-            adapter.updateSuggestions(it)
+        viewModel.searchSuggestions.observe(viewLifecycleOwner){ result ->
+            if (result == SuggestionsResult.Failure) {
+                createSnackBar("Error, location not found!")
+            }
+            else if (result is SuggestionsResult.Success) {
+                adapter.updateSuggestions(result.data)
+            }
+            hideKeyboard()
         }
     }
 
     private fun onSuggestionClicked(location: Location){
         viewModel.insert(location)
         binding.searchSuggestions.gone()
-        binding.searchInput.setText(location.name)
     }
 
     fun onSearchLocationClicked(){
-        binding.searchButton.gone()
-        binding.progressBar.visible()
         binding.searchInput.getString().let {
             if (it.isNotBlank()) viewModel.setQuery(it)
             else createSnackBar("Can't be empty.")
         }
     }
-
 
     private fun subscribeWeatherUi(){
         viewModel.weather.observe(viewLifecycleOwner){
@@ -80,6 +84,14 @@ class WeatherFragment : BaseFragment<FragmentWeatherBinding>(R.layout.fragment_w
                 is WeatherResult.Success -> onSuccess(it.data)
                 WeatherResult.Error -> onError()
                 WeatherResult.InProgress -> inProgress()
+            }
+        }
+    }
+
+    fun useCurrentLocation(){
+        lifecycleScope.launch {
+            if (viewModel.onRefreshLocation() is SimpleResult.Failure) {
+                createSnackBar("Error getting location.")
             }
         }
     }
@@ -113,14 +125,14 @@ class WeatherFragment : BaseFragment<FragmentWeatherBinding>(R.layout.fragment_w
     private fun subscribeRefreshUi(){
         binding.swipeRefreshLayout.apply {
             setOnRefreshListener {
-                lifecycleScope.launch {
-                    val message = when(viewModel.onRefreshLocation()){
-                        SimpleResult.Failure -> "Error"
-                        SimpleResult.Success -> "Success"
-                    }
-                    createSnackBar(message)
-                    isRefreshing = false
-                }
+//                lifecycleScope.launch {
+//                    val message = when(viewModel.onRefreshLocation()){
+//                        SimpleResult.Failure -> "Error"
+//                        SimpleResult.Success -> "Success"
+//                    }
+//                    createSnackBar(message)
+//                    isRefreshing = false
+//                }
             }
         }
     }

@@ -2,11 +2,32 @@ package com.puntogris.whatdoiwear.common
 
 import android.view.View
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
+import androidx.recyclerview.widget.RecyclerView
 import com.puntogris.whatdoiwear.R
 import com.puntogris.whatdoiwear.data.data_source.remote.dto.WeatherDto
 import kotlin.math.roundToInt
+
+@BindingAdapter("suggestionVisibility")
+fun ProgressBar.setSuggestionVisibility(suggestionsResult: SuggestionsResult?){
+    if (suggestionsResult != null)
+        isVisible = suggestionsResult is SuggestionsResult.InProgress
+}
+
+@BindingAdapter("suggestionVisibility")
+fun ImageView.setSuggestionVisibility(suggestionsResult: SuggestionsResult?){
+    if (suggestionsResult != null)
+        isVisible = suggestionsResult !is SuggestionsResult.InProgress
+}
+
+@BindingAdapter("suggestionVisibility")
+fun RecyclerView.setSuggestionVisibility(suggestionsResult: SuggestionsResult?){
+    if (suggestionsResult != null)
+        isVisible = suggestionsResult is SuggestionsResult.Success
+}
 
 @BindingAdapter("doubleToStringPercentage")
 fun TextView.setDoubleToStringPercentage(double: Double) {
