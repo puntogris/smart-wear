@@ -5,21 +5,17 @@ import android.view.Menu
 import android.view.MenuInflater
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.Lifecycle
 import com.puntogris.whatdoiwear.R
 import com.puntogris.whatdoiwear.common.*
-import com.puntogris.whatdoiwear.databinding.FragmentWeatherBinding
 import com.puntogris.whatdoiwear.data.data_source.remote.dto.WeatherDto
+import com.puntogris.whatdoiwear.databinding.FragmentWeatherBinding
 import com.puntogris.whatdoiwear.domain.model.Location
 import com.puntogris.whatdoiwear.presentation.base.BaseBindingFragment
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.DelicateCoroutinesApi
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-@DelicateCoroutinesApi
 class WeatherFragment : BaseBindingFragment<FragmentWeatherBinding>(R.layout.fragment_weather) {
 
     private val viewModel: WeatherViewModel by viewModels()
@@ -55,7 +51,7 @@ class WeatherFragment : BaseBindingFragment<FragmentWeatherBinding>(R.layout.fra
     }
 
     private fun subscribeSearchSuggestions(adapter: SuggestionsAdapter){
-        lifecycleScope.launch {
+        launchAndRepeatWithViewLifecycle(Lifecycle.State.CREATED){
             viewModel.locationResult.collect { result ->
                 when(result){
                     is LocationResult.Error -> {
@@ -65,7 +61,7 @@ class WeatherFragment : BaseBindingFragment<FragmentWeatherBinding>(R.layout.fra
                         adapter.updateSuggestions(result.data)
                     }
                     LocationResult.Success.UpdateLocation -> {
-                        createSnackBar("Location updated")
+                        createSnackBar(getString(R.string.snack_location_updated_success))
                     }
                 }
                 hideKeyboard()
@@ -97,42 +93,22 @@ class WeatherFragment : BaseBindingFragment<FragmentWeatherBinding>(R.layout.fra
     }
 
     private fun inProgress(){
-//        binding.apply {
-//            bottomSheetLayout.userName.gone()
-//            bottomSheetLayout.bottomSheetProgressBar.visible()
-//            weatherProgressBar.visible()
-//        }
+
     }
 
     private fun onError(){
         createSnackBar(getString(R.string.snack_connection_error))
-   //     binding.weatherProgressBar.gone()
     }
 
     private fun onSuccess(data: WeatherDto){
-     //   viewModel.updateWeather(data)
-//        with(binding){
-//            weatherProgressBar.gone()
-//            bottomSheetLayout.apply {
-//                clothingRecommendation.visible()
-//                userName.visible()
-//                bottomSheetProgressBar.gone()
-//            }
-//        }
-    }
 
+    }
 
     private fun subscribeRefreshUi(){
         binding.swipeRefreshLayout.apply {
             setOnRefreshListener {
-//                lifecycleScope.launch {
-//                    val message = when(viewModel.onRefreshLocation()){
-//                        SimpleResult.Failure -> "Error"
-//                        SimpleResult.Success -> "Success"
-//                    }
-//                    createSnackBar(message)
-//                    isRefreshing = false
-//                }
+
+                isRefreshing = false
             }
         }
     }

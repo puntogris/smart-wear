@@ -9,7 +9,7 @@
 
     <!-- Location -->
     <string name="location_message">*For a better experience turn on the location in your device</string>
-    <string name="location_rationale_message">We need access to your location in order to provide you the weather.</string>
+    <string name="snack_location_required">We need access to your location in order to provide you the weather.</string>
     <string name="request_location_title">We need access to your location</string>
     <string name="request_location_subtitle2">Do not worry, we will only use this \nwhen the app is active.</string>
     <string name="request_location_subtitle1">Our app uses this data to get a more accurate result on the weather forecast</string>
@@ -36,9 +36,10 @@
     <string name="pref_privacy_policy_url" translatable="false">https://postureapp.puntogris.com/information/privacy-policy.html</string>
     <string name="pref_terms_and_conditions_url" translatable="false">https://postureapp.puntogris.com/information/terms-and-conditions.html</string>
 
-    <!-- Other -->
+    <!-- Snack -->
     <string name="snack_connection_error">An error occurred, check your connection and try again.</string>
-
+    <string name="snack_query_required">Location can\'t be empty.</string>
+    <string name="snack_location_updated_success">Location updated</string>
 
     <!-- Clothing -->
     <string name="temp_minus_0">*Danger! Winter is coming, time to wear all your closet at the same time!\n\n</string>
@@ -71,7 +72,7 @@
     <string name="temp_decrese_a_little">*The temperature will decrease a little later.\n\n</string>
     <string name="temp_not_changing">*The temperature will not change for a few hours.\n\n</string>
     <string name="show_clothing_recommendations">Show clothing recommendations</string>
-    <string name="snack_query_required">Location can\'t be empty.</string>
+
 
     <!-- Arrays -->
     <!-- Theme -->

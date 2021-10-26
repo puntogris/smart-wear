@@ -11,7 +11,7 @@
     <string name="name_hint_editText">tu nombre</string>
     <string name="player_name_shared_pref_default_value">Hola tu,</string>
     <string name="player_name_shared_pref">Hola %1$s,</string>
-    <string name="location_rationale_message">Necesitamos acceso a tu ubicación para poder buscar el clima en tu zona.</string>
+    <string name="snack_location_required">Necesitamos acceso a tu ubicación para poder buscar el clima en tu zona.</string>
 
     <string name="temp_minus_0">*Peligro! Llego la era glaciar, ponete todo la ropa que tengas!\n\n</string>
     <string name="temp_1_9">*Hace mucho frio! Buzo y/o campera si o si! No te olvides la bufanda y guantes.\n\n</string>

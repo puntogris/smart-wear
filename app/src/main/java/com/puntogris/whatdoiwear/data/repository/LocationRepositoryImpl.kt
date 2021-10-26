@@ -1,17 +1,15 @@
 package com.puntogris.whatdoiwear.data.repository
 
+import com.puntogris.whatdoiwear.common.SimpleResult
 import com.puntogris.whatdoiwear.data.data_source.LocationClient
 import com.puntogris.whatdoiwear.data.data_source.local.LocationDao
 import com.puntogris.whatdoiwear.data.data_source.remote.GeocodingApi
 import com.puntogris.whatdoiwear.data.data_source.remote.dto.LocationDto
 import com.puntogris.whatdoiwear.data.data_source.toEntity
 import com.puntogris.whatdoiwear.domain.model.Location
-import com.puntogris.whatdoiwear.domain.repository.LocationRepository
-import com.puntogris.whatdoiwear.common.SimpleResult
-import com.puntogris.whatdoiwear.data.data_source.toDomain
 import com.puntogris.whatdoiwear.domain.repository.DispatcherProvider
-import kotlinx.coroutines.*
-import javax.inject.Inject
+import com.puntogris.whatdoiwear.domain.repository.LocationRepository
+import kotlinx.coroutines.withContext
 
 class LocationRepositoryImpl(
     private val locationClient: LocationClient,
