@@ -5,6 +5,6 @@ import javax.inject.Inject
 class LocationUseCases @Inject constructor(
     val insertLocation: InsertLocation,
     val getLocation: GetLocation,
-    val updateLastLocation: UpdateLastLocation,
+    val updateLocation: UpdateLocation,
     val getGeocodingLocations: GetGeocodingLocations
 )

@@ -10,6 +10,7 @@
         <variable
             name="fragment"
             type="com.puntogris.whatdoiwear.presentation.weather.WeatherFragment" />
+
         <variable
             name="viewModel"
             type="com.puntogris.whatdoiwear.presentation.weather.WeatherViewModel" />
@@ -34,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:fontFamily="sans-serif-black"
-                android:text="What do i to wear..?"
+                android:text="@string/app_name"
                 android:textColor="#252525"
                 android:textSize="35sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -45,7 +46,7 @@
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Clothing recommendations based on the wheater"
+                android:text="@string/app_slogan"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -57,7 +58,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="32dp"
-                android:text="ENTER A LOCATION:"
+                android:text="@string/exter_location_title"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
@@ -67,42 +68,42 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="32dp"
-                android:text="TODAY'S FORECAST"
+                android:text="@string/today_forecast_title"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/searchField"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
-                android:hint="City, State, Country.."
+                android:hint="@string/search_location_hint"
                 app:endIconMode="clear_text"
-                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                 app:layout_constraintEnd_toStartOf="@+id/searchButton"
                 app:layout_constraintStart_toStartOf="@+id/textView7"
                 app:layout_constraintTop_toBottomOf="@+id/textView7">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/searchInput"
-                    android:background="@android:color/transparent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
                     android:imeOptions="actionSearch"
-                    android:inputType="text"/>
+                    android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <ImageView
                 android:id="@+id/searchButton"
+                suggestionVisibility="@{viewModel.locationResult}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="24dp"
                 android:foreground="?actionBarItemBackground"
                 android:onClick="@{() -> fragment.onSearchLocationClicked()}"
                 android:padding="10dp"
-                suggestionVisibility="@{viewModel.searchSuggestions}"
                 app:layout_constraintBottom_toBottomOf="@+id/searchField"
                 app:layout_constraintEnd_toStartOf="@+id/progressBar"
                 app:layout_constraintTop_toTopOf="@+id/searchField"
@@ -112,15 +113,14 @@
             <ProgressBar
                 android:id="@+id/progressBar"
                 style="?android:attr/progressBarStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                suggestionVisibility="@{viewModel.locationResult}"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:layout_marginEnd="24dp"
                 android:visibility="gone"
-                suggestionVisibility="@{viewModel.searchSuggestions}"
                 app:layout_constraintBottom_toBottomOf="@+id/searchField"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/searchField"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintTop_toTopOf="@+id/searchField" />
 
             <TextView
                 android:id="@+id/textView9"
@@ -128,7 +128,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="32dp"
-                android:text="RECOMMENDATION"
+                android:text="@string/recommendation_title"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
@@ -162,11 +162,11 @@
                 android:id="@+id/textView12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="8dp"
                 android:layout_marginStart="4dp"
-                android:text="Use current location"
                 android:foreground="?selectableItemBackground"
                 android:onClick="@{() -> fragment.useCurrentLocation()}"
+                android:padding="8dp"
+                android:text="@string/action_use_current_location"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView2"
                 app:layout_constraintStart_toEndOf="@+id/imageView2"
                 app:layout_constraintTop_toTopOf="@+id/imageView2" />
@@ -198,18 +198,17 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/searchSuggestions"
+                suggestionVisibility="@{viewModel.locationResult}"
                 android:layout_width="0dp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                android:orientation="vertical"
-                android:background="@android:color/white"
                 android:layout_height="wrap_content"
-                suggestionVisibility="@{viewModel.searchSuggestions}"
+                android:background="@android:color/white"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="@+id/searchField"
                 app:layout_constraintStart_toStartOf="@+id/searchField"
                 app:layout_constraintTop_toBottomOf="@+id/searchField"
-                tools:visibility="gone"/>
+                tools:visibility="gone" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
 </layout>

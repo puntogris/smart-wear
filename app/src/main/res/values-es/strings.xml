@@ -43,6 +43,6 @@
     <string name="temp_decrese_a_little">*Va a disminuir un poco la temperatura.\n\n</string>
     <string name="temp_not_changing">*La temperatura no va a cambiar por unas horas.\n\n</string>
     <string name="show_clothing_recommendations">Ver recomendaciones de ropa</string>
-    <string name="error_weather_api">Ocurrio un error. Intenta nuevamente en un momento.</string>
+    <string name="snack_connection_error">Ocurrio un error. Intenta nuevamente en un momento.</string>
 
 </resources>

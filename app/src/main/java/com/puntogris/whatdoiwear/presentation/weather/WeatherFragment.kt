@@ -11,16 +11,16 @@ import com.puntogris.whatdoiwear.common.*
 import com.puntogris.whatdoiwear.databinding.FragmentWeatherBinding
 import com.puntogris.whatdoiwear.data.data_source.remote.dto.WeatherDto
 import com.puntogris.whatdoiwear.domain.model.Location
-import com.puntogris.whatdoiwear.presentation.base.BaseFragment
+import com.puntogris.whatdoiwear.presentation.base.BaseBindingFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 @DelicateCoroutinesApi
-@ExperimentalCoroutinesApi
-class WeatherFragment : BaseFragment<FragmentWeatherBinding>(R.layout.fragment_weather) {
+class WeatherFragment : BaseBindingFragment<FragmentWeatherBinding>(R.layout.fragment_weather) {
 
     private val viewModel: WeatherViewModel by viewModels()
 
@@ -33,7 +33,7 @@ class WeatherFragment : BaseFragment<FragmentWeatherBinding>(R.layout.fragment_w
         subscribeRefreshUi()
         setupSearchLocationsUi()
 
-        viewModel.location.observe(viewLifecycleOwner){
+        viewModel.currentLocation.observe(viewLifecycleOwner){
             if (it != null) binding.searchInput.setText(it.name)
         }
     }
@@ -55,27 +55,27 @@ class WeatherFragment : BaseFragment<FragmentWeatherBinding>(R.layout.fragment_w
     }
 
     private fun subscribeSearchSuggestions(adapter: SuggestionsAdapter){
-        viewModel.searchSuggestions.observe(viewLifecycleOwner){ result ->
-            if (result == SuggestionsResult.Failure) {
-                createSnackBar("Error, location not found!")
+        lifecycleScope.launch {
+            viewModel.locationResult.collect { result ->
+                when(result){
+                    is LocationResult.Error -> {
+                        createSnackBar(getString(result.error))
+                    }
+                    is LocationResult.Success.GetLocations -> {
+                        adapter.updateSuggestions(result.data)
+                    }
+                    LocationResult.Success.UpdateLocation -> {
+                        createSnackBar("Location updated")
+                    }
+                }
+                hideKeyboard()
             }
-            else if (result is SuggestionsResult.Success) {
-                adapter.updateSuggestions(result.data)
-            }
-            hideKeyboard()
         }
     }
 
     private fun onSuggestionClicked(location: Location){
         viewModel.insert(location)
         binding.searchSuggestions.gone()
-    }
-
-    fun onSearchLocationClicked(){
-        binding.searchInput.getString().let {
-            if (it.isNotBlank()) viewModel.setQuery(it)
-            else createSnackBar("Can't be empty.")
-        }
     }
 
     private fun subscribeWeatherUi(){
@@ -88,12 +88,12 @@ class WeatherFragment : BaseFragment<FragmentWeatherBinding>(R.layout.fragment_w
         }
     }
 
+    fun onSearchLocationClicked(){
+        viewModel.getLocationSuggestions(binding.searchInput.getString())
+    }
+
     fun useCurrentLocation(){
-        lifecycleScope.launch {
-            if (viewModel.onRefreshLocation() is SimpleResult.Failure) {
-                createSnackBar("Error getting location.")
-            }
-        }
+        viewModel.getCurrentLocation()
     }
 
     private fun inProgress(){
@@ -105,7 +105,7 @@ class WeatherFragment : BaseFragment<FragmentWeatherBinding>(R.layout.fragment_w
     }
 
     private fun onError(){
-        createSnackBar(getString(R.string.error_weather_api))
+        createSnackBar(getString(R.string.snack_connection_error))
    //     binding.weatherProgressBar.gone()
     }
 

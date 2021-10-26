@@ -8,13 +8,13 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.puntogris.whatdoiwear.R
 import com.puntogris.whatdoiwear.databinding.ActivityMainBinding
-import com.puntogris.whatdoiwear.presentation.base.BaseActivity
+import com.puntogris.whatdoiwear.presentation.base.BaseBindingActivity
 import com.puntogris.whatdoiwear.common.getNavController
 import com.puntogris.whatdoiwear.common.hasLocationPermission
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
+class MainActivity : BaseBindingActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration

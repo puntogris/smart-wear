@@ -1,13 +1,22 @@
 <resources>
     <!-- App -->
-    <string name="app_name">what do i wear?</string>
-    <string name="app_slogan">The weather with a plus</string>
+    <string name="app_name">What do i wear?</string>
+    <string name="app_slogan">Clothing recommendations based on the weather</string>
 
     <!-- Actions -->
+    <string name="action_enable_location">Enable location</string>
+    <string name="action_use_current_location">Use current location</string>
 
     <!-- Location -->
     <string name="location_message">*For a better experience turn on the location in your device</string>
     <string name="location_rationale_message">We need access to your location in order to provide you the weather.</string>
+    <string name="request_location_title">We need access to your location</string>
+    <string name="request_location_subtitle2">Do not worry, we will only use this \nwhen the app is active.</string>
+    <string name="request_location_subtitle1">Our app uses this data to get a more accurate result on the weather forecast</string>
+    <string name="exter_location_title">ENTER A LOCATION:</string>
+    <string name="today_forecast_title">TODAY\'S FORECAST</string>
+    <string name="recommendation_title">RECOMMENDATION</string>
+    <string name="search_location_hint">City, State, Country..</string>
 
     <!-- Weather -->
     <string name="temperature_celsius" translatable="false">%1$d \u2103</string>
@@ -26,6 +35,10 @@
     <string name="privacy_policy">Privacy policy</string>
     <string name="pref_privacy_policy_url" translatable="false">https://postureapp.puntogris.com/information/privacy-policy.html</string>
     <string name="pref_terms_and_conditions_url" translatable="false">https://postureapp.puntogris.com/information/terms-and-conditions.html</string>
+
+    <!-- Other -->
+    <string name="snack_connection_error">An error occurred, check your connection and try again.</string>
+
 
     <!-- Clothing -->
     <string name="temp_minus_0">*Danger! Winter is coming, time to wear all your closet at the same time!\n\n</string>
@@ -58,7 +71,7 @@
     <string name="temp_decrese_a_little">*The temperature will decrease a little later.\n\n</string>
     <string name="temp_not_changing">*The temperature will not change for a few hours.\n\n</string>
     <string name="show_clothing_recommendations">Show clothing recommendations</string>
-    <string name="error_weather_api">An error occurred, check your connection and try again.</string>
+    <string name="snack_query_required">Location can\'t be empty.</string>
 
     <!-- Arrays -->
     <!-- Theme -->

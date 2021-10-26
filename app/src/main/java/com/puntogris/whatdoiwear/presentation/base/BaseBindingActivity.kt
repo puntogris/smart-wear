@@ -7,7 +7,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.puntogris.whatdoiwear.common.getNavHostFragment
 
-abstract class BaseActivity<T : ViewDataBinding>(@LayoutRes val layout: Int) :
+abstract class BaseBindingActivity<T : ViewDataBinding>(@LayoutRes val layout: Int) :
     AppCompatActivity()
 {
     private var _binding: T? = null

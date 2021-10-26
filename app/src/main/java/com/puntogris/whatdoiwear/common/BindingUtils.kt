@@ -12,21 +12,21 @@ import com.puntogris.whatdoiwear.data.data_source.remote.dto.WeatherDto
 import kotlin.math.roundToInt
 
 @BindingAdapter("suggestionVisibility")
-fun ProgressBar.setSuggestionVisibility(suggestionsResult: SuggestionsResult?){
-    if (suggestionsResult != null)
-        isVisible = suggestionsResult is SuggestionsResult.InProgress
+fun ProgressBar.setSuggestionVisibility(locationResult: LocationResult?){
+    if (locationResult != null)
+        isVisible = locationResult is LocationResult.Loading
 }
 
 @BindingAdapter("suggestionVisibility")
-fun ImageView.setSuggestionVisibility(suggestionsResult: SuggestionsResult?){
-    if (suggestionsResult != null)
-        isVisible = suggestionsResult !is SuggestionsResult.InProgress
+fun ImageView.setSuggestionVisibility(locationResult: LocationResult?){
+    if (locationResult != null)
+        isVisible = locationResult !is LocationResult.Loading
 }
 
 @BindingAdapter("suggestionVisibility")
-fun RecyclerView.setSuggestionVisibility(suggestionsResult: SuggestionsResult?){
-    if (suggestionsResult != null)
-        isVisible = suggestionsResult is SuggestionsResult.Success
+fun RecyclerView.setSuggestionVisibility(locationResult: LocationResult?){
+    if (locationResult != null)
+        isVisible = locationResult is LocationResult.Success
 }
 
 @BindingAdapter("doubleToStringPercentage")

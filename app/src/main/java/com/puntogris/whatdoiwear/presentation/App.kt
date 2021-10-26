@@ -16,6 +16,8 @@ class App : Application(){
     override fun onCreate() {
         super.onCreate()
 
-        ThemeUtils.applyTheme(sharedPref.appTheme())
+        sharedPref.appTheme()?.let {
+            ThemeUtils.applyTheme(it)
+        }
     }
 }
