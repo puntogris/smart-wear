@@ -4,8 +4,11 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Daily(
+data class WeatherDetailsResult(
 
-    @SerialName("temp")
-    val temp: Temp
+    @SerialName("description")
+    val description: String,
+
+    @SerialName("icon")
+    val icon: String
 )

@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Hourly(
+data class HourlyResult(
 
     @SerialName("temp")
     val temp: Float,

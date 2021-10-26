@@ -6,9 +6,6 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class LocationDto(
 
-    @SerialName("display_name")
-    val name: String,
-
     @SerialName("lat")
     val latitude: Float,
 
@@ -16,5 +13,5 @@ data class LocationDto(
     val longitude: Float,
 
     @SerialName("address")
-    val address: Address = Address()
+    val address: AddressResult = AddressResult()
 )

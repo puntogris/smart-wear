@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Temp(
+data class TemperatureResult(
 
     @SerialName("min")
     val min: Float,

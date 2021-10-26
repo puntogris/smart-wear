@@ -1,14 +1,17 @@
 package com.puntogris.whatdoiwear.common
 
-import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.puntogris.whatdoiwear.R
+import com.puntogris.whatdoiwear.common.constants.HttpRoutes
 import com.puntogris.whatdoiwear.data.data_source.remote.dto.WeatherDto
+import com.puntogris.whatdoiwear.domain.model.Location
+import com.puntogris.whatdoiwear.domain.model.Weather
 import kotlin.math.roundToInt
 
 @BindingAdapter("suggestionVisibility")
@@ -27,6 +30,16 @@ fun ImageView.setSuggestionVisibility(locationResult: LocationResult?){
 fun RecyclerView.setSuggestionVisibility(locationResult: LocationResult?){
     if (locationResult != null)
         isVisible = locationResult is LocationResult.Success
+}
+
+@BindingAdapter("locationName")
+fun TextView.setLocationName(location: Location?) {
+    if (location != null)
+        text = resources.getString(R.string.forecast_location_name_title, location.name)
+}
+@BindingAdapter("weatherForecast")
+fun TextView.setWeatherForecast(weather: Weather) {
+
 }
 
 @BindingAdapter("doubleToStringPercentage")
@@ -58,26 +71,13 @@ fun TextView.setWeatherTemperature(temperature: Double) {
     text = context.getString(R.string.temperature_celsius, temperature.roundToInt())
 }
 
-@BindingAdapter("weatherImage")
-fun ImageView.setWeatherImages(weatherStatus: String) {
-
-    setLayerType(View.LAYER_TYPE_SOFTWARE, null)
-
-    val imgResId = when (weatherStatus) {
-        "clear-day" ->  R.drawable.ic_007_sunny_1
-        "clear-night" ->  R.drawable.ic_015_moon
-        "rain" -> R.drawable.ic_012_rain_1
-        "snow" -> R.drawable.ic_010_snows
-        "sleet" ->  R.drawable.ic_017_snowing
-        "wind" ->  R.drawable.ic_001_wind_1
-        "fog" ->  R.drawable.ic_016_hazy
-        "cloudy" -> R.drawable.ic_018_cloudy_1
-        "partly-cloudy-day" -> R.drawable.ic_013_sunny
-        "partly-cloudy-night" -> R.drawable.ic_020_cloudy
-        else -> R.drawable.ic_015_moon
+@BindingAdapter("weatherIcon")
+fun ImageView.setWeatherIcon(icon: String?) {
+    if (icon != null) {
+        Glide.with(context)
+            .load(HttpRoutes.WEATHER_ICON + "/$icon.png")
+            .into(this)
     }
-    setImageResource(imgResId)
-
 }
 
 @BindingAdapter("weatherRecommendation")

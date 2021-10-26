@@ -7,12 +7,12 @@ import kotlinx.serialization.Serializable
 data class WeatherDto(
 
     @SerialName("current")
-    val current: Current,
+    val current: CurrentResult,
 
     @SerialName("daily")
-    val daily: List<Daily>,
+    val daily: List<DailyResult>,
 
     @SerialName("hourly")
-    val hourly: List<Hourly>
+    val hourly: List<HourlyResult>
 
 )

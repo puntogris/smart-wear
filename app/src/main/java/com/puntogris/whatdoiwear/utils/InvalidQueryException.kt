@@ -1,4 +1,4 @@
-package com.puntogris.whatdoiwear.domain.model
+package com.puntogris.whatdoiwear.utils
 
 import com.puntogris.whatdoiwear.R
 

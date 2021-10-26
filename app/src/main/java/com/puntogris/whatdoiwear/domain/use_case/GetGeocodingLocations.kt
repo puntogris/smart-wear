@@ -3,7 +3,7 @@ package com.puntogris.whatdoiwear.domain.use_case
 import com.puntogris.whatdoiwear.R
 import com.puntogris.whatdoiwear.common.LocationResult
 import com.puntogris.whatdoiwear.data.data_source.toDomain
-import com.puntogris.whatdoiwear.domain.model.InvalidQueryException
+import com.puntogris.whatdoiwear.utils.InvalidQueryException
 import com.puntogris.whatdoiwear.domain.repository.LocationRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

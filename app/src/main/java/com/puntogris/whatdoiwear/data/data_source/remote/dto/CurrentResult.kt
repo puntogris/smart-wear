@@ -4,11 +4,12 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Weather(
+data class CurrentResult(
+    
+    @SerialName("temp")
+    val temperature: Float,
 
-    @SerialName("description")
-    val description: String,
+    @SerialName("weather")
+    val weather: List<WeatherDetailsResult>
 
-    @SerialName("icon")
-    val icon: String
 )

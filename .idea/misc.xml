@@ -4,7 +4,20 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../Android/Sdk/platforms/android-31/data/res/layout/simple_list_item_1.xml" value="0.23368055555555556" />
+        <entry key="app/src/main/res/drawable-v24/ic_001_wind_1.xml" value="0.24444444444444444" />
+        <entry key="app/src/main/res/drawable-v24/ic_012_rain_1.xml" value="0.24444444444444444" />
+        <entry key="app/src/main/res/drawable-v24/ic_015_moon.xml" value="0.24444444444444444" />
+        <entry key="app/src/main/res/drawable-v24/ic_day_background.xml" value="0.24444444444444444" />
+        <entry key="app/src/main/res/drawable-v24/ic_night_background.xml" value="0.24444444444444444" />
+        <entry key="app/src/main/res/drawable-v24/ic_welcome_background.xml" value="0.24444444444444444" />
+        <entry key="app/src/main/res/drawable/bottom_sheet_round_corners.xml" value="0.24444444444444444" />
+        <entry key="app/src/main/res/drawable/divider_round_corners.xml" value="0.24444444444444444" />
         <entry key="app/src/main/res/drawable/ic_app_logo.xml" value="0.24444444444444444" />
+        <entry key="app/src/main/res/drawable/ic_baseline_arrow_right_alt_24.xml" value="0.24444444444444444" />
+        <entry key="app/src/main/res/drawable/ic_baseline_near_me_24.xml" value="0.24444444444444444" />
+        <entry key="app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.24444444444444444" />
+        <entry key="app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.24444444444444444" />
+        <entry key="app/src/main/res/drawable/ic_fondo2.xml" value="0.24444444444444444" />
         <entry key="app/src/main/res/drawable/ic_undraw_my_current_location_re_whmt_1_.xml" value="0.24444444444444444" />
         <entry key="app/src/main/res/drawable/splash_screen.xml" value="0.24444444444444444" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.23368055555555556" />

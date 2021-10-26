@@ -1,8 +1,11 @@
 package com.puntogris.whatdoiwear.presentation.weather
 
-import androidx.lifecycle.*
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.switchMap
+import androidx.lifecycle.viewModelScope
 import com.puntogris.whatdoiwear.common.LocationResult
 import com.puntogris.whatdoiwear.domain.model.Location
+import com.puntogris.whatdoiwear.domain.model.Weather
 import com.puntogris.whatdoiwear.domain.use_case.GetWeather
 import com.puntogris.whatdoiwear.domain.use_case.LocationUseCases
 import com.puntogris.whatdoiwear.utils.SharedPref
@@ -25,7 +28,9 @@ class WeatherViewModel @Inject constructor(
 
     val currentLocation = locationUseCases.getLocation()
 
-    val weather = currentLocation.switchMap {
+    val wea = MutableStateFlow<Weather?>(null)
+
+    val weatherResult = currentLocation.switchMap {
         getWeather(it)
     }
 
@@ -38,7 +43,7 @@ class WeatherViewModel @Inject constructor(
         }
     }
 
-    fun getCurrentLocation(){
+    fun updateCurrentLocation(){
         viewModelScope.launch {
             _locationResult.emitAll(locationUseCases.updateLocation())
         }

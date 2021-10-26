@@ -8,9 +8,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import com.puntogris.whatdoiwear.R
 import com.puntogris.whatdoiwear.common.*
-import com.puntogris.whatdoiwear.data.data_source.remote.dto.WeatherDto
 import com.puntogris.whatdoiwear.databinding.FragmentWeatherBinding
 import com.puntogris.whatdoiwear.domain.model.Location
+import com.puntogris.whatdoiwear.domain.model.Weather
 import com.puntogris.whatdoiwear.presentation.base.BaseBindingFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
@@ -30,7 +30,9 @@ class WeatherFragment : BaseBindingFragment<FragmentWeatherBinding>(R.layout.fra
         setupSearchLocationsUi()
 
         viewModel.currentLocation.observe(viewLifecycleOwner){
-            if (it != null) binding.searchInput.setText(it.name)
+            if (it != null) {
+                binding.searchInput.setText(it.name)
+            }
         }
     }
 
@@ -75,11 +77,11 @@ class WeatherFragment : BaseBindingFragment<FragmentWeatherBinding>(R.layout.fra
     }
 
     private fun subscribeWeatherUi(){
-        viewModel.weather.observe(viewLifecycleOwner){
+        viewModel.weatherResult.observe(viewLifecycleOwner){
             when(it){
                 is WeatherResult.Success -> onSuccess(it.data)
                 WeatherResult.Error -> onError()
-                WeatherResult.InProgress -> inProgress()
+                WeatherResult.Loading -> inProgress()
             }
         }
     }
@@ -89,7 +91,7 @@ class WeatherFragment : BaseBindingFragment<FragmentWeatherBinding>(R.layout.fra
     }
 
     fun useCurrentLocation(){
-        viewModel.getCurrentLocation()
+        viewModel.updateCurrentLocation()
     }
 
     private fun inProgress(){
@@ -100,8 +102,8 @@ class WeatherFragment : BaseBindingFragment<FragmentWeatherBinding>(R.layout.fra
         createSnackBar(getString(R.string.snack_connection_error))
     }
 
-    private fun onSuccess(data: WeatherDto){
-
+    private fun onSuccess(weather: Weather){
+        viewModel.wea.value = weather
     }
 
     private fun subscribeRefreshUi(){

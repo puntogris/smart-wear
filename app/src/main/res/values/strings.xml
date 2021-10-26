@@ -5,7 +5,7 @@
 
     <!-- Actions -->
     <string name="action_enable_location">Enable location</string>
-    <string name="action_use_current_location">Use current location</string>
+    <string name="action_use_current_location"><u>Use current location</u></string>
 
     <!-- Location -->
     <string name="location_message">*For a better experience turn on the location in your device</string>
@@ -13,10 +13,11 @@
     <string name="request_location_title">We need access to your location</string>
     <string name="request_location_subtitle2">Do not worry, we will only use this \nwhen the app is active.</string>
     <string name="request_location_subtitle1">Our app uses this data to get a more accurate result on the weather forecast</string>
-    <string name="exter_location_title">ENTER A LOCATION:</string>
+    <string name="enter_location_title">ENTER A LOCATION:</string>
     <string name="today_forecast_title">TODAY\'S FORECAST</string>
     <string name="recommendation_title">RECOMMENDATION</string>
     <string name="search_location_hint">City, State, Country..</string>
+    <string name="forecast_location_name_title">For %1$s:</string>
 
     <!-- Weather -->
     <string name="temperature_celsius" translatable="false">%1$d \u2103</string>
