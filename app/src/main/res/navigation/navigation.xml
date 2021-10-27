@@ -16,4 +16,7 @@
         android:id="@+id/locationFragment"
         android:name="com.puntogris.smartwear.presentation.location.LocationFragment"
         android:label="" />
+    <dialog
+        android:id="@+id/whatsNewDialog"
+        android:name="com.puntogris.smartwear.presentation.main.WhatsNewDialog"/>
 </navigation>

@@ -5,4 +5,5 @@ object PreferencesKeys {
     const val LICENSES = "licenses_preference_key"
     const val ANIMATION = "animation_preference_key"
     const val THEME = "theme_preference_key"
+    const val APP_VERSION = "app_version_preference_key"
 }

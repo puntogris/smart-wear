@@ -8,6 +8,10 @@
     <string name="action_use_current_location"><u>Use current location</u></string>
     <string name="action_close">Close</string>
 
+    <!-- What's new dialog-->
+    <string name="updated_version">Updated to v%1$s</string>
+    <string name="whats_new">What\'s new</string>
+
     <!-- Location -->
     <string name="location_message">*For a better experience turn on the location in your device</string>
     <string name="snack_location_required">We need access to your location in order to provide you the weather.</string>

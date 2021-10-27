@@ -2,6 +2,7 @@ package com.puntogris.smartwear.utils
 
 import android.content.Context
 import androidx.preference.PreferenceManager
+import com.puntogris.smartwear.BuildConfig
 import com.puntogris.smartwear.common.constants.PreferencesKeys
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
@@ -16,4 +17,7 @@ class SharedPref @Inject constructor(@ApplicationContext private val context: Co
 
     fun isAnimationEnabled() = sharedPreferences.getBoolean(PreferencesKeys.ANIMATION, false)
 
+    fun lastVersionCode() = sharedPreferences.getInt(PreferencesKeys.APP_VERSION, 0)
+
+    fun updateLastVersionCode() = sharedPreferences.edit().putInt(PreferencesKeys.APP_VERSION, BuildConfig.VERSION_CODE).apply()
 }

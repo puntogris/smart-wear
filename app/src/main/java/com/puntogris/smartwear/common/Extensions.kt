@@ -3,8 +3,10 @@ package com.puntogris.smartwear.common
 import android.Manifest
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Address
+import android.net.Uri
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
@@ -109,5 +111,17 @@ fun EditText.onSearch(block: () -> Unit) {
             return@setOnEditorActionListener true
         }
         false
+    }
+}
+
+fun Fragment.launchWebBrowserIntent(uri: String, packageName: String? = null){
+    try {
+        Intent(Intent.ACTION_VIEW).let {
+            it.data = Uri.parse(uri)
+            if (packageName != null) it.setPackage(packageName)
+            startActivity(it)
+        }
+    }catch (e:Exception){
+        //handle error
     }
 }
