@@ -1,4 +1,4 @@
-# what do i wear
+# smart wear
 App that will analize the current weather and forecast for the next hours and give you clothing recommendations.
 
 Used in this project:</br>

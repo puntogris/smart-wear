@@ -1,0 +1,19 @@
+{
+  "name": "smartwear",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "authors": {
+    "name": "puntogris",
+    "email": "puntogrishelp@gmail.com"
+  },
+  "repository": "puntogris/smart-wear/smartwear",
+  "scripts": {
+    "dev": "vuepress dev src",
+    "build": "vuepress build src"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "vuepress": "^1.5.3"
+  }
+}
