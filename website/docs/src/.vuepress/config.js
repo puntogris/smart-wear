@@ -4,7 +4,7 @@ module.exports = {
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#title
    */
-  title: 'Smart Wear',
+  title: 'SmartWear',
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#description
    */
@@ -27,23 +27,24 @@ module.exports = {
    * ref：https://v1.vuepress.vuejs.org/theme/default-theme-config.html
    */
   themeConfig: {
-    repo: '',
+    repo: 'puntogris/smart-wear',
     editLinks: false,
     docsDir: '',
+    logo: '/icons/logo.png',
     editLinkText: '',
     lastUpdated: false,
     nav: [
       {
-        text: 'Guide',
-        link: '/guide/',
+        text: 'Home',
+        link: '/index/',
       },
       {
-        text: 'Config',
-        link: '/config/'
+        text: 'Versions',
+        link: '/versions/'
       },
       {
-        text: 'VuePress',
-        link: 'https://v1.vuepress.vuejs.org'
+        text: 'Contact',
+        link: '/contact/'
       }
     ],
     sidebar: {
@@ -57,6 +58,16 @@ module.exports = {
           ]
         }
       ],
+      '/information/':[{
+        'title': 'Information',
+        collapsable: false,
+        children: [
+          '',
+          'privacy-policy',
+          'terms-and-conditions'
+        ]
+      }
+    ]
     }
   },
 

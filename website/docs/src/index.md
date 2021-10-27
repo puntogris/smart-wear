@@ -1,7 +1,7 @@
 ---
 home: true
-heroImage: icons/logo2.png
-tagline: Clothing recommendations based on the weather
+heroImage: icons/logo.png
+tagline: Clothing recommendations based on the weather for Android. 
 footer: Made by Puntogris( Joaquin ) with ❤️
 ---
 
