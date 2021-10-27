@@ -6,7 +6,7 @@
     <data>
         <variable
             name="fragment"
-            type="com.puntogris.whatdoiwear.presentation.location.LocationFragment" />
+            type="com.puntogris.smartwear.presentation.location.LocationFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -1,18 +1,51 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">que me pongo?</string>
-    <string name="wind">Viento:</string>
-    <string name="humidity">Humedad:</string>
-    <string name="precip">Precip.:</string>
-    <string name="weather_icon_content_description">icono del clima</string>
-    <string name="app_slogan">Algo mas que solo el clima</string>
-    <string name="location_message">*Para una mejor experiencia activa la ubicación automatica en tu dispositivo</string>
-    <string name="next_button">Siguiente</string>
-    <string name="name_hint_editText">tu nombre</string>
-    <string name="player_name_shared_pref_default_value">Hola tu,</string>
-    <string name="player_name_shared_pref">Hola %1$s,</string>
-    <string name="snack_location_required">Necesitamos acceso a tu ubicación para poder buscar el clima en tu zona.</string>
+    <!-- App -->
+    <string name="app_name">SmartWear</string>
+    <string name="app_slogan">Clothing recommendations based on the weather</string>
 
+    <!-- Actions -->
+    <string name="action_enable_location">Enable location</string>
+    <string name="action_use_current_location"><u>Use current location</u></string>
+    <string name="action_close">Close</string>
+
+    <!-- Location -->
+    <string name="location_message">*For a better experience turn on the location in your device</string>
+    <string name="snack_location_required">We need access to your location in order to provide you the weather.</string>
+    <string name="request_location_title">We need access to your location</string>
+    <string name="request_location_subtitle2">Do not worry, we will only use this \nwhen the app is active.</string>
+    <string name="request_location_subtitle1">Our app uses this data to get a more accurate result on the weather forecast</string>
+    <string name="enter_location_title">ENTER A LOCATION:</string>
+    <string name="today_forecast_title">TODAY\'S FORECAST</string>
+    <string name="recommendation_title">RECOMMENDATION</string>
+    <string name="search_location_hint">City, State, Country..</string>
+    <string name="forecast_location_name_title">For %1$s:</string>
+
+    <!-- Weather -->
+    <string name="temperature_celsius" translatable="false">%1$d \u2103</string>
+    <string name="percentage_symbol" translatable="false">%1$d %%.</string>
+    <string name="kmh_symbol" translatable="false">%1$d km/h.</string>
+    <string name="weather_today_min_max">Temperatures between %1$s C and %2$s C.</string>
+
+    <!-- Settings -->
+    <string name="version">Version</string>
+    <string name="version_name">Version %1$s</string>
+    <string name="rate_us">Rate us</string>
+    <string name="got_to_website">Visit website</string>
+    <string name="see_the_code">See the code</string>
+    <string name="rate_the_app">Rate the app</string>
+    <string name="open_source_licenses">Open source licenses</string>
+    <string name="terms_and_conditions">Terms and conditions</string>
+    <string name="privacy_policy">Privacy policy</string>
+    <string name="pref_privacy_policy_url" translatable="false">https://postureapp.puntogris.com/information/privacy-policy.html</string>
+    <string name="pref_terms_and_conditions_url" translatable="false">https://postureapp.puntogris.com/information/terms-and-conditions.html</string>
+
+    <!-- Snack -->
+    <string name="snack_connection_error">Ocurrio un error. Intenta nuevamente en un momento.</string>
+    <string name="snack_query_required">Location can\'t be empty.</string>
+    <string name="snack_location_updated_success">Location updated</string>
+
+
+    <!-- Clothing -->
     <string name="temp_minus_0">*Peligro! Llego la era glaciar, ponete todo la ropa que tengas!\n\n</string>
     <string name="temp_1_9">*Hace mucho frio! Buzo y/o campera si o si! No te olvides la bufanda y guantes.\n\n</string>
     <string name="temp_10_14">*No subestimes el frio que hace, por mas que adentro este para un buzo o pullover! Sali bien abrigado/a.\n\n</string>
@@ -43,6 +76,5 @@
     <string name="temp_decrese_a_little">*Va a disminuir un poco la temperatura.\n\n</string>
     <string name="temp_not_changing">*La temperatura no va a cambiar por unas horas.\n\n</string>
     <string name="show_clothing_recommendations">Ver recomendaciones de ropa</string>
-    <string name="snack_connection_error">Ocurrio un error. Intenta nuevamente en un momento.</string>
 
 </resources>

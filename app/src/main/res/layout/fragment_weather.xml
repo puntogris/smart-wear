@@ -8,11 +8,11 @@
 
         <variable
             name="fragment"
-            type="com.puntogris.whatdoiwear.presentation.weather.WeatherFragment" />
+            type="com.puntogris.smartwear.presentation.weather.WeatherFragment" />
 
         <variable
             name="viewModel"
-            type="com.puntogris.whatdoiwear.presentation.weather.WeatherViewModel" />
+            type="com.puntogris.smartwear.presentation.weather.WeatherViewModel" />
     </data>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -32,12 +32,12 @@
                 android:id="@+id/appTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:fontFamily="sans-serif-black"
+                android:fontFamily="@font/comfortaa_bold"
                 android:text="@string/app_name"
                 android:textColor="#252525"
-                android:textSize="35sp"
+                android:textSize="40sp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -152,7 +152,8 @@
                 locationName="@{viewModel.currentLocation}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textSize="17sp"
+                android:textSize="16sp"
+                android:fontFamily="sans-serif-light"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="24dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -164,7 +165,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="24dp"
-                android:textSize="18sp"
+                android:textSize="16sp"
+                android:fontFamily="sans-serif-light"
+                weatherForecast="@{viewModel.wea}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/imageView"
                 app:layout_constraintTop_toTopOf="@+id/imageView" />
@@ -175,7 +178,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:foreground="?selectableItemBackground"
-                android:onClick="@{() -> fragment.useCurrentLocation()}"
+                android:onClick="@{()-> fragment.useCurrentLocation()}"
                 android:padding="8dp"
                 android:text="@string/action_use_current_location"
                 app:layout_constraintBottom_toBottomOf="@+id/locationIcon"
@@ -206,26 +209,49 @@
                 app:lottie_loop="true"
                 app:lottie_rawRes="@raw/watermelon" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/searchSuggestions"
-                suggestionVisibility="@{viewModel.locationResult}"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:background="@android:color/white"
-                android:orientation="vertical"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintEnd_toEndOf="@+id/searchField"
-                app:layout_constraintStart_toStartOf="@+id/searchField"
-                app:layout_constraintTop_toBottomOf="@+id/searchField"
-                tools:visibility="gone" />
-
             <ImageView
                 android:id="@+id/imageView"
                 weatherIcon="@{viewModel.wea.current.icon}"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
+                android:layout_marginTop="8dp"
                 app:layout_constraintStart_toStartOf="@+id/forecastTitle"
                 app:layout_constraintTop_toBottomOf="@+id/location" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/suggestionsLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                suggestionVisibility="@{viewModel.locationResult}"
+                android:layout_marginHorizontal="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:cardElevation="5dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/searchField"
+                tools:visibility="gone">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/searchSuggestions"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        app:layout_constrainedHeight="true"
+                        android:maxHeight="200dp"
+                        android:scrollbars="vertical"
+                        android:orientation="vertical"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:onClick="@{()-> fragment.closeSuggestions()}"
+                        style="@style/Widget.MaterialComponents.Button.TextButton"
+                        android:text="@string/action_close"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

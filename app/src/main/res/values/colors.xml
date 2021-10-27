@@ -7,5 +7,7 @@
     <color name="iconWeatherColor">#FFFFFF</color>
     <color name="splashColor">#9C27B0</color>
     <color name="splashColor_90">#E69C27B0</color>
+    <color name="grey_5">#f2f2f2</color>
+    <color name="grey_3">#FCFCFC</color>
 
 </resources>
