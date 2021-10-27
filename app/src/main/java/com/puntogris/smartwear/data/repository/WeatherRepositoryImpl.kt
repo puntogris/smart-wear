@@ -4,12 +4,23 @@ import com.puntogris.smartwear.data.data_source.remote.WeatherApi
 import com.puntogris.smartwear.data.data_source.remote.dto.WeatherDto
 import com.puntogris.smartwear.domain.model.Location
 import com.puntogris.smartwear.domain.repository.WeatherRepository
+import com.puntogris.smartwear.utils.SharedPref
+import java.util.*
 
 class WeatherRepositoryImpl(
-    private val weatherApi: WeatherApi
+    private val weatherApi: WeatherApi,
+    private val sharedPref: SharedPref
 ): WeatherRepository{
 
     override suspend fun getWeather(location: Location): WeatherDto {
-         return weatherApi.getWeather(location)
+        val units = sharedPref.weatherUnits()!!
+        val language = getLanguageCode()
+        return weatherApi.getWeather(location = location, units = units, language = language)
+    }
+
+    private fun getLanguageCode(): String {
+        val localLanguage = Locale.getDefault().language
+        val supportedLanguages = listOf("en", "es")
+        return if (localLanguage !in supportedLanguages) "en" else localLanguage
     }
 }

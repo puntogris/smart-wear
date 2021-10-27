@@ -37,6 +37,14 @@ fun TextView.setLocationName(location: Location?) {
     if (location != null)
         text = resources.getString(R.string.forecast_location_name_title, location.name)
 }
+
+
+@BindingAdapter("currentWeather")
+fun TextView.setCurrentWeather(weather: Weather?) {
+    if (weather == null) return
+        text = "Now ${weather.current.temperature}, ${weather.current.description}."
+}
+
 @BindingAdapter("weatherForecast")
 fun TextView.setWeatherForecast(weather: Weather?) {
     if (weather == null) return

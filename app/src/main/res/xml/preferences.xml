@@ -13,7 +13,7 @@
             app:title="Theme"
             app:iconSpaceReserved="false"/>
         <ListPreference
-            android:key="units_preference_key"
+            android:key="weather_units_preference_key"
             app:title="Units"
             android:defaultValue="metric"
             app:entries="@array/units_names"

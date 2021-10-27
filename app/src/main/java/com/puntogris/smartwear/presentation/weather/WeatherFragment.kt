@@ -73,7 +73,7 @@ class WeatherFragment : BaseBindingFragment<FragmentWeatherBinding>(R.layout.fra
 
     private fun onSuggestionClicked(location: Location){
         viewModel.insert(location)
-        binding.searchSuggestions.gone()
+        binding.suggestionsLayout.gone()
     }
 
     private fun subscribeWeatherUi(){

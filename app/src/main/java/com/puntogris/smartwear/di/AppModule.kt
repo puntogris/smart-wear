@@ -13,6 +13,7 @@ import com.puntogris.smartwear.data.repository.WeatherRepositoryImpl
 import com.puntogris.smartwear.domain.repository.DispatcherProvider
 import com.puntogris.smartwear.domain.repository.LocationRepository
 import com.puntogris.smartwear.domain.repository.WeatherRepository
+import com.puntogris.smartwear.utils.SharedPref
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -64,7 +65,7 @@ class AppModule {
 
     @Singleton
     @Provides
-    fun provideDispatcherProvider(): DispatcherProvider{
+    fun provideDispatcherProvider(): DispatcherProvider {
         return StandardDispatchers()
     }
 
@@ -86,7 +87,7 @@ class AppModule {
 
     @Singleton
     @Provides
-    fun providesWeatherRepository(weatherApi: WeatherApi): WeatherRepository {
-        return WeatherRepositoryImpl(weatherApi)
+    fun providesWeatherRepository(weatherApi: WeatherApi, sharedPref: SharedPref): WeatherRepository {
+        return WeatherRepositoryImpl(weatherApi, sharedPref)
     }
 }

@@ -18,6 +18,8 @@ class LocationRepositoryImpl(
     private val dispatchers: DispatcherProvider
 ) : LocationRepository {
 
+    override fun getLocalLastLocation() = locationDao.getLocationLiveData()
+
     override suspend fun updateLastLocation(): SimpleResult = withContext(dispatchers.io){
         try{
             val lastLocalLocation = locationDao.getLastLocation()
@@ -35,7 +37,6 @@ class LocationRepositoryImpl(
         }
     }
 
-    override fun getLocalLastLocation() = locationDao.getLastLocationLiveData()
 
     override suspend fun insertLastLocation(location: Location) = withContext(dispatchers.io){
         locationDao.insert(location.toEntity())

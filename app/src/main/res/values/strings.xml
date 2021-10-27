@@ -97,11 +97,13 @@
 
     <!-- Units -->
     <string-array name="units_names">
+        <item>Standard</item>
         <item>Imperial</item>
         <item>Metric</item>
     </string-array>
 
     <string-array name="units_values">
+        <item>standard</item>
         <item>imperial</item>
         <item>metric</item>
     </string-array>

@@ -7,7 +7,7 @@ import com.puntogris.smartwear.common.constants.PreferencesKeys
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
-class SharedPref @Inject constructor(@ApplicationContext private val context: Context) {
+class SharedPref @Inject constructor(@ApplicationContext context: Context) {
 
     private val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
 
@@ -20,4 +20,6 @@ class SharedPref @Inject constructor(@ApplicationContext private val context: Co
     fun lastVersionCode() = sharedPreferences.getInt(PreferencesKeys.APP_VERSION, 0)
 
     fun updateLastVersionCode() = sharedPreferences.edit().putInt(PreferencesKeys.APP_VERSION, BuildConfig.VERSION_CODE).apply()
+
+    fun weatherUnits() = sharedPreferences.getString(PreferencesKeys.WEATHER_UNITS, "metric")
 }

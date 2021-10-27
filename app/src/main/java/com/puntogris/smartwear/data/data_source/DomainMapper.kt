@@ -5,12 +5,6 @@ import com.puntogris.smartwear.data.data_source.remote.dto.LocationDto
 import com.puntogris.smartwear.data.data_source.remote.dto.WeatherDto
 import com.puntogris.smartwear.domain.model.*
 
-fun android.location.Location.toDomain(): Location {
-    return Location(
-        latitude = latitude,
-        longitude = longitude
-    )
-}
 
 fun LocationEntity.toDomain(): Location {
     return Location(
