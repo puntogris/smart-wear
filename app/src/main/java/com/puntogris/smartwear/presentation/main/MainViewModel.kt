@@ -15,7 +15,7 @@ class MainViewModel @Inject constructor(
 
     private val _appVersionStatus = MutableLiveData<Boolean>()
     val appVersionStatus: LiveData<Boolean> = _appVersionStatus
-    
+
     init {
         if (sharedPref.lastVersionCode() < BuildConfig.VERSION_CODE) {
             sharedPref.updateLastVersionCode()

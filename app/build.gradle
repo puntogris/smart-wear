@@ -7,14 +7,16 @@ plugins{
     id 'com.google.android.gms.oss-licenses-plugin'
     id 'kotlinx-serialization'
     id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
+    id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
 }
 
 android {
     compileSdkVersion 31
-    buildToolsVersion "29.0.3"
+    buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.puntogris.whatdoiwear"
+        applicationId 'com.puntogris.smartwear'
         minSdkVersion 23
         targetSdkVersion 31
         versionCode 5
@@ -89,6 +91,11 @@ dependencies {
     implementation "com.squareup.okhttp3:okhttp:$okhttp"
     implementation "com.squareup.okio:okio:$okio"
     implementation "com.google.code.gson:gson:$gson"
+
+    //Firebase
+    implementation platform('com.google.firebase:firebase-bom:28.4.2')
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+    implementation 'com.google.firebase:firebase-crashlytics'
 
     // Navigation
     implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"

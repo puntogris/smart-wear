@@ -3,6 +3,7 @@ package com.puntogris.smartwear.presentation.weather
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import com.puntogris.smartwear.R
@@ -48,7 +49,6 @@ class WeatherFragment : BaseBindingFragment<FragmentWeatherBinding>(R.layout.fra
                 searchSuggestions.adapter = it
                 subscribeSearchSuggestions(it)
             }
-
         }
     }
 
