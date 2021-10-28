@@ -12,7 +12,6 @@ import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -66,12 +65,12 @@ inline fun Fragment.launchAndRepeatWithViewLifecycle(
     }
 }
 
-fun Activity.hasLocationPermission(): Boolean{
+fun Fragment.hasLocationPermission(): Boolean{
     if (Manifest.permission.ACCESS_FINE_LOCATION == Manifest.permission.ACCESS_BACKGROUND_LOCATION &&
         android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.Q) {
         return true
     }
-    return ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) ==
+    return requireActivity().checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) ==
             PackageManager.PERMISSION_GRANTED
 }
 

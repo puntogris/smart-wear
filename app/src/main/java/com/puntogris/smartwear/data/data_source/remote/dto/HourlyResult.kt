@@ -13,5 +13,8 @@ data class HourlyResult(
     val humidity: Int,
 
     @SerialName("wind_speed")
-    val windSpeed: Float
+    val windSpeed: Float,
+
+    @SerialName("pop")
+    val precipitation: Float
 )

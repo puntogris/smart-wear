@@ -9,7 +9,6 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.puntogris.smartwear.R
 import com.puntogris.smartwear.common.getNavController
-import com.puntogris.smartwear.common.hasLocationPermission
 import com.puntogris.smartwear.databinding.ActivityMainBinding
 import com.puntogris.smartwear.presentation.base.BaseBindingActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,7 +32,14 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>(R.layout.activity_
 
     private fun setupNavigation() {
         navController = getNavController()
-        appBarConfiguration = AppBarConfiguration(setOf(R.id.weatherFragment, R.id.locationFragment))
+        appBarConfiguration =
+            AppBarConfiguration(
+                setOf(
+                    R.id.weatherFragment,
+                    R.id.locationFragment,
+                    R.id.welcomeFragment
+                )
+            )
         setupInitialDestination()
     }
 
@@ -41,8 +47,8 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>(R.layout.activity_
         navController.graph = navController.navInflater.inflate(R.navigation.navigation)
             .apply {
                 startDestination =
-                    if (hasLocationPermission()) R.id.weatherFragment
-                    else R.id.locationFragment
+                    if (viewModel.showWelcomeScreen()) R.id.welcomeFragment
+                    else R.id.weatherFragment
             }
     }
 

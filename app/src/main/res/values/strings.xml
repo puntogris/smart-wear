@@ -7,6 +7,13 @@
     <string name="action_enable_location">Enable location</string>
     <string name="action_use_current_location"><u>Use current location</u></string>
     <string name="action_close">Close</string>
+    <string name="action_continue">Continue</string>
+
+    <!-- Welcome -->
+    <string name="welcome_item_1">Search your location!</string>
+    <string name="welcome_item_2">Get clothing recommendations!</string>
+    <string name="welcome_item_3">Be always ready to have fun!</string>
+    <string name="welcome_title">Hey there!</string>
 
     <!-- What's new dialog-->
     <string name="updated_version">Updated to v%1$s</string>
@@ -28,7 +35,8 @@
     <string name="temperature_celsius" translatable="false">%1$d \u2103</string>
     <string name="percentage_symbol" translatable="false">%1$d %%.</string>
     <string name="kmh_symbol" translatable="false">%1$d km/h.</string>
-    <string name="weather_today_min_max">Temperatures between %1$s C and %2$s C.</string>
+    <string name="current_weather_temp_description">Now %1$s C , %2$s.</string>
+    <string name="weather_today_min_max">• Temperatures between %1$s C and %2$s C.</string>
 
     <!-- Settings -->
     <string name="version">Version</string>
@@ -80,7 +88,6 @@
     <string name="temp_not_changing">*The temperature will not change for a few hours.\n\n</string>
     <string name="show_clothing_recommendations">Show clothing recommendations</string>
 
-
     <!-- Arrays -->
     <!-- Theme -->
     <string-array name="theme_names">
@@ -107,4 +114,5 @@
         <item>imperial</item>
         <item>metric</item>
     </string-array>
+
 </resources>

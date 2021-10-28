@@ -70,6 +70,7 @@ ext {
     licensesVersion = "17.0.0"
     ktorVersion = "1.5.0"
     serializationVersion = "1.0.1"
+    tabIndicatorVersion = "4.2"
 }
 
 dependencies {
@@ -154,5 +155,8 @@ dependencies {
     //Glide
     implementation 'com.github.bumptech.glide:glide:4.12.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
+
+    //Tab layout dots indicators
+    implementation "com.tbuonomo:dotsindicator:$tabIndicatorVersion"
 
 }

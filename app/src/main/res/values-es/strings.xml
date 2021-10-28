@@ -1,12 +1,19 @@
 <resources>
     <!-- App -->
-    <string name="app_name">SmartWear</string>
-    <string name="app_slogan">Clothing recommendations based on the weather</string>
+    <string name="app_name">Smart Wear</string>
+    <string name="app_slogan">Recomendaciones de ropa según el clima</string>
 
     <!-- Actions -->
-    <string name="action_enable_location">Enable location</string>
-    <string name="action_use_current_location"><u>Use current location</u></string>
-    <string name="action_close">Close</string>
+    <string name="action_enable_location">Habilitar ubicación</string>
+    <string name="action_use_current_location"><u>Usar ubicación actual</u></string>
+    <string name="action_close">Cerrar</string>
+    <string name="action_continue">Continue</string>
+
+    <!-- Welcome -->
+    <string name="welcome_item_1">Search your location!</string>
+    <string name="welcome_item_2">Get clothing recommendations!</string>
+    <string name="welcome_item_3">Be always ready to have fun!</string>
+    <string name="welcome_title">Hey there!</string>
 
     <!-- What's new dialog-->
     <string name="updated_version">Actualizado a v%1$s</string>
@@ -18,25 +25,26 @@
     <string name="request_location_title">We need access to your location</string>
     <string name="request_location_subtitle2">Do not worry, we will only use this \nwhen the app is active.</string>
     <string name="request_location_subtitle1">Our app uses this data to get a more accurate result on the weather forecast</string>
-    <string name="enter_location_title">ENTER A LOCATION:</string>
-    <string name="today_forecast_title">TODAY\'S FORECAST</string>
-    <string name="recommendation_title">RECOMMENDATION</string>
-    <string name="search_location_hint">City, State, Country..</string>
-    <string name="forecast_location_name_title">For %1$s:</string>
+    <string name="enter_location_title">INGRESE UNA UBICACIÓN:</string>
+    <string name="today_forecast_title">PRONÓSTICO DE HOY:</string>
+    <string name="recommendation_title">RECOMENDACIÓN:</string>
+    <string name="search_location_hint">Ciudad, Provincia, País..</string>
+    <string name="forecast_location_name_title">Para %1$s:</string>
 
     <!-- Weather -->
     <string name="temperature_celsius" translatable="false">%1$d \u2103</string>
     <string name="percentage_symbol" translatable="false">%1$d %%.</string>
     <string name="kmh_symbol" translatable="false">%1$d km/h.</string>
-    <string name="weather_today_min_max">Temperatures between %1$s C and %2$s C.</string>
+    <string name="weather_today_min_max">Temperaturas entre %1$s C y %2$s C.</string>
+    <string name="current_weather_temp_description">Ahora %1$s C , %2$s.</string>
 
     <!-- Settings -->
-    <string name="version">Version</string>
-    <string name="version_name">Version %1$s</string>
-    <string name="rate_us">Rate us</string>
-    <string name="got_to_website">Visit website</string>
-    <string name="see_the_code">See the code</string>
-    <string name="rate_the_app">Rate the app</string>
+    <string name="version">Versión</string>
+    <string name="version_name">Versión %1$s</string>
+    <string name="rate_us">Calificanos</string>
+    <string name="got_to_website">Visita nuestra web</string>
+    <string name="see_the_code">Ver el codigo</string>
+    <string name="rate_the_app">Puntua la app</string>
     <string name="open_source_licenses">Open source licenses</string>
     <string name="terms_and_conditions">Terms and conditions</string>
     <string name="privacy_policy">Privacy policy</string>

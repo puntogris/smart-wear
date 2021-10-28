@@ -6,6 +6,7 @@ import android.view.MenuInflater
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
+import androidx.navigation.fragment.findNavController
 import com.puntogris.smartwear.R
 import com.puntogris.smartwear.common.*
 import com.puntogris.smartwear.databinding.FragmentWeatherBinding
@@ -29,15 +30,15 @@ class WeatherFragment : BaseBindingFragment<FragmentWeatherBinding>(R.layout.fra
         subscribeRefreshUi()
         setupSearchLocationsUi()
 
-        viewModel.currentLocation.observe(viewLifecycleOwner){
+        viewModel.currentLocation.observe(viewLifecycleOwner) {
             if (it != null) {
                 binding.searchInput.setText(it.name)
             }
         }
     }
 
-    private fun setupSearchLocationsUi(){
-        with(binding){
+    private fun setupSearchLocationsUi() {
+        with(binding) {
             searchInput.addTextChangedListener { input ->
                 if (input.toString().isBlank()) suggestionsLayout.gone()
             }
@@ -52,10 +53,10 @@ class WeatherFragment : BaseBindingFragment<FragmentWeatherBinding>(R.layout.fra
         }
     }
 
-    private fun subscribeSearchSuggestions(adapter: SuggestionsAdapter){
-        launchAndRepeatWithViewLifecycle(Lifecycle.State.CREATED){
+    private fun subscribeSearchSuggestions(adapter: SuggestionsAdapter) {
+        launchAndRepeatWithViewLifecycle(Lifecycle.State.CREATED) {
             viewModel.locationResult.collect { result ->
-                when(result){
+                when (result) {
                     is LocationResult.Error -> {
                         createSnackBar(getString(result.error))
                     }
@@ -71,14 +72,14 @@ class WeatherFragment : BaseBindingFragment<FragmentWeatherBinding>(R.layout.fra
         }
     }
 
-    private fun onSuggestionClicked(location: Location){
+    private fun onSuggestionClicked(location: Location) {
         viewModel.insert(location)
         binding.suggestionsLayout.gone()
     }
 
-    private fun subscribeWeatherUi(){
-        viewModel.weatherResult.observe(viewLifecycleOwner){
-            when(it){
+    private fun subscribeWeatherUi() {
+        viewModel.weatherResult.observe(viewLifecycleOwner) {
+            when (it) {
                 is WeatherResult.Success -> onSuccess(it.data)
                 WeatherResult.Error -> onError()
                 WeatherResult.Loading -> inProgress()
@@ -86,27 +87,31 @@ class WeatherFragment : BaseBindingFragment<FragmentWeatherBinding>(R.layout.fra
         }
     }
 
-    fun onSearchLocationClicked(){
+    fun onSearchLocationClicked() {
         viewModel.getLocationSuggestions(binding.searchInput.getString())
     }
 
-    fun useCurrentLocation(){
-        viewModel.updateCurrentLocation()
+    fun useCurrentLocation() {
+        if (hasLocationPermission()) {
+            viewModel.updateCurrentLocation()
+        } else {
+            findNavController().navigate(R.id.locationFragment)
+        }
     }
 
-    private fun inProgress(){
+    private fun inProgress() {
 
     }
 
-    private fun onError(){
+    private fun onError() {
         createSnackBar(getString(R.string.snack_connection_error))
     }
 
-    private fun onSuccess(weather: Weather){
+    private fun onSuccess(weather: Weather) {
         viewModel.wea.value = weather
     }
 
-    private fun subscribeRefreshUi(){
+    private fun subscribeRefreshUi() {
         binding.swipeRefreshLayout.apply {
             setOnRefreshListener {
 
@@ -115,7 +120,7 @@ class WeatherFragment : BaseBindingFragment<FragmentWeatherBinding>(R.layout.fra
         }
     }
 
-    fun closeSuggestions(){
+    fun closeSuggestions() {
         binding.suggestionsLayout.gone()
     }
 

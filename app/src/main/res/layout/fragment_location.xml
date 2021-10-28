@@ -34,8 +34,8 @@
             android:id="@+id/nextButton"
             android:layout_width="0dp"
             android:layout_height="65dp"
-            android:layout_marginBottom="28dp"
-            android:layout_marginHorizontal="32dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginHorizontal="8dp"
             android:onClick="@{()-> fragment.requestLocationPermission()}"
             android:text="@string/action_enable_location"
             android:textAllCaps="false"
@@ -56,7 +56,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView"
             app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/ic_undraw_my_current_location_re_whmt_1_" />
+            app:srcCompat="@drawable/ic_location_illustration" />
 
         <TextView
             android:id="@+id/textView2"

@@ -19,4 +19,8 @@
     <dialog
         android:id="@+id/whatsNewDialog"
         android:name="com.puntogris.smartwear.presentation.main.WhatsNewDialog"/>
+    <fragment
+        android:id="@+id/welcomeFragment"
+        android:name="com.puntogris.smartwear.presentation.welcome.WelcomeFragment"
+        android:label="" />
 </navigation>

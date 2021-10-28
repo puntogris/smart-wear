@@ -22,4 +22,8 @@ class SharedPref @Inject constructor(@ApplicationContext context: Context) {
     fun updateLastVersionCode() = sharedPreferences.edit().putInt(PreferencesKeys.APP_VERSION, BuildConfig.VERSION_CODE).apply()
 
     fun weatherUnits() = sharedPreferences.getString(PreferencesKeys.WEATHER_UNITS, "metric")
+
+    fun showWelcome() = sharedPreferences.getBoolean(PreferencesKeys.SHOW_WELCOME, true)
+
+    fun disableWelcomeScreenPref() = sharedPreferences.edit().putBoolean(PreferencesKeys.SHOW_WELCOME, false).apply()
 }

@@ -29,7 +29,7 @@ class LocationFragment : BaseBindingFragment<FragmentLocationBinding>(R.layout.f
     }
 
     private fun onPermissionGranted(){
-        findNavController().navigate(R.id.weatherFragment)
+        findNavController().navigateUp()
     }
 
     fun requestLocationPermission(){

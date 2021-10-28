@@ -29,7 +29,7 @@ fun ImageView.setSuggestionVisibility(locationResult: LocationResult?){
 @BindingAdapter("suggestionVisibility")
 fun CardView.setSuggestionVisibility(locationResult: LocationResult?){
     if (locationResult != null)
-        isVisible = locationResult is LocationResult.Success
+        isVisible = locationResult is LocationResult.Success.GetLocations
 }
 
 @BindingAdapter("locationName")
@@ -38,11 +38,14 @@ fun TextView.setLocationName(location: Location?) {
         text = resources.getString(R.string.forecast_location_name_title, location.name)
 }
 
-
 @BindingAdapter("currentWeather")
 fun TextView.setCurrentWeather(weather: Weather?) {
-    if (weather == null) return
-        text = "Now ${weather.current.temperature}, ${weather.current.description}."
+    if (weather != null)
+        text = resources.getString(
+            R.string.current_weather_temp_description,
+            weather.current.temperature.toString(),
+            weather.current.description
+        )
 }
 
 @BindingAdapter("weatherForecast")
@@ -50,11 +53,28 @@ fun TextView.setWeatherForecast(weather: Weather?) {
     if (weather == null) return
 
     val today = weather.daily.first()
-    val temperature = resources.getString(R.string.weather_today_min_max, today.min.toString(), today.max.toString())
-    val rain = ""
+    val temperature = resources.getString(
+        R.string.weather_today_min_max,
+        today.min.toString(),
+        today.max.toString()
+    )
+
+
+    //analizar lluvia
+    val rainProbability = weather.hourly.maxByOrNull { it.precipitation }
+    val willRain = rainProbability.takeIf { it != null && it.precipitation > 0 }
+
+    if (willRain != null){
+
+    }
+    //analiar viento
+
+    //analizar humedad
 
     text = temperature
 }
+
+
 
 @BindingAdapter("doubleToStringPercentage")
 fun TextView.setDoubleToStringPercentage(double: Double) {

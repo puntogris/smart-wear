@@ -49,14 +49,15 @@ fun WeatherDto.toDomain(): Weather{
         daily.map {
             Daily(
                 min = it.temperature.min,
-                max = it.temperature.max
+                max = it.temperature.max,
             )
         },
         hourly.map {
             Hourly(
                 temperature = it.temp,
                 humidity = it.humidity,
-                windSpeed = it.windSpeed
+                windSpeed = it.windSpeed,
+                precipitation = it.precipitation
             )
         }
     )

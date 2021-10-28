@@ -10,7 +10,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    sharedPref: SharedPref
+    private val sharedPref: SharedPref
 ): ViewModel() {
 
     private val _appVersionStatus = MutableLiveData<Boolean>()
@@ -22,4 +22,6 @@ class MainViewModel @Inject constructor(
             _appVersionStatus.value = true
         }
     }
+
+    fun showWelcomeScreen() = sharedPref.showWelcome()
 }

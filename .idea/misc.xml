@@ -8,17 +8,29 @@
         <entry key="app/src/main/res/drawable-v24/ic_012_rain_1.xml" value="0.24444444444444444" />
         <entry key="app/src/main/res/drawable-v24/ic_015_moon.xml" value="0.24444444444444444" />
         <entry key="app/src/main/res/drawable-v24/ic_day_background.xml" value="0.24444444444444444" />
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.24513888888888888" />
         <entry key="app/src/main/res/drawable-v24/ic_night_background.xml" value="0.24444444444444444" />
         <entry key="app/src/main/res/drawable-v24/ic_welcome_background.xml" value="0.24444444444444444" />
         <entry key="app/src/main/res/drawable/bottom_sheet_round_corners.xml" value="0.24444444444444444" />
         <entry key="app/src/main/res/drawable/divider_round_corners.xml" value="0.24444444444444444" />
+        <entry key="app/src/main/res/drawable/ic_amusment_park_ilustration.xml" value="0.24513888888888888" />
         <entry key="app/src/main/res/drawable/ic_app_logo.xml" value="0.24444444444444444" />
         <entry key="app/src/main/res/drawable/ic_baseline_arrow_right_alt_24.xml" value="0.24444444444444444" />
         <entry key="app/src/main/res/drawable/ic_baseline_near_me_24.xml" value="0.24444444444444444" />
         <entry key="app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.24444444444444444" />
         <entry key="app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.24444444444444444" />
+        <entry key="app/src/main/res/drawable/ic_clothing_illustration.xml" value="0.1232638888888889" />
+        <entry key="app/src/main/res/drawable/ic_clothing_ilustration.xml" value="0.24513888888888888" />
         <entry key="app/src/main/res/drawable/ic_fondo2.xml" value="0.24444444444444444" />
+        <entry key="app/src/main/res/drawable/ic_location_illustration.xml" value="0.1232638888888889" />
+        <entry key="app/src/main/res/drawable/ic_search_ilustration.xml" value="0.24513888888888888" />
+        <entry key="app/src/main/res/drawable/ic_undraw_having_fun_re_vj4h.xml" value="0.24513888888888888" />
         <entry key="app/src/main/res/drawable/ic_undraw_my_current_location_re_whmt_1_.xml" value="0.24444444444444444" />
+        <entry key="app/src/main/res/drawable/ic_undraw_weather_app_re_kcb1.xml" value="0.24513888888888888" />
+        <entry key="app/src/main/res/drawable/ic_undraw_weather_notification_re_3pad.xml" value="0.24513888888888888" />
+        <entry key="app/src/main/res/drawable/ic_undraw_window_shopping_re_0kbm.xml" value="0.24513888888888888" />
+        <entry key="app/src/main/res/drawable/ic_undraw_window_shopping_re_0kbm_1_.xml" value="0.24513888888888888" />
+        <entry key="app/src/main/res/drawable/ic_uwear.xml" value="0.24513888888888888" />
         <entry key="app/src/main/res/drawable/splash_screen.xml" value="0.24444444444444444" />
         <entry key="app/src/main/res/drawable/test.xml" value="0.24513888888888888" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.23368055555555556" />
@@ -29,6 +41,7 @@
         <entry key="app/src/main/res/layout/recommendation_bottom_sheet.xml" value="0.2232638888888889" />
         <entry key="app/src/main/res/layout/suggestion_vh.xml" value="0.23368055555555556" />
         <entry key="app/src/main/res/layout/test.xml" value="0.159375" />
+        <entry key="app/src/main/res/layout/welcome_item_vh.xml" value="0.234375" />
         <entry key="app/src/main/res/menu/toolbar.xml" value="0.23368055555555556" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
         <entry key="app/src/main/res/xml/preferences.xml" value="0.2925642807505212" />

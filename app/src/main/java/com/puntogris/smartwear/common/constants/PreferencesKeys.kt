@@ -7,4 +7,6 @@ object PreferencesKeys {
     const val THEME = "theme_preference_key"
     const val APP_VERSION = "app_version_preference_key"
     const val WEATHER_UNITS = "weather_units_preference_key"
+    const val SHOW_WELCOME = "welcome_preference_key"
+
 }
