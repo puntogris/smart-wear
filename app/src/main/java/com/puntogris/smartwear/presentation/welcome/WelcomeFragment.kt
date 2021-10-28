@@ -16,7 +16,7 @@ class WelcomeFragment : BaseBindingFragment<FragmentWelcomeBinding>(R.layout.fra
     override fun initializeViews() {
         with(binding){
             fragment = this@WelcomeFragment
-            viewPager.adapter = WelcomePagerAdapter()
+            viewPager.adapter = IllustrationAdapter()
             dotsIndicator.setViewPager2(viewPager)
         }
     }

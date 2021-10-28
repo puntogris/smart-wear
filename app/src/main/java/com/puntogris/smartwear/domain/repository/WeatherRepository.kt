@@ -1,8 +1,8 @@
 package com.puntogris.smartwear.domain.repository
 
-import com.puntogris.smartwear.data.data_source.remote.dto.WeatherDto
 import com.puntogris.smartwear.domain.model.Location
+import com.puntogris.smartwear.domain.model.Weather
 
 interface WeatherRepository {
-    suspend fun getWeather(location: Location) : WeatherDto
+    suspend fun getWeather(location: Location) : Weather
 }

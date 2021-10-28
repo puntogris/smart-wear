@@ -1,10 +1,12 @@
 package com.puntogris.smartwear.data.repository
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.map
 import com.puntogris.smartwear.common.SimpleResult
 import com.puntogris.smartwear.data.data_source.LocationClient
 import com.puntogris.smartwear.data.data_source.local.LocationDao
 import com.puntogris.smartwear.data.data_source.remote.GeocodingApi
-import com.puntogris.smartwear.data.data_source.remote.dto.LocationDto
+import com.puntogris.smartwear.data.data_source.toDomain
 import com.puntogris.smartwear.data.data_source.toEntity
 import com.puntogris.smartwear.domain.model.Location
 import com.puntogris.smartwear.domain.repository.DispatcherProvider
@@ -18,7 +20,9 @@ class LocationRepositoryImpl(
     private val dispatchers: DispatcherProvider
 ) : LocationRepository {
 
-    override fun getLocalLastLocation() = locationDao.getLocationLiveData()
+    override fun getLocalLastLocation() :LiveData<Location?>{
+        return locationDao.getLocationLiveData().map { it?.toDomain() }
+    }
 
     override suspend fun updateLastLocation(): SimpleResult = withContext(dispatchers.io){
         try{
@@ -42,8 +46,8 @@ class LocationRepositoryImpl(
         locationDao.insert(location.toEntity())
     }
 
-    override suspend fun getLocationCoordinates(query: String): List<LocationDto> {
-        return geocodingApi.getLocations(query)
+    override suspend fun getLocationCoordinates(query: String): List<Location> {
+        return geocodingApi.getLocations(query).map { it.toDomain() }
     }
 
 }

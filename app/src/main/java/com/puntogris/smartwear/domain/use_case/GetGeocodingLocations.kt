@@ -2,9 +2,8 @@ package com.puntogris.smartwear.domain.use_case
 
 import com.puntogris.smartwear.R
 import com.puntogris.smartwear.common.LocationResult
-import com.puntogris.smartwear.data.data_source.toDomain
-import com.puntogris.smartwear.utils.InvalidQueryException
 import com.puntogris.smartwear.domain.repository.LocationRepository
+import com.puntogris.smartwear.utils.InvalidQueryException
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
@@ -22,7 +21,7 @@ class GetGeocodingLocations @Inject constructor(
                 throw InvalidQueryException()
             }
 
-            val suggestions = repository.getLocationCoordinates(query).map { it.toDomain() }
+            val suggestions = repository.getLocationCoordinates(query)
             emit(LocationResult.Success.GetLocations(suggestions))
         }catch (e: InvalidQueryException){
             emit(LocationResult.Error(e.error))

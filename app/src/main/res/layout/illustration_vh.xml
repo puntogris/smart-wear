@@ -5,8 +5,8 @@
 
     <data>
         <variable
-            name="welcomeItem"
-            type="com.puntogris.smartwear.domain.model.WelcomeItem" />
+            name="illustration"
+            type="com.puntogris.smartwear.domain.model.Illustration" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,7 +23,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:imageResource="@{welcomeItem.image}"
+            app:imageResource="@{illustration.image}"
             app:layout_constraintVertical_bias="0.4"
             tools:srcCompat="@tools:sample/avatars"/>
 
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="32dp"
             android:layout_marginBottom="24dp"
-            android:text="@{welcomeItem.tittle}"
+            android:text="@{illustration.tittle}"
             android:textSize="18sp"
             android:fontFamily="sans-serif-light"
             android:textAlignment="center"

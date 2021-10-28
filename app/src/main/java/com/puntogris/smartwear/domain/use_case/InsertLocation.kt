@@ -7,7 +7,6 @@ import javax.inject.Inject
 class InsertLocation @Inject constructor(
     private val repository : LocationRepository
 ){
-
     suspend operator fun invoke(location: Location){
         repository.insertLastLocation(location)
     }

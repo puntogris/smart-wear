@@ -58,18 +58,7 @@ fun TextView.setWeatherForecast(weather: Weather?) {
         today.min.toString(),
         today.max.toString()
     )
-
-
-    //analizar lluvia
-    val rainProbability = weather.hourly.maxByOrNull { it.precipitation }
-    val willRain = rainProbability.takeIf { it != null && it.precipitation > 0 }
-
-    if (willRain != null){
-
-    }
-    //analiar viento
-
-    //analizar humedad
+    
 
     text = temperature
 }

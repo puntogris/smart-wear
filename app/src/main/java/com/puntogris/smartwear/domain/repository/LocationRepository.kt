@@ -1,14 +1,12 @@
 package com.puntogris.smartwear.domain.repository
 
 import androidx.lifecycle.LiveData
-import com.puntogris.smartwear.data.data_source.local.model.LocationEntity
-import com.puntogris.smartwear.data.data_source.remote.dto.LocationDto
-import com.puntogris.smartwear.domain.model.Location
 import com.puntogris.smartwear.common.SimpleResult
+import com.puntogris.smartwear.domain.model.Location
 
 interface LocationRepository {
-    fun getLocalLastLocation(): LiveData<LocationEntity?>
+    fun getLocalLastLocation(): LiveData<Location?>
     suspend fun updateLastLocation(): SimpleResult
     suspend fun insertLastLocation(location: Location)
-    suspend fun getLocationCoordinates(query: String): List<LocationDto>
+    suspend fun getLocationCoordinates(query: String): List<Location>
 }
