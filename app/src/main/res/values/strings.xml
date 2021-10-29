@@ -37,6 +37,10 @@
     <string name="kmh_symbol" translatable="false">%1$d km/h.</string>
     <string name="current_weather_temp_description">Now %1$s C , %2$s.</string>
     <string name="weather_today_min_max">• Temperatures between %1$s C and %2$s C.</string>
+    <string name="forecast_precipitation">• %1$s chance of rain.</string>
+    <string name="forecast_wind">• Winds speeds up to %1$s.</string>
+    <string name="forecast_humidity">• The humidity will reach %1$s.</string>
+    <string name="forecast_stable">• The weather will be stable.</string>
 
     <!-- Settings -->
     <string name="version">Version</string>

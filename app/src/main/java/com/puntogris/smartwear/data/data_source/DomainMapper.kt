@@ -39,8 +39,8 @@ fun Location.toEntity(): LocationEntity {
     )
 }
 
-fun WeatherDto.toDomain(): Weather{
-    return Weather(
+fun WeatherDto.toDomain(): WeatherResult {
+    return WeatherResult(
         Current(
             temperature = current.temperature,
             description = current.weather.first().description,

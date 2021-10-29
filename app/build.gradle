@@ -17,7 +17,7 @@ android {
 
     defaultConfig {
         applicationId 'com.puntogris.smartwear'
-        minSdkVersion 23
+        minSdkVersion 24
         targetSdkVersion 31
         versionCode 5
         versionName "2.0.0-a1"
@@ -159,4 +159,5 @@ dependencies {
     //Tab layout dots indicators
     implementation "com.tbuonomo:dotsindicator:$tabIndicatorVersion"
 
+    implementation 'com.jakewharton.threetenabp:threetenabp:1.3.1'
 }

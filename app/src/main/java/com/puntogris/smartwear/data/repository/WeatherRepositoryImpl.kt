@@ -3,7 +3,7 @@ package com.puntogris.smartwear.data.repository
 import com.puntogris.smartwear.data.data_source.remote.WeatherApi
 import com.puntogris.smartwear.data.data_source.toDomain
 import com.puntogris.smartwear.domain.model.Location
-import com.puntogris.smartwear.domain.model.Weather
+import com.puntogris.smartwear.domain.model.WeatherResult
 import com.puntogris.smartwear.domain.repository.WeatherRepository
 import com.puntogris.smartwear.utils.SharedPref
 import java.util.*
@@ -13,7 +13,7 @@ class WeatherRepositoryImpl(
     private val sharedPref: SharedPref
 ): WeatherRepository{
 
-    override suspend fun getWeather(location: Location): Weather {
+    override suspend fun getWeather(location: Location): WeatherResult {
         val units = sharedPref.weatherUnits()!!
         val language = getLanguageCode()
         val weather = weatherApi.getWeather(location = location, units = units, language = language)

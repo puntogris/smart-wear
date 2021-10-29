@@ -80,9 +80,9 @@ class WeatherFragment : BaseBindingFragment<FragmentWeatherBinding>(R.layout.fra
     private fun subscribeWeatherUi() {
         viewModel.weatherResult.observe(viewLifecycleOwner) {
             when (it) {
-                is WeatherResult.Success -> onSuccess(it.data)
-                WeatherResult.Error -> onError()
-                WeatherResult.Loading -> inProgress()
+                is Result.Success -> onSuccess(it.data)
+                is Result.Failure -> onError()
+                is Result.Loading -> inProgress()
             }
         }
     }

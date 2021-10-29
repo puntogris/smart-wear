@@ -1,6 +1,7 @@
 package com.puntogris.smartwear.presentation
 
 import android.app.Application
+import com.jakewharton.threetenabp.AndroidThreeTen
 import com.puntogris.smartwear.utils.ThemeUtils
 import dagger.hilt.android.HiltAndroidApp
 import javax.inject.Inject
@@ -13,5 +14,6 @@ class App : Application(){
     override fun onCreate() {
         super.onCreate()
         themeUtils.applyTheme()
+        AndroidThreeTen.init(this)
     }
 }

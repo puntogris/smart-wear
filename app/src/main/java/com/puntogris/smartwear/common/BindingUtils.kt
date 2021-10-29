@@ -15,19 +15,19 @@ import com.puntogris.smartwear.domain.model.Weather
 import kotlin.math.roundToInt
 
 @BindingAdapter("suggestionVisibility")
-fun ProgressBar.setSuggestionVisibility(locationResult: LocationResult?){
+fun ProgressBar.setSuggestionVisibility(locationResult: LocationResult?) {
     if (locationResult != null)
         isVisible = locationResult is LocationResult.Loading
 }
 
 @BindingAdapter("suggestionVisibility")
-fun ImageView.setSuggestionVisibility(locationResult: LocationResult?){
+fun ImageView.setSuggestionVisibility(locationResult: LocationResult?) {
     if (locationResult != null)
         isVisible = locationResult !is LocationResult.Loading
 }
 
 @BindingAdapter("suggestionVisibility")
-fun CardView.setSuggestionVisibility(locationResult: LocationResult?){
+fun CardView.setSuggestionVisibility(locationResult: LocationResult?) {
     if (locationResult != null)
         isVisible = locationResult is LocationResult.Success.GetLocations
 }
@@ -50,37 +50,14 @@ fun TextView.setCurrentWeather(weather: Weather?) {
 
 @BindingAdapter("weatherForecast")
 fun TextView.setWeatherForecast(weather: Weather?) {
-    if (weather == null) return
-
-    val today = weather.daily.first()
-    val temperature = resources.getString(
-        R.string.weather_today_min_max,
-        today.min.toString(),
-        today.max.toString()
-    )
-    
-
-    text = temperature
+    if (weather != null)
+        text = weather.forecast.events.map { it.buildSummary(context) }.joinToString(" ")
 }
-
-
 
 @BindingAdapter("doubleToStringPercentage")
 fun TextView.setDoubleToStringPercentage(double: Double) {
     val doubleText = (double * 100).toInt()
     text = context.getString(R.string.percentage_symbol, doubleText)
-}
-
-@BindingAdapter("getDataWithoutNull")
-fun TextView.setDataWithoutNull(data: String) {
-    text = if (data == "null") ""
-    else data
-}
-
-@BindingAdapter("setDate")
-fun TextView.setDate(date: String) {
-    text = if (date == "null") ""
-    else date.replace(".","")
 }
 
 @BindingAdapter("windSpeedToKmH")
