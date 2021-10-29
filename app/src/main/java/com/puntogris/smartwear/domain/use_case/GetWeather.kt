@@ -18,41 +18,29 @@ class GetWeather @Inject constructor(
             val weatherResult = repository.getWeather(location!!)
 
             val hoursAnalyzed = 8
-            val hourly = weatherResult.hourly.subList(0, hoursAnalyzed)
+            val hourlyWeather = weatherResult.hourly.subList(0, hoursAnalyzed)
 
-            val events = hashMapOf<String, ForecastEvent>()
+            val events = mutableListOf(
+                TemperatureRange(weatherResult.daily.first()),
+                RainEvent(),
+                WindEvent(),
+                HumidityEvent()
+            )
 
-            //todo think of a better idea to do this, as a last resource i could use maxby for each event
-
-            hourly.forEach {
-                if (it.precipitation > 0) {
-                    events["rain"] = RainEvent(it.precipitation)
+            with(events) {
+                forEach {
+                    if (it is EventfulEvent) it.analyze(hourlyWeather)
                 }
-                if (it.windSpeed > 0) {
-                    events["wind"] = WindEvent(it.windSpeed)
-                }
-                if (it.humidity > 0) {
-                    events["humidity"] = HumidityEvent(it.humidity)
-                }
-            }
 
-            events["temperature"] = TemperatureRange(weatherResult.daily.first())
-
-            events.values.removeIf {
-                it.isNotValid()
-            }
-
-            if (events.values.isEmpty() ||
-                events.values.size == 1 && events.values.first() is TemperatureRange
-            ) {
-                events["stable"] = StableEvent()
+                removeIf { it.isNotValid() }
+                if (isEmpty()) add(StableEvent())
             }
 
             val weather = Weather(
                 current = weatherResult.current,
                 daily = weatherResult.daily.first(),
                 forecast = Forecast(
-                    events = events.values.toList(),
+                    events = events,
                     time = TimeOfDay.withOffset(hoursAnalyzed)
                 )
             )
