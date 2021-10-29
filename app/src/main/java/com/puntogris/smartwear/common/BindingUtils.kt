@@ -51,7 +51,11 @@ fun TextView.setCurrentWeather(weather: Weather?) {
 @BindingAdapter("weatherForecast")
 fun TextView.setWeatherForecast(weather: Weather?) {
     if (weather != null)
-        text = weather.forecast.events.joinToString(" ") { it.buildSummary(context) }
+        text = weather.forecast.events
+            .filter { it.isValid() }
+            .joinToString(" ")
+            { it.buildSummary(context) }
+
 }
 
 @BindingAdapter("doubleToStringPercentage")

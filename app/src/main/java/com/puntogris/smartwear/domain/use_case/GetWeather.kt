@@ -21,20 +21,13 @@ class GetWeather @Inject constructor(
             val hourlyWeather = weatherResult.hourly.subList(0, hoursAnalyzed)
 
             val events = mutableListOf(
-                TemperatureRange(weatherResult.daily.first()),
-                RainEvent(),
-                WindEvent(),
-                HumidityEvent()
+                TemperatureEvent(weatherResult.daily.first()),
+                RainEvent(hourlyWeather),
+                WindEvent(hourlyWeather),
+                HumidityEvent(hourlyWeather)
             )
 
-            with(events) {
-                forEach {
-                    if (it is EventfulEvent) it.analyze(hourlyWeather)
-                }
-
-                removeIf { it.isNotValid() }
-                if (isEmpty()) add(StableEvent())
-            }
+            if (events.any { it is EventfulEvent && it.isValid() }) events.add(StableEvent())
 
             val weather = Weather(
                 current = weatherResult.current,
