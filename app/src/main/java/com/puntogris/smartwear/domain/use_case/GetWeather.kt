@@ -3,7 +3,10 @@ package com.puntogris.smartwear.domain.use_case
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import com.puntogris.smartwear.common.Result
-import com.puntogris.smartwear.domain.model.*
+import com.puntogris.smartwear.domain.model.Forecast
+import com.puntogris.smartwear.domain.model.Location
+import com.puntogris.smartwear.domain.model.Weather
+import com.puntogris.smartwear.domain.model.events.*
 import com.puntogris.smartwear.domain.repository.WeatherRepository
 import com.puntogris.smartwear.utils.TimeOfDay
 import javax.inject.Inject
@@ -20,14 +23,14 @@ class GetWeather @Inject constructor(
             val hoursAnalyzed = 8
             val hourlyWeather = weatherResult.hourly.subList(0, hoursAnalyzed)
 
-            val events = mutableListOf(
-                TemperatureEvent(weatherResult.daily.first()),
+            val events = mutableListOf<ForecastEvent>(
+                TemperatureEvent(weatherResult),
                 RainEvent(hourlyWeather),
                 WindEvent(hourlyWeather),
                 HumidityEvent(hourlyWeather)
             )
 
-            if (events.any { it is EventfulEvent && it.isValid() }) events.add(StableEvent())
+            if (events.filter { it !is TemperatureEvent }.all { !it.isValid() }) events.add(StableEvent())
 
             val weather = Weather(
                 current = weatherResult.current,

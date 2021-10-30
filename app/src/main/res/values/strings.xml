@@ -85,11 +85,11 @@
     <string name="precip_stop_rain_25">*There is a small change that it will stop raining later.\n\n</string>
     <string name="precip_start_rain_25">*There is a small change that it will start raining lather.\n\n</string>
 
-    <string name="temp_raise_a_lot">*The temperature will increase a lot later.\n\n</string>
-    <string name="temp_decrese_a_lot">*The temperature will decrease a lot later.\n\n</string>
-    <string name="temp_raise_a_little">*The temperature will increase a little later\n\n</string>
-    <string name="temp_decrese_a_little">*The temperature will decrease a little later.\n\n</string>
-    <string name="temp_not_changing">*The temperature will not change for a few hours.\n\n</string>
+    <string name="temp_raise_a_lot">,will increase a lot later.\n\n</string>
+    <string name="temp_decrese_a_lot">, will decrease a lot later.\n\n</string>
+    <string name="temp_raise_a_little">, will increase a little later\n\n</string>
+    <string name="temp_decrese_a_little">, will decrease a little later.\n\n</string>
+    <string name="temp_not_changing">, will not change for a few hours.\n\n</string>
     <string name="show_clothing_recommendations">Show clothing recommendations</string>
 
     <!-- Arrays -->

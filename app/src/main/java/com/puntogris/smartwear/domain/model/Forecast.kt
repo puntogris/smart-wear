@@ -1,5 +1,6 @@
 package com.puntogris.smartwear.domain.model
 
+import com.puntogris.smartwear.domain.model.events.ForecastEvent
 import com.puntogris.smartwear.utils.TimeOfDay
 
 class Forecast(
