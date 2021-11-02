@@ -43,6 +43,7 @@
     <string name="privacy_policy">Privacy policy</string>
     <string name="pref_privacy_policy_url" translatable="false">https://smartwear.puntogris.com/information/privacy-policy.html</string>
     <string name="pref_terms_and_conditions_url" translatable="false">https://smartwear.puntogris.com/information/terms-and-conditions.html</string>
+    <string name="settings_label">Configuración</string>
 
     <!-- Snack -->
     <string name="snack_connection_error">Ocurrio un error. Intenta nuevamente en un momento.</string>
@@ -50,9 +51,6 @@
     <string name="snack_location_updated_success">Location updated</string>
 
     <!-- Weather -->
-    <string name="temperature_celsius" translatable="false">%1$d \u2103</string>
-    <string name="percentage_symbol" translatable="false">%1$d %%.</string>
-    <string name="kmh_symbol" translatable="false">%1$d km/h.</string>
     <string name="current_weather_temp_description">Ahora %1$s , %2$s.</string>
     <string name="weather_today_min_max">• Temperaturas entre %1$s y %2$s.</string>
     <string name="forecast_precipitation">• %1$s chance of rain.</string>

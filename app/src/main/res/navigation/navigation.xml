@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/preferencesFragment"
         android:name="com.puntogris.smartwear.presentation.settings.PreferencesFragment"
-        android:label="Settings" />
+        android:label="@string/settings_label" />
     <fragment
         android:id="@+id/weatherFragment"
         android:name="com.puntogris.smartwear.presentation.weather.WeatherFragment"

@@ -5,7 +5,7 @@ import com.puntogris.smartwear.data.data_source.remote.dto.LocationDto
 import com.puntogris.smartwear.data.data_source.remote.dto.WeatherDto
 import com.puntogris.smartwear.domain.model.*
 import com.puntogris.smartwear.domain.model.conditions.Humidity
-import com.puntogris.smartwear.domain.model.conditions.Rain
+import com.puntogris.smartwear.domain.model.conditions.Precipitation
 import com.puntogris.smartwear.domain.model.conditions.Temperature
 import com.puntogris.smartwear.domain.model.conditions.Wind
 
@@ -61,7 +61,7 @@ fun WeatherDto.toDomain(units: String): WeatherResult {
                 temperature = Temperature.from(it.temp, units),
                 humidity = Humidity(it.humidity),
                 windSpeed = Wind.from(it.windSpeed, units),
-                precipitation = Rain(it.precipitation.toInt())
+                precipitation = Precipitation(it.precipitation.toInt())
             )
         },
         units

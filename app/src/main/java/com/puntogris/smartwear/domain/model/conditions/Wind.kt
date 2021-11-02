@@ -2,7 +2,7 @@ package com.puntogris.smartwear.domain.model.conditions
 
 import com.puntogris.smartwear.common.constants.Constants
 
-sealed class Wind(value: Int) : Condition(value) {
+sealed class Wind(value: Int) : WeatherCondition(value) {
 
     class MetersPerSecond(value: Int) : Wind(value) {
         override fun asString(): String = "$value m/s"

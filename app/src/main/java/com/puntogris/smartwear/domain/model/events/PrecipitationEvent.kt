@@ -2,20 +2,20 @@ package com.puntogris.smartwear.domain.model.events
 
 import android.content.Context
 import com.puntogris.smartwear.R
-import com.puntogris.smartwear.data.data_source.Condition
 import com.puntogris.smartwear.domain.model.WeatherResult
+import com.puntogris.smartwear.domain.model.conditions.WeatherCondition
 
-class RainEvent(private val weatherResult: WeatherResult, hoursAnalyzed: Int) :
+class PrecipitationEvent(private val weatherResult: WeatherResult, hoursAnalyzed: Int) :
     RecommendationEvent() {
 
     override val metricReferenceValue: Int = 14
 
     override val summaryRes: Int = R.string.forecast_precipitation
 
-    override val eventValues: List<Condition> =
+    override val eventConditions: List<WeatherCondition> =
         weatherResult.hourly.subList(0, hoursAnalyzed).map { it.precipitation }
 
-    override val getMaxCondition: Condition? = eventValues.maxByOrNull { it.value }
+    override val getMaxCondition: WeatherCondition? = eventConditions.maxByOrNull { it.value }
 
     override fun buildRecommendation(context: Context): String {
         val current = weatherResult.hourly.first().precipitation.metricValue()

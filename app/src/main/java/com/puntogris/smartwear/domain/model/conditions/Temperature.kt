@@ -2,7 +2,7 @@ package com.puntogris.smartwear.domain.model.conditions
 
 import com.puntogris.smartwear.common.constants.Constants
 
-sealed class Temperature(value: Int) : Condition(value) {
+sealed class Temperature(value: Int) : WeatherCondition(value) {
 
     class Celsius(value: Int) : Temperature(value) {
         override fun asString(): String = "$value °C"

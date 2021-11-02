@@ -124,3 +124,4 @@ fun Fragment.launchWebBrowserIntent(uri: String, packageName: String? = null){
         //handle error
     }
 }
+fun <Any>List<Any>.half() = this[size/ 2]

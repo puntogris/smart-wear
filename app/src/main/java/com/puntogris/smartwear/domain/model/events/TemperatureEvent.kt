@@ -2,7 +2,6 @@ package com.puntogris.smartwear.domain.model.events
 
 import android.content.Context
 import com.puntogris.smartwear.R
-import com.puntogris.smartwear.data.data_source.Condition
 import com.puntogris.smartwear.domain.model.WeatherResult
 import com.puntogris.smartwear.utils.TimeOfDay
 
@@ -13,9 +12,7 @@ class TemperatureEvent(
 ) : RecommendationEvent() {
 
     override val summaryRes: Int = R.string.weather_today_min_max
-    override val metricReferenceValue: Int = 0
-
-    override val getMaxCondition: Condition? = null
+    override val eventConditions = weather.hourly.subList(0, hoursAnalyzed).map { it.temperature }
 
     override fun buildSummary(context: Context): String {
         val today = weather.daily.first()
@@ -24,8 +21,8 @@ class TemperatureEvent(
             today.min.asString(),
             today.max.asString()
         )
-        val futureTempForecastSummary = getFutureCondition(context, timeOfDay)
-        return maxTempSummary + futureTempForecastSummary
+        val temperatureVariation = getTemperatureForecastVariation(context, timeOfDay)
+        return maxTempSummary + temperatureVariation
     }
 
     override fun buildRecommendation(context: Context): String {
@@ -43,14 +40,10 @@ class TemperatureEvent(
         return context.getString(res)
     }
 
-    override val eventValues: List<Condition> =
-        weather.hourly.subList(0, hoursAnalyzed).map { it.temperature }
-
-
-    private fun getFutureCondition(context: Context, timeOfDay: TimeOfDay): String {
-        val first: Int = eventValues.first().metricValue()
-        val middle: Int = eventValues[eventValues.size / 2].metricValue()
-        val last: Int = eventValues.last().metricValue()
+    private fun getTemperatureForecastVariation(context: Context, timeOfDay: TimeOfDay): String {
+        val first: Int = eventConditions.first().metricValue()
+        val middle: Int = eventConditions.half().metricValue()
+        val last: Int = eventConditions.last().metricValue()
 
         val res = when {
             middle in (first + 1) until last -> R.string.temp_raise_a_lot
@@ -64,5 +57,5 @@ class TemperatureEvent(
     }
 
     override fun isValid(): Boolean = true
-
 }
+

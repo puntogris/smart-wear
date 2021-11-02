@@ -31,7 +31,7 @@ class GetWeather @Inject constructor(private val repository: WeatherRepository) 
 
         val events = mutableListOf<ForecastEvent>(
             TemperatureEvent(weatherResult, hoursAnalyzed, timeOfDay),
-            RainEvent(weatherResult, hoursAnalyzed),
+            PrecipitationEvent(weatherResult, hoursAnalyzed),
             WindEvent(weatherResult, hoursAnalyzed),
             HumidityEvent(weatherResult, hoursAnalyzed)
         )

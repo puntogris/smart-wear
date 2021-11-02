@@ -1,14 +1,14 @@
 package com.puntogris.smartwear.domain.model.events
 
 import android.content.Context
-import com.puntogris.smartwear.data.data_source.Condition
+import com.puntogris.smartwear.domain.model.conditions.WeatherCondition
 
 abstract class DetailedEvent: ForecastEvent {
 
-    abstract val eventValues: List<Condition>
-    abstract val metricReferenceValue: Int
+    abstract val eventConditions: List<WeatherCondition>
+    open val metricReferenceValue: Int = 0
 
-    abstract val getMaxCondition: Condition?
+    open val getMaxCondition: WeatherCondition? = null
 
     override fun buildSummary(context: Context): String {
         return context.getString(
