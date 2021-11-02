@@ -41,8 +41,8 @@
     <string name="open_source_licenses">Open source licenses</string>
     <string name="terms_and_conditions">Terms and conditions</string>
     <string name="privacy_policy">Privacy policy</string>
-    <string name="pref_privacy_policy_url" translatable="false">https://postureapp.puntogris.com/information/privacy-policy.html</string>
-    <string name="pref_terms_and_conditions_url" translatable="false">https://postureapp.puntogris.com/information/terms-and-conditions.html</string>
+    <string name="pref_privacy_policy_url" translatable="false">https://smartwear.puntogris.com/information/privacy-policy.html</string>
+    <string name="pref_terms_and_conditions_url" translatable="false">https://smartwear.puntogris.com/information/terms-and-conditions.html</string>
 
     <!-- Snack -->
     <string name="snack_connection_error">Ocurrio un error. Intenta nuevamente en un momento.</string>
@@ -53,11 +53,11 @@
     <string name="temperature_celsius" translatable="false">%1$d \u2103</string>
     <string name="percentage_symbol" translatable="false">%1$d %%.</string>
     <string name="kmh_symbol" translatable="false">%1$d km/h.</string>
-    <string name="current_weather_temp_description">Ahora %1$s C , %2$s.</string>
-    <string name="weather_today_min_max">• Temperaturas entre %1$s C y %2$s C.</string>
+    <string name="current_weather_temp_description">Ahora %1$s , %2$s.</string>
+    <string name="weather_today_min_max">• Temperaturas entre %1$s y %2$s.</string>
     <string name="forecast_precipitation">• %1$s chance of rain.</string>
     <string name="forecast_wind">• Vientos de hasta %1$s.</string>
-    <string name="forecast_humidity">• La humedad alcanzara %1$s.</string>
+    <string name="forecast_humidity">• La humedad alcanzara un %1$s.</string>
     <string name="forecast_stable">• El clima será estable.</string>
 
     <!-- Temperature summary -->

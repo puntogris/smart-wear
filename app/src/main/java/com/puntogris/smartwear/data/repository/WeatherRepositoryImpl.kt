@@ -11,13 +11,17 @@ import java.util.*
 class WeatherRepositoryImpl(
     private val weatherApi: WeatherApi,
     private val sharedPref: SharedPref
-): WeatherRepository{
+) : WeatherRepository {
 
     override suspend fun getWeather(location: Location): WeatherResult {
         val units = sharedPref.weatherUnits()!!
         val language = getLanguageCode()
-        val weather = weatherApi.getWeather(location = location, units = units, language = language)
-        return weather.toDomain()
+        val weather = weatherApi.getWeather(
+            location = location,
+            units = units,
+            language = language
+        )
+        return weather.toDomain(units)
     }
 
     private fun getLanguageCode(): String {

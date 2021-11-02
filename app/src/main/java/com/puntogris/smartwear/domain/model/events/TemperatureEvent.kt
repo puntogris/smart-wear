@@ -2,28 +2,34 @@ package com.puntogris.smartwear.domain.model.events
 
 import android.content.Context
 import com.puntogris.smartwear.R
+import com.puntogris.smartwear.data.data_source.Condition
 import com.puntogris.smartwear.domain.model.WeatherResult
 import com.puntogris.smartwear.utils.TimeOfDay
 
-class TemperatureEvent(private val weather: WeatherResult, private val timeOfDay: TimeOfDay) :
-    RecommendationEvent() {
+class TemperatureEvent(
+    private val weather: WeatherResult,
+    hoursAnalyzed: Int,
+    private val timeOfDay: TimeOfDay
+) : RecommendationEvent() {
 
     override val summaryRes: Int = R.string.weather_today_min_max
-    override val referenceValue: Int = 0
-    override val eventValues: List<Int> = weather.hourly.map { it.temperature.toInt() }
+    override val metricReferenceValue: Int = 0
+
+    override val getMaxCondition: Condition? = null
 
     override fun buildSummary(context: Context): String {
+        val today = weather.daily.first()
         val maxTempSummary = context.getString(
             summaryRes,
-            weather.daily.first().min,
-            weather.daily.first().max
+            today.min.asString(),
+            today.max.asString()
         )
         val futureTempForecastSummary = getFutureCondition(context, timeOfDay)
         return maxTempSummary + futureTempForecastSummary
     }
 
     override fun buildRecommendation(context: Context): String {
-        val res = when (weather.current.temperature.toInt()) {
+        val res = when (weather.current.temperature.metricValue()) {
             in Int.MIN_VALUE..0 -> R.string.temp_minus_0
             in 1..9 -> R.string.temp_1_9
             in 10..14 -> R.string.temp_10_14
@@ -37,10 +43,14 @@ class TemperatureEvent(private val weather: WeatherResult, private val timeOfDay
         return context.getString(res)
     }
 
+    override val eventValues: List<Condition> =
+        weather.hourly.subList(0, hoursAnalyzed).map { it.temperature }
+
+
     private fun getFutureCondition(context: Context, timeOfDay: TimeOfDay): String {
-        val first: Int = eventValues.first()
-        val middle: Int = eventValues[eventValues.size / 2]
-        val last: Int = eventValues.last()
+        val first: Int = eventValues.first().metricValue()
+        val middle: Int = eventValues[eventValues.size / 2].metricValue()
+        val last: Int = eventValues.last().metricValue()
 
         val res = when {
             middle in (first + 1) until last -> R.string.temp_raise_a_lot

@@ -4,6 +4,10 @@ import com.puntogris.smartwear.data.data_source.local.model.LocationEntity
 import com.puntogris.smartwear.data.data_source.remote.dto.LocationDto
 import com.puntogris.smartwear.data.data_source.remote.dto.WeatherDto
 import com.puntogris.smartwear.domain.model.*
+import com.puntogris.smartwear.domain.model.conditions.Humidity
+import com.puntogris.smartwear.domain.model.conditions.Rain
+import com.puntogris.smartwear.domain.model.conditions.Temperature
+import com.puntogris.smartwear.domain.model.conditions.Wind
 
 
 fun LocationEntity.toDomain(): Location {
@@ -39,26 +43,27 @@ fun Location.toEntity(): LocationEntity {
     )
 }
 
-fun WeatherDto.toDomain(): WeatherResult {
+fun WeatherDto.toDomain(units: String): WeatherResult {
     return WeatherResult(
         Current(
-            temperature = current.temperature,
+            temperature = Temperature.from(current.temperature, units),
             description = current.weather.first().description,
             icon = current.weather.first().icon
         ),
         daily.map {
             Daily(
-                min = it.temperature.min,
-                max = it.temperature.max,
+                min = Temperature.from(it.temperature.min, units),
+                max = Temperature.from(it.temperature.max, units),
             )
         },
         hourly.map {
             Hourly(
-                temperature = it.temp,
-                humidity = it.humidity,
-                windSpeed = it.windSpeed,
-                precipitation = it.precipitation
+                temperature = Temperature.from(it.temp, units),
+                humidity = Humidity(it.humidity),
+                windSpeed = Wind.from(it.windSpeed, units),
+                precipitation = Rain(it.precipitation.toInt())
             )
-        }
+        },
+        units
     )
 }

@@ -43,7 +43,7 @@ fun TextView.setCurrentWeather(weather: Weather?) {
     if (weather != null)
         text = resources.getString(
             R.string.current_weather_temp_description,
-            weather.current.temperature.toString(),
+            weather.current.temperature.asString(),
             weather.current.description
         )
 }

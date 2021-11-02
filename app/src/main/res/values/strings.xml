@@ -53,12 +53,22 @@
     <string name="temperature_celsius" translatable="false">%1$d \u2103</string>
     <string name="percentage_symbol" translatable="false">%1$d %%.</string>
     <string name="kmh_symbol" translatable="false">%1$d km/h.</string>
-    <string name="current_weather_temp_description">Now %1$s C , %2$s.</string>
-    <string name="weather_today_min_max">• Temperatures between %1$s C and %2$s C.</string>
+    <string name="current_weather_temp_description">Now %1$s , %2$s.</string>
+    <string name="weather_today_min_max">• Temperatures between %1$s and %2$s.</string>
     <string name="forecast_precipitation">• %1$s chance of rain.</string>
     <string name="forecast_wind">• Winds speeds up to %1$s.</string>
     <string name="forecast_humidity">• The humidity will reach %1$s.</string>
     <string name="forecast_stable">• The weather will be stable.</string>
+    
+    <string name="temp_metric" translatable="false">°C</string>
+    <string name="temp_standard" translatable="false">°K</string>
+    <string name="temp_imperial" translatable="false">°F</string>
+
+    <string name="wind_metric" translatable="false">m/s</string>
+    <string name="wind_standard" translatable="false">m/s</string>
+    <string name="wind_imperial" translatable="false">mph</string>
+
+    <string name="percentage_unit" translatable="false">%</string>
 
     <!-- Temperature summary -->
     <string name="temp_raise_a_lot">, increasing quite a bit</string>
