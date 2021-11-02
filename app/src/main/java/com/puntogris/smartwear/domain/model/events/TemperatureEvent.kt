@@ -3,19 +3,23 @@ package com.puntogris.smartwear.domain.model.events
 import android.content.Context
 import com.puntogris.smartwear.R
 import com.puntogris.smartwear.domain.model.WeatherResult
+import com.puntogris.smartwear.utils.TimeOfDay
 
-class TemperatureEvent(private val weather: WeatherResult) : RecommendationEvent() {
+class TemperatureEvent(private val weather: WeatherResult, private val timeOfDay: TimeOfDay) :
+    RecommendationEvent() {
 
     override val summaryRes: Int = R.string.weather_today_min_max
     override val referenceValue: Int = 0
     override val eventValues: List<Int> = weather.hourly.map { it.temperature.toInt() }
 
     override fun buildSummary(context: Context): String {
-        val a = context.getString(summaryRes, weather.daily.first().min, weather.daily.first().max)
-        //todo join the second part using the timeutils
-        //something like - increasing a lot in the afternoon
-        val b = context.getString(getFutureCondition()!!)
-        return a + b
+        val maxTempSummary = context.getString(
+            summaryRes,
+            weather.daily.first().min,
+            weather.daily.first().max
+        )
+        val futureTempForecastSummary = getFutureCondition(context, timeOfDay)
+        return maxTempSummary + futureTempForecastSummary
     }
 
     override fun buildRecommendation(context: Context): String {
@@ -33,18 +37,20 @@ class TemperatureEvent(private val weather: WeatherResult) : RecommendationEvent
         return context.getString(res)
     }
 
-    private fun getFutureCondition(): Int? {
+    private fun getFutureCondition(context: Context, timeOfDay: TimeOfDay): String {
         val first: Int = eventValues.first()
         val middle: Int = eventValues[eventValues.size / 2]
         val last: Int = eventValues.last()
 
-        return when {
+        val res = when {
             middle in (first + 1) until last -> R.string.temp_raise_a_lot
             first < middle || middle < last -> R.string.temp_raise_a_little
-            middle in (last + 1) until first -> R.string.temp_decrese_a_lot
-            first > middle || middle > last -> R.string.temp_decrese_a_little
-            else -> null
+            middle in (last + 1) until first -> R.string.temp_decrease_a_lot
+            first > middle || middle > last -> R.string.temp_decrease_a_little
+            else -> R.string.temp_not_changing
         }
+
+        return context.getString(res) + " " + context.getString(timeOfDay.res)
     }
 
     override fun isValid(): Boolean = true

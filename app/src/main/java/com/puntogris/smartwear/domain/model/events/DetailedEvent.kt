@@ -1,7 +1,6 @@
 package com.puntogris.smartwear.domain.model.events
 
 import android.content.Context
-import com.puntogris.smartwear.R
 
 abstract class DetailedEvent: ForecastEvent {
     abstract val eventValues: List<Int>
@@ -11,7 +10,7 @@ abstract class DetailedEvent: ForecastEvent {
         get() = eventValues.maxOrNull() ?: 0
 
     override fun buildSummary(context: Context): String {
-        return context.getString(R.string.forecast_wind, eventValue.toString())
+        return context.getString(summaryRes, eventValue.toString())
     }
 
     override fun isValid(): Boolean = eventValue > referenceValue

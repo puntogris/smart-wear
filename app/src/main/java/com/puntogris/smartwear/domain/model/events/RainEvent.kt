@@ -15,8 +15,8 @@ class RainEvent(private val hourly: List<Hourly>) : RecommendationEvent() {
         val current = hourly.first().precipitation.toInt()
 
         val res = when (current) {
-            in 14..59 -> R.string.precip_15_60
-            else -> R.string.precip_60
+            in 14..59 -> R.string.precipitation_15_60
+            else -> R.string.precipitation_60
         }
         return context.getString(res)
     }

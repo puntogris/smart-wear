@@ -31,17 +31,6 @@
     <string name="search_location_hint">City, State, Country..</string>
     <string name="forecast_location_name_title">For %1$s:</string>
 
-    <!-- Weather -->
-    <string name="temperature_celsius" translatable="false">%1$d \u2103</string>
-    <string name="percentage_symbol" translatable="false">%1$d %%.</string>
-    <string name="kmh_symbol" translatable="false">%1$d km/h.</string>
-    <string name="current_weather_temp_description">Now %1$s C , %2$s.</string>
-    <string name="weather_today_min_max">• Temperatures between %1$s C and %2$s C.</string>
-    <string name="forecast_precipitation">• %1$s chance of rain.</string>
-    <string name="forecast_wind">• Winds speeds up to %1$s.</string>
-    <string name="forecast_humidity">• The humidity will reach %1$s.</string>
-    <string name="forecast_stable">• The weather will be stable.</string>
-
     <!-- Settings -->
     <string name="version">Version</string>
     <string name="version_name">Version %1$s</string>
@@ -60,37 +49,41 @@
     <string name="snack_query_required">Location can\'t be empty.</string>
     <string name="snack_location_updated_success">Location updated</string>
 
+    <!-- Weather -->
+    <string name="temperature_celsius" translatable="false">%1$d \u2103</string>
+    <string name="percentage_symbol" translatable="false">%1$d %%.</string>
+    <string name="kmh_symbol" translatable="false">%1$d km/h.</string>
+    <string name="current_weather_temp_description">Now %1$s C , %2$s.</string>
+    <string name="weather_today_min_max">• Temperatures between %1$s C and %2$s C.</string>
+    <string name="forecast_precipitation">• %1$s chance of rain.</string>
+    <string name="forecast_wind">• Winds speeds up to %1$s.</string>
+    <string name="forecast_humidity">• The humidity will reach %1$s.</string>
+    <string name="forecast_stable">• The weather will be stable.</string>
+
+    <!-- Temperature summary -->
+    <string name="temp_raise_a_lot">, increasing quite a bit</string>
+    <string name="temp_decrease_a_lot">, decreasing quite a bit</string>
+    <string name="temp_raise_a_little">, increasing a bit</string>
+    <string name="temp_decrease_a_little">, decreasing a bit</string>
+    <string name="temp_not_changing">, will not change for a few hours</string>
+    <string name="morning">until the morning.</string>
+    <string name="afternoon">until the afternoon.</string>
+    <string name="evening">until the evening.</string>
+    <string name="night">until the night.</string>
+
     <!-- Clothing -->
-    <string name="temp_minus_0">*Danger! Winter is coming, time to wear all your closet at the same time!\n\n</string>
-    <string name="temp_1_9">*It very cold outside. Get a sweater or a winter jacket, also do not forget your scarf and gloves.\n\n</string>
-    <string name="temp_10_14">*Do not underestimate this cold weather, you will need a sweater and a cup of hot chocolate.\n\n</string>
-    <string name="temp_15_19">*With a light jacket or sweater you will be fine.\n\n</string>
-    <string name="temp_20_29">*Such a nice weather, perfect for jeans and a t-shirt.\n\n</string>
-    <string name="temp_30_34">*Time to get those shorts and invite yourself to a friends house with a swimming pool.\n\n</string>
-    <string name="temp_35_39">*Dip in the pool, get your clothes of first, hello?..u there?\n\n</string>
-    <string name="temp_max_40">*Red alert! Going outside will melt your brain.\n\n</string>
+    <string name="temp_minus_0">*Danger! Winter is coming, time to wear all your closet at the same time!</string>
+    <string name="temp_1_9">*It very cold outside. Get a sweater or a winter jacket, also do not forget your scarf and gloves.</string>
+    <string name="temp_10_14">*Do not underestimate this cold weather, you will need a sweater and a cup of hot chocolate.</string>
+    <string name="temp_15_19">*With a light jacket or sweater you will be fine.</string>
+    <string name="temp_20_29">*Such a nice weather, perfect for jeans and a t-shirt.</string>
+    <string name="temp_30_34">*Time to get those shorts and invite yourself to a friends house with a swimming pool.</string>
+    <string name="temp_35_39">*Dip in the pool, get your clothes of first, hello?..u there?</string>
+    <string name="temp_max_40">*Red alert! Going outside will melt your brain.</string>
     <string name="temp_error">*This is illegal.</string>
 
-    <string name="precip_15_60">*It might start raining right now.\n\n</string>
-    <string name="precip_60">*There is a high probability of raining right now.\n\n</string>
-
-    <string name="humidity_89">*So much humidity, yuck.\n\n</string>
-
-    <string name="wind_1">*So much wind! Try to not fly away.\n\n</string>
-    <string name="wind_2">*So much wind! If you go out do not forget to close all the windows.\n\n</string>
-    <string name="no_wind">*The wind is peaceful today, its a perfect day to use your new wig.\n\n</string>
-
-    <string name="precip_start_rain_50">*There is a high change that it will start raining later!\n\n</string>
-    <string name="precip_stop_rain_50">*There is a high change that it will stop raining later!\n\n</string>
-    <string name="precip_stop_rain_25">*There is a small change that it will stop raining later.\n\n</string>
-    <string name="precip_start_rain_25">*There is a small change that it will start raining lather.\n\n</string>
-
-    <string name="temp_raise_a_lot">,will increase a lot later.\n\n</string>
-    <string name="temp_decrese_a_lot">, will decrease a lot later.\n\n</string>
-    <string name="temp_raise_a_little">, will increase a little later\n\n</string>
-    <string name="temp_decrese_a_little">, will decrease a little later.\n\n</string>
-    <string name="temp_not_changing">, will not change for a few hours.\n\n</string>
-    <string name="show_clothing_recommendations">Show clothing recommendations</string>
+    <string name="precipitation_15_60">*It might start raining right now.</string>
+    <string name="precipitation_60">*There is a high probability of raining right now.</string>
 
     <!-- Arrays -->
     <!-- Theme -->
@@ -118,5 +111,4 @@
         <item>imperial</item>
         <item>metric</item>
     </string-array>
-
 </resources>

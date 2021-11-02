@@ -11,9 +11,7 @@ import com.puntogris.smartwear.domain.repository.WeatherRepository
 import com.puntogris.smartwear.utils.TimeOfDay
 import javax.inject.Inject
 
-class GetWeather @Inject constructor(
-    private val repository: WeatherRepository
-) {
+class GetWeather @Inject constructor(private val repository: WeatherRepository) {
 
     operator fun invoke(location: Location?): LiveData<Result<Weather>> = liveData {
         try {
@@ -22,22 +20,23 @@ class GetWeather @Inject constructor(
 
             val hoursAnalyzed = 8
             val hourlyWeather = weatherResult.hourly.subList(0, hoursAnalyzed)
+            val timeOfDay = TimeOfDay.withOffset(hoursAnalyzed)
 
             val events = mutableListOf<ForecastEvent>(
-                TemperatureEvent(weatherResult),
+                TemperatureEvent(weatherResult, timeOfDay),
                 RainEvent(hourlyWeather),
                 WindEvent(hourlyWeather),
                 HumidityEvent(hourlyWeather)
             )
 
-            if (events.filter { it !is TemperatureEvent }.all { !it.isValid() }) events.add(StableEvent())
+            if (eventAreEmptyOrNotValid(events)) events.add(StableEvent())
 
             val weather = Weather(
                 current = weatherResult.current,
                 daily = weatherResult.daily.first(),
                 forecast = Forecast(
                     events = events,
-                    time = TimeOfDay.withOffset(hoursAnalyzed)
+                    time = timeOfDay
                 )
             )
 
@@ -46,5 +45,8 @@ class GetWeather @Inject constructor(
             emit(Result.Failure(e))
         }
     }
+
+    private fun eventAreEmptyOrNotValid(events: List<ForecastEvent>) =
+        events.filter { it !is TemperatureEvent }.all { !it.isValid() }
 }
 

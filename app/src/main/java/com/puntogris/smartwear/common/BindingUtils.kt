@@ -55,7 +55,6 @@ fun TextView.setWeatherForecast(weather: Weather?) {
             .filter { it.isValid() }
             .joinToString(" ")
             { it.buildSummary(context) }
-
 }
 
 @BindingAdapter("clothingRecommendation")
