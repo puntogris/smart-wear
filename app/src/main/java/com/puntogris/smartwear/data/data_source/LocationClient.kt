@@ -10,13 +10,18 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
+@SuppressLint("MissingPermission")
 class LocationClient @Inject constructor(@ApplicationContext context: Context) {
 
     private val fusedLocationClient = LocationServices.getFusedLocationProviderClient(context)
     private val cancellationToken = CancellationTokenSource().token
 
     @SuppressLint("MissingPermission")
-    suspend fun requestLocation(): Location {
+    suspend fun requestLocation(): Location = getLastLocation() ?: getCurrentLocation()
+
+    private suspend fun getLastLocation() = fusedLocationClient.lastLocation.await()
+
+    private suspend fun getCurrentLocation(): Location {
         return fusedLocationClient.getCurrentLocation(
             LocationRequest.PRIORITY_HIGH_ACCURACY,
             cancellationToken
