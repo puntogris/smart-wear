@@ -13,4 +13,4 @@ Used in this project:</br>
   * Vuepress
   
 ## Screenshots
-<img src="https://smartwear.puntogris.com/img/1.png" width=250> <img src="https://smartwear.puntogris.com/img/2.png" width=250> <img src="https://smartwear.puntogris.com/img/3.png" width=250>
+<img src="https://github.com/puntogris/smart-wear/blob/master/screenshots/11.png" width=250> <img src="https://github.com/puntogris/smart-wear/blob/master/screenshots/image2.png" width=250> <img src="https://github.com/puntogris/smart-wear/blob/master/screenshots/3.png" width=250>
