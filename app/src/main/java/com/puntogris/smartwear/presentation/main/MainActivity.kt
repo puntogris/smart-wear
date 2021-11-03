@@ -21,7 +21,7 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>(R.layout.activity_
     private val viewModel: MainViewModel by viewModels()
 
     override fun preInitializeViews() {
-        setTheme(R.style.AppTheme)
+        setTheme(R.style.SmartWear_Theme_DayNight)
     }
 
     override fun initializeViews() {

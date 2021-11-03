@@ -44,6 +44,10 @@
     <string name="pref_privacy_policy_url" translatable="false">https://smartwear.puntogris.com/information/privacy-policy.html</string>
     <string name="pref_terms_and_conditions_url" translatable="false">https://smartwear.puntogris.com/information/terms-and-conditions.html</string>
     <string name="settings_label">Configuración</string>
+    <string name="theme">Temas</string>
+    <string name="units">Unidades</string>
+    <string name="transparency">Transparecia</string>
+    <string name="appearance">Apariencia</string>
 
     <!-- Snack -->
     <string name="snack_connection_error">Ocurrio un error. Intenta nuevamente en un momento.</string>
@@ -86,4 +90,18 @@
     <!-- Other -->
     <string name="empty_location_holder">No encontramos nada por aquí, te invitamos a que busques una localidad o actives la ubicación automatica.</string>
 
+    <!-- Arrays -->
+    <!-- Theme -->
+    <string-array name="theme_names">
+        <item>Claro</item>
+        <item>Oscuro</item>
+        <item>Sistema</item>
+    </string-array>
+
+    <!-- Units -->
+    <string-array name="units_names">
+        <item>Estandar</item>
+        <item>Imperial</item>
+        <item>Métrico</item>
+    </string-array>
 </resources>

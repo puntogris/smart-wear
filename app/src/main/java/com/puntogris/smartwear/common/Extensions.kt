@@ -73,11 +73,11 @@ inline fun PreferenceFragmentCompat.preference(key: String, block: Preference.()
 
 inline fun <T : Preference> PreferenceFragmentCompat.preferenceChange(
     key: String,
-    crossinline block: Preference.() -> Unit
+    crossinline block: (Any) -> Unit
 ) {
     findPreference<T>(key)?.apply {
-        setOnPreferenceChangeListener { _, _ ->
-            block(this)
+        setOnPreferenceChangeListener { _, newValue ->
+            block(newValue)
             true
         }
     }

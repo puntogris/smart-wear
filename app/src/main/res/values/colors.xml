@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#FF5F64</color>
-    <color name="colorPrimaryDark">#5C6BC0</color>
-    <color name="colorAccent">#3B426B</color>
-    <color name="background">#0091D1</color>
-    <color name="iconWeatherColor">#FFFFFF</color>
-    <color name="splashColor">#9C27B0</color>
-    <color name="splashColor_90">#E69C27B0</color>
-    <color name="grey_5">#f2f2f2</color>
-    <color name="grey_3">#FCFCFC</color>
+<!--    <color name="colorPrimary">#FF5F64</color>-->
+<!--    <color name="colorPrimaryDark">#5C6BC0</color>-->
+<!--    <color name="colorAccent">#3B426B</color>-->
+<!--    <color name="background">#0091D1</color>-->
+<!--    <color name="iconWeatherColor">#FFFFFF</color>-->
+<!--    <color name="splashColor">#9C27B0</color>-->
+<!--    <color name="splashColor_90">#E69C27B0</color>-->
+<!--    <color name="grey_5">#f2f2f2</color>-->
+<!--    <color name="grey_3">#FCFCFC</color>-->
+
+
+<!--    android:textColor="#252525"-->
 
 </resources>

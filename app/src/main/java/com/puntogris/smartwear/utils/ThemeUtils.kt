@@ -5,8 +5,8 @@ import javax.inject.Inject
 
 class ThemeUtils @Inject constructor(private val sharedPref: SharedPref){
 
-    fun applyTheme(){
-        when(sharedPref.appTheme()){
+    fun applyTheme(value: String? = null){
+        when(value ?: sharedPref.appTheme()){
             LIGHT -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             DARK -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             else -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)

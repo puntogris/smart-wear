@@ -23,7 +23,7 @@
     <string name="location_message">*For a better experience turn on the location in your device</string>
     <string name="snack_location_required">We need access to your location in order to provide you the weather.</string>
     <string name="request_location_title">We need access to your location</string>
-    <string name="request_location_subtitle2">Do not worry, we will only use this \nwhen the app is active.</string>
+    <string name="request_location_subtitle2">Do not worry, we will only use this when the app is active.</string>
     <string name="request_location_subtitle1">Our app uses this data to get a more accurate result on the weather forecast</string>
     <string name="enter_location_title">ENTER A LOCATION:</string>
     <string name="today_forecast_title">TODAY\'S FORECAST</string>
@@ -44,6 +44,10 @@
     <string name="pref_privacy_policy_url" translatable="false">https://postureapp.puntogris.com/information/privacy-policy.html</string>
     <string name="pref_terms_and_conditions_url" translatable="false">https://postureapp.puntogris.com/information/terms-and-conditions.html</string>
     <string name="settings_label">Settings</string>
+    <string name="theme">Themes</string>
+    <string name="units">Units</string>
+    <string name="transparency">Transparency</string>
+    <string name="appearance">Appearance</string>
 
     <!-- Snack -->
     <string name="snack_connection_error">An error occurred, check your connection and try again.</string>

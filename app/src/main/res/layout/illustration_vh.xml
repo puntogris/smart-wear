@@ -35,6 +35,7 @@
             android:layout_marginBottom="24dp"
             android:text="@{illustration.tittle}"
             android:textSize="18sp"
+            android:textColor="@color/color_secondary"
             android:fontFamily="sans-serif-light"
             android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -15,6 +15,7 @@ import com.puntogris.smartwear.common.preference
 import com.puntogris.smartwear.common.preferenceChange
 import com.puntogris.smartwear.common.preferenceOnClick
 import com.puntogris.smartwear.utils.SharedPref
+import com.puntogris.smartwear.utils.ThemeUtils
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -22,6 +23,7 @@ import javax.inject.Inject
 class PreferencesFragment : PreferenceFragmentCompat(){
 
     @Inject lateinit var sharedPref: SharedPref
+    @Inject lateinit var themeUtils: ThemeUtils
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.preferences, rootKey)
@@ -42,6 +44,10 @@ class PreferencesFragment : PreferenceFragmentCompat(){
 
         preferenceChange<ListPreference>(Keys.WEATHER_UNITS){
             setFragmentResult(Keys.DATA, bundleOf(Keys.UNITS_RESULT to true))
+        }
+
+        preferenceChange<ListPreference>(Keys.THEME){
+            themeUtils.applyTheme(it as String)
         }
     }
 }
