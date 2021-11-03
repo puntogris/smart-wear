@@ -7,24 +7,24 @@
     <string name="action_enable_location">Habilitar ubicación</string>
     <string name="action_use_current_location"><u>Usar ubicación actual</u></string>
     <string name="action_close">Cerrar</string>
-    <string name="action_continue">Continue</string>
+    <string name="action_continue">Continuar</string>
 
     <!-- Welcome -->
-    <string name="welcome_item_1">Search your location!</string>
-    <string name="welcome_item_2">Get clothing recommendations!</string>
-    <string name="welcome_item_3">Be always ready to have fun!</string>
-    <string name="welcome_title">Hey there!</string>
+    <string name="welcome_item_1">¡Busca tu ubicación!</string>
+    <string name="welcome_item_2">¡Obtén recomendaciones de ropa!</string>
+    <string name="welcome_item_3">¡Esté siempre listo para divertirse!</string>
+    <string name="welcome_title">¡Hola!</string>
 
     <!-- What's new dialog-->
     <string name="updated_version">Actualizado a v%1$s</string>
     <string name="whats_new">Qué hay de nuevo</string>
 
     <!-- Location -->
-    <string name="location_message">*For a better experience turn on the location in your device</string>
-    <string name="snack_location_required">We need access to your location in order to provide you the weather.</string>
-    <string name="request_location_title">We need access to your location</string>
-    <string name="request_location_subtitle2">Do not worry, we will only use this \nwhen the app is active.</string>
-    <string name="request_location_subtitle1">Our app uses this data to get a more accurate result on the weather forecast</string>
+    <string name="location_message">*Para una mejor experiencia, active la ubicación en su dispositivo.</string>
+    <string name="snack_location_required">Necesitamos acceso a su ubicación para poder brindarle el clima.</string>
+    <string name="request_location_title">Necesitamos acceso a tu ubicación</string>
+    <string name="request_location_subtitle2">No se preocupe, solo usaremos esto cuando la aplicación esté activa.</string>
+    <string name="request_location_subtitle1">Nuestra aplicación utiliza estos datos para obtener un resultado más preciso en el pronóstico del tiempo.</string>
     <string name="enter_location_title">INGRESE UNA UBICACIÓN:</string>
     <string name="today_forecast_title">PRONÓSTICO DE HOY:</string>
     <string name="recommendation_title">RECOMENDACIÓN:</string>
@@ -38,17 +38,17 @@
     <string name="got_to_website">Visita nuestra web</string>
     <string name="see_the_code">Ver el codigo</string>
     <string name="rate_the_app">Puntua la app</string>
-    <string name="open_source_licenses">Open source licenses</string>
-    <string name="terms_and_conditions">Terms and conditions</string>
-    <string name="privacy_policy">Privacy policy</string>
+    <string name="open_source_licenses">Licensias de codigo abierto</string>
+    <string name="terms_and_conditions">Terminos y condiciones</string>
+    <string name="privacy_policy">Politicas de privacidad</string>
     <string name="pref_privacy_policy_url" translatable="false">https://smartwear.puntogris.com/information/privacy-policy.html</string>
     <string name="pref_terms_and_conditions_url" translatable="false">https://smartwear.puntogris.com/information/terms-and-conditions.html</string>
     <string name="settings_label">Configuración</string>
 
     <!-- Snack -->
     <string name="snack_connection_error">Ocurrio un error. Intenta nuevamente en un momento.</string>
-    <string name="snack_query_required">Location can\'t be empty.</string>
-    <string name="snack_location_updated_success">Location updated</string>
+    <string name="snack_query_required">La ubicación no puede estar vacia.</string>
+    <string name="snack_location_updated_success">Ubicación actualizada</string>
 
     <!-- Weather -->
     <string name="current_weather_temp_description">Ahora %1$s , %2$s.</string>
