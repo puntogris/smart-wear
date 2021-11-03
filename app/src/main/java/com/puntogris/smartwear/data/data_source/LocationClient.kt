@@ -16,7 +16,6 @@ class LocationClient @Inject constructor(@ApplicationContext context: Context) {
     private val fusedLocationClient = LocationServices.getFusedLocationProviderClient(context)
     private val cancellationToken = CancellationTokenSource().token
 
-    @SuppressLint("MissingPermission")
     suspend fun requestLocation(): Location = getLastLocation() ?: getCurrentLocation()
 
     private suspend fun getLastLocation() = fusedLocationClient.lastLocation.await()
