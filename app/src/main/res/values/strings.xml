@@ -70,15 +70,15 @@
     <string name="night">until the night.</string>
 
     <!-- Clothing -->
-    <string name="temp_minus_0">*Danger! Winter is coming, time to wear all your closet at the same time!</string>
-    <string name="temp_1_9">*It very cold outside. Get a sweater or a winter jacket, also do not forget your scarf and gloves.</string>
-    <string name="temp_10_14">*Do not underestimate this cold weather, you will need a sweater and a cup of hot chocolate.</string>
-    <string name="temp_15_19">*With a light jacket or sweater you will be fine.</string>
-    <string name="temp_20_29">*Such a nice weather, perfect for jeans and a t-shirt.</string>
-    <string name="temp_30_34">*Time to get those shorts and invite yourself to a friends house with a swimming pool.</string>
-    <string name="temp_35_39">*Dip in the pool, get your clothes of first, hello?..u there?</string>
-    <string name="temp_max_40">*Red alert! Going outside will melt your brain.</string>
-    <string name="temp_error">*This is illegal.</string>
+    <string name="temp_minus_0">Danger! Winter is coming, time to wear all your closet at the same time!</string>
+    <string name="temp_1_9">It very cold outside. Get a sweater or a winter jacket, also do not forget your scarf and gloves.</string>
+    <string name="temp_10_14">Do not underestimate this cold weather, you will need a sweater and a cup of hot chocolate.</string>
+    <string name="temp_15_19">With a light jacket or sweater you will be fine.</string>
+    <string name="temp_20_29">Such a nice weather, perfect for jeans and a t-shirt.</string>
+    <string name="temp_30_34">Time to get those shorts and invite yourself to a friends house with a swimming pool.</string>
+    <string name="temp_35_39">Dip in the pool, get your clothes of first, hello?..u there?</string>
+    <string name="temp_max_40">Red alert! Going outside will melt your brain.</string>
+    <string name="temp_error">This is illegal.</string>
 
     <string name="precipitation_15_60">*It might start raining right now.</string>
     <string name="precipitation_60">*There is a high probability of raining right now.</string>

@@ -36,7 +36,6 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>(R.layout.activity_
             AppBarConfiguration(
                 setOf(
                     R.id.weatherFragment,
-                    R.id.locationFragment,
                     R.id.welcomeFragment
                 )
             )

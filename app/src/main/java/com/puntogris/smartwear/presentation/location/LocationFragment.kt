@@ -3,8 +3,11 @@ package com.puntogris.smartwear.presentation.location
 import android.Manifest
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.os.bundleOf
+import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.findNavController
 import com.puntogris.smartwear.R
+import com.puntogris.smartwear.common.constants.Keys
 import com.puntogris.smartwear.common.createSnackBar
 import com.puntogris.smartwear.databinding.FragmentLocationBinding
 import com.puntogris.smartwear.presentation.base.BaseBindingFragment
@@ -29,6 +32,7 @@ class LocationFragment : BaseBindingFragment<FragmentLocationBinding>(R.layout.f
     }
 
     private fun onPermissionGranted(){
+        setFragmentResult(Keys.DATA, bundleOf(Keys.LOCATION_RESULT to true))
         findNavController().navigateUp()
     }
 

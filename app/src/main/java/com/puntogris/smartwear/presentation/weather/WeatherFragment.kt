@@ -31,7 +31,7 @@ class WeatherFragment : BaseBindingFragment<FragmentWeatherBinding>(R.layout.fra
 
         subscribeWeatherUi()
         subscribeRefreshUi()
-        subscribeWeatherUnitsListener()
+        subscribeFragmentResults()
         setupSearchLocationsUi()
     }
 
@@ -125,10 +125,13 @@ class WeatherFragment : BaseBindingFragment<FragmentWeatherBinding>(R.layout.fra
         binding.suggestionsLayout.gone()
     }
 
-    private fun subscribeWeatherUnitsListener() {
-        setFragmentResultListener(Keys.UNITS_CHANGED) { _, bundle ->
-            val didUnitsChanged = bundle.getBoolean(Keys.DATA)
+    private fun subscribeFragmentResults() {
+        setFragmentResultListener(Keys.DATA) { _, bundle ->
+            val didUnitsChanged = bundle.getBoolean(Keys.UNITS_RESULT)
             if (didUnitsChanged) viewModel.requestWeather()
+
+            val permissionGranted = bundle.getBoolean(Keys.LOCATION_RESULT)
+            if (permissionGranted) viewModel.updateCurrentLocation()
         }
     }
 

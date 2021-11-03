@@ -41,7 +41,7 @@ class PreferencesFragment : PreferenceFragmentCompat(){
         }
 
         preferenceChange<ListPreference>(Keys.WEATHER_UNITS){
-            setFragmentResult(Keys.UNITS_CHANGED, bundleOf(Keys.DATA to true))
+            setFragmentResult(Keys.DATA, bundleOf(Keys.UNITS_RESULT to true))
         }
     }
 }

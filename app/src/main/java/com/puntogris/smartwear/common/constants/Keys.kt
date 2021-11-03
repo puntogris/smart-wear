@@ -12,5 +12,7 @@ object Keys {
 
     //FragmentResultListener
     const val DATA = "data"
-    const val UNITS_CHANGED = "pref_changed"
+    const val UNITS_RESULT = "units_result"
+    const val LOCATION_RESULT = "location_result"
+
 }
