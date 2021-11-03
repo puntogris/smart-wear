@@ -2,6 +2,7 @@ package com.puntogris.smartwear.domain.model.events
 
 import android.content.Context
 import com.puntogris.smartwear.R
+import com.puntogris.smartwear.common.half
 import com.puntogris.smartwear.domain.model.WeatherResult
 import com.puntogris.smartwear.utils.TimeOfDay
 

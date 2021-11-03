@@ -1,5 +1,6 @@
 package com.puntogris.smartwear.common
 
+import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -29,6 +30,16 @@ fun ImageView.setSuggestionVisibility(locationResult: LocationResult?) {
 fun CardView.setSuggestionVisibility(locationResult: LocationResult?) {
     if (locationResult != null)
         isVisible = locationResult is LocationResult.Success.GetLocations
+}
+
+@BindingAdapter("locationVisibility")
+fun View.setLocationVisibility(currentLocation: Location?) {
+    isVisible = currentLocation != null
+}
+
+@BindingAdapter("emptyHolderVisibility")
+fun View.setEmptyHolderVisibility(currentLocation: Location?) {
+    isVisible = currentLocation == null
 }
 
 @BindingAdapter("locationName")

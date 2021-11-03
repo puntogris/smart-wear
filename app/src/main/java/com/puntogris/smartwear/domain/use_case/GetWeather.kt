@@ -1,7 +1,5 @@
 package com.puntogris.smartwear.domain.use_case
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.liveData
 import com.puntogris.smartwear.common.Result
 import com.puntogris.smartwear.domain.model.Forecast
 import com.puntogris.smartwear.domain.model.Location
@@ -9,15 +7,20 @@ import com.puntogris.smartwear.domain.model.Weather
 import com.puntogris.smartwear.domain.model.WeatherResult
 import com.puntogris.smartwear.domain.model.events.*
 import com.puntogris.smartwear.domain.repository.WeatherRepository
+import com.puntogris.smartwear.utils.EmptyLocationException
 import com.puntogris.smartwear.utils.TimeOfDay
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class GetWeather @Inject constructor(private val repository: WeatherRepository) {
 
-    operator fun invoke(location: Location?): LiveData<Result<Weather>> = liveData {
+    @Throws(EmptyLocationException::class)
+    operator fun invoke(location: Location?): Flow<Result<Weather>> = flow {
         try {
             emit(Result.Loading)
-            val weatherResult = repository.getWeather(location!!)
+            if (location == null) throw EmptyLocationException()
+            val weatherResult = repository.getWeather(location)
             val weather = analyzeAndBuildWeather(weatherResult)
             emit(Result.Success(weather))
         } catch (e: Exception) {
@@ -52,4 +55,3 @@ class GetWeather @Inject constructor(private val repository: WeatherRepository) 
         return events.filter { it !is TemperatureEvent }.all { !it.isValid() }
     }
 }
-

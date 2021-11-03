@@ -1,7 +1,5 @@
 package com.puntogris.smartwear.data.repository
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.map
 import com.puntogris.smartwear.common.SimpleResult
 import com.puntogris.smartwear.data.data_source.LocationClient
 import com.puntogris.smartwear.data.data_source.local.LocationDao
@@ -11,6 +9,8 @@ import com.puntogris.smartwear.data.data_source.toEntity
 import com.puntogris.smartwear.domain.model.Location
 import com.puntogris.smartwear.domain.repository.DispatcherProvider
 import com.puntogris.smartwear.domain.repository.LocationRepository
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 
 class LocationRepositoryImpl(
@@ -20,7 +20,7 @@ class LocationRepositoryImpl(
     private val dispatchers: DispatcherProvider
 ) : LocationRepository {
 
-    override fun getLocalLastLocation() :LiveData<Location?>{
+    override fun getLocalLastLocation() : Flow<Location?> {
         return locationDao.getLocationLiveData().map { it?.toDomain() }
     }
 

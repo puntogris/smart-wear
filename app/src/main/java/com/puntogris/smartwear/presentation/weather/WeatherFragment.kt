@@ -13,6 +13,7 @@ import com.puntogris.smartwear.databinding.FragmentWeatherBinding
 import com.puntogris.smartwear.domain.model.Location
 import com.puntogris.smartwear.domain.model.Weather
 import com.puntogris.smartwear.presentation.base.BaseBindingFragment
+import com.puntogris.smartwear.utils.EmptyLocationException
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 
@@ -29,12 +30,6 @@ class WeatherFragment : BaseBindingFragment<FragmentWeatherBinding>(R.layout.fra
         subscribeWeatherUi()
         subscribeRefreshUi()
         setupSearchLocationsUi()
-
-        viewModel.currentLocation.observe(viewLifecycleOwner) {
-            if (it != null) {
-                binding.searchInput.setText(it.name)
-            }
-        }
     }
 
     private fun setupSearchLocationsUi() {
@@ -63,7 +58,7 @@ class WeatherFragment : BaseBindingFragment<FragmentWeatherBinding>(R.layout.fra
                     is LocationResult.Success.GetLocations -> {
                         adapter.updateSuggestions(result.data)
                     }
-                    LocationResult.Success.UpdateLocation -> {
+                    is LocationResult.Success.UpdateLocation -> {
                         createSnackBar(getString(R.string.snack_location_updated_success))
                     }
                 }
@@ -78,11 +73,13 @@ class WeatherFragment : BaseBindingFragment<FragmentWeatherBinding>(R.layout.fra
     }
 
     private fun subscribeWeatherUi() {
-        viewModel.weatherResult.observe(viewLifecycleOwner) {
-            when (it) {
-                is Result.Success -> onSuccess(it.data)
-                is Result.Failure -> onError()
-                is Result.Loading -> inProgress()
+        launchAndRepeatWithViewLifecycle {
+            viewModel.weatherResult.collect {
+                when (it) {
+                    is Result.Success -> onSuccess(it.data)
+                    is Result.Failure -> onError(it.exception)
+                    is Result.Loading -> inProgress()
+                }
             }
         }
     }
@@ -100,22 +97,25 @@ class WeatherFragment : BaseBindingFragment<FragmentWeatherBinding>(R.layout.fra
     }
 
     private fun inProgress() {
-
+        binding.swipeRefreshLayout.isRefreshing = true
     }
 
-    private fun onError() {
-        createSnackBar(getString(R.string.snack_connection_error))
+    private fun onError(exception: Exception) {
+        if (exception !is EmptyLocationException) {
+            createSnackBar(getString(R.string.snack_connection_error))
+        }
+        binding.swipeRefreshLayout.isRefreshing = false
     }
 
     private fun onSuccess(weather: Weather) {
-        viewModel.wea.value = weather
+        binding.weather = weather
+        binding.swipeRefreshLayout.isRefreshing = false
     }
 
     private fun subscribeRefreshUi() {
         binding.swipeRefreshLayout.apply {
             setOnRefreshListener {
-
-                isRefreshing = false
+                viewModel.requestWeather()
             }
         }
     }

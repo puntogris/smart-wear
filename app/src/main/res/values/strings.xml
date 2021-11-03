@@ -83,6 +83,9 @@
     <string name="precipitation_15_60">*It might start raining right now.</string>
     <string name="precipitation_60">*There is a high probability of raining right now.</string>
 
+    <!-- Other -->
+    <string name="empty_location_holder">We did not find anything here, we invite you to search for a location or activate the automatic location.</string>
+
     <!-- Arrays -->
     <!-- Theme -->
     <string-array name="theme_names">

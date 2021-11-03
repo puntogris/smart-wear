@@ -5,7 +5,6 @@
 
     <data>
         <import type="android.view.View" />
-
         <variable
             name="fragment"
             type="com.puntogris.smartwear.presentation.weather.WeatherFragment" />
@@ -13,6 +12,9 @@
         <variable
             name="viewModel"
             type="com.puntogris.smartwear.presentation.weather.WeatherViewModel" />
+        <variable
+            name="weather"
+            type="com.puntogris.smartwear.domain.model.Weather" />
     </data>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -68,6 +70,7 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="32dp"
                 android:text="@string/today_forecast_title"
+                locationVisibility="@{viewModel.currentLocation}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/locationIcon" />
 
@@ -92,6 +95,7 @@
                     android:background="@android:color/transparent"
                     android:fontFamily="sans-serif-black"
                     android:hint="@string/search_location_hint"
+                    android:text="@{viewModel.currentLocation.name}"
                     android:imeOptions="actionSearch"
                     android:inputType="text"
                     android:textSize="19sp" />
@@ -110,7 +114,8 @@
                 app:layout_constraintEnd_toStartOf="@+id/progressBar"
                 app:layout_constraintTop_toTopOf="@+id/searchField"
                 app:srcCompat="@drawable/ic_baseline_search_24"
-                app:tint="@color/colorPrimary" />
+                app:tint="@color/colorPrimary"
+                tools:ignore="ContentDescription" />
 
             <ProgressBar
                 android:id="@+id/progressBar"
@@ -131,6 +136,7 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="32dp"
                 android:text="@string/recommendation_title"
+                locationVisibility="@{viewModel.currentLocation}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/forecast" />
 
@@ -142,7 +148,7 @@
                 android:layout_marginEnd="24dp"
                 android:fontFamily="sans-serif-medium"
                 android:textColor="#252525"
-                clothingRecommendation="@{viewModel.wea}"
+                clothingRecommendation="@{weather}"
                 android:textSize="22sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/recommendationTitle"
@@ -164,7 +170,7 @@
 
             <TextView
                 android:id="@+id/forecast"
-                weatherForecast="@{viewModel.wea}"
+                weatherForecast="@{weather}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="24dp"
@@ -197,7 +203,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/searchField"
                 app:srcCompat="@drawable/ic_baseline_near_me_24"
-                app:tint="@color/colorPrimary" />
+                app:tint="@color/colorPrimary"
+                tools:ignore="ContentDescription" />
 
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/animationView"
@@ -215,12 +222,13 @@
 
             <ImageView
                 android:id="@+id/imageView"
-                weatherIcon="@{viewModel.wea.current.icon}"
+                weatherIcon="@{weather.current.icon}"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="8dp"
                 app:layout_constraintStart_toStartOf="@+id/forecastTitle"
-                app:layout_constraintTop_toBottomOf="@+id/location" />
+                app:layout_constraintTop_toBottomOf="@+id/location"
+                tools:ignore="ContentDescription" />
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/suggestionsLayout"
@@ -260,7 +268,7 @@
             <TextView
                 android:id="@+id/current"
                 android:layout_width="0dp"
-                currentWeather="@{viewModel.wea}"
+                currentWeather="@{weather}"
                 android:textSize="16sp"
                 android:fontFamily="sans-serif-light"
                 android:textColor="#222222"
@@ -269,6 +277,20 @@
                 app:layout_constraintEnd_toEndOf="@+id/location"
                 app:layout_constraintStart_toEndOf="@+id/imageView"
                 app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="108dp"
+                emptyHolderVisibility="@{viewModel.currentLocation}"
+                android:fontFamily="sans-serif-light"
+                android:text="@string/empty_location_holder"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/currentLocationButton" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

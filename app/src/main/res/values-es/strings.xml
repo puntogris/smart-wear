@@ -82,4 +82,8 @@
 
     <string name="precipitation_15_60">Lleva una campera de lluvia ya que tal vez llueva.</string>
     <string name="precipitation_60">Sali con un paraguas o una campera impermeable que parece que va a llover.</string>
+
+    <!-- Other -->
+    <string name="empty_location_holder">No encontramos nada por aquí, te invitamos a que busques una localidad o actives la ubicación automatica.</string>
+
 </resources>

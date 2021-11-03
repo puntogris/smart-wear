@@ -34,9 +34,10 @@
         <entry key="app/src/main/res/drawable/splash_screen.xml" value="0.24444444444444444" />
         <entry key="app/src/main/res/drawable/test.xml" value="0.24513888888888888" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.23368055555555556" />
+        <entry key="app/src/main/res/layout/empty_location_holder.xml" value="0.234375" />
         <entry key="app/src/main/res/layout/fragment_location.xml" value="0.23368055555555556" />
         <entry key="app/src/main/res/layout/fragment_main.xml" value="0.2232638888888889" />
-        <entry key="app/src/main/res/layout/fragment_weather.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_weather.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_welcome.xml" value="0.23368055555555556" />
         <entry key="app/src/main/res/layout/recommendation_bottom_sheet.xml" value="0.2232638888888889" />
         <entry key="app/src/main/res/layout/suggestion_vh.xml" value="0.23368055555555556" />
