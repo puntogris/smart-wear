@@ -111,7 +111,6 @@
 
             <ImageView
                 android:id="@+id/searchButton"
-                suggestionVisibility="@{viewModel.locationResult}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="24dp"
@@ -128,7 +127,6 @@
             <ProgressBar
                 android:id="@+id/progressBar"
                 style="?progressBarStyle"
-                suggestionVisibility="@{viewModel.locationResult}"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_marginEnd="24dp"
@@ -242,11 +240,11 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/suggestionsLayout"
-                suggestionVisibility="@{viewModel.locationResult}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 app:cardElevation="5dp"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/searchField"

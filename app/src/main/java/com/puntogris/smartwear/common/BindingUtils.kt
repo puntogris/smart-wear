@@ -2,9 +2,7 @@ package com.puntogris.smartwear.common
 
 import android.view.View
 import android.widget.ImageView
-import android.widget.ProgressBar
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
@@ -13,24 +11,6 @@ import com.puntogris.smartwear.common.constants.HttpRoutes
 import com.puntogris.smartwear.domain.model.Location
 import com.puntogris.smartwear.domain.model.Weather
 import com.puntogris.smartwear.domain.model.events.RecommendationEvent
-
-@BindingAdapter("suggestionVisibility")
-fun ProgressBar.setSuggestionVisibility(locationResult: LocationResult?) {
-    if (locationResult != null)
-        isVisible = locationResult is LocationResult.Loading
-}
-
-@BindingAdapter("suggestionVisibility")
-fun ImageView.setSuggestionVisibility(locationResult: LocationResult?) {
-    if (locationResult != null)
-        isVisible = locationResult !is LocationResult.Loading
-}
-
-@BindingAdapter("suggestionVisibility")
-fun CardView.setSuggestionVisibility(locationResult: LocationResult?) {
-    if (locationResult != null)
-        isVisible = locationResult is LocationResult.Success.GetLocations
-}
 
 @BindingAdapter("locationVisibility")
 fun View.setLocationVisibility(currentLocation: Location?) {

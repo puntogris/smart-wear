@@ -30,8 +30,8 @@ class WeatherViewModel @Inject constructor(
         null
     )
 
-    private val _locationResult = MutableStateFlow<LocationResult>(LocationResult.Empty)
-    val locationResult: StateFlow<LocationResult> = _locationResult
+    private val _locationResult = MutableSharedFlow<LocationResult>()
+    val locationResult = _locationResult.asSharedFlow()
 
     private val _weatherResult = MutableStateFlow<Result<Weather>?>(null)
     val weatherResult = _weatherResult.asStateFlow()

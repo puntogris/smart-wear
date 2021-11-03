@@ -3,6 +3,7 @@ package com.puntogris.smartwear.presentation.weather
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
+import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
@@ -52,7 +53,7 @@ class WeatherFragment : BaseBindingFragment<FragmentWeatherBinding>(R.layout.fra
     }
 
     private fun subscribeSearchSuggestions(adapter: SuggestionsAdapter) {
-        launchAndRepeatWithViewLifecycle(Lifecycle.State.CREATED) {
+        launchAndRepeatWithViewLifecycle(Lifecycle.State.STARTED) {
             viewModel.locationResult.collect { result ->
                 when (result) {
                     is LocationResult.Error -> {
@@ -65,6 +66,13 @@ class WeatherFragment : BaseBindingFragment<FragmentWeatherBinding>(R.layout.fra
                         createSnackBar(R.string.snack_location_updated_success)
                     }
                 }
+
+                with(binding) {
+                    suggestionsLayout.isVisible = result is LocationResult.Success.GetLocations
+                    progressBar.isVisible = result is LocationResult.Loading
+                    searchButton.isVisible = result !is LocationResult.Loading
+                }
+
                 hideKeyboard()
             }
         }
