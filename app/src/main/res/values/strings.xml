@@ -63,9 +63,9 @@
     <string name="forecast_stable">• The weather will be stable.</string>
 
     <!-- Temperature summary -->
-    <string name="temp_raise_a_lot">, increasing quite a bit</string>
+    <string name="temp_raise_a_lot">, rising quite a bit</string>
     <string name="temp_decrease_a_lot">, decreasing quite a bit</string>
-    <string name="temp_raise_a_little">, increasing a bit</string>
+    <string name="temp_raise_a_little">, rising a bit</string>
     <string name="temp_decrease_a_little">, decreasing a bit</string>
     <string name="temp_not_changing">, will not change for a few hours</string>
     <string name="morning">until the morning.</string>
@@ -79,13 +79,13 @@
     <string name="temp_10_14">Do not underestimate this cold weather, you will need a sweater and a cup of hot chocolate.</string>
     <string name="temp_15_19">With a light jacket or sweater you will be fine.</string>
     <string name="temp_20_29">Such a nice weather, perfect for jeans and a t-shirt.</string>
-    <string name="temp_30_34">Time to get those shorts and invite yourself to a friends house with a swimming pool.</string>
+    <string name="temp_27_34">Time to get some shorts and invite yourself to a friend\'s house with a swimming pool.</string>
     <string name="temp_35_39">Dip in the pool, get your clothes of first, hello?..u there?</string>
     <string name="temp_max_40">Red alert! Going outside will melt your brain.</string>
     <string name="temp_error">This is illegal.</string>
 
-    <string name="precipitation_15_60">*It might start raining right now.</string>
-    <string name="precipitation_60">*There is a high probability of raining right now.</string>
+    <string name="precipitation_15_60">Also carry a rain jacket just in case it rains.</string>
+    <string name="precipitation_60">Put on a rain jacket or get your umbrella.</string>
 
     <!-- Other -->
     <string name="empty_location_holder">We did not find anything here, we invite you to search for a location or activate the automatic location.</string>

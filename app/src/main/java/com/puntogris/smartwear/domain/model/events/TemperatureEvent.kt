@@ -32,8 +32,8 @@ class TemperatureEvent(
             in 1..9 -> R.string.temp_1_9
             in 10..14 -> R.string.temp_10_14
             in 15..19 -> R.string.temp_15_19
-            in 20..29 -> R.string.temp_20_29
-            in 30..34 -> R.string.temp_30_34
+            in 20..26 -> R.string.temp_20_29
+            in 27..34 -> R.string.temp_27_34
             in 35..39 -> R.string.temp_35_39
             !in 0..40 -> R.string.temp_max_40
             else -> R.string.temp_error

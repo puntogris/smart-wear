@@ -132,6 +132,7 @@ class WeatherFragment : BaseBindingFragment<FragmentWeatherBinding>(R.layout.fra
 
     fun closeSuggestions() {
         binding.suggestionsLayout.gone()
+        hideKeyboard()
     }
 
     private fun subscribeFragmentResults() {

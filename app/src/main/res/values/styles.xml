@@ -1,8 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-
-    <style name="PreferenceScreen">
-        <item name="android:textColor">@color/color_secondary</item>
-    </style>
+<resources>
 
     <!-- Alert Dialog -->
     <style name="ThemeOverlay.Theme.MaterialAlertDialog" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
@@ -17,5 +13,4 @@
     <style name="AlertDialogTitleTextStyle" parent="MaterialAlertDialog.MaterialComponents.Title.Text">
         <item name="fontFamily">sans-serif-medium</item>
     </style>
-
 </resources>

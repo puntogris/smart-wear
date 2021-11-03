@@ -55,12 +55,12 @@
     <string name="snack_location_updated_success">Ubicación actualizada</string>
 
     <!-- Weather -->
-    <string name="current_weather_temp_description">Ahora %1$s , %2$s.</string>
-    <string name="weather_today_min_max">• Temperaturas entre %1$s y %2$s.</string>
-    <string name="forecast_precipitation">• %1$s chance of rain.</string>
-    <string name="forecast_wind">• Vientos de hasta %1$s.</string>
-    <string name="forecast_humidity">• La humedad alcanzara un %1$s.</string>
-    <string name="forecast_stable">• El clima será estable.</string>
+    <string name="current_weather_temp_description">Ahora %1$s , %2$s</string>
+    <string name="weather_today_min_max">• Temperaturas entre %1$s y %2$s</string>
+    <string name="forecast_precipitation">• %1$s probabilidad de lluvia.</string>
+    <string name="forecast_wind">• Vientos de hasta %1$s</string>
+    <string name="forecast_humidity">• La humedad alcanzara un %1$s</string>
+    <string name="forecast_stable">• El clima será estable</string>
 
     <!-- Temperature summary -->
     <string name="temp_raise_a_lot">, aumentando bastante</string>
@@ -79,13 +79,13 @@
     <string name="temp_10_14">No subestimes el frio que hace, por mas que adentro este para un buzo o pullover! Sali bien abrigado/a.</string>
     <string name="temp_15_19">Con un buzo o campera ligera vas a estar bien.</string>
     <string name="temp_20_29">Temperatura perfecta! Una remera, jeans y estas listo!</string>
-    <string name="temp_30_34">Momento de ponerse un short, remera o camisa livianita y invitate solo a la casa de un amigo/a con pileta.</string>
+    <string name="temp_27_34">Momento de ponerse un short, remera o camisa livianita y invitate solo a la casa de un amigo/a con pileta.</string>
     <string name="temp_35_39">Tirate a la pileta…sacate la ropa primero… estas ahí?</string>
     <string name="temp_max_40">Alerta roja!! Un paso afuera garantiza que seas rostizado.</string>
     <string name="temp_error">Error analizando la temperatura</string>
 
     <string name="precipitation_15_60">Lleva una campera de lluvia ya que tal vez llueva.</string>
-    <string name="precipitation_60">Sali con un paraguas o una campera impermeable que parece que va a llover.</string>
+    <string name="precipitation_60">Un paraguas o una campera impermeable es obligatorio.</string>
 
     <!-- Other -->
     <string name="empty_location_holder">No encontramos nada por aquí, te invitamos a que busques una localidad o actives la ubicación automatica.</string>

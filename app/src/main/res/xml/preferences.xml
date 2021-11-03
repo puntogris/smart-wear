@@ -4,7 +4,7 @@
 
     <PreferenceCategory
         app:title="@string/appearance"
-        app:iconSpaceReserved="false">
+        app:iconSpaceReserved="true">
         <ListPreference
             android:key="theme_preference_key"
             app:entries="@array/theme_names"
@@ -12,7 +12,7 @@
             app:useSimpleSummaryProvider="true"
             app:title="@string/theme"
             android:defaultValue="light"
-            app:iconSpaceReserved="false"/>
+            app:iconSpaceReserved="true"/>
         <ListPreference
             android:key="weather_units_preference_key"
             app:title="@string/units"
@@ -20,40 +20,40 @@
             app:entries="@array/units_names"
             android:entryValues="@array/units_values"
             app:useSimpleSummaryProvider="true"
-            app:iconSpaceReserved="false"/>
+            app:iconSpaceReserved="true"/>
     </PreferenceCategory>
     <PreferenceCategory
         app:title="App"
-        app:iconSpaceReserved="false">
+        app:iconSpaceReserved="true">
         <Preference
             android:key="rate_app_preference_key"
             app:title="@string/rate_us"
-            app:iconSpaceReserved="false"
+            app:iconSpaceReserved="true"
             app:summary="@string/rate_the_app">
         </Preference>
         <Preference
             android:key="version_preference_key"
             app:title="@string/version"
-            app:iconSpaceReserved="false">
+            app:iconSpaceReserved="true">
         </Preference>
     </PreferenceCategory>
     <PreferenceCategory
         app:title="@string/transparency"
-        app:iconSpaceReserved="false">
+        app:iconSpaceReserved="true">
         <Preference
             android:key="licenses_preference_key"
             app:title="@string/open_source_licenses"
-            app:iconSpaceReserved="false"/>
+            app:iconSpaceReserved="true"/>
         <Preference
             app:title="@string/privacy_policy"
-            app:iconSpaceReserved="false">
+            app:iconSpaceReserved="true">
             <intent
                 android:action="android.intent.action.VIEW"
                 android:data="@string/pref_privacy_policy_url" />
         </Preference>
         <Preference
             app:title="@string/terms_and_conditions"
-            app:iconSpaceReserved="false">
+            app:iconSpaceReserved="true">
             <intent
                 android:action="android.intent.action.VIEW"
                 android:data="@string/pref_terms_and_conditions_url" />

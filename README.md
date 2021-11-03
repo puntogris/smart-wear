@@ -13,6 +13,4 @@ Used in this project:</br>
   * Vuepress
   
 ## Screenshots
-![N|Solid](https://github.com/puntogris/what-do-i-wear/blob/master/screenshots/image_1.png)
-![N|Solid](https://github.com/puntogris/what-do-i-wear/blob/master/screenshots/image_2.png)
-![N|Solid](https://github.com/puntogris/what-do-i-wear/blob/master/screenshots/image_3.png)
+<img src="https://smartwear.puntogris.com/img/1.png" width=250><img src="https://smartwear.puntogris.com/img/2.png" width=250><img src="https://smartwear.puntogris.com/img/3.png" width=250>
