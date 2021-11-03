@@ -3,7 +3,7 @@ App that will analize the current weather and forecast for the next hours and gi
 
 Used in this project:</br>
   * Kotlin
-  * Clean architecture
+  * Clean Architecture
   * Ktor
   * Room
   * Google Play services location API
