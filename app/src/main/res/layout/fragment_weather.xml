@@ -250,7 +250,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/searchField"
                 tools:visibility="gone">
 
-                <LinearLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
@@ -258,12 +258,16 @@
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/searchSuggestions"
                         android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:maxHeight="200dp"
+                        android:layout_height="0dp"
                         android:orientation="vertical"
                         android:scrollbars="vertical"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        app:layout_constrainedHeight="true" />
+                        app:layout_constrainedHeight="true"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHeight_default="wrap"
+                        app:layout_constraintHeight_max="200dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <com.google.android.material.button.MaterialButton
                         style="@style/Widget.MaterialComponents.Button.TextButton"
@@ -271,10 +275,12 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
                         android:onClick="@{()-> fragment.closeSuggestions()}"
-                        android:text="@string/action_close" />
-                </LinearLayout>
+                        android:text="@string/action_close"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/searchSuggestions" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
-
+            
             <TextView
                 android:id="@+id/current"
                 currentWeather="@{weather}"
