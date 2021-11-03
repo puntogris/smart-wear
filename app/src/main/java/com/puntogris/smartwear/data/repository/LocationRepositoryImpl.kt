@@ -1,7 +1,7 @@
 package com.puntogris.smartwear.data.repository
 
 import com.puntogris.smartwear.common.SimpleResult
-import com.puntogris.smartwear.data.data_source.LocationClient
+import com.puntogris.smartwear.data.data_source.FusedLocationClient
 import com.puntogris.smartwear.data.data_source.local.LocationDao
 import com.puntogris.smartwear.data.data_source.remote.GeocodingApi
 import com.puntogris.smartwear.data.data_source.toDomain
@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 
 class LocationRepositoryImpl(
-    private val locationClient: LocationClient,
+    private val locationClient: FusedLocationClient,
     private val locationDao: LocationDao,
     private val geocodingApi: GeocodingApi,
     private val dispatchers: DispatcherProvider

@@ -1,6 +1,7 @@
 package com.puntogris.smartwear.utils
 
 import androidx.appcompat.app.AppCompatDelegate
+import com.puntogris.smartwear.data.data_source.local.SharedPref
 import javax.inject.Inject
 
 class ThemeUtils @Inject constructor(private val sharedPref: SharedPref){

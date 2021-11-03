@@ -11,7 +11,7 @@ import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
 @SuppressLint("MissingPermission")
-class LocationClient @Inject constructor(@ApplicationContext context: Context) {
+class FusedLocationClient @Inject constructor(@ApplicationContext context: Context) {
 
     private val fusedLocationClient = LocationServices.getFusedLocationProviderClient(context)
     private val cancellationToken = CancellationTokenSource().token

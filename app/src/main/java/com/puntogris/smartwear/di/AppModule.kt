@@ -3,7 +3,7 @@ package com.puntogris.smartwear.di
 import android.content.Context
 import androidx.room.Room
 import com.puntogris.smartwear.common.StandardDispatchers
-import com.puntogris.smartwear.data.data_source.LocationClient
+import com.puntogris.smartwear.data.data_source.FusedLocationClient
 import com.puntogris.smartwear.data.data_source.local.AppDatabase
 import com.puntogris.smartwear.data.data_source.local.LocationDao
 import com.puntogris.smartwear.data.data_source.remote.GeocodingApi
@@ -13,7 +13,7 @@ import com.puntogris.smartwear.data.repository.WeatherRepositoryImpl
 import com.puntogris.smartwear.domain.repository.DispatcherProvider
 import com.puntogris.smartwear.domain.repository.LocationRepository
 import com.puntogris.smartwear.domain.repository.WeatherRepository
-import com.puntogris.smartwear.utils.SharedPref
+import com.puntogris.smartwear.data.data_source.local.SharedPref
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -72,7 +72,7 @@ class AppModule {
     @Singleton
     @Provides
     fun providesLocationRepository(
-        locationClient: LocationClient,
+        locationClient: FusedLocationClient,
         locationDao: LocationDao,
         geocodingApi: GeocodingApi,
         dispatcherProvider: DispatcherProvider

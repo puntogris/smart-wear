@@ -36,9 +36,9 @@
     <string name="version_name">Versión %1$s</string>
     <string name="rate_us">Calificanos</string>
     <string name="got_to_website">Visita nuestra web</string>
-    <string name="see_the_code">Ver el codigo</string>
+    <string name="see_the_code">Ver el código</string>
     <string name="rate_the_app">Puntua la app</string>
-    <string name="open_source_licenses">Licensias de codigo abierto</string>
+    <string name="open_source_licenses">Licencias de código abierto</string>
     <string name="terms_and_conditions">Terminos y condiciones</string>
     <string name="privacy_policy">Politicas de privacidad</string>
     <string name="pref_privacy_policy_url" translatable="false">https://smartwear.puntogris.com/information/privacy-policy.html</string>

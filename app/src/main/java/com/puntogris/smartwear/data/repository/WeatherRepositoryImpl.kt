@@ -5,7 +5,7 @@ import com.puntogris.smartwear.data.data_source.toDomain
 import com.puntogris.smartwear.domain.model.Location
 import com.puntogris.smartwear.domain.model.WeatherResult
 import com.puntogris.smartwear.domain.repository.WeatherRepository
-import com.puntogris.smartwear.utils.SharedPref
+import com.puntogris.smartwear.data.data_source.local.SharedPref
 import java.util.*
 
 class WeatherRepositoryImpl(

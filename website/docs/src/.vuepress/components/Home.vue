@@ -31,7 +31,7 @@
     <div class="features">
       <div class="feature">
         <h2>Location search</h2>
-        <p>Powerful search that cover the whole world, also you can use your phone location for more accurate results.</p>
+        <p>Powerful search that covers the whole world, also you can use your phone location for more accurate results.</p>
       </div>
       <div class="feature">
         <h2>What do i wear?</h2>

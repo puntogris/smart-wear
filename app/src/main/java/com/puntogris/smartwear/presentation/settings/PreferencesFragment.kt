@@ -14,7 +14,7 @@ import com.puntogris.smartwear.common.onClick
 import com.puntogris.smartwear.common.preference
 import com.puntogris.smartwear.common.preferenceChange
 import com.puntogris.smartwear.common.preferenceOnClick
-import com.puntogris.smartwear.utils.SharedPref
+import com.puntogris.smartwear.data.data_source.local.SharedPref
 import com.puntogris.smartwear.utils.ThemeUtils
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject

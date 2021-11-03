@@ -8,7 +8,7 @@ import com.puntogris.smartwear.domain.model.Location
 import com.puntogris.smartwear.domain.model.Weather
 import com.puntogris.smartwear.domain.use_case.GetWeather
 import com.puntogris.smartwear.domain.use_case.LocationUseCases
-import com.puntogris.smartwear.utils.SharedPref
+import com.puntogris.smartwear.data.data_source.local.SharedPref
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch

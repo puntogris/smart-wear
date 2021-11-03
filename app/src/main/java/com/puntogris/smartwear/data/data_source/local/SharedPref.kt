@@ -1,9 +1,10 @@
-package com.puntogris.smartwear.utils
+package com.puntogris.smartwear.data.data_source.local
 
 import android.content.Context
 import androidx.preference.PreferenceManager
 import com.puntogris.smartwear.BuildConfig
 import com.puntogris.smartwear.common.constants.Keys
+import com.puntogris.smartwear.utils.ThemeUtils
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 

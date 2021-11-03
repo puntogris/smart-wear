@@ -4,7 +4,7 @@ import androidx.navigation.fragment.findNavController
 import com.puntogris.smartwear.R
 import com.puntogris.smartwear.databinding.FragmentWelcomeBinding
 import com.puntogris.smartwear.presentation.base.BaseBindingFragment
-import com.puntogris.smartwear.utils.SharedPref
+import com.puntogris.smartwear.data.data_source.local.SharedPref
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

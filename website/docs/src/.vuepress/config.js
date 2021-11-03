@@ -40,7 +40,11 @@ module.exports = {
       },
       {
         text: 'Versions',
-        link: '/versions/'
+        link: '/versions/',
+      },
+      {
+        text: 'Help',
+        link: '/help/'
       },
       {
         text: 'Contact',
@@ -48,15 +52,23 @@ module.exports = {
       }
     ],
     sidebar: {
-      '/guide/': [
+      '/versions/': [
         {
-          title: 'Guide',
+          title: 'Versions',
           collapsable: false,
           children: [
             '',
-            'using-vue',
+            'v1.0.0-a1'
           ]
         }
+      ],
+      '/help/':[{
+        'title': 'Help',
+        collapsable: false,
+        children: [
+          ''
+        ]
+      }
       ],
       '/information/':[{
         'title': 'Information',
