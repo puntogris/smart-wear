@@ -3,7 +3,17 @@
 
     <style name="SmartWear.Theme.DayNight" parent="Base.Theme" />
 
-    <style name="Base.Theme" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="SmartWear.Theme.SplashTheme" parent="Base.Theme">
+        <item name="android:statusBarColor" tools:targetApi="l">@android:color/transparent</item>
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+    </style>
+
+    <style name="SmartWear.Theme.DayNight.ActionBar">
+        <item name="windowActionBar">true</item>
+        <item name="windowNoTitle">false</item>
+    </style>
+
+    <style name="Base.Theme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/color_primary</item>
         <item name="colorPrimaryVariant">@color/color_primary_variant</item>
         <item name="colorSecondary">@color/color_secondary</item>
@@ -31,16 +41,4 @@
         <item name="alertDialogTheme">@style/ThemeOverlay.Theme.AlertDialog</item>
         <item name="materialAlertDialogTheme">@style/ThemeOverlay.Theme.MaterialAlertDialog</item>
     </style>
-
-    <style name="SplashTheme" parent="Base.Theme">
-        <item name="android:statusBarColor" tools:targetApi="l">@android:color/transparent</item>
-        <item name="android:windowBackground">@drawable/splash_screen</item>
-    </style>
-
-    <style name="Licenses">
-        <item name="windowActionBar">true</item>
-        <item name="windowNoTitle">false</item>
-        <item name="toolbarStyle">@style/AppTheme.Licenses.Toolbar</item>
-    </style>
-
 </resources>

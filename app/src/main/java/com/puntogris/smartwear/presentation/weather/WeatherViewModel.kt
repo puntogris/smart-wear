@@ -37,7 +37,6 @@ class WeatherViewModel @Inject constructor(
     val weatherResult = _weatherResult.asStateFlow()
 
     init {
-        println("asd")
         viewModelScope.launch {
             currentLocation.collect {
                 _weatherResult.emitAll(getWeather(it))

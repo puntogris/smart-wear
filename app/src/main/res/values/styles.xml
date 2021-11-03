@@ -1,8 +1,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="AppTheme.Licenses.Toolbar" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-        <item name="buttonGravity">center_vertical</item>
-    </style>
+
+<!--    <style name="AppTheme.Licenses.Toolbar" parent="Theme.MaterialComponents.DayNight.DarkActionBar">-->
+<!--        <item name="android:colorBackground">@color/color_background</item>-->
+<!--        <item name="buttonGravity">center_vertical</item>-->
+<!--    </style>-->
 
     <style name="PreferenceScreen">
         <item name="android:textColor">@color/color_secondary</item>
