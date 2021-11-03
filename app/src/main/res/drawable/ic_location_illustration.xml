@@ -9,10 +9,10 @@
     <path android:fillColor="#e4e4e4" android:pathData="M593.5,703.3H89a7,7 0,0 1,-7 -7V377.4a7,7 0,0 1,7 -7h504.6a7,7 0,0 1,7 7v318.9a7,7 0,0 1,-7 7Z"/>
     <path android:fillColor="#fff" android:pathData="M135.3,409a3,3 0,0 0,-3 3v249.6a3,3 0,0 0,3 3h411.8a3,3 0,0 0,3 -3V412.1a3,3 0,0 0,-3 -3Z"/>
     <path android:fillColor="#e6e6e6" android:pathData="M551.1,473.4v-15.9L493,457.5v-49.4L477,408.1v49.4L373.4,457.5v-49.4h-15.8v49.4h-160v-49.4L182,408.1v49.4h-55.3v15.9h55.3v61.5h-55.3v15.8h55.3v65.9h-55.3v15.8L267,632.4v33.2h15.8v-33.2h74.7v33.2h15.8v-33.2h177.7v-15.8L373.4,616.6v-66h177.7L551.1,535L493,535v-61.5ZM357.6,473.4v19.3h-160v-19.3ZM197.6,508.5h160v26.4h-160ZM197.6,616.5v-65.8h69.5v65.9ZM357.6,616.5h-74.7v-65.8h74.7ZM477,535L373.4,535v-61.5h103.7Z"/>
-    <path android:fillColor="#6c63ff" android:pathData="M365.5,544.8m-20.2,0a20.2,20.2 0,1 1,40.4 0a20.2,20.2 0,1 1,-40.4 0"/>
+    <path android:fillColor="#7871AA" android:pathData="M365.5,544.8m-20.2,0a20.2,20.2 0,1 1,40.4 0a20.2,20.2 0,1 1,-40.4 0"/>
     <path android:fillColor="#cacaca" android:pathData="M910.5,705H0v-2.2h910.9l-0.4,2.2z"/>
-    <path android:fillColor="#6c63ff" android:pathData="M367.9,300.1m-124.7,0a124.7,124.7 0,1 1,249.4 0a124.7,124.7 0,1 1,-249.4 0"/>
-    <path android:fillColor="#6c63ff" android:pathData="m369.1,502.7 l-39.3,-67.3 -39.4,-67.2 77.9,-0.5 78,-0.5 -38.6,67.8 -38.6,67.7z"/>
+    <path android:fillColor="#7871AA" android:pathData="M367.9,300.1m-124.7,0a124.7,124.7 0,1 1,249.4 0a124.7,124.7 0,1 1,-249.4 0"/>
+    <path android:fillColor="#7871AA" android:pathData="m369.1,502.7 l-39.3,-67.3 -39.4,-67.2 77.9,-0.5 78,-0.5 -38.6,67.8 -38.6,67.7z"/>
     <path android:fillColor="#fff" android:pathData="M368.9,299.3m-44.7,0a44.7,44.7 0,1 1,89.4 0a44.7,44.7 0,1 1,-89.4 0"/>
     <path android:fillColor="#2f2e41" android:pathData="M365,0.6s-26.6,-7.5 -34.5,29 -3,31.8 -3,31.8l59.6,-7s18,-42.7 -22,-53.8Z"/>
     <path android:fillColor="#ffb6b6" android:pathData="M326.2,160.5s-40.2,1.9 -33.2,17.7l1.3,3.1a282.5,282.5 0,0 0,17.2 33.2l24.7,41 9,-5 -25.3,-65.8 22.8,-1.9ZM432.3,177.2l13,28.4s9.8,9.7 20.5,48.8 13,37.6 13,37.6l-10.6,3.5 -43.3,-78.8 -21.4,-27 6.5,-14.3Z"/>

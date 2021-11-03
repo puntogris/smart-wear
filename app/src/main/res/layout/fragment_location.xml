@@ -39,7 +39,7 @@
             android:onClick="@{()-> fragment.requestLocationPermission()}"
             android:text="@string/action_enable_location"
             android:textAllCaps="false"
-            android:textColor="@color/color_secondary"
+            android:textColor="@color/color_on_primary"
             style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -57,7 +57,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView"
             app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/ic_location_illustration" />
+            app:srcCompat="@drawable/ic_location_illustration"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/textView2"

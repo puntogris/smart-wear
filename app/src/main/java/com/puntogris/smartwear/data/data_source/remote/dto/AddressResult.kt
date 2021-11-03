@@ -34,16 +34,9 @@ data class AddressResult(
 
     private fun getAddressName(): String {
         val separator = ", "
+        var name = ""
 
-        var name = when {
-            city.isNotBlank() -> city
-            town.isNotBlank() -> town
-            county.isNotBlank() -> county
-            region.isNotBlank() -> region
-            else -> ""
-        }
-
-        if (name.isNotBlank()) name += separator
+        if (city.isNotBlank()) name += city + separator
         if (state.isNotBlank()) name += state + separator
         if (country.isNotBlank()) name += country
 

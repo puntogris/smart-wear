@@ -19,6 +19,7 @@ class GeocodingApi @Inject constructor(
             parameter("format", "json")
             parameter("limit", 5)
             parameter("addressdetails", 1)
+            parameter("normalizecity", 1)
         }
     }
 

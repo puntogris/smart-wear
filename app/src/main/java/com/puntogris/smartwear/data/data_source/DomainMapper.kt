@@ -63,7 +63,6 @@ fun WeatherDto.toDomain(units: String): WeatherResult {
                 windSpeed = Wind.from(it.windSpeed, units),
                 precipitation = Precipitation(it.precipitation.toInt())
             )
-        },
-        units
+        }
     )
 }
