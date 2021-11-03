@@ -1,6 +1,7 @@
 package com.puntogris.smartwear.common.constants
 
-object PreferencesKeys {
+object Keys {
+    //Preferences
     const val VERSION = "version_preference_key"
     const val LICENSES = "licenses_preference_key"
     const val ANIMATION = "animation_preference_key"
@@ -9,4 +10,7 @@ object PreferencesKeys {
     const val WEATHER_UNITS = "weather_units_preference_key"
     const val SHOW_WELCOME = "welcome_preference_key"
 
+    //FragmentResultListener
+    const val DATA = "data"
+    const val UNITS_CHANGED = "pref_changed"
 }

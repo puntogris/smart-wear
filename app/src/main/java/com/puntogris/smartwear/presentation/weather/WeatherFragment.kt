@@ -4,11 +4,13 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import androidx.core.widget.addTextChangedListener
+import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import com.puntogris.smartwear.R
 import com.puntogris.smartwear.common.*
+import com.puntogris.smartwear.common.constants.Keys
 import com.puntogris.smartwear.databinding.FragmentWeatherBinding
 import com.puntogris.smartwear.domain.model.Location
 import com.puntogris.smartwear.domain.model.Weather
@@ -29,6 +31,7 @@ class WeatherFragment : BaseBindingFragment<FragmentWeatherBinding>(R.layout.fra
 
         subscribeWeatherUi()
         subscribeRefreshUi()
+        subscribeWeatherUnitsListener()
         setupSearchLocationsUi()
     }
 
@@ -53,13 +56,13 @@ class WeatherFragment : BaseBindingFragment<FragmentWeatherBinding>(R.layout.fra
             viewModel.locationResult.collect { result ->
                 when (result) {
                     is LocationResult.Error -> {
-                        createSnackBar(getString(result.error))
+                        createSnackBar(result.error)
                     }
                     is LocationResult.Success.GetLocations -> {
                         adapter.updateSuggestions(result.data)
                     }
                     is LocationResult.Success.UpdateLocation -> {
-                        createSnackBar(getString(R.string.snack_location_updated_success))
+                        createSnackBar(R.string.snack_location_updated_success)
                     }
                 }
                 hideKeyboard()
@@ -102,7 +105,7 @@ class WeatherFragment : BaseBindingFragment<FragmentWeatherBinding>(R.layout.fra
 
     private fun onError(exception: Exception) {
         if (exception !is EmptyLocationException) {
-            createSnackBar(getString(R.string.snack_connection_error))
+            createSnackBar(R.string.snack_connection_error)
         }
         binding.swipeRefreshLayout.isRefreshing = false
     }
@@ -113,15 +116,20 @@ class WeatherFragment : BaseBindingFragment<FragmentWeatherBinding>(R.layout.fra
     }
 
     private fun subscribeRefreshUi() {
-        binding.swipeRefreshLayout.apply {
-            setOnRefreshListener {
-                viewModel.requestWeather()
-            }
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            viewModel.requestWeather()
         }
     }
 
     fun closeSuggestions() {
         binding.suggestionsLayout.gone()
+    }
+
+    private fun subscribeWeatherUnitsListener() {
+        setFragmentResultListener(Keys.UNITS_CHANGED) { _, bundle ->
+            val didUnitsChanged = bundle.getBoolean(Keys.DATA)
+            if (didUnitsChanged) viewModel.requestWeather()
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

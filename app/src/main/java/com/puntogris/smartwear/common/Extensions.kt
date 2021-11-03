@@ -5,7 +5,6 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.location.Address
 import android.net.Uri
 import android.view.View
 import android.view.inputmethod.EditorInfo
@@ -25,28 +24,19 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import java.util.*
 
-fun View.visible(){
+fun View.visible() {
     visibility = View.VISIBLE
 }
 
-fun View.gone(){
+fun View.gone() {
     visibility = View.GONE
 }
 
 fun EditText.getString() = text.toString()
 
-fun Fragment.createSnackBar(text: String, duration: Int = Snackbar.LENGTH_LONG){
+fun Fragment.createSnackBar(text: Int, duration: Int = Snackbar.LENGTH_LONG) {
     val snackLayout = this.requireActivity().findViewById<View>(android.R.id.content)
-    Snackbar.make(snackLayout, text,duration).show()
-}
-
-fun Address.getLocationName():String{
-    var locationName = ""
-    if (locality != null) {
-        locationName += locality
-        if (adminArea != null) locationName += ", $adminArea"
-    }else if (adminArea != null) locationName += adminArea
-    return locationName
+    Snackbar.make(snackLayout, text, duration).show()
 }
 
 fun AppCompatActivity.getNavController() = getNavHostFragment().navController
@@ -65,29 +55,42 @@ inline fun Fragment.launchAndRepeatWithViewLifecycle(
     }
 }
 
-fun Fragment.hasLocationPermission(): Boolean{
+fun Fragment.hasLocationPermission(): Boolean {
     if (Manifest.permission.ACCESS_FINE_LOCATION == Manifest.permission.ACCESS_BACKGROUND_LOCATION &&
-        android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.Q) {
+        android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.Q
+    ) {
         return true
     }
     return requireActivity().checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) ==
             PackageManager.PERMISSION_GRANTED
 }
 
-inline fun PreferenceFragmentCompat.preference(key: String, block: Preference.() -> Unit){
+inline fun PreferenceFragmentCompat.preference(key: String, block: Preference.() -> Unit) {
     findPreference<Preference>(key)?.apply {
         block(this)
     }
 }
 
-inline fun Preference.onClick(crossinline block: () -> Unit){
+inline fun <T : Preference> PreferenceFragmentCompat.preferenceChange(
+    key: String,
+    crossinline block: Preference.() -> Unit
+) {
+    findPreference<T>(key)?.apply {
+        setOnPreferenceChangeListener { _, _ ->
+            block(this)
+            true
+        }
+    }
+}
+
+inline fun Preference.onClick(crossinline block: () -> Unit) {
     setOnPreferenceClickListener {
         block()
         true
     }
 }
 
-inline fun PreferenceFragmentCompat.preferenceOnClick(key: String, crossinline block: () -> Unit){
+inline fun PreferenceFragmentCompat.preferenceOnClick(key: String, crossinline block: () -> Unit) {
     findPreference<Preference>(key)?.setOnPreferenceClickListener {
         block()
         true
@@ -113,15 +116,16 @@ fun EditText.onSearch(block: () -> Unit) {
     }
 }
 
-fun Fragment.launchWebBrowserIntent(uri: String, packageName: String? = null){
+fun Fragment.launchWebBrowserIntent(uri: String, packageName: String? = null) {
     try {
         Intent(Intent.ACTION_VIEW).let {
             it.data = Uri.parse(uri)
             if (packageName != null) it.setPackage(packageName)
             startActivity(it)
         }
-    }catch (e:Exception){
-        //handle error
+    } catch (e: Exception) {
+        createSnackBar(R.string.snack_connection_error)
     }
 }
-fun <Any>List<Any>.half() = this[size/ 2]
+
+fun <Any> List<Any>.half() = this[size / 2]

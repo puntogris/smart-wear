@@ -24,7 +24,7 @@ class LocationFragment : BaseBindingFragment<FragmentLocationBinding>(R.layout.f
         permissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission())
             { isGranted: Boolean ->
                 if (isGranted) onPermissionGranted()
-                else createSnackBar(getString(R.string.snack_location_required))
+                else createSnackBar(R.string.snack_location_required)
             }
     }
 

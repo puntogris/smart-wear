@@ -2,15 +2,19 @@ package com.puntogris.smartwear.presentation.settings
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.core.os.bundleOf
+import androidx.fragment.app.setFragmentResult
+import androidx.preference.ListPreference
 import androidx.preference.PreferenceFragmentCompat
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.puntogris.smartwear.BuildConfig
 import com.puntogris.smartwear.R
-import com.puntogris.smartwear.utils.*
-import com.puntogris.smartwear.common.constants.PreferencesKeys
+import com.puntogris.smartwear.common.constants.Keys
 import com.puntogris.smartwear.common.onClick
 import com.puntogris.smartwear.common.preference
+import com.puntogris.smartwear.common.preferenceChange
 import com.puntogris.smartwear.common.preferenceOnClick
+import com.puntogris.smartwear.utils.SharedPref
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -22,18 +26,22 @@ class PreferencesFragment : PreferenceFragmentCompat(){
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.preferences, rootKey)
 
-        preference(PreferencesKeys.VERSION){
+        preference(Keys.VERSION){
             summary = "${BuildConfig.VERSION_NAME} (${BuildConfig.VERSION_CODE})"
             onClick {
                 sharedPref.enableShowAnimationPref()
             }
         }
 
-        preferenceOnClick(PreferencesKeys.LICENSES){
+        preferenceOnClick(Keys.LICENSES){
             Intent(requireContext(), OssLicensesMenuActivity::class.java).apply {
                 OssLicensesMenuActivity.setActivityTitle(getString(R.string.open_source_licenses))
                 startActivity(this)
             }
+        }
+
+        preferenceChange<ListPreference>(Keys.WEATHER_UNITS){
+            setFragmentResult(Keys.UNITS_CHANGED, bundleOf(Keys.DATA to true))
         }
     }
 }

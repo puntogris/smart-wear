@@ -11,6 +11,7 @@
             android:entryValues="@array/theme_values"
             app:useSimpleSummaryProvider="true"
             app:title="Theme"
+            android:defaultValue="light"
             app:iconSpaceReserved="false"/>
         <ListPreference
             android:key="weather_units_preference_key"
