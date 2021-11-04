@@ -8,7 +8,7 @@ import com.puntogris.smartwear.BuildConfig
 import com.puntogris.smartwear.R
 import com.puntogris.smartwear.core.utils.launchWebBrowserIntent
 
-class WhatsNewDialog: DialogFragment() {
+class WhatsNewDialog : DialogFragment() {
 
     override fun onCreateDialog(savedViewState: Bundle?): Dialog {
         return MaterialAlertDialogBuilder(requireContext())

@@ -2,13 +2,13 @@ package com.puntogris.smartwear.feature_weather.presentation.weather
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.puntogris.smartwear.feature_weather.presentation.util.LocationResult
 import com.puntogris.smartwear.core.utils.Result
+import com.puntogris.smartwear.feature_weather.data.data_source.local.SharedPreferences
 import com.puntogris.smartwear.feature_weather.domain.model.Location
 import com.puntogris.smartwear.feature_weather.domain.model.Weather
 import com.puntogris.smartwear.feature_weather.domain.use_case.GetWeather
 import com.puntogris.smartwear.feature_weather.domain.use_case.LocationUseCases
-import com.puntogris.smartwear.feature_weather.data.data_source.local.SharedPreferences
+import com.puntogris.smartwear.feature_weather.presentation.util.LocationResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch

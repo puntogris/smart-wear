@@ -9,7 +9,6 @@ import com.puntogris.smartwear.feature_weather.domain.model.conditions.Precipita
 import com.puntogris.smartwear.feature_weather.domain.model.conditions.Temperature
 import com.puntogris.smartwear.feature_weather.domain.model.conditions.Wind
 
-
 fun LocationEntity.toDomain(): Location {
     return Location(
         name = name,

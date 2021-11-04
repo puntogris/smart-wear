@@ -23,20 +23,20 @@ class LocationFragment : BaseBindingFragment<FragmentLocationBinding>(R.layout.f
         setupLocationPermissionLauncher()
     }
 
-    private fun setupLocationPermissionLauncher(){
+    private fun setupLocationPermissionLauncher() {
         permissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission())
-            { isGranted: Boolean ->
-                if (isGranted) onPermissionGranted()
-                else createSnackBar(R.string.snack_location_required)
-            }
+        { isGranted: Boolean ->
+            if (isGranted) onPermissionGranted()
+            else createSnackBar(R.string.snack_location_required)
+        }
     }
 
-    private fun onPermissionGranted(){
+    private fun onPermissionGranted() {
         setFragmentResult(Keys.DATA, bundleOf(Keys.LOCATION_RESULT to true))
         findNavController().navigateUp()
     }
 
-    fun requestLocationPermission(){
+    fun requestLocationPermission() {
         permissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
     }
 }

@@ -5,9 +5,9 @@ import com.puntogris.smartwear.feature_weather.domain.repository.LocationReposit
 import javax.inject.Inject
 
 class InsertLocation @Inject constructor(
-    private val repository : LocationRepository
-){
-    suspend operator fun invoke(location: Location){
+    private val repository: LocationRepository
+) {
+    suspend operator fun invoke(location: Location) {
         repository.insertLastLocation(location)
     }
 }

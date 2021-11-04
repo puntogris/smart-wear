@@ -11,7 +11,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val sharedPreferences: SharedPreferences
-): ViewModel() {
+) : ViewModel() {
 
     private val _appVersionStatus = MutableLiveData<Boolean>()
     val appVersionStatus: LiveData<Boolean> = _appVersionStatus

@@ -7,10 +7,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.puntogris.smartwear.databinding.SuggestionVhBinding
 import com.puntogris.smartwear.feature_weather.domain.model.Location
 
-class SuggestionViewHolder(private val binding: SuggestionVhBinding): RecyclerView.ViewHolder(binding.root) {
+class SuggestionViewHolder(private val binding: SuggestionVhBinding) :
+    RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(location: Location, clickListener: (Location) -> Unit, isLastItem: Boolean){
-        with(binding){
+    fun bind(location: Location, clickListener: (Location) -> Unit, isLastItem: Boolean) {
+        with(binding) {
             this.location = location
             root.setOnClickListener {
                 clickListener(location)
@@ -20,7 +21,7 @@ class SuggestionViewHolder(private val binding: SuggestionVhBinding): RecyclerVi
         }
     }
 
-    companion object{
+    companion object {
         fun from(parent: ViewGroup): SuggestionViewHolder {
             val layoutInflater = LayoutInflater.from(parent.context)
             val binding = SuggestionVhBinding.inflate(layoutInflater, parent, false)

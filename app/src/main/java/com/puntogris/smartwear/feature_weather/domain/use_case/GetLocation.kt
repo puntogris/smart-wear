@@ -6,8 +6,8 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class GetLocation @Inject constructor(
-    private val repository : LocationRepository
-){
+    private val repository: LocationRepository
+) {
     operator fun invoke(): Flow<Location?> {
         return repository.getLocalLastLocation()
     }

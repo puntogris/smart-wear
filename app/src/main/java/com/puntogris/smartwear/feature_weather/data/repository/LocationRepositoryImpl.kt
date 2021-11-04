@@ -20,34 +20,31 @@ class LocationRepositoryImpl(
     private val dispatchers: DispatcherProvider
 ) : LocationRepository {
 
-    override fun getLocalLastLocation() : Flow<Location?> {
+    override fun getLocalLastLocation(): Flow<Location?> {
         return locationDao.getLocationLiveData().map { it?.toDomain() }
     }
 
-    override suspend fun updateLastLocation(): SimpleResult = withContext(dispatchers.io){
-        try{
+    override suspend fun updateLastLocation(): SimpleResult = withContext(dispatchers.io) {
+        try {
             val lastLocalLocation = locationDao.getLastLocation()
             val currentLocation = locationClient.requestLocation()
 
             val finalLocation = geocodingApi.getLocationCoordinates(currentLocation).toEntity()
 
-            if (lastLocalLocation == null || lastLocalLocation.name != finalLocation.name){
+            if (lastLocalLocation == null || lastLocalLocation.name != finalLocation.name) {
                 locationDao.insert(finalLocation)
             }
-
             SimpleResult.Success
-        }catch (e:Exception){
+        } catch (e: Exception) {
             SimpleResult.Failure
         }
     }
 
-
-    override suspend fun insertLastLocation(location: Location) = withContext(dispatchers.io){
+    override suspend fun insertLastLocation(location: Location) = withContext(dispatchers.io) {
         locationDao.insert(location.toEntity())
     }
 
     override suspend fun getLocationCoordinates(query: String): List<Location> {
         return geocodingApi.getLocations(query).map { it.toDomain() }
     }
-
 }

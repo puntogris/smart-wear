@@ -8,8 +8,7 @@ import androidx.databinding.ViewDataBinding
 import com.puntogris.smartwear.core.utils.getNavHostFragment
 
 abstract class BaseBindingActivity<T : ViewDataBinding>(@LayoutRes val layout: Int) :
-    AppCompatActivity()
-{
+    AppCompatActivity() {
     private var _binding: T? = null
     val binding get() = _binding!!
 

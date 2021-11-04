@@ -21,13 +21,16 @@ class SharedPreferences @Inject constructor(@ApplicationContext context: Context
 
     fun lastVersionCode() = sharedPreferences.getInt(Keys.APP_VERSION, 0)
 
-    fun updateLastVersionCode() = sharedPreferences.edit().putInt(Keys.APP_VERSION, BuildConfig.VERSION_CODE).apply()
+    fun updateLastVersionCode() =
+        sharedPreferences.edit().putInt(Keys.APP_VERSION, BuildConfig.VERSION_CODE).apply()
 
     fun weatherUnits() = sharedPreferences.getString(Keys.WEATHER_UNITS, "metric")
 
     fun showWelcome() = sharedPreferences.getBoolean(Keys.SHOW_WELCOME, true)
 
-    fun disableWelcomeScreenPref() = sharedPreferences.edit().putBoolean(Keys.SHOW_WELCOME, false).apply()
+    fun disableWelcomeScreenPref() =
+        sharedPreferences.edit().putBoolean(Keys.SHOW_WELCOME, false).apply()
 }
 
-fun SharedPreferences.enableShowAnimationPref() = this.edit().putBoolean(Keys.ANIMATION, true).apply()
+fun SharedPreferences.enableShowAnimationPref() =
+    this.edit().putBoolean(Keys.ANIMATION, true).apply()

@@ -8,10 +8,13 @@ import dagger.hilt.android.HiltAndroidApp
 import javax.inject.Inject
 
 @HiltAndroidApp
-class SmartWearApplication : Application(){
+class SmartWearApplication : Application() {
 
-    @Inject lateinit var themeManager: ThemeManager
-    @Inject lateinit var sharedPreferences: SharedPreferences
+    @Inject
+    lateinit var themeManager: ThemeManager
+
+    @Inject
+    lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate() {
         super.onCreate()
@@ -20,7 +23,7 @@ class SmartWearApplication : Application(){
         AndroidThreeTen.init(this)
     }
 
-    private fun setupTheme(){
+    private fun setupTheme() {
         val theme = sharedPreferences.appTheme()
         themeManager.applyTheme(theme)
     }

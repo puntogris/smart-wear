@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class CurrentResult(
-    
+
     @SerialName("temp")
     val temperature: Float,
 

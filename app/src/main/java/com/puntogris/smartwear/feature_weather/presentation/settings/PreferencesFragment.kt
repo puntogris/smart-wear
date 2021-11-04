@@ -16,32 +16,33 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class PreferencesFragment : PreferenceFragmentCompat(){
+class PreferencesFragment : PreferenceFragmentCompat() {
 
-    @Inject lateinit var themeManager: ThemeManager
+    @Inject
+    lateinit var themeManager: ThemeManager
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.preferences, rootKey)
 
-        preference(Keys.VERSION){
+        preference(Keys.VERSION) {
             summary = "${BuildConfig.VERSION_NAME} (${BuildConfig.VERSION_CODE})"
             onClick {
                 sharedPreferences.enableShowAnimationPref()
             }
         }
 
-        preferenceOnClick(Keys.LICENSES){
+        preferenceOnClick(Keys.LICENSES) {
             Intent(requireContext(), OssLicensesMenuActivity::class.java).apply {
                 OssLicensesMenuActivity.setActivityTitle(getString(R.string.open_source_licenses))
                 startActivity(this)
             }
         }
 
-        preferenceChange<ListPreference>(Keys.WEATHER_UNITS){
+        preferenceChange<ListPreference>(Keys.WEATHER_UNITS) {
             setFragmentResult(Keys.DATA, bundleOf(Keys.UNITS_RESULT to true))
         }
 
-        preferenceChange<ListPreference>(Keys.THEME){
+        preferenceChange<ListPreference>(Keys.THEME) {
             themeManager.applyTheme(it as? String)
         }
     }

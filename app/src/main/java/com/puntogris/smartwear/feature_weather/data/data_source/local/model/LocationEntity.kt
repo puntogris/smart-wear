@@ -22,5 +22,5 @@ data class LocationEntity(
     @ColumnInfo
     val longitude: Double = 0.0
 
-):Parcelable
+) : Parcelable
 

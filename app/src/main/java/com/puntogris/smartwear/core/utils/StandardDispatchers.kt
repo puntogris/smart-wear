@@ -4,7 +4,7 @@ import com.puntogris.smartwear.feature_weather.domain.repository.DispatcherProvi
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 
-class StandardDispatchers: DispatcherProvider {
+class StandardDispatchers : DispatcherProvider {
 
     override val main: CoroutineDispatcher
         get() = Dispatchers.Main

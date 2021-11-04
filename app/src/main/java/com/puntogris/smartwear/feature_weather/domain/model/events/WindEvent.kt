@@ -13,6 +13,7 @@ class WindEvent(weatherResult: WeatherResult, hoursAnalyzed: Int) : DetailedEven
     override val eventConditions: List<WeatherCondition> =
         weatherResult.hourly.subList(0, hoursAnalyzed).map { it.windSpeed }
 
-    override val getMaxCondition: WeatherCondition? = eventConditions.maxByOrNull { it.metricValue() }
+    override val getMaxCondition: WeatherCondition? =
+        eventConditions.maxByOrNull { it.metricValue() }
 }
 

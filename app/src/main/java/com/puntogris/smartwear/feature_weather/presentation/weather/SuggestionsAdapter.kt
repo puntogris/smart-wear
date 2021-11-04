@@ -7,7 +7,7 @@ import com.puntogris.smartwear.feature_weather.domain.model.Location
 
 class SuggestionsAdapter(
     private val clickListener: (Location) -> Unit
-): RecyclerView.Adapter<SuggestionViewHolder>() {
+) : RecyclerView.Adapter<SuggestionViewHolder>() {
 
     private var suggestions = listOf<Location>()
 
@@ -22,7 +22,7 @@ class SuggestionsAdapter(
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun updateSuggestions(suggestions: List<Location>){
+    fun updateSuggestions(suggestions: List<Location>) {
         this.suggestions = suggestions
         notifyDataSetChanged()
     }

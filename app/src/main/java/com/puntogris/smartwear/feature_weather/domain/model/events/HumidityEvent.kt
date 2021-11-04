@@ -13,5 +13,6 @@ class HumidityEvent(weatherResult: WeatherResult, hoursAnalyzed: Int) : Detailed
     override val eventConditions: List<WeatherCondition> =
         weatherResult.hourly.subList(0, hoursAnalyzed).map { it.humidity }
 
-    override val getMaxCondition: WeatherCondition? = eventConditions.maxByOrNull { it.metricValue() }
+    override val getMaxCondition: WeatherCondition? =
+        eventConditions.maxByOrNull { it.metricValue() }
 }

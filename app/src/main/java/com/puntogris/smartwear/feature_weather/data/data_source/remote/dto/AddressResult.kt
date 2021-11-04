@@ -29,7 +29,7 @@ data class AddressResult(
 
     @SerialName("town")
     val town: String = ""
-){
+) {
     val name = getAddressName()
 
     private fun getAddressName(): String {

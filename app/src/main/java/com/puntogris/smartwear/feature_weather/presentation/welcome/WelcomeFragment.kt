@@ -11,17 +11,18 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class WelcomeFragment : BaseBindingFragment<FragmentWelcomeBinding>(R.layout.fragment_welcome) {
 
-    @Inject lateinit var sharedPreferences: SharedPreferences
+    @Inject
+    lateinit var sharedPreferences: SharedPreferences
 
     override fun initializeViews() {
-        with(binding){
+        with(binding) {
             fragment = this@WelcomeFragment
             viewPager.adapter = IllustrationAdapter()
             dotsIndicator.setViewPager2(viewPager)
         }
     }
 
-    fun onContinueClicked(){
+    fun onContinueClicked() {
         sharedPreferences.disableWelcomeScreenPref()
         findNavController().navigate(R.id.weatherFragment)
     }

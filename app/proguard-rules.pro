@@ -19,3 +19,20 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+-keepattributes *Annotation*, InnerClasses
+-dontnote kotlinx.serialization.AnnotationsKt
+
+-keepclassmembers class kotlinx.serialization.json.** {
+    *** Companion;
+}
+-keepclasseswithmembers class kotlinx.serialization.json.** {
+    kotlinx.serialization.KSerializer serializer(...);
+}
+
+-keep,includedescriptorclasses class com.puntogris.smartwear.**$$serializer { *; }
+-keepclassmembers class com.puntogris.smartwear.** {
+    *** Companion;
+}
+-keepclasseswithmembers class com.puntogris.smartwear.** {
+    kotlinx.serialization.KSerializer serializer(...);
+}

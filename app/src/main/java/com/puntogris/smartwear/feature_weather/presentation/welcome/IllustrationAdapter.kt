@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.puntogris.smartwear.R
 import com.puntogris.smartwear.feature_weather.domain.model.Illustration
 
-class IllustrationAdapter: RecyclerView.Adapter<IllustrationViewHolder>(){
+class IllustrationAdapter : RecyclerView.Adapter<IllustrationViewHolder>() {
 
     private var items = listOf(
         Illustration(R.string.welcome_item_1, R.drawable.ic_search_illustration),
