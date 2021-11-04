@@ -9,15 +9,15 @@
 
         <variable
             name="fragment"
-            type="com.puntogris.smartwear.presentation.weather.WeatherFragment" />
+            type="com.puntogris.smartwear.feature_weather.presentation.weather.WeatherFragment" />
 
         <variable
             name="viewModel"
-            type="com.puntogris.smartwear.presentation.weather.WeatherViewModel" />
+            type="com.puntogris.smartwear.feature_weather.presentation.weather.WeatherViewModel" />
 
         <variable
             name="weather"
-            type="com.puntogris.smartwear.domain.model.Weather" />
+            type="com.puntogris.smartwear.feature_weather.domain.model.Weather" />
     </data>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout

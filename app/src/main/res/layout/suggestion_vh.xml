@@ -4,7 +4,7 @@
     <data>
         <variable
             name="location"
-            type="com.puntogris.smartwear.domain.model.Location" />
+            type="com.puntogris.smartwear.feature_weather.domain.model.Location" />
     </data>
 
     <LinearLayout

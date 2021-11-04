@@ -6,7 +6,7 @@
     <data>
         <variable
             name="fragment"
-            type="com.puntogris.smartwear.presentation.welcome.WelcomeFragment" />
+            type="com.puntogris.smartwear.feature_weather.presentation.welcome.WelcomeFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

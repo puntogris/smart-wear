@@ -6,7 +6,7 @@
     <data>
         <variable
             name="illustration"
-            type="com.puntogris.smartwear.domain.model.Illustration" />
+            type="com.puntogris.smartwear.feature_weather.domain.model.Illustration" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

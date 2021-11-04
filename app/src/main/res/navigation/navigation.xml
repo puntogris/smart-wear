@@ -6,21 +6,21 @@
 
     <fragment
         android:id="@+id/preferencesFragment"
-        android:name="com.puntogris.smartwear.presentation.settings.PreferencesFragment"
+        android:name="com.puntogris.smartwear.feature_weather.presentation.settings.PreferencesFragment"
         android:label="@string/settings_label" />
     <fragment
         android:id="@+id/weatherFragment"
-        android:name="com.puntogris.smartwear.presentation.weather.WeatherFragment"
+        android:name="com.puntogris.smartwear.feature_weather.presentation.weather.WeatherFragment"
         android:label="" />
     <fragment
         android:id="@+id/locationFragment"
-        android:name="com.puntogris.smartwear.presentation.location.LocationFragment"
+        android:name="com.puntogris.smartwear.feature_weather.presentation.location.LocationFragment"
         android:label="" />
     <dialog
         android:id="@+id/whatsNewDialog"
-        android:name="com.puntogris.smartwear.presentation.main.WhatsNewDialog"/>
+        android:name="com.puntogris.smartwear.feature_weather.presentation.whats_new.WhatsNewDialog"/>
     <fragment
         android:id="@+id/welcomeFragment"
-        android:name="com.puntogris.smartwear.presentation.welcome.WelcomeFragment"
+        android:name="com.puntogris.smartwear.feature_weather.presentation.welcome.WelcomeFragment"
         android:label="" />
 </navigation>
