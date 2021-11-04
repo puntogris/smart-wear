@@ -3,7 +3,7 @@ package com.puntogris.smartwear.core.utils
 import androidx.appcompat.app.AppCompatDelegate
 import javax.inject.Inject
 
-class ThemeUtils @Inject constructor(){
+class ThemeManager @Inject constructor(){
 
     fun applyTheme(value: String?){
         when(value ?: return){

@@ -18,7 +18,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class PreferencesFragment : PreferenceFragmentCompat(){
 
-    @Inject lateinit var themeUtils: ThemeUtils
+    @Inject lateinit var themeManager: ThemeManager
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.preferences, rootKey)
@@ -42,7 +42,7 @@ class PreferencesFragment : PreferenceFragmentCompat(){
         }
 
         preferenceChange<ListPreference>(Keys.THEME){
-            themeUtils.applyTheme(it as? String)
+            themeManager.applyTheme(it as? String)
         }
     }
 }

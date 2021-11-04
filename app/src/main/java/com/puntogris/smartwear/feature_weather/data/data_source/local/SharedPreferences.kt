@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.preference.PreferenceManager
 import com.puntogris.smartwear.BuildConfig
-import com.puntogris.smartwear.core.utils.ThemeUtils
+import com.puntogris.smartwear.core.utils.ThemeManager
 import com.puntogris.smartwear.core.utils.constants.Keys
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
@@ -13,7 +13,7 @@ class SharedPreferences @Inject constructor(@ApplicationContext context: Context
 
     private val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
 
-    fun appTheme() = sharedPreferences.getString(Keys.THEME, ThemeUtils.LIGHT)
+    fun appTheme() = sharedPreferences.getString(Keys.THEME, ThemeManager.LIGHT)
 
     fun enableShowAnimationPref() = sharedPreferences.enableShowAnimationPref()
 
