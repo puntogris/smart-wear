@@ -58,7 +58,7 @@ module.exports = {
           collapsable: false,
           children: [
             '',
-            'v1.0.0-a1'
+            'v1.0.0'
           ]
         }
       ],
