@@ -36,3 +36,7 @@
 -keepclasseswithmembers class com.puntogris.smartwear.** {
     kotlinx.serialization.KSerializer serializer(...);
 }
+-keep public class io.ktor.client.** {
+    public <methods>;
+    private <methods>;
+}

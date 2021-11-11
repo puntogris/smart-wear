@@ -14,7 +14,7 @@ class WeatherRepositoryImpl(
 ) : WeatherRepository {
 
     override suspend fun getWeather(location: Location): WeatherResult {
-        val units = sharedPref.weatherUnits()!!
+        val units = requireNotNull(sharedPref.weatherUnits())
         val language = getLanguageCode()
         val weather = weatherApi.getWeather(
             location = location,
