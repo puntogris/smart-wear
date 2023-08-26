@@ -9,8 +9,12 @@ import androidx.preference.PreferenceFragmentCompat
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.puntogris.smartwear.BuildConfig
 import com.puntogris.smartwear.R
-import com.puntogris.smartwear.core.utils.*
+import com.puntogris.smartwear.core.utils.ThemeManager
 import com.puntogris.smartwear.core.utils.constants.Keys
+import com.puntogris.smartwear.core.utils.onClick
+import com.puntogris.smartwear.core.utils.preference
+import com.puntogris.smartwear.core.utils.preferenceChange
+import com.puntogris.smartwear.core.utils.preferenceOnClick
 import com.puntogris.smartwear.feature_weather.data.data_source.local.enableShowAnimationPref
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -27,7 +31,7 @@ class PreferencesFragment : PreferenceFragmentCompat() {
         preference(Keys.VERSION) {
             summary = "${BuildConfig.VERSION_NAME} (${BuildConfig.VERSION_CODE})"
             onClick {
-                sharedPreferences.enableShowAnimationPref()
+                sharedPreferences?.enableShowAnimationPref()
             }
         }
 

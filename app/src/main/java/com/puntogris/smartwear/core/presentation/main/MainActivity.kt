@@ -45,9 +45,10 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>(R.layout.activity_
     private fun setupInitialDestination() {
         navController.graph = navController.navInflater.inflate(R.navigation.navigation)
             .apply {
-                startDestination =
+                setStartDestination(
                     if (viewModel.showWelcomeScreen()) R.id.welcomeFragment
                     else R.id.weatherFragment
+                )
             }
     }
 

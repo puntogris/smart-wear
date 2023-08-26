@@ -10,15 +10,21 @@ import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import com.puntogris.smartwear.R
-import com.puntogris.smartwear.core.utils.*
+import com.puntogris.smartwear.core.presentation.base.BaseBindingFragment
+import com.puntogris.smartwear.core.utils.Result
 import com.puntogris.smartwear.core.utils.constants.Keys
+import com.puntogris.smartwear.core.utils.createSnackBar
+import com.puntogris.smartwear.core.utils.getString
+import com.puntogris.smartwear.core.utils.gone
+import com.puntogris.smartwear.core.utils.hasLocationPermission
+import com.puntogris.smartwear.core.utils.hideKeyboard
+import com.puntogris.smartwear.core.utils.launchAndRepeatWithViewLifecycle
+import com.puntogris.smartwear.core.utils.onSearch
 import com.puntogris.smartwear.databinding.FragmentWeatherBinding
 import com.puntogris.smartwear.feature_weather.domain.model.Location
-import com.puntogris.smartwear.core.presentation.base.BaseBindingFragment
 import com.puntogris.smartwear.feature_weather.presentation.util.EmptyLocationException
 import com.puntogris.smartwear.feature_weather.presentation.util.LocationResult
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
 class WeatherFragment : BaseBindingFragment<FragmentWeatherBinding>(R.layout.fragment_weather) {
@@ -65,6 +71,7 @@ class WeatherFragment : BaseBindingFragment<FragmentWeatherBinding>(R.layout.fra
                     is LocationResult.Success.UpdateLocation -> {
                         createSnackBar(R.string.snack_location_updated_success)
                     }
+                    LocationResult.Loading -> Unit
                 }
 
                 with(binding) {
@@ -101,6 +108,7 @@ class WeatherFragment : BaseBindingFragment<FragmentWeatherBinding>(R.layout.fra
                     is Result.Loading -> {
                         binding.swipeRefreshLayout.isRefreshing = true
                     }
+                    else -> Unit
                 }
             }
         }

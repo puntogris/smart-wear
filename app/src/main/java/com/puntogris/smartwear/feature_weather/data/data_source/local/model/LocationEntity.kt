@@ -10,7 +10,7 @@ import kotlinx.parcelize.Parcelize
 @Entity(tableName = "Location")
 data class LocationEntity(
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = false)
     val id: Int = 1,
 
     @ColumnInfo
