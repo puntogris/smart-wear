@@ -5,7 +5,6 @@ plugins {
     id 'dagger.hilt.android.plugin'
     id 'kotlin-parcelize'
     id 'com.google.android.gms.oss-licenses-plugin'
-    id 'kotlinx-serialization'
     id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
     id 'com.google.gms.google-services'
     id 'com.google.firebase.crashlytics'
@@ -137,13 +136,10 @@ dependencies {
     //Open source licenses
     implementation "com.google.android.gms:play-services-oss-licenses:$licensesVersion"
 
-    //Ktor
-    implementation "io.ktor:ktor-client-android:$ktorVersion"
-    implementation "io.ktor:ktor-client-serialization:$ktorVersion"
-    implementation "io.ktor:ktor-client-logging-jvm:$ktorVersion"
-
-    //Serialization
-    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:$serializationVersion"
+    //Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.11.0'
 
     //Glide
     implementation "com.github.bumptech.glide:glide:$glideVersion"
@@ -154,5 +150,4 @@ dependencies {
 
     //Date and time
     implementation "com.jakewharton.threetenabp:threetenabp:$threeTenVersion"
-
 }

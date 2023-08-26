@@ -6,7 +6,7 @@ import com.puntogris.smartwear.feature_weather.data.data_source.toDomain
 import com.puntogris.smartwear.feature_weather.domain.model.Location
 import com.puntogris.smartwear.feature_weather.domain.model.WeatherResult
 import com.puntogris.smartwear.feature_weather.domain.repository.WeatherRepository
-import java.util.*
+import java.util.Locale
 
 class WeatherRepositoryImpl(
     private val weatherApi: WeatherApi,
@@ -17,9 +17,10 @@ class WeatherRepositoryImpl(
         val units = requireNotNull(sharedPref.weatherUnits())
         val language = getLanguageCode()
         val weather = weatherApi.getWeather(
-            location = location,
+            lat = location.latitude,
+            lon = location.longitude,
             units = units,
-            language = language
+            lang = language
         )
         return weather.toDomain(units)
     }

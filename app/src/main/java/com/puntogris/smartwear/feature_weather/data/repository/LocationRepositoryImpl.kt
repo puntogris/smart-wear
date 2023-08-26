@@ -29,7 +29,10 @@ class LocationRepositoryImpl(
             val lastLocalLocation = locationDao.getLastLocation()
             val currentLocation = locationClient.requestLocation()
 
-            val finalLocation = geocodingApi.getLocationCoordinates(currentLocation).toEntity()
+            val finalLocation = geocodingApi.getLocationCoordinates(
+                lat = currentLocation.latitude,
+                lon = currentLocation.longitude,
+            ).toEntity()
 
             if (lastLocalLocation == null || lastLocalLocation.name != finalLocation.name) {
                 locationDao.insert(finalLocation)

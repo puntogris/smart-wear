@@ -1,11 +1,11 @@
 package com.puntogris.smartwear.feature_weather.data.data_source.remote.dto
 
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
+import androidx.annotation.Keep
+import com.google.gson.annotations.SerializedName
 
-@Serializable
+@Keep
 data class DailyResult(
 
-    @SerialName("temp")
+    @SerializedName("temp")
     val temperature: TemperatureResult
 )

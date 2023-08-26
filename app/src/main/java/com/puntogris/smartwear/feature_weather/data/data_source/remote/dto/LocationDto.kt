@@ -1,20 +1,20 @@
 package com.puntogris.smartwear.feature_weather.data.data_source.remote.dto
 
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
+import androidx.annotation.Keep
+import com.google.gson.annotations.SerializedName
 
-@Serializable
+@Keep
 data class LocationDto(
 
-    @SerialName("display_name")
-    val displayName: String,
+    @SerializedName("display_name")
+    val displayName: String = "",
 
-    @SerialName("lat")
-    val latitude: Float,
+    @SerializedName("lat")
+    val latitude: Float = 0F,
 
-    @SerialName("lon")
-    val longitude: Float,
+    @SerializedName("lon")
+    val longitude: Float = 0F,
 
-    @SerialName("address")
+    @SerializedName("address")
     val address: AddressResult = AddressResult()
 )

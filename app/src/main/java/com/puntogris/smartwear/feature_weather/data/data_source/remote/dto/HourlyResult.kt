@@ -1,20 +1,20 @@
 package com.puntogris.smartwear.feature_weather.data.data_source.remote.dto
 
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
+import androidx.annotation.Keep
+import com.google.gson.annotations.SerializedName
 
-@Serializable
+@Keep
 data class HourlyResult(
 
-    @SerialName("temp")
+    @SerializedName("temp")
     val temp: Float,
 
-    @SerialName("humidity")
+    @SerializedName("humidity")
     val humidity: Int,
 
-    @SerialName("wind_speed")
+    @SerializedName("wind_speed")
     val windSpeed: Float,
 
-    @SerialName("pop")
+    @SerializedName("pop")
     val precipitation: Float
 )

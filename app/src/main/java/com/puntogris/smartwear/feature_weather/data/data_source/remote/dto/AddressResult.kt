@@ -1,45 +1,44 @@
 package com.puntogris.smartwear.feature_weather.data.data_source.remote.dto
 
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
+import androidx.annotation.Keep
+import com.google.gson.annotations.SerializedName
 
-@Serializable
+@Keep
 data class AddressResult(
 
-    @SerialName("country")
+    @SerializedName("country")
     val country: String = "",
 
-    @SerialName("state")
+    @SerializedName("state")
     val state: String = "",
 
-    @SerialName("city")
+    @SerializedName("city")
     val city: String = "",
 
-    @SerialName("region")
+    @SerializedName("region")
     val region: String = "",
 
-    @SerialName("municipality")
+    @SerializedName("municipality")
     val municipality: String = "",
 
-    @SerialName("state_district")
+    @SerializedName("state_district")
     val stateDistrict: String = "",
 
-    @SerialName("county")
+    @SerializedName("county")
     val county: String = "",
 
-    @SerialName("town")
+    @SerializedName("town")
     val town: String = ""
 ) {
     val name = getAddressName()
 
     private fun getAddressName(): String {
         val separator = ", "
-        var name = ""
 
-        if (city.isNotBlank()) name += city + separator
-        if (state.isNotBlank()) name += state + separator
-        if (country.isNotBlank()) name += country
-
-        return name
+        return buildString {
+            if (city.isNotBlank()) append(city + separator)
+            if (state.isNotBlank()) append(state + separator)
+            if (country.isNotBlank()) append(country)
+        }
     }
 }

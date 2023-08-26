@@ -10,11 +10,6 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import io.ktor.client.*
-import io.ktor.client.engine.android.*
-import io.ktor.client.features.json.*
-import io.ktor.client.features.json.serializer.*
-import io.ktor.client.features.logging.*
 import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
@@ -31,22 +26,6 @@ class AppModule {
                 AppDatabase.DATABASE_NAME
             )
             .build()
-    }
-
-    @Singleton
-    @Provides
-    fun provideKtorClient(): HttpClient {
-        return HttpClient(Android) {
-            install(Logging) {
-                level = LogLevel.ALL
-            }
-
-            install(JsonFeature) {
-                serializer = KotlinxSerializer(kotlinx.serialization.json.Json {
-                    ignoreUnknownKeys = true
-                })
-            }
-        }
     }
 
     @Singleton

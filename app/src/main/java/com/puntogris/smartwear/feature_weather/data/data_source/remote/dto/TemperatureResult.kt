@@ -1,14 +1,14 @@
 package com.puntogris.smartwear.feature_weather.data.data_source.remote.dto
 
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
+import androidx.annotation.Keep
+import com.google.gson.annotations.SerializedName
 
-@Serializable
+@Keep
 data class TemperatureResult(
 
-    @SerialName("min")
+    @SerializedName("min")
     val min: Float,
 
-    @SerialName("max")
+    @SerializedName("max")
     val max: Float
 )
