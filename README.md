@@ -1,16 +1,7 @@
 # Smart Wear
+
 App that will analize the current weather and forecast for the next hours and give you clothing recommendations.
 
-Used in this project:</br>
-  * Kotlin
-  * Clean Architecture and MVVM
-  * Ktor
-  * Room
-  * Google Play services location API
-  * OpenWeather API
-  * LocationIQ API
-  * Hilt
-  * Vuepress
-  
-## Screenshots
-<img src="https://github.com/puntogris/smart-wear/blob/master/screenshots/1.png" width=250> <img src="https://github.com/puntogris/smart-wear/blob/master/screenshots/2.png" width=250> <img src="https://github.com/puntogris/smart-wear/blob/master/screenshots/3.png" width=250>
+## Legacy version
+
+There was a legacy version of this app, that was only available for Android. [Legacy branch](https://github.com/puntogris/smart-wear/tree/d41dde42a15ef2a69fefb4d1ccda6c8ae31eb3c2)
