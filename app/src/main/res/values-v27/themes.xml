@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-
-    <style name="SmartWear.Theme.DayNight" parent="Base.Theme">
-        <item name="android:navigationBarColor">?colorSurface</item>
-        <item name="android:windowLightNavigationBar">true</item>
-    </style>
-
-</resources>
