@@ -1,18 +1,20 @@
-import { Link, Stack, useNavigation } from "expo-router";
-import { Text, View } from "react-native";
-import { useEffect } from "react";
+import { Colors } from "@/constants/Colors";
+import { Link, Stack } from "expo-router";
+import { SafeAreaView, StyleSheet, Text } from "react-native";
 
 export default function Home() {
-  const navigation = useNavigation();
-
-  useEffect(() => {
-    navigation.setOptions({ headerShown: false });
-  }, [navigation]);
-
   return (
-    <View style={{ flex: 1 }}>
+    <SafeAreaView style={styles.container}>
+      <Stack.Screen options={{ headerShown: false }} />
       <Text>Home Screen</Text>
       <Link href="/settings">settings</Link>
-    </View>
+    </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: Colors.sky,
+  },
+});

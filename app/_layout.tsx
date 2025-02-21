@@ -1,21 +1,23 @@
+import { Colors } from "@/constants/Colors";
 import { Stack } from "expo-router";
 
 export default function Layout() {
   return (
     <Stack
       screenOptions={{
+        presentation: "transparentModal",
         headerStyle: {
-          backgroundColor: "#f4511e",
+          backgroundColor: Colors.sky,
         },
         headerTintColor: "#fff",
-        headerTitleStyle: {
-          fontWeight: "bold",
+        statusBarBackgroundColor: Colors.sky,
+        contentStyle: {
+          backgroundColor: Colors.sky,
         },
       }}
     >
-      {/* Optionally configure static options outside the route.*/}
-      <Stack.Screen name="index" options={{}} />
-      <Stack.Screen name="settings" options={{}} />
+      <Stack.Screen name="index" />
+      <Stack.Screen name="settings" />
     </Stack>
   );
 }

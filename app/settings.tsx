@@ -1,19 +1,22 @@
-import { useRouter } from "expo-router";
-import { View, Text, StyleSheet } from "react-native";
+import { Colors } from "@/constants/Colors";
+import { Stack } from "expo-router";
+import { SafeAreaView, Text, StyleSheet } from "react-native";
 
 export default function Settings() {
-  const router = useRouter();
-
   return (
-    <View style={styles.container}>
-      <Text
-        onPress={() => {
-          router.setParams({ name: "Updated" });
+    <SafeAreaView style={styles.container}>
+      <Stack.Screen
+        options={{
+          title: "Settings",
+          headerStyle: {
+            backgroundColor: Colors.sky,
+          },
+          headerShadowVisible: false,
+          headerShown: true,
         }}
-      >
-        Update the title
-      </Text>
-    </View>
+      />
+      <Text>Settings</Text>
+    </SafeAreaView>
   );
 }
 
@@ -22,5 +25,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: Colors.sky,
   },
 });
