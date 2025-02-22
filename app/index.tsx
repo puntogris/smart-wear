@@ -1,11 +1,11 @@
 import { Colors } from "@/constants/Colors";
 import { Link, Stack } from "expo-router";
 import { useEffect, useState } from "react";
-import { SafeAreaView, StyleSheet, Text } from "react-native";
+import { SafeAreaView, StyleSheet, Text, View } from "react-native";
 import * as Location from "expo-location";
 
 export default function Home() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<string[]>([]);
   const [location, setLocation] = useState<Location.LocationObject | null>(
     null
   );
@@ -19,7 +19,7 @@ export default function Home() {
       },
     })
       .then((res) => res.json())
-      .then((data) => setData(data));
+      .then((data) => setData(data.recommendations));
   }, []);
 
   useEffect(() => {
@@ -46,10 +46,22 @@ export default function Home() {
   return (
     <SafeAreaView style={styles.container}>
       <Stack.Screen options={{ headerShown: false }} />
-      <Text>{JSON.stringify(data)}</Text>
       <Text>{JSON.stringify(location)}</Text>
+      <ClothingRecs recommendations={data} />
       <Link href="/settings">settings</Link>
     </SafeAreaView>
+  );
+}
+
+function ClothingRecs({ recommendations }: { recommendations: string[] }) {
+  return (
+    <View style={styles.recommendation}>
+      {recommendations.map((recommendation, index) => (
+        <Text key={index} style={styles.recommendationItem}>
+          {recommendation}
+        </Text>
+      ))}
+    </View>
   );
 }
 
@@ -57,5 +69,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.sky,
+    paddingStart: 12,
+    paddingEnd: 12,
+  },
+  recommendation: {
+    display: "flex",
+    flexDirection: "column",
+    gap: 10,
+    padding: 12,
+    backgroundColor: "rgba(0, 0, 0, 0.20)",
+    borderRadius: 12,
+  },
+  recommendationItem: {
+    color: "#e1e1e1",
   },
 });
