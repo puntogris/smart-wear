@@ -48,6 +48,8 @@
     <string name="units">Unidades</string>
     <string name="transparency">Transparecia</string>
     <string name="appearance">Apariencia</string>
+    <string name="weather_data_attribution">Datos meteorológicos</string>
+    <string name="weather_data_attribution_summary">Datos meteorológicos de Open-Meteo.com</string>
 
     <!-- Snack -->
     <string name="snack_connection_error">Ocurrio un error. Intenta nuevamente en un momento.</string>

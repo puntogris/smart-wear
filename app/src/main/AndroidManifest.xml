@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/SmartWear.Theme.SplashTheme"
         android:fullBackupContent="true">
-        <activity android:name="com.puntogris.smartwear.core.presentation.main.MainActivity"
+        <activity android:name="com.puntogris.smartwear.presentation.main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

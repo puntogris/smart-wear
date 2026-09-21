@@ -2,7 +2,7 @@ package com.puntogris.smartwear.di
 
 import android.content.Context
 import androidx.room.Room
-import com.puntogris.smartwear.core.utils.StandardDispatchers
+import com.puntogris.smartwear.utils.StandardDispatchers
 import com.puntogris.smartwear.feature_weather.data.data_source.local.AppDatabase
 import com.puntogris.smartwear.feature_weather.domain.repository.DispatcherProvider
 import dagger.Module

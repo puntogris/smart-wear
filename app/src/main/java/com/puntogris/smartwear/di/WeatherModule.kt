@@ -1,7 +1,7 @@
 package com.puntogris.smartwear.di
 
 import com.puntogris.smartwear.BuildConfig
-import com.puntogris.smartwear.core.utils.constants.HttpRoutes
+import com.puntogris.smartwear.utils.constants.HttpRoutes
 import com.puntogris.smartwear.feature_weather.data.data_source.FusedLocationClient
 import com.puntogris.smartwear.feature_weather.data.data_source.local.AppDatabase
 import com.puntogris.smartwear.feature_weather.data.data_source.local.LocationDao
@@ -60,20 +60,11 @@ class WeatherModule {
     @Provides
     fun provideWeatherAPi(): WeatherApi {
         val client = OkHttpClient.Builder()
-            .addInterceptor { chain ->
-                val url = chain
-                    .request()
-                    .url
-                    .newBuilder()
-                    .addQueryParameter(HttpRoutes.APPID, BuildConfig.OPEN_WEATHER_API_KEY)
-                    .build()
-                chain.proceed(chain.request().newBuilder().url(url).build())
-            }
             .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC))
             .build()
 
         return Retrofit.Builder()
-            .baseUrl(HttpRoutes.OPEN_WEATHER_API_BASE_URL)
+            .baseUrl(HttpRoutes.OPEN_METEO_API_BASE_URL)
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()

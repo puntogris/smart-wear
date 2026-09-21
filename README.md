@@ -7,7 +7,7 @@ Used in this project:</br>
   * Ktor
   * Room
   * Google Play services location API
-  * OpenWeather API
+  * [Open-Meteo API](https://open-meteo.com/) for weather data
   * LocationIQ API
   * Hilt
   * Vuepress

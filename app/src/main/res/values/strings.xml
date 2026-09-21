@@ -48,6 +48,9 @@
     <string name="units">Units</string>
     <string name="transparency">Transparency</string>
     <string name="appearance">Appearance</string>
+    <string name="weather_data_attribution">Weather data</string>
+    <string name="weather_data_attribution_summary">Weather data by Open-Meteo.com</string>
+    <string name="open_meteo_url" translatable="false">https://open-meteo.com/</string>
 
     <!-- Snack -->
     <string name="snack_connection_error">An error occurred, check your connection and try again.</string>

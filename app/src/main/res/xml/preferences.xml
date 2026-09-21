@@ -41,6 +41,14 @@
         app:title="@string/transparency"
         app:iconSpaceReserved="true">
         <Preference
+            app:title="@string/weather_data_attribution"
+            app:summary="@string/weather_data_attribution_summary"
+            app:iconSpaceReserved="true">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="@string/open_meteo_url" />
+        </Preference>
+        <Preference
             android:key="licenses_preference_key"
             app:title="@string/open_source_licenses"
             app:iconSpaceReserved="true"/>
