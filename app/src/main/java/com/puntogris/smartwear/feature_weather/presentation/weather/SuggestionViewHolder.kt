@@ -12,12 +12,11 @@ class SuggestionViewHolder(private val binding: SuggestionVhBinding) :
 
     fun bind(location: Location, clickListener: (Location) -> Unit, isLastItem: Boolean) {
         with(binding) {
-            this.location = location
+            locationName.text = location.displayName
             root.setOnClickListener {
                 clickListener(location)
             }
             divider.isVisible = !isLastItem
-            executePendingBindings()
         }
     }
 

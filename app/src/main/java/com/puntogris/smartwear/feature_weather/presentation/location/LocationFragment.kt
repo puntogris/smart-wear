@@ -1,34 +1,35 @@
 package com.puntogris.smartwear.feature_weather.presentation.location
 
 import android.Manifest
-import androidx.activity.result.ActivityResultLauncher
+import android.os.Bundle
+import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.findNavController
 import com.puntogris.smartwear.R
-import com.puntogris.smartwear.core.utils.constants.Keys
 import com.puntogris.smartwear.core.utils.createSnackBar
+import com.puntogris.smartwear.core.utils.constants.Keys
+import com.puntogris.smartwear.core.utils.viewBinding
 import com.puntogris.smartwear.databinding.FragmentLocationBinding
-import com.puntogris.smartwear.core.presentation.base.BaseBindingFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class LocationFragment : BaseBindingFragment<FragmentLocationBinding>(R.layout.fragment_location) {
+class LocationFragment : Fragment(R.layout.fragment_location) {
 
-    private lateinit var permissionLauncher: ActivityResultLauncher<String>
+    private val binding by viewBinding(FragmentLocationBinding::bind)
 
-    override fun initializeViews() {
-        binding.fragment = this
-        setupLocationPermissionLauncher()
+    private val permissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted ->
+        if (isGranted) onPermissionGranted()
+        else createSnackBar(R.string.snack_location_required)
     }
 
-    private fun setupLocationPermissionLauncher() {
-        permissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission())
-        { isGranted: Boolean ->
-            if (isGranted) onPermissionGranted()
-            else createSnackBar(R.string.snack_location_required)
-        }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.nextButton.setOnClickListener { requestLocationPermission() }
     }
 
     private fun onPermissionGranted() {
@@ -36,7 +37,7 @@ class LocationFragment : BaseBindingFragment<FragmentLocationBinding>(R.layout.f
         findNavController().navigateUp()
     }
 
-    fun requestLocationPermission() {
+    private fun requestLocationPermission() {
         permissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
     }
 }

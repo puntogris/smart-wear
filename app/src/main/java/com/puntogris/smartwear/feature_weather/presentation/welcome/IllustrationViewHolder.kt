@@ -10,8 +10,8 @@ class IllustrationViewHolder(private val binding: IllustrationVhBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(illustration: Illustration) {
-        binding.illustration = illustration
-        binding.executePendingBindings()
+        binding.imageView.setImageResource(illustration.image)
+        binding.textView16.setText(illustration.tittle)
     }
 
     companion object {

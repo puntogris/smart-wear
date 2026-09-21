@@ -3,15 +3,18 @@ package com.puntogris.smartwear.feature_weather.presentation.weather
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
+import android.view.View
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.puntogris.smartwear.R
-import com.puntogris.smartwear.core.presentation.base.BaseBindingFragment
 import com.puntogris.smartwear.core.utils.Result
+import com.puntogris.smartwear.core.utils.constants.HttpRoutes
 import com.puntogris.smartwear.core.utils.constants.Keys
 import com.puntogris.smartwear.core.utils.createSnackBar
 import com.puntogris.smartwear.core.utils.getString
@@ -20,26 +23,74 @@ import com.puntogris.smartwear.core.utils.hasLocationPermission
 import com.puntogris.smartwear.core.utils.hideKeyboard
 import com.puntogris.smartwear.core.utils.launchAndRepeatWithViewLifecycle
 import com.puntogris.smartwear.core.utils.onSearch
+import com.puntogris.smartwear.core.utils.viewBinding
 import com.puntogris.smartwear.databinding.FragmentWeatherBinding
 import com.puntogris.smartwear.feature_weather.domain.model.Location
+import com.puntogris.smartwear.feature_weather.domain.model.Weather
+import com.puntogris.smartwear.feature_weather.domain.model.events.RecommendationEvent
 import com.puntogris.smartwear.feature_weather.presentation.util.EmptyLocationException
 import com.puntogris.smartwear.feature_weather.presentation.util.LocationResult
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class WeatherFragment : BaseBindingFragment<FragmentWeatherBinding>(R.layout.fragment_weather) {
+class WeatherFragment : Fragment(R.layout.fragment_weather) {
+
+    private val binding by viewBinding(FragmentWeatherBinding::bind)
+
 
     private val viewModel: WeatherViewModel by activityViewModels()
 
-    override fun initializeViews() {
-        binding.fragment = this
-        binding.lifecycleOwner = viewLifecycleOwner
-        binding.viewModel = viewModel
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
+        binding.animationView.isVisible = viewModel.isAnimationEnabled
+        setupClickListeners()
         subscribeWeatherUi()
+        subscribeLocationUi()
         subscribeRefreshUi()
         subscribeFragmentResults()
         setupSearchLocationsUi()
+    }
+
+    private fun setupClickListeners() = with(binding) {
+        searchButton.setOnClickListener { onSearchLocationClicked() }
+        currentLocationButton.setOnClickListener { useCurrentLocation() }
+        closeSuggestionsButton.setOnClickListener { closeSuggestions() }
+    }
+
+    private fun subscribeLocationUi() {
+        launchAndRepeatWithViewLifecycle {
+            viewModel.currentLocation.collect(::renderLocation)
+        }
+    }
+
+    private fun renderLocation(currentLocation: Location?) = with(binding) {
+        val hasLocation = currentLocation != null
+        forecastTitle.isVisible = hasLocation
+        recommendationTitle.isVisible = hasLocation
+        emptyHolder.isVisible = !hasLocation
+        searchInput.setText(currentLocation?.name.orEmpty())
+        location.text = currentLocation?.let {
+            getString(R.string.forecast_location_name_title, it.name)
+        }.orEmpty()
+    }
+
+    private fun renderWeather(weather: Weather) = with(binding) {
+        current.text = getString(
+            R.string.current_weather_temp_description,
+            weather.current.temperature.asString(),
+            weather.current.description
+        )
+        forecast.text = weather.forecast.events
+            .filter { it.isValid() }
+            .joinToString(" ") { it.buildSummary(requireContext()) }
+        recommendation.text = weather.forecast.events
+            .filterIsInstance<RecommendationEvent>()
+            .filter { it.isValid() }
+            .joinToString(" ") { it.buildRecommendation(requireContext()) }
+        Glide.with(imageView)
+            .load(HttpRoutes.WEATHER_ICON + "/${weather.current.icon}.png")
+            .into(imageView)
     }
 
     private fun setupSearchLocationsUi() {
@@ -96,7 +147,7 @@ class WeatherFragment : BaseBindingFragment<FragmentWeatherBinding>(R.layout.fra
             viewModel.weatherResult.collect {
                 when (it) {
                     is Result.Success -> {
-                        binding.weather = it.data
+                        renderWeather(it.data)
                         binding.swipeRefreshLayout.isRefreshing = false
                     }
                     is Result.Failure -> {
@@ -114,11 +165,11 @@ class WeatherFragment : BaseBindingFragment<FragmentWeatherBinding>(R.layout.fra
         }
     }
 
-    fun onSearchLocationClicked() {
+    private fun onSearchLocationClicked() {
         viewModel.getLocationSuggestions(binding.searchInput.getString())
     }
 
-    fun useCurrentLocation() {
+    private fun useCurrentLocation() {
         if (hasLocationPermission()) {
             viewModel.updateCurrentLocation()
         } else {
@@ -132,7 +183,7 @@ class WeatherFragment : BaseBindingFragment<FragmentWeatherBinding>(R.layout.fra
         }
     }
 
-    fun closeSuggestions() {
+    private fun closeSuggestions() {
         binding.suggestionsLayout.gone()
         hideKeyboard()
     }
