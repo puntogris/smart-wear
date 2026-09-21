@@ -1,7 +1,7 @@
 package com.puntogris.smartwear.domain.model
 
-import com.puntogris.smartwear.feature_weather.domain.model.events.ForecastEvent
-import com.puntogris.smartwear.feature_weather.presentation.util.TimeOfDay
+import com.puntogris.smartwear.domain.model.events.ForecastEvent
+import com.puntogris.smartwear.presentation.util.TimeOfDay
 
 class Forecast(
     val events: List<ForecastEvent>,

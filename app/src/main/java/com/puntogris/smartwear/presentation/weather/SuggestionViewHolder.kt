@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.puntogris.smartwear.databinding.SuggestionVhBinding
-import com.puntogris.smartwear.feature_weather.domain.model.Location
+import com.puntogris.smartwear.domain.model.Location
 
 class SuggestionViewHolder(private val binding: SuggestionVhBinding) :
     RecyclerView.ViewHolder(binding.root) {

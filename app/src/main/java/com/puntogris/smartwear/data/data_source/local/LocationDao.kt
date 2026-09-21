@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.puntogris.smartwear.feature_weather.data.data_source.local.model.LocationEntity
+import com.puntogris.smartwear.data.data_source.local.model.LocationEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao

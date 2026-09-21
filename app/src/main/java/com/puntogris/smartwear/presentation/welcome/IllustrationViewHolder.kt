@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.puntogris.smartwear.databinding.IllustrationVhBinding
-import com.puntogris.smartwear.feature_weather.domain.model.Illustration
+import com.puntogris.smartwear.domain.model.Illustration
 
 class IllustrationViewHolder(private val binding: IllustrationVhBinding) :
     RecyclerView.ViewHolder(binding.root) {

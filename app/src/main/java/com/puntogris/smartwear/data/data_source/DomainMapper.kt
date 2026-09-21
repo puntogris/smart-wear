@@ -1,13 +1,17 @@
 package com.puntogris.smartwear.data.data_source
 
-import com.puntogris.smartwear.feature_weather.data.data_source.local.model.LocationEntity
-import com.puntogris.smartwear.feature_weather.data.data_source.remote.dto.LocationDto
-import com.puntogris.smartwear.feature_weather.data.data_source.remote.dto.WeatherDto
-import com.puntogris.smartwear.feature_weather.domain.model.*
-import com.puntogris.smartwear.feature_weather.domain.model.conditions.Humidity
-import com.puntogris.smartwear.feature_weather.domain.model.conditions.Precipitation
-import com.puntogris.smartwear.feature_weather.domain.model.conditions.Temperature
-import com.puntogris.smartwear.feature_weather.domain.model.conditions.Wind
+import com.puntogris.smartwear.data.data_source.local.model.LocationEntity
+import com.puntogris.smartwear.data.data_source.remote.dto.LocationDto
+import com.puntogris.smartwear.data.data_source.remote.dto.WeatherDto
+import com.puntogris.smartwear.domain.model.Current
+import com.puntogris.smartwear.domain.model.Daily
+import com.puntogris.smartwear.domain.model.Hourly
+import com.puntogris.smartwear.domain.model.Location
+import com.puntogris.smartwear.domain.model.WeatherResult
+import com.puntogris.smartwear.domain.model.conditions.Humidity
+import com.puntogris.smartwear.domain.model.conditions.Precipitation
+import com.puntogris.smartwear.domain.model.conditions.Temperature
+import com.puntogris.smartwear.domain.model.conditions.Wind
 
 fun LocationEntity.toDomain(): Location {
     return Location(

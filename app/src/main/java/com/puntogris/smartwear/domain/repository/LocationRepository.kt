@@ -1,7 +1,7 @@
 package com.puntogris.smartwear.domain.repository
 
+import com.puntogris.smartwear.domain.model.Location
 import com.puntogris.smartwear.utils.SimpleResult
-import com.puntogris.smartwear.feature_weather.domain.model.Location
 import kotlinx.coroutines.flow.Flow
 
 interface LocationRepository {

@@ -1,7 +1,7 @@
 package com.puntogris.smartwear.domain.model.events
 
 import android.content.Context
-import com.puntogris.smartwear.feature_weather.domain.model.conditions.WeatherCondition
+import com.puntogris.smartwear.domain.model.conditions.WeatherCondition
 
 abstract class DetailedEvent : ForecastEvent {
 

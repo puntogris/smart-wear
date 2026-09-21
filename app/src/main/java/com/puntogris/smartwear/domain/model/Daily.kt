@@ -1,6 +1,6 @@
 package com.puntogris.smartwear.domain.model
 
-import com.puntogris.smartwear.feature_weather.domain.model.conditions.Temperature
+import com.puntogris.smartwear.domain.model.conditions.Temperature
 
 class Daily(
     val min: Temperature,

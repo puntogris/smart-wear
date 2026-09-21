@@ -3,8 +3,8 @@ package com.puntogris.smartwear.domain.model.events
 import android.content.Context
 import com.puntogris.smartwear.R
 import com.puntogris.smartwear.utils.half
-import com.puntogris.smartwear.feature_weather.domain.model.WeatherResult
-import com.puntogris.smartwear.feature_weather.presentation.util.TimeOfDay
+import com.puntogris.smartwear.domain.model.WeatherResult
+import com.puntogris.smartwear.presentation.util.TimeOfDay
 
 class TemperatureEvent(
     private val weather: WeatherResult,

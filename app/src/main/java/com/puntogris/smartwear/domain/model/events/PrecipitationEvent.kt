@@ -2,8 +2,8 @@ package com.puntogris.smartwear.domain.model.events
 
 import android.content.Context
 import com.puntogris.smartwear.R
-import com.puntogris.smartwear.feature_weather.domain.model.WeatherResult
-import com.puntogris.smartwear.feature_weather.domain.model.conditions.WeatherCondition
+import com.puntogris.smartwear.domain.model.WeatherResult
+import com.puntogris.smartwear.domain.model.conditions.WeatherCondition
 
 class PrecipitationEvent(private val weatherResult: WeatherResult, hoursAnalyzed: Int) :
     RecommendationEvent() {

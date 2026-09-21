@@ -1,14 +1,19 @@
 package com.puntogris.smartwear.domain.use_case
 
+import com.puntogris.smartwear.domain.model.Forecast
+import com.puntogris.smartwear.domain.model.Location
+import com.puntogris.smartwear.domain.model.Weather
+import com.puntogris.smartwear.domain.model.WeatherResult
+import com.puntogris.smartwear.domain.model.events.ForecastEvent
+import com.puntogris.smartwear.domain.model.events.HumidityEvent
+import com.puntogris.smartwear.domain.model.events.PrecipitationEvent
+import com.puntogris.smartwear.domain.model.events.StableEvent
+import com.puntogris.smartwear.domain.model.events.TemperatureEvent
+import com.puntogris.smartwear.domain.model.events.WindEvent
+import com.puntogris.smartwear.domain.repository.WeatherRepository
+import com.puntogris.smartwear.presentation.util.EmptyLocationException
+import com.puntogris.smartwear.presentation.util.TimeOfDay
 import com.puntogris.smartwear.utils.Result
-import com.puntogris.smartwear.feature_weather.domain.model.Forecast
-import com.puntogris.smartwear.feature_weather.domain.model.Location
-import com.puntogris.smartwear.feature_weather.domain.model.Weather
-import com.puntogris.smartwear.feature_weather.domain.model.WeatherResult
-import com.puntogris.smartwear.feature_weather.domain.model.events.*
-import com.puntogris.smartwear.feature_weather.domain.repository.WeatherRepository
-import com.puntogris.smartwear.feature_weather.presentation.util.EmptyLocationException
-import com.puntogris.smartwear.feature_weather.presentation.util.TimeOfDay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

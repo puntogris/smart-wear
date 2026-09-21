@@ -1,6 +1,6 @@
 package com.puntogris.smartwear.data.data_source.remote
 
-import com.puntogris.smartwear.feature_weather.data.data_source.remote.dto.LocationDto
+import com.puntogris.smartwear.data.data_source.remote.dto.LocationDto
 import retrofit2.http.GET
 import retrofit2.http.Query
 

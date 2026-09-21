@@ -1,7 +1,7 @@
-package com.puntogris.smartwear.feature_weather.data.data_source
+package com.puntogris.smartwear.data.data_source
 
 import com.google.gson.Gson
-import com.puntogris.smartwear.feature_weather.data.data_source.remote.dto.WeatherDto
+import com.puntogris.smartwear.data.data_source.remote.dto.WeatherDto
 import org.junit.Assert.assertEquals
 import org.junit.Test
 

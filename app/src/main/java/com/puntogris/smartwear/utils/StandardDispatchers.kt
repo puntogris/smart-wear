@@ -1,6 +1,6 @@
 package com.puntogris.smartwear.utils
 
-import com.puntogris.smartwear.feature_weather.domain.repository.DispatcherProvider
+import com.puntogris.smartwear.domain.repository.DispatcherProvider
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 

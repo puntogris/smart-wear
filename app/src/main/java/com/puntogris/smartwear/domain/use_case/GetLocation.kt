@@ -1,7 +1,7 @@
 package com.puntogris.smartwear.domain.use_case
 
-import com.puntogris.smartwear.feature_weather.domain.model.Location
-import com.puntogris.smartwear.feature_weather.domain.repository.LocationRepository
+import com.puntogris.smartwear.domain.model.Location
+import com.puntogris.smartwear.domain.repository.LocationRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

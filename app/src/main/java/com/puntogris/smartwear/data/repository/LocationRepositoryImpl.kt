@@ -1,17 +1,18 @@
 package com.puntogris.smartwear.data.repository
 
+import com.puntogris.smartwear.data.data_source.FusedLocationClient
+import com.puntogris.smartwear.data.data_source.local.LocationDao
+import com.puntogris.smartwear.data.data_source.remote.GeocodingApi
+import com.puntogris.smartwear.data.data_source.toDomain
+import com.puntogris.smartwear.data.data_source.toEntity
+import com.puntogris.smartwear.domain.model.Location
+import com.puntogris.smartwear.domain.repository.DispatcherProvider
+import com.puntogris.smartwear.domain.repository.LocationRepository
 import com.puntogris.smartwear.utils.SimpleResult
-import com.puntogris.smartwear.feature_weather.data.data_source.FusedLocationClient
-import com.puntogris.smartwear.feature_weather.data.data_source.local.LocationDao
-import com.puntogris.smartwear.feature_weather.data.data_source.remote.GeocodingApi
-import com.puntogris.smartwear.feature_weather.data.data_source.toDomain
-import com.puntogris.smartwear.feature_weather.data.data_source.toEntity
-import com.puntogris.smartwear.feature_weather.domain.model.Location
-import com.puntogris.smartwear.feature_weather.domain.repository.DispatcherProvider
-import com.puntogris.smartwear.feature_weather.domain.repository.LocationRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
+import kotlin.collections.map
 
 class LocationRepositoryImpl(
     private val locationClient: FusedLocationClient,

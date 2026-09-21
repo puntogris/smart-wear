@@ -15,7 +15,7 @@ import com.puntogris.smartwear.utils.onClick
 import com.puntogris.smartwear.utils.preference
 import com.puntogris.smartwear.utils.preferenceChange
 import com.puntogris.smartwear.utils.preferenceOnClick
-import com.puntogris.smartwear.feature_weather.data.data_source.local.enableShowAnimationPref
+import com.puntogris.smartwear.data.data_source.local.enableShowAnimationPref
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

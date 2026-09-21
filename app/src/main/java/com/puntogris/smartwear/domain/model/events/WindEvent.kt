@@ -1,8 +1,8 @@
 package com.puntogris.smartwear.domain.model.events
 
 import com.puntogris.smartwear.R
-import com.puntogris.smartwear.feature_weather.domain.model.WeatherResult
-import com.puntogris.smartwear.feature_weather.domain.model.conditions.WeatherCondition
+import com.puntogris.smartwear.domain.model.WeatherResult
+import com.puntogris.smartwear.domain.model.conditions.WeatherCondition
 
 class WindEvent(weatherResult: WeatherResult, hoursAnalyzed: Int) : DetailedEvent() {
 

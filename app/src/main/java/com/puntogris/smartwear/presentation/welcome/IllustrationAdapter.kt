@@ -3,7 +3,7 @@ package com.puntogris.smartwear.presentation.welcome
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.puntogris.smartwear.R
-import com.puntogris.smartwear.feature_weather.domain.model.Illustration
+import com.puntogris.smartwear.domain.model.Illustration
 
 class IllustrationAdapter : RecyclerView.Adapter<IllustrationViewHolder>() {
 

@@ -3,7 +3,7 @@ package com.puntogris.smartwear
 import android.app.Application
 import com.jakewharton.threetenabp.AndroidThreeTen
 import com.puntogris.smartwear.utils.ThemeManager
-import com.puntogris.smartwear.feature_weather.data.data_source.local.SharedPreferences
+import com.puntogris.smartwear.data.data_source.local.SharedPreferences
 import dagger.hilt.android.HiltAndroidApp
 import javax.inject.Inject
 

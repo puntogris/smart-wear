@@ -2,7 +2,7 @@ package com.puntogris.smartwear.data.data_source.local
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.puntogris.smartwear.feature_weather.data.data_source.local.model.LocationEntity
+import com.puntogris.smartwear.data.data_source.local.model.LocationEntity
 
 @Database(entities = [LocationEntity::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {

@@ -7,7 +7,7 @@ import androidx.navigation.fragment.findNavController
 import com.puntogris.smartwear.R
 import com.puntogris.smartwear.utils.viewBinding
 import com.puntogris.smartwear.databinding.FragmentWelcomeBinding
-import com.puntogris.smartwear.feature_weather.data.data_source.local.SharedPreferences
+import com.puntogris.smartwear.data.data_source.local.SharedPreferences
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

@@ -25,11 +25,11 @@ import com.puntogris.smartwear.utils.launchAndRepeatWithViewLifecycle
 import com.puntogris.smartwear.utils.onSearch
 import com.puntogris.smartwear.utils.viewBinding
 import com.puntogris.smartwear.databinding.FragmentWeatherBinding
-import com.puntogris.smartwear.feature_weather.domain.model.Location
-import com.puntogris.smartwear.feature_weather.domain.model.Weather
-import com.puntogris.smartwear.feature_weather.domain.model.events.RecommendationEvent
-import com.puntogris.smartwear.feature_weather.presentation.util.EmptyLocationException
-import com.puntogris.smartwear.feature_weather.presentation.util.LocationResult
+import com.puntogris.smartwear.domain.model.Location
+import com.puntogris.smartwear.domain.model.Weather
+import com.puntogris.smartwear.domain.model.events.RecommendationEvent
+import com.puntogris.smartwear.presentation.util.EmptyLocationException
+import com.puntogris.smartwear.presentation.util.LocationResult
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

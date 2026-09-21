@@ -1,9 +1,9 @@
 package com.puntogris.smartwear.domain.use_case
 
 import com.puntogris.smartwear.R
-import com.puntogris.smartwear.feature_weather.presentation.util.LocationResult
-import com.puntogris.smartwear.feature_weather.domain.repository.LocationRepository
-import com.puntogris.smartwear.feature_weather.presentation.util.InvalidQueryException
+import com.puntogris.smartwear.domain.repository.LocationRepository
+import com.puntogris.smartwear.presentation.util.InvalidQueryException
+import com.puntogris.smartwear.presentation.util.LocationResult
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
