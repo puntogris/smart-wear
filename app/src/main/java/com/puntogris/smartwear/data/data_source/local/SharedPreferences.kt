@@ -1,8 +1,7 @@
 package com.puntogris.smartwear.data.data_source.local
 
 import android.content.Context
-import android.content.SharedPreferences
-import androidx.preference.PreferenceManager
+import android.content.SharedPreferences as AndroidSharedPreferences
 import com.puntogris.smartwear.BuildConfig
 import com.puntogris.smartwear.utils.ThemeManager
 import com.puntogris.smartwear.utils.constants.Keys
@@ -11,7 +10,10 @@ import javax.inject.Inject
 
 class SharedPreferences @Inject constructor(@ApplicationContext context: Context) {
 
-    private val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+    private val sharedPreferences = context.getSharedPreferences(
+        "${context.packageName}_preferences",
+        Context.MODE_PRIVATE
+    )
 
     fun appTheme() = sharedPreferences.getString(Keys.THEME, ThemeManager.LIGHT)
 
@@ -26,11 +28,17 @@ class SharedPreferences @Inject constructor(@ApplicationContext context: Context
 
     fun weatherUnits() = sharedPreferences.getString(Keys.WEATHER_UNITS, "metric")
 
+    fun updateTheme(value: String) =
+        sharedPreferences.edit().putString(Keys.THEME, value).apply()
+
+    fun updateWeatherUnits(value: String) =
+        sharedPreferences.edit().putString(Keys.WEATHER_UNITS, value).apply()
+
     fun showWelcome() = sharedPreferences.getBoolean(Keys.SHOW_WELCOME, true)
 
     fun disableWelcomeScreenPref() =
         sharedPreferences.edit().putBoolean(Keys.SHOW_WELCOME, false).apply()
 }
 
-fun SharedPreferences.enableShowAnimationPref() =
+fun AndroidSharedPreferences.enableShowAnimationPref() =
     this.edit().putBoolean(Keys.ANIMATION, true).apply()

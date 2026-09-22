@@ -2,24 +2,23 @@ package com.puntogris.smartwear.presentation.location
 
 import android.Manifest
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.os.bundleOf
+import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.findNavController
 import com.puntogris.smartwear.R
-import com.puntogris.smartwear.utils.createSnackBar
+import com.puntogris.smartwear.presentation.weather.SmartWearTheme
 import com.puntogris.smartwear.utils.constants.Keys
-import com.puntogris.smartwear.utils.viewBinding
-import com.puntogris.smartwear.databinding.FragmentLocationBinding
+import com.puntogris.smartwear.utils.createSnackBar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class LocationFragment : Fragment(R.layout.fragment_location) {
-
-    private val binding by viewBinding(FragmentLocationBinding::bind)
-
+class LocationFragment : Fragment() {
     private val permissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission()
     ) { isGranted ->
@@ -27,13 +26,21 @@ class LocationFragment : Fragment(R.layout.fragment_location) {
         else createSnackBar(R.string.snack_location_required)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        binding.nextButton.setOnClickListener { requestLocationPermission() }
-    }
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, state: Bundle?): View =
+        ComposeView(requireContext()).apply {
+            setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
+            setContent {
+                SmartWearTheme {
+                    LocationPermissionScreen(onEnableLocation = ::requestLocationPermission)
+                }
+            }
+        }
 
     private fun onPermissionGranted() {
-        setFragmentResult(Keys.DATA, bundleOf(Keys.LOCATION_RESULT to true))
+        setFragmentResult(
+            Keys.DATA,
+            Bundle().apply { putBoolean(Keys.LOCATION_RESULT, true) }
+        )
         findNavController().navigateUp()
     }
 

@@ -8,6 +8,8 @@
     <string name="action_use_current_location"><u>Usar ubicación actual</u></string>
     <string name="action_close">Cerrar</string>
     <string name="action_continue">Continuar</string>
+    <string name="action_search">Buscar</string>
+    <string name="action_use_current_location_plain">Usar ubicación actual</string>
 
     <!-- Welcome -->
     <string name="welcome_item_1">¡Busca tu ubicación!</string>
@@ -30,6 +32,10 @@
     <string name="recommendation_title">RECOMENDACIÓN:</string>
     <string name="search_location_hint">Ciudad, Provincia, País..</string>
     <string name="forecast_location_name_title">Para %1$s:</string>
+    <string name="today_forecast_title_compose">Pronóstico de hoy</string>
+    <string name="recommendation_title_compose">Qué ponerte</string>
+    <string name="search_results">Ubicaciones</string>
+    <string name="no_locations_found">No encontramos ubicaciones que coincidan.</string>
 
     <!-- Settings -->
     <string name="version">Versión</string>
@@ -48,6 +54,7 @@
     <string name="units">Unidades</string>
     <string name="transparency">Transparecia</string>
     <string name="appearance">Apariencia</string>
+    <string name="settings_app_section">Aplicación</string>
     <string name="weather_data_attribution">Datos meteorológicos</string>
     <string name="weather_data_attribution_summary">Datos meteorológicos de Open-Meteo.com</string>
 
@@ -91,6 +98,13 @@
 
     <!-- Other -->
     <string name="empty_location_holder">No encontramos nada por aquí, te invitamos a que busques una localidad o actives la ubicación automatica.</string>
+    <string name="empty_location_title">Elige tu ubicación</string>
+    <string name="empty_location_body">Busca una ciudad o usa tu ubicación actual para saber qué ponerte hoy.</string>
+    <string name="weather_error_inline">El clima no está disponible. Desliza hacia abajo para intentar de nuevo.</string>
+    <string name="weather_icon_description">Clima actual</string>
+    <string name="preview_location_name">Lima</string>
+    <string name="preview_location_display_name">Lima, Perú</string>
+    <string name="preview_weather_description">Cielo despejado</string>
 
     <!-- Arrays -->
     <!-- Theme -->

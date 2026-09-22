@@ -1,35 +1,34 @@
 package com.puntogris.smartwear.presentation.welcome
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.puntogris.smartwear.R
-import com.puntogris.smartwear.utils.viewBinding
-import com.puntogris.smartwear.databinding.FragmentWelcomeBinding
 import com.puntogris.smartwear.data.data_source.local.SharedPreferences
+import com.puntogris.smartwear.presentation.weather.SmartWearTheme
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class WelcomeFragment : Fragment(R.layout.fragment_welcome) {
+class WelcomeFragment : Fragment() {
+    @Inject lateinit var sharedPreferences: SharedPreferences
 
-    private val binding by viewBinding(FragmentWelcomeBinding::bind)
-
-
-    @Inject
-    lateinit var sharedPreferences: SharedPreferences
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        with(binding) {
-            viewPager.adapter = IllustrationAdapter()
-            dotsIndicator.setViewPager2(viewPager)
-            startButton.setOnClickListener { onContinueClicked() }
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, state: Bundle?): View =
+        ComposeView(requireContext()).apply {
+            setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
+            setContent {
+                SmartWearTheme {
+                    WelcomeScreen(onContinue = ::continueToWeather)
+                }
+            }
         }
-    }
 
-    private fun onContinueClicked() {
+    private fun continueToWeather() {
         sharedPreferences.disableWelcomeScreenPref()
         findNavController().navigate(R.id.weatherFragment)
     }

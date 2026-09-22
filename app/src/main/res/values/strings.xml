@@ -8,6 +8,8 @@
     <string name="action_use_current_location"><u>Use current location</u></string>
     <string name="action_close">Close</string>
     <string name="action_continue">Continue</string>
+    <string name="action_search">Search</string>
+    <string name="action_use_current_location_plain">Use current location</string>
 
     <!-- Welcome -->
     <string name="welcome_item_1">Search your location!</string>
@@ -30,6 +32,10 @@
     <string name="recommendation_title">RECOMMENDATION</string>
     <string name="search_location_hint">City, State, Country..</string>
     <string name="forecast_location_name_title">For %1$s:</string>
+    <string name="today_forecast_title_compose">Today\'s forecast</string>
+    <string name="recommendation_title_compose">What to wear</string>
+    <string name="search_results">Locations</string>
+    <string name="no_locations_found">No matching locations found.</string>
 
     <!-- Settings -->
     <string name="version">Version</string>
@@ -41,13 +47,14 @@
     <string name="open_source_licenses">Open source licenses</string>
     <string name="terms_and_conditions">Terms and conditions</string>
     <string name="privacy_policy">Privacy policy</string>
-    <string name="pref_privacy_policy_url" translatable="false">https://postureapp.puntogris.com/information/privacy-policy.html</string>
-    <string name="pref_terms_and_conditions_url" translatable="false">https://postureapp.puntogris.com/information/terms-and-conditions.html</string>
+    <string name="pref_privacy_policy_url" translatable="false">https://smartwear.puntogris.com/privacy-policy.html</string>
+    <string name="pref_terms_and_conditions_url" translatable="false">https://smartwear.puntogris.com/terms-and-conditions.html</string>
     <string name="settings_label">Settings</string>
     <string name="theme">Themes</string>
     <string name="units">Units</string>
     <string name="transparency">Transparency</string>
     <string name="appearance">Appearance</string>
+    <string name="settings_app_section">App</string>
     <string name="weather_data_attribution">Weather data</string>
     <string name="weather_data_attribution_summary">Weather data by Open-Meteo.com</string>
     <string name="open_meteo_url" translatable="false">https://open-meteo.com/</string>
@@ -92,6 +99,13 @@
 
     <!-- Other -->
     <string name="empty_location_holder">We did not find anything here, we invite you to search for a location or activate the automatic location.</string>
+    <string name="empty_location_title">Choose your location</string>
+    <string name="empty_location_body">Search for a city or use your current location to see what to wear today.</string>
+    <string name="weather_error_inline">Weather is unavailable right now. Pull down to try again.</string>
+    <string name="weather_icon_description">Current weather</string>
+    <string name="preview_location_name">Lima</string>
+    <string name="preview_location_display_name">Lima, Peru</string>
+    <string name="preview_weather_description">Clear skies</string>
 
     <!-- Arrays -->
     <!-- Theme -->
